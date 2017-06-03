@@ -35,7 +35,7 @@ namespace Pharmatech
             // Log user (employee) into system. Throw error if username/password incorrect, proceed to main system window if correct.
 
             var username = textBox_Username.Text;
-            var password = textBox_Password.Text;
+            var password = passwordBox_password.Password.ToString();
             
             int empID = EmployeeDA.AuthenticateLogin(username, password);
             if (empID > 0)
@@ -52,10 +52,7 @@ namespace Pharmatech
             }               
         }
 
-        private void button_Exit_Click(object sender, EventArgs e)
-        {
-            
-        }
+        
 
        
     }

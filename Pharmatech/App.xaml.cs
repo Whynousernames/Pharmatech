@@ -8,10 +8,13 @@ using System.Windows;
 
 namespace Pharmatech
 {
+
+    
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

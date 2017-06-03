@@ -19,15 +19,15 @@
             <Label x:Name="label_Username" Grid.ColumnSpan="2" Content="Username" HorizontalAlignment="Left" Height="33" Margin="15,1,0,0" VerticalAlignment="Top" Width="95" FontSize="18" Foreground="#FF12A9FF" />
             <Label x:Name="label_Password" Grid.ColumnSpan="2" Content="Password" HorizontalAlignment="Left" Height="33" Margin="15,39,0,0" VerticalAlignment="Top" Width="95" FontSize="18" Foreground="#FF12A9FF"/>
             <TextBox x:Name="textBox_Username" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="18" Margin="115,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
-            <TextBox x:Name="textBox_Password" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="18" Margin="115,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
-            <Button x:Name="button_login" Grid.ColumnSpan="2" Content="Login" HorizontalAlignment="Left" Margin="145,74,0,4" Width="86" FontSize="16" Cursor="Hand" Click="button_login_Click" Foreground="White" BorderBrush="#FF12A9FF" FontFamily="Segoe UI Semibold">
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                        <GradientStop Color="#FF2F98BF"/>
-                        <GradientStop Color="#FF424EC3" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
         </Grid>
+        <PasswordBox x:Name="passwordBox_password" Margin="216,219,145,0" VerticalAlignment="Top"/>
+        <Button x:Name="button_login" Content="Login" HorizontalAlignment="Left" Margin="235,259,0,30" Width="86" FontSize="16" Cursor="Hand" Click="button_login_Click" Foreground="White" BorderBrush="#FF12A9FF" FontFamily="Segoe UI Semibold">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF2F98BF"/>
+                    <GradientStop Color="#FF424EC3" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

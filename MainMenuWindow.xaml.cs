@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-
 namespace Pharmatech
 {
     /// <summary>
@@ -27,20 +26,12 @@ namespace Pharmatech
         public MainMenuWindow()
         {
             InitializeComponent();
-
-            //Creates a live system time and date display on the main menu window
             DispatcherTimer messageTimer = new DispatcherTimer();
             messageTimer.Tick += new EventHandler(messageTimer_Tick);
             messageTimer.Interval = new TimeSpan(0, 0, 1);
             messageTimer.Start();
             gridHidden_True();
-            arrowHidden_True();
             
-
-
-
-
-
 
         }
 
@@ -50,26 +41,6 @@ namespace Pharmatech
 
         }
         
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-            //The following is a method to display the "help function" on F1 keypress.
-            //It displays a messagebox and arrows pointing to the relavent elements.
-            //When the user clicks "OK" on the messagebox the messagebox and the arrows are closed.
-            if (e.Key == Key.F1)
-            {
-                
-                image_arrow.Visibility = Visibility.Visible;               
-                MessageBoxResult result = MessageBox.Show("Please select an item from the menu on the left to proceed." + Environment.NewLine , "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
-                if (result == MessageBoxResult.OK)
-                {
-                    arrowHidden_True();
-                }
-                
-                                
-
-            }
-        }
-
         void gridHidden_True()
         {
             Grid_Employee.Visibility = Visibility.Hidden;
@@ -79,19 +50,15 @@ namespace Pharmatech
             Grid_instruction.Visibility = Visibility.Hidden;
             Grid_Report.Visibility = Visibility.Hidden;
         }
-        void arrowHidden_True()
-        {
-            image_arrow.Visibility = Visibility.Hidden;
-            
-        }
 
         private void button_newCashSale_Click(object sender, RoutedEventArgs e)
         {
             gridHidden_True();
             NewSaleWindow newCashSaleWindow = new NewSaleWindow();
-            newCashSaleWindow.label_SaleWindowType.Content = "New Sale";
+            this.Hide();
             newCashSaleWindow.ShowDialog();
-            this.Close();
+            Grid_sales.Visibility = Visibility.Visible;
+
         }
 
         private void button_Sale_Click(object sender, RoutedEventArgs e)
@@ -133,47 +100,42 @@ namespace Pharmatech
         private void button_AddPatient_Click(object sender, RoutedEventArgs e)
         {
             gridHidden_True();
-            PatientMainWindow patientMainWindow = new PatientMainWindow();           
-            patientMainWindow.label_PatientWindowType.Content = "Add Patient";
-            patientMainWindow.Grid_SelectPatient.Visibility = Visibility.Hidden;            
+            PatientMainWindow patientMainWindow = new PatientMainWindow();
+            this.Hide();
             patientMainWindow.ShowDialog();
-            this.Close();
         }
 
         private void button_updatePatient_Click(object sender, RoutedEventArgs e)
         {
             gridHidden_True();
             PatientMainWindow patientMainWindow = new PatientMainWindow();
-            patientMainWindow.Grid_SelectPatient.Visibility = Visibility.Visible;
-            patientMainWindow.Grid_PatientMain.Visibility = Visibility.Hidden;
-            patientMainWindow.label_PatientWindowType.Content = "Update Patient";
+            this.Hide();
             patientMainWindow.ShowDialog();
-            this.Close();
         }
 
-        private void button_ViewPatient_Click_1(object sender, RoutedEventArgs e)
+        private void button_ViewPatient_Click(object sender, RoutedEventArgs e)
         {
             gridHidden_True();
             PatientMainWindow patientMainWindow = new PatientMainWindow();
-            patientMainWindow.Grid_SelectPatient.Visibility = Visibility.Visible;
-            patientMainWindow.Grid_PatientMain.Visibility = Visibility.Hidden;
-            patientMainWindow.label_PatientWindowType.Content = "View Patient";
+            this.Hide();
             patientMainWindow.ShowDialog();
-            this.Close();
         }
 
         private void button_removePatient_Click(object sender, RoutedEventArgs e)
         {
             gridHidden_True();
             PatientMainWindow patientMainWindow = new PatientMainWindow();
-            patientMainWindow.Grid_SelectPatient.Visibility = Visibility.Visible;
-            patientMainWindow.Grid_PatientMain.Visibility = Visibility.Hidden;
-            patientMainWindow.label_PatientWindowType.Content = "Remove Patient";
+            this.Hide();
             patientMainWindow.ShowDialog();
-            this.Close();
         }
 
-        
+        private void button_addMedication_Click(object sender, RoutedEventArgs e)
+        {
+            gridHidden_True();
+            MedicineMainWindow medicineMainWindow = new MedicineMainWindow();
+            this.Hide();
+            medicineMainWindow.ShowDialog();
+        }
 
         private void button_generateReport_Click(object sender, RoutedEventArgs e)
         {
@@ -181,54 +143,6 @@ namespace Pharmatech
             ReportsMainWindow reportsMainWindow = new ReportsMainWindow();
             this.Hide();
             reportsMainWindow.ShowDialog();
-        }
-
-        private void button_addMedication_Click(object sender, RoutedEventArgs e)
-        {
-            gridHidden_True();
-            MedicineMainWindow medicineMainWindow = new MedicineMainWindow();
-            medicineMainWindow.label_MedicationWindowType.Content = "Add Medication";
-            medicineMainWindow.Grid_SelectMedication.Visibility = Visibility.Hidden;
-            medicineMainWindow.ShowDialog();
-            this.Close();
-        }
-
-        private void button_updateMedication_Click(object sender, RoutedEventArgs e)
-        {
-            gridHidden_True();
-            MedicineMainWindow medicineMainWindow = new MedicineMainWindow();
-            medicineMainWindow.label_MedicationWindowType.Content = "Update Medication";
-            medicineMainWindow.Grid_MedicationMainWindow.Visibility = Visibility.Hidden;
-            medicineMainWindow.Grid_SelectMedication.Visibility = Visibility.Visible;
-            medicineMainWindow.ShowDialog();
-            this.Close();
-        }
-
-        private void button_viewMedication_Click(object sender, RoutedEventArgs e)
-        {
-            gridHidden_True();
-            MedicineMainWindow medicineMainWindow = new MedicineMainWindow();
-            medicineMainWindow.label_MedicationWindowType.Content = "Update Medication";
-            medicineMainWindow.Grid_MedicationMainWindow.Visibility = Visibility.Hidden;
-            medicineMainWindow.Grid_SelectMedication.Visibility = Visibility.Visible;
-            medicineMainWindow.ShowDialog();
-            this.Close();
-        }
-
-        private void button_removeMedication_Click(object sender, RoutedEventArgs e)
-        {
-            gridHidden_True();
-            MedicineMainWindow medicineMainWindow = new MedicineMainWindow();
-            medicineMainWindow.label_MedicationWindowType.Content = "Update Medication";
-            medicineMainWindow.Grid_MedicationMainWindow.Visibility = Visibility.Hidden;
-            medicineMainWindow.Grid_SelectMedication.Visibility = Visibility.Visible;
-            medicineMainWindow.ShowDialog();
-            this.Close();
-        }
-
-        private void button_Help_Click_1(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 

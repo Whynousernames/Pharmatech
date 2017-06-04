@@ -5,12 +5,23 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Net.Mail;
+using System.Windows.Controls;
 
 namespace Pharmatech
 {
-    public class InputValidation
+    public class IDInputValidation : ValidationRule
     {
-        public static Boolean validateIDNumber(string idNumber)
+
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set { _errorMessage = value; }
+        }
+
+
+
+        public override ValidationResult Validate (object value, System.Globalization.CultureInfo cultureInfo)
         {
             // Function to validate Patient's ID number. Adapted from a free online resource at: http://www.synerics.com/resources.html
 
@@ -19,8 +30,7 @@ namespace Pharmatech
             int controlDigitCheckValue = 10;
             int controlDigitCheckExceptionValue = 9;
             string RegexIDPattern = "(?<Year>[0-9][0-9])(?<Month>([0][1-9])|([1][0-2]))(?<Day>([0-2][0-9])|([3][0-1]))(?<Gender>[0-9])(?<Series>[0-9]{3})(?<Citizenship>[0-9])(?<Uniform>[0-9])(?<Control>[0-9])";
-            bool valid = true;
-            bool invalid = false;
+
 
             // assume that the id number is invalid
             bool isValidPattern = false;
@@ -28,9 +38,14 @@ namespace Pharmatech
             bool isValidControlDigit = false;
 
             // check length
-            if (idNumber.Length == validLength)
+            if (value.ToString().Length == validLength)
             {
                 isValidLength = true;
+            }
+
+            if (value == null)
+            {
+                return new ValidationResult(false, this.ErrorMessage);
             }
 
             // match regex pattern, only if length is valid
@@ -38,10 +53,10 @@ namespace Pharmatech
             {
                 Regex idPattern = new Regex(RegexIDPattern);
 
-                if (idPattern.IsMatch(idNumber))
+                if (idPattern.IsMatch(value.ToString()))
                 {
                     //00 will slip through the regex and checksum
-                    if (idNumber.Substring(2, 2) != "00" && idNumber.Substring(4, 2) != "00")
+                    if (value.ToString().Substring(2, 2) != "00" && value.ToString().Substring(4, 2) != "00")
                     {
                         isValidPattern = true;
                     }
@@ -62,13 +77,13 @@ namespace Pharmatech
                 // sum odd digits
                 for (int i = 0; i < validLength - 1; i = i + 2)
                 {
-                    a = a + int.Parse(idNumber[i].ToString());
+                    a = a + int.Parse(value.ToString()[i].ToString());
                 }
 
                 // build a string containing even digits
                 for (int i = 1; i < validLength - 1; i = i + 2)
                 {
-                    even.Append(idNumber[i]);
+                    even.Append(value.ToString()[i]);
                 }
                 // multipy by 2
                 tmp = int.Parse(even.ToString()) * 2;
@@ -83,7 +98,7 @@ namespace Pharmatech
                 c = a + b;
 
                 cDigit = controlDigitCheckValue - int.Parse(c.ToString()[1].ToString());
-                if (cDigit == int.Parse(idNumber[controlDigitLocation].ToString()))
+                if (cDigit == int.Parse(value.ToString()[controlDigitLocation].ToString()))
                 {
                     isValidControlDigit = true;
                 }
@@ -91,7 +106,7 @@ namespace Pharmatech
                 {
                     if (cDigit > controlDigitCheckExceptionValue)
                     {
-                        if (0 == int.Parse(idNumber[controlDigitLocation].ToString()))
+                        if (0 == int.Parse(value.ToString()[controlDigitLocation].ToString()))
                         {
                             isValidControlDigit = true;
                         }
@@ -102,11 +117,11 @@ namespace Pharmatech
             // final check
             if (isValidLength && isValidPattern && isValidControlDigit)
             {
-                return valid;
+                return ValidationResult.ValidResult;
             }
             else
             {
-                return invalid;
+                return new ValidationResult(false, "Invalid ID number entered.");
             }
         }
 
@@ -173,4 +188,6 @@ namespace Pharmatech
             }
         } 
     }
+
+    
 }

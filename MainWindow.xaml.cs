@@ -28,6 +28,7 @@ namespace Pharmatech
         public MainWindow()
         {
             InitializeComponent();
+            textBox_Username.Focus();
         }
 
         private void button_login_Click(object sender, RoutedEventArgs e)
@@ -35,12 +36,11 @@ namespace Pharmatech
             // Log user (employee) into system. Throw error if username/password incorrect, proceed to main system window if correct.
 
             var username = textBox_Username.Text;
-            var password = passwordBox_password.Password.ToString();
+            var password = textBox_Password.Text;
             
             int empID = EmployeeDA.AuthenticateLogin(username, password);
             if (empID > 0)
-            {
-                
+            {          
                 MainMenuWindow mainMenuWindow = new MainMenuWindow();
                 mainMenuWindow.ShowDialog();
                 this.Close();
@@ -48,11 +48,16 @@ namespace Pharmatech
             else
             {                
                 MessageBox.Show("Invalid username and/or password. Please try again.", "Incorrect login!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                textBox_Username.Clear();
+                textBox_Password.Clear();
                 textBox_Username.Focus();
             }               
         }
 
-        
+        private void button_Exit_Click(object sender, EventArgs e)
+        {
+            
+        }
 
        
     }

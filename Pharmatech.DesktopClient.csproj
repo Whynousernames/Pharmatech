@@ -53,11 +53,13 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\itextsharp-all-5.5.10\itextsharp-dll-core\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -115,12 +117,14 @@
     <Compile Include="Medicine\MedicineMainWindow.xaml.cs">
       <DependentUpon>MedicineMainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PatientInputValidation.cs" />
     <Compile Include="Patient\PatientMainWindow.xaml.cs">
       <DependentUpon>PatientMainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reports\ReportsMainWindow.xaml.cs">
       <DependentUpon>ReportsMainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SalesReportExporting.cs" />
     <Compile Include="Sales\SaleFinalWindow.xaml.cs">
       <DependentUpon>SaleFinalWindow.xaml</DependentUpon>
     </Compile>
@@ -192,9 +196,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="images\arrow.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="images\CashSale_Icon.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -233,6 +234,9 @@
     <Content Include="images\Report_Icon.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="pdfReports\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

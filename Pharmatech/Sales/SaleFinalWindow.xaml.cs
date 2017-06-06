@@ -33,6 +33,8 @@ namespace Pharmatech
             gridHidden_True();
             label_WindowType.Content = "New Cash Sale";
             Grid_Sale.Visibility = Visibility.Visible;
+            arrowHidden_True();
+            
             
 
         }
@@ -42,7 +44,56 @@ namespace Pharmatech
             label_Time.Content = DateTime.Now.ToString();
 
         }
-        
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            //The following is a method to display the "help function" on F1 keypress.
+            //It displays a messagebox and arrows pointing to the relavent elements.
+            //When the user clicks "OK" on the messagebox the messagebox and the arrows are closed.
+            if (e.Key == Key.F1)
+            {
+
+                if (button_CashSale.Visibility == Visibility.Visible)
+                {
+                    image_arrow.Visibility = Visibility.Visible;
+                    image_arrow_Copy.Visibility = Visibility.Visible;
+                    image_arrow_Copy1.Visibility = Visibility.Visible;
+                    image_arrow_Copy2.Visibility = Visibility.Visible;
+                    MessageBoxResult result = MessageBox.Show("Patient Details are displayed." + Environment.NewLine + "Sale details are displayed with total."
+                     + Environment.NewLine + "Input tendered amount to display change." + Environment.NewLine + "Select weather sale type is cash or card."
+                     + Environment.NewLine + "Click 'Proceed Button' to finalize the sale.", "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        arrowHidden_True();
+                    }
+                }
+                else
+                {
+                    image_arrow.Visibility = Visibility.Visible;
+                    image_arrow_Copy.Visibility = Visibility.Visible;
+                    image_arrow_Copy1.Visibility = Visibility.Visible;
+                    image_arrow_Copy2.Visibility = Visibility.Visible;
+                    MessageBoxResult result = MessageBox.Show("Patient Details are displayed." + Environment.NewLine + "Sale details are displayed with total."
+                     + Environment.NewLine + "Input tendered amount to display change." + Environment.NewLine + "Click 'Proceed Button' to finalize the sale.", "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        arrowHidden_True();
+                    }
+                }
+
+
+
+            }
+        }
+
+        void arrowHidden_True()
+        {
+            image_arrow.Visibility = Visibility.Hidden;
+            image_arrow_Copy.Visibility = Visibility.Hidden;
+            image_arrow_Copy1.Visibility = Visibility.Hidden;
+            image_arrow_Copy2.Visibility = Visibility.Hidden;
+        }
+
         void gridHidden_True()
         {
             Grid_Employee.Visibility = Visibility.Hidden;
@@ -211,6 +262,16 @@ namespace Pharmatech
             ReportsMainWindow reportsMainWindow = new ReportsMainWindow();
             this.Hide();
             reportsMainWindow.ShowDialog();
+        }
+
+        private void button_CashSale_Click(object sender, RoutedEventArgs e)
+        {
+            label_displaySaleType.Content = "Cash Sale";
+        }
+
+        private void button_CardSale_Click(object sender, RoutedEventArgs e)
+        {
+            label_displaySaleType.Content = "Card Sale";
         }
     }
     }

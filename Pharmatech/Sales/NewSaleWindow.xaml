@@ -79,11 +79,6 @@
                 </Rectangle.Effect>
             </Rectangle>
             <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="123" Margin="222,603,0,0" TextWrapping="Wrap" AcceptsReturn="True" Text="Blue tablet with a single line down the middle." VerticalAlignment="Top" Width="491" FontSize="24" Background="#FF01213A" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" Foreground="#FF0BA9F1"/>
-            <Rectangle HorizontalAlignment="Left" Height="484" VerticalAlignment="Top" Width="739" Margin="535,606,0,-230" Fill="White" Opacity="0.02">
-                <Rectangle.Effect>
-                    <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
-                </Rectangle.Effect>
-            </Rectangle>
             <Label x:Name="label_selectItem" Content="Select an item:" HorizontalAlignment="Left" Height="42" Margin="14,188,0,0" VerticalAlignment="Top" Width="184" FontSize="24" Foreground="#FF12A9FF"/>
             <Label x:Name="label_ItemDetails" Content="Item Details" HorizontalAlignment="Left" Height="42" Margin="125,336,0,0" VerticalAlignment="Top" Width="184" FontSize="24" Foreground="#FF12A9FF" FontWeight="Bold"/>
             <DataGrid x:Name="dataGrid_saleItems" HorizontalAlignment="Left" Height="658" Margin="778,71,0,0" VerticalAlignment="Top" Width="481" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FF01213A" Foreground="#FF01213A" Background="#FF31A5FC"/>
@@ -171,7 +166,7 @@
                 </Button.Background>
             </Button>
         </Grid>
-        <Grid x:Name="Grid_saleTypeSelect" HorizontalAlignment="Left" Height="417" Margin="606,196,0,0" Grid.Row="1" VerticalAlignment="Top" Width="655" Background="#FF01213A" Grid.RowSpan="2" Visibility="Hidden">
+        <Grid x:Name="Grid_saleTypeSelect" HorizontalAlignment="Left" Height="417" Margin="2066,100,-811,0" Grid.Row="1" VerticalAlignment="Top" Width="655" Background="#FF01213A" Grid.RowSpan="2">
             <Label x:Name="label1" Content="Nicholas has medical aid available" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="58" Margin="0,10,0,0" VerticalAlignment="Top" Width="655" FontSize="24" Foreground="#FF31A5FC"/>
             <Button x:Name="button_cashSaleSelect" Content="Cash Sale" HorizontalAlignment="Left" Margin="10,190,0,78" Width="288" Background="#FF31A5FC" FontSize="36" Cursor="Hand"  Foreground="#FF01213A" BorderBrush="#FF12A9FF" FontWeight="Bold" Click="button_cashSaleSelect_Click"/>
             <Label x:Name="label1_Copy" Content="Sale Type" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="58" Margin="-10,68,0,0" VerticalAlignment="Top" Width="655" FontSize="24" Foreground="#FF31A5FC"/>

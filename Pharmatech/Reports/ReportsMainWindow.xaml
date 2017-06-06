@@ -21,11 +21,6 @@
             <RowDefinition Height="228*"/>
             <RowDefinition Height="269*"/>
         </Grid.RowDefinitions>
-        <Rectangle HorizontalAlignment="Left" Height="307" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="1233" Margin="493,53,0,0" Grid.Row="1">
-            <Rectangle.Effect>
-                <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
-            </Rectangle.Effect>
-        </Rectangle>
 
         <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="1574,0,0,0" VerticalAlignment="Top" Width="330" Source="../images/Pharmatech 2 - Transparrent.png" Grid.RowSpan="2"/>
         <StackPanel x:Name="StackPanelMenu" Height="1080" Margin="0,-1,1653,0" VerticalAlignment="Top" Background="#FF0BA9F1" Grid.RowSpan="3" Width="257" RenderTransformOrigin="0.51,0.468">
@@ -76,12 +71,7 @@
             <Button x:Name="button_viewEmployee" Content="View Employee" HorizontalAlignment="Left" Height="30" Margin="0,58,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
             <Button x:Name="button_removeEmployee" Content="Remove Employee" HorizontalAlignment="Left" Height="29" Margin="0,85,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
         </Grid>
-        <Label x:Name="label_SelectSaleType" Content="Sale Type:" HorizontalAlignment="Left" Height="42" Margin="524,79,0,0" VerticalAlignment="Top" Width="166" FontSize="24" Foreground="#FF12A9FF" Grid.Row="1"/>
-        <ComboBox x:Name="comboBox_selectSaleType" HorizontalAlignment="Left" Height="36" Margin="780,85,0,0" VerticalAlignment="Top" Width="368" FontSize="24" Background="#FF31A5FC" BorderBrush="{x:Null}" Foreground="#FF01213A" Grid.Row="1"/>
-        <Label x:Name="label_SelectDate" Content="Date:" HorizontalAlignment="Left" Height="42" Margin="1223,79,0,0" VerticalAlignment="Top" Width="166" FontSize="24" Foreground="#FF12A9FF" Grid.Row="1"/>
-        <DatePicker HorizontalAlignment="Left" Height="241" Margin="1339,85,0,0" Grid.Row="1" VerticalAlignment="Top" Width="354" DisplayDateEnd="2017-05-30" RenderTransformOrigin="0.616,0.49" Foreground="#FF01213A" FontSize="24"/>
-        <DataGrid x:Name="dataGrid_Reports" HorizontalAlignment="Left" Height="454" Margin="493,410,0,0" VerticalAlignment="Top" Width="1233" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FF01213A" Foreground="#FF01213A" Background="#FF31A5FC" Grid.Row="1" Grid.RowSpan="2"/>
-        <Button x:Name="button_next" Content="Next" HorizontalAlignment="Left" Margin="1729,433,0,49" Width="147"  BorderBrush="{x:Null}" Foreground="White" FontSize="24"   Grid.Row="2"  >
+        <Button x:Name="button_saveToPDF" Content="Save to PDF" HorizontalAlignment="Left" Margin="1729,433,0,49" Width="147"  BorderBrush="{x:Null}" Foreground="White" FontSize="24"   Grid.Row="2" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_saveToPDF_Click"  >
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FF2F98BF"/>
@@ -89,7 +79,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1550,433,0,0" VerticalAlignment="Top" Width="147"  BorderBrush="{x:Null}" Foreground="White" FontSize="24" Grid.Row="2" >
+        <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1550,433,0,0" VerticalAlignment="Top" Width="147"  BorderBrush="{x:Null}" Foreground="White" FontSize="24" Grid.Row="2" Click="button_cancel_Click" >
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FF2F98BF"/>
@@ -105,6 +95,123 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
+        <Grid x:Name="Grid_ReportsMainWindow" HorizontalAlignment="Left" Height="870" Margin="439,54,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="1365">
+            <Rectangle HorizontalAlignment="Left" Height="285" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="1233" Margin="57,55,0,0">
+                <Rectangle.Effect>
+                    <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
+                </Rectangle.Effect>
+            </Rectangle>
+
+            <Label x:Name="label_SelectSaleType" Content="Sale Type:" HorizontalAlignment="Left" Height="42" Margin="85,92,0,0" VerticalAlignment="Top" Width="166" FontSize="24" Foreground="#FF12A9FF"/>
+            <ComboBox x:Name="comboBox_selectSaleType" HorizontalAlignment="Left" Height="36" Margin="256,98,0,0" VerticalAlignment="Top" Width="368" FontSize="24" Background="#FF31A5FC" BorderBrush="{x:Null}" Foreground="#FF01213A"/>
+            <DatePicker x:Name="datePicker_StartDate" HorizontalAlignment="Left" Height="58" Margin="808,102,0,0" VerticalAlignment="Top" Width="229" DisplayDateEnd="2017-05-30" RenderTransformOrigin="0.616,0.49" Foreground="#FF01213A" FontSize="24"/>
+            <Button x:Name="button_filterByPatientID" Content="Patient ID" HorizontalAlignment="Center" Height="56" Margin="251,246,907,0" VerticalAlignment="Top" Width="207"  BorderBrush="{x:Null}" Foreground="White" FontSize="24" Click="button_filterByPatientID_Click" >
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FF2F98BF"/>
+                        <GradientStop Color="#FF424EC3" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="button_filterByMedicationName" Content="Medication Name" HorizontalAlignment="Left" Height="56" Margin="251,159,0,0"  VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="207"  BorderBrush="{x:Null}" Foreground="White" FontSize="24" Click="button_filterByMedicationName_Click" >
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FF2F98BF"/>
+                        <GradientStop Color="#FF424EC3" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Label x:Name="label_SelectFilter" Content="Filter By:" HorizontalAlignment="Left" Height="42" Margin="85,166,0,0" VerticalAlignment="Top" Width="166" FontSize="24" Foreground="#FF12A9FF"/>
+            <Label x:Name="label_StartDate" Content="Start Date" HorizontalAlignment="Left" Height="42" Margin="841,55,0,0" VerticalAlignment="Top" Width="166" FontSize="24" Foreground="#FF12A9FF"/>
+            <Label x:Name="label_EndDate" Content="End Date" HorizontalAlignment="Left" Height="42" Margin="1121,55,0,0" VerticalAlignment="Top" Width="166" FontSize="24" Foreground="#FF12A9FF"/>
+            <DataGrid x:Name="dataGrid_Reports" HorizontalAlignment="Left" Height="494" Margin="57,366,0,0" VerticalAlignment="Top" Width="1233" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FF01213A" Foreground="#FF01213A" Background="#FF31A5FC"/>
+            <DatePicker x:Name="datePicker_EndDate" HorizontalAlignment="Left" Height="58" Margin="1058,104,0,0" VerticalAlignment="Top" Width="229" DisplayDateEnd="2017-05-30" RenderTransformOrigin="0.616,0.49" Foreground="#FF01213A" FontSize="24"/>
+            <Button x:Name="button_GenerateReport" Content="Generate Report" HorizontalAlignment="Left" Margin="1058,225,0,589" Width="215"  BorderBrush="{x:Null}" Foreground="White" FontSize="24" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_GenerateReport_Click_1">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FF2F98BF"/>
+                        <GradientStop Color="#FF424EC3" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </Grid>
+        <Grid x:Name="Grid_SelectMedication" HorizontalAlignment="Left" Height="429" Margin="806,197,0,0" VerticalAlignment="Top" Width="654" Grid.Row="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="73*"/>
+                <RowDefinition Height="78*"/>
+                <RowDefinition Height="278*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="label_MedicationName" Content="Please input medication name for search" HorizontalAlignment="Left" Height="62" Margin="0,34,-27,0" VerticalAlignment="Top" Width="681" FontSize="36" Foreground="#FF12A9FF" Grid.RowSpan="2"/>
+            <Label x:Name="label_MedicationNameSelect" Content="Medication Name:" HorizontalAlignment="Left" Height="42" Margin="21,53,0,0" VerticalAlignment="Top" Width="211" FontSize="24" Foreground="#FF12A9FF" Grid.Row="2"/>
+            <TextBox x:Name="textBox_MedicationNameSelect" HorizontalAlignment="Left" Height="38" Margin="264,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Foreground="#FF01213A" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.Row="2" TextChanged="textBox_MedicationNameSelect_TextChanged"/>
+            <Button x:Name="button_nextSelectMedication" Content="Next" HorizontalAlignment="Left" Height="56" Margin="339,174,0,0" VerticalAlignment="Top" Width="147"  BorderBrush="{x:Null}" Foreground="White" FontSize="24"  Grid.Row="2" Click="button_nextSelectMedication_Click_1"   >
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FF2F98BF"/>
+                        <GradientStop Color="#FF424EC3" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="button_cancelSelectPatient" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="130,174,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" BorderBrush="{x:Null}" Foreground="White" FontSize="24" Grid.Row="2" >
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FF2F98BF"/>
+                        <GradientStop Color="#FF424EC3" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <ComboBox x:Name="comboBox_MedicationName" HorizontalAlignment="Left" Height="22" Margin="264,91,0,0" VerticalAlignment="Top" Width="368" FontSize="24" Background="#FF31A5FC" BorderBrush="{x:Null}" Foreground="#FF01213A" Grid.Row="2" SelectionChanged="comboBox_MedicationName_SelectionChanged"/>
+        </Grid>
+        <Grid x:Name="Grid_SelectPatientID" HorizontalAlignment="Left" Height="429" Margin="806,233,0,0" VerticalAlignment="Top" Width="654" Grid.RowSpan="2" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="73*"/>
+                <RowDefinition Height="78*"/>
+                <RowDefinition Height="278*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="label_PatientID" Content="Please input patient ID for search" HorizontalAlignment="Left" Height="62" Margin="0,34,-27,0" VerticalAlignment="Top" Width="681" FontSize="36" Foreground="#FF12A9FF" Grid.RowSpan="2"/>
+            <Label x:Name="label_PatientIDSelect" Content="Patient ID:" HorizontalAlignment="Left" Height="42" Margin="21,53,0,0" VerticalAlignment="Top" Width="211" FontSize="24" Foreground="#FF12A9FF" Grid.Row="2"/>
+            <TextBox x:Name="textBox_PatientIDSelect" HorizontalAlignment="Left" Height="38" Margin="264,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Foreground="#FF01213A" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.Row="2"/>
+            <Button x:Name="button_nextSelectPatientID" Content="Next" HorizontalAlignment="Left" Height="56" Margin="339,174,0,0" VerticalAlignment="Top" Width="147"  BorderBrush="{x:Null}" Foreground="White" FontSize="24"  Grid.Row="2" Click="button_nextSelectPatientID_Click_1"    >
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FF2F98BF"/>
+                        <GradientStop Color="#FF424EC3" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="button_cancelSelectPatient1" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="130,174,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" BorderBrush="{x:Null}" Foreground="White" FontSize="24" Grid.Row="2" >
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FF2F98BF"/>
+                        <GradientStop Color="#FF424EC3" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </Grid>
+        <Grid x:Name="Grid_ViewPDF" HorizontalAlignment="Left" Height="429" Margin="806,197,0,0" VerticalAlignment="Top" Width="654" Grid.RowSpan="2" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="73*"/>
+                <RowDefinition Height="78*"/>
+                <RowDefinition Height="278*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="label_PrintPDF" Content="Would you like to view the PDF now? Please note: the PDF file will be saved to your desktop." HorizontalAlignment="Left" Height="62" Margin="21,0,-518,0" VerticalAlignment="Top" Width="1151" FontSize="26" Foreground="#FF12A9FF" Grid.Row="1"/>
+            <Button x:Name="button_Yes" Content="Yes" HorizontalAlignment="Left" Height="86" Margin="379,75,0,0" VerticalAlignment="Top" Width="226"  BorderBrush="{x:Null}" Foreground="White" FontSize="24"  Grid.Row="2" Click="button_Yes_Click"    >
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FF2F98BF"/>
+                        <GradientStop Color="#FF424EC3" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="button_No" Content="No" HorizontalAlignment="Left" Height="86" Margin="58,75,0,0" VerticalAlignment="Top" Width="226"  BorderBrush="{x:Null}" Foreground="White" FontSize="24" Grid.Row="2" Click="button_No_Click" >
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FF2F98BF"/>
+                        <GradientStop Color="#FF424EC3" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </Grid>
 
     </Grid>
 

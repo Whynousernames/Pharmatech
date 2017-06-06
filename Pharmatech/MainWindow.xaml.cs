@@ -28,6 +28,7 @@ namespace Pharmatech
         public MainWindow()
         {
             InitializeComponent();
+            textBox_Username.Focus();
         }
 
         private void button_login_Click(object sender, RoutedEventArgs e)
@@ -42,7 +43,7 @@ namespace Pharmatech
             {
                 
                 MainMenuWindow mainMenuWindow = new MainMenuWindow();
-                mainMenuWindow.ShowDialog();
+                mainMenuWindow.Show();
                 this.Close();
             }
             else

@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pharmatech"
         mc:Ignorable="d"
-        Title="Main Menu" Background="#FF01213A" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" WindowState="Maximized" WindowStartupLocation="CenterScreen" Width="1920" Height="1080">
+        Title="Main Menu" Background="#FF01213A" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" WindowState="Maximized" WindowStartupLocation="CenterScreen" Width="1920" Height="1080"
+        KeyDown="Window_KeyDown"
+        >
     <Window.Resources>
         <ImageBrush x:Key="SaleResource" ImageSource= "pack://siteoforigin:,,,/images/CashSale_Icon.JPG" ></ImageBrush>
         <ImageBrush x:Key="EmployeeResource" ImageSource="pack://siteoforigin:,,,/images/Employee_Icon.JPG"></ImageBrush>
@@ -94,23 +96,7 @@
             <Label x:Name="label_amountRecieved" Content="Amount Recieved:" HorizontalAlignment="Left" Height="42" Margin="721,350,0,0" VerticalAlignment="Top" Width="212" FontSize="24" Foreground="#FF12A9FF"/>
             <TextBox x:Name="textBox_amountRecieved" HorizontalAlignment="Left" Height="38" Margin="938,354,0,0" TextWrapping="Wrap" Text="R200" VerticalAlignment="Top" Width="184" FontSize="24" Foreground="#FF01213A" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
             <Label x:Name="label_Change" Content="Change:" HorizontalAlignment="Left" Height="42" Margin="721,450,0,0" VerticalAlignment="Top" Width="212" FontSize="24" Foreground="#FF12A9FF"/>
-            <TextBox x:Name="textBox_Change" HorizontalAlignment="Left" Height="38" Margin="938,454,0,0" TextWrapping="Wrap" Text="R50" VerticalAlignment="Top" Width="184" FontSize="24" Foreground="#FF01213A" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
-            <Button x:Name="button_Cash" Content="Cash" HorizontalAlignment="Left" Height="56" Margin="938,546,0,0" VerticalAlignment="Top" Width="147" Click="button_proceed_Click" BorderBrush="{x:Null}" Foreground="White" FontSize="24" >
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                        <GradientStop Color="#FF2F98BF"/>
-                        <GradientStop Color="#FF424EC3" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
-            <Button x:Name="button_Card" Content="Card" HorizontalAlignment="Left" Height="56" Margin="938,626,0,0" VerticalAlignment="Top" Width="147" Click="button_proceed_Click" BorderBrush="{x:Null}" Foreground="White" FontSize="24" >
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                        <GradientStop Color="#FF2F98BF"/>
-                        <GradientStop Color="#FF424EC3" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
+            <TextBox x:Name="textBox_Change" HorizontalAlignment="Left" Height="38" Margin="938,454,0,0" TextWrapping="Wrap" Text="R50" VerticalAlignment="Top" Width="184" FontSize="24" Foreground="#FF01213A" SelectionBrush="#FFF9F9F9" BorderBrush="{x:Null}" IsEnabled="False"/>
             <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="938,794,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" BorderBrush="{x:Null}" Foreground="White" FontSize="24" >
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -127,7 +113,56 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
+            <Button x:Name="button_CashSale" Content="Cash" HorizontalAlignment="Left" Height="56" Margin="938,548,0,0" VerticalAlignment="Top" Width="147"  BorderBrush="{x:Null}" Foreground="White" FontSize="24" Click="button_CashSale_Click" >
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FF2F98BF"/>
+                        <GradientStop Color="#FF424EC3" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button x:Name="button_CardSale" Content="Card" HorizontalAlignment="Left" Height="56" Margin="938,633,0,0" VerticalAlignment="Top" Width="147"  BorderBrush="{x:Null}" Foreground="White" FontSize="24" Click="button_CardSale_Click" >
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FF2F98BF"/>
+                        <GradientStop Color="#FF424EC3" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Label x:Name="label_SaleType" Content="Sale Type:" HorizontalAlignment="Left" Height="42" Margin="703,715,0,0" VerticalAlignment="Top" Width="212" FontSize="24" Foreground="#FF12A9FF"/>
+            <Label x:Name="label_displaySaleType" Content="Select sale type" HorizontalAlignment="Left" Height="42" Margin="929,715,0,0" VerticalAlignment="Top" Width="184" FontSize="24" Foreground="#FF12A9FF"/>
         </Grid>
+        <Image x:Name="image_arrow" HorizontalAlignment="Left" Height="127" Margin="771,0,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.Row="1"/>
+        <Image x:Name="image_arrow_Copy" HorizontalAlignment="Left" Height="127" Margin="733,298,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.Row="2">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="270"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="image_arrow_Copy1" HorizontalAlignment="Left" Height="127" Margin="1649,118,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.Row="2">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="image_arrow_Copy2" HorizontalAlignment="Left" Height="127" Margin="1785,366,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.Row="2">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
 
     </Grid>
 

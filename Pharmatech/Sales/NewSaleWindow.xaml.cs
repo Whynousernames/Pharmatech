@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
 
+
 namespace Pharmatech
 {
     /// <summary>
@@ -80,11 +81,15 @@ namespace Pharmatech
                 image_arrow_Copy.Visibility = Visibility.Visible;
                 image_arrow_Copy1.Visibility = Visibility.Visible;
                 image_arrow_Copy2.Visibility = Visibility.Visible;
-                MessageBoxResult result = MessageBox.Show("Patient Details are displayed" + Environment.NewLine + "Select items to add to the sale.", "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
+
+                MessageBoxResult result = MessageBox.Show("Patient Details are displayed" + Environment.NewLine + "Select items to add to the sale."
+                + Environment.NewLine + "Selected medication item details are displayed" + Environment.NewLine + "Click 'Add Instructions Button' to add instructions to medication."
+                + Environment.NewLine + "Click 'Next Button' to proceed to final sale window", "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
                 if (result == MessageBoxResult.OK)
                 {
                     arrowHidden_True();
                 }
+
 
 
 
@@ -176,8 +181,10 @@ namespace Pharmatech
             gridHidden_True();
             Grid_Sale.Visibility = Visibility.Visible;
             SaleFinalWindow saleFinalWindow = new SaleFinalWindow();
-            this.Close();
+            saleFinalWindow.button_CardSale.Visibility = Visibility.Visible;
+            saleFinalWindow.button_CashSale.Visibility = Visibility.Visible;
             saleFinalWindow.ShowDialog();
+            this.Close();
         }
 
         private void button_medicalAidSaleSelect_Click(object sender, RoutedEventArgs e)
@@ -185,14 +192,17 @@ namespace Pharmatech
             gridHidden_True();
             Grid_Sale.Visibility = Visibility.Visible;
             SaleFinalWindow saleFinalWindow = new SaleFinalWindow();
-            this.Close();
+            saleFinalWindow.button_CashSale.Visibility = Visibility.Hidden;
+            saleFinalWindow.button_CardSale.Visibility = Visibility.Hidden;            
             saleFinalWindow.ShowDialog();
+            this.Close();
         }
 
         private void button_next_Click(object sender, RoutedEventArgs e)
         {
             gridHidden_True();
             Grid_saleTypeSelect.Visibility = Visibility.Visible;
+            
         }
 
         private void button_cancel_Click(object sender, RoutedEventArgs e)

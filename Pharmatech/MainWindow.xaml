@@ -21,7 +21,7 @@
             <TextBox x:Name="textBox_Username" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="18" Margin="115,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
         </Grid>
         <PasswordBox x:Name="passwordBox_password" Margin="216,219,145,0" VerticalAlignment="Top"/>
-        <Button x:Name="button_login" Content="Login" HorizontalAlignment="Left" Margin="235,259,0,30" Width="86" FontSize="16" Cursor="Hand" Click="button_login_Click" Foreground="White" BorderBrush="#FF12A9FF" FontFamily="Segoe UI Semibold">
+        <Button x:Name="button_login" Content="Login" HorizontalAlignment="Left" Margin="235,259,0,25" Width="86" FontSize="16" Cursor="Hand" Click="button_login_Click" Foreground="White" BorderBrush="#FF12A9FF" FontFamily="Segoe UI Semibold">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FF2F98BF"/>

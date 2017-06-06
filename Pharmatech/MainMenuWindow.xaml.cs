@@ -59,8 +59,7 @@ namespace Pharmatech
             {
                 
                 image_arrow.Visibility = Visibility.Visible;               
-                MessageBoxResult result = MessageBox.Show("Please select an item from the menu on the left to proceed." + Environment.NewLine + "Item details of selected item are displayed"
-                + Environment.NewLine + "Click 'Add Instructions Button' to add instructions to item." + Environment.NewLine + "Click 'Next Button' to proceed to final sale window", "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
+                MessageBoxResult result = MessageBox.Show("Please select an item from the menu on the left to proceed." + Environment.NewLine , "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
                 if (result == MessageBoxResult.OK)
                 {
                     arrowHidden_True();
@@ -179,9 +178,9 @@ namespace Pharmatech
         private void button_generateReport_Click(object sender, RoutedEventArgs e)
         {
             gridHidden_True();
-            ReportsMainWindow reportsMainWindow = new ReportsMainWindow();
-            this.Hide();
-            reportsMainWindow.ShowDialog();
+            ReportsMainWindow reportsMainWindow = new ReportsMainWindow();            
+            reportsMainWindow.Show();
+            this.Close();
         }
 
         private void button_addMedication_Click(object sender, RoutedEventArgs e)

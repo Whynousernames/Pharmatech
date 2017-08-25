@@ -32,12 +32,15 @@ namespace Pharmatech
         StringBuilder sqlBuilderPatient = new StringBuilder(500);
         List<SqlParameter> cParameters = new List<SqlParameter>();
         List<SqlParameter> pParameters = new List<SqlParameter>();
+        
+        
 
         DataTable dt = new DataTable();
 
         int sum = 0;
+        int quantity = 1;
 
-       
+
         public List<Sale> products = new List<Sale>();
         public List<Patient> patientDetails = new List<Patient>();
         int _count = 0;
@@ -59,6 +62,13 @@ namespace Pharmatech
             Grid_sales.Visibility = Visibility.Hidden;
             Grid_patientSelect.Visibility = Visibility.Visible;
             arrowHidden_True();
+
+            comboBox_Quantity.Items.Add("1");
+            comboBox_Quantity.Items.Add("2");
+            comboBox_Quantity.Items.Add("3");
+            comboBox_Quantity.Items.Add("4");
+            comboBox_Quantity.Items.Add("5");
+
 
 
             // Populate combobox with medicine pulled from the database.            
@@ -226,7 +236,7 @@ namespace Pharmatech
 
             double vatDisplay;
             double subTotal = 0;          
-            vatDisplay = sum * 0.14;
+            vatDisplay = Math.Round(((sum / 1.14) - sum) * -1 , 2);           
             subTotal = sum - vatDisplay;
             saleFinalWindow.textBox_SubTotal.Text = subTotal.ToString();
             saleFinalWindow.textBox_VatDisplay.Text = vatDisplay.ToString();
@@ -299,7 +309,14 @@ namespace Pharmatech
             if (!string.IsNullOrEmpty(comboBox_select_Item.Text.ToString()))
             {
 
+                quantity = 1;
+                
 
+                if(!string.IsNullOrEmpty(comboBox_Quantity.Text))
+                {
+                    quantity = Convert.ToInt32(comboBox_Quantity.Text);
+                }
+                
 
                 FillSalesItemGrid();
                 
@@ -454,39 +471,51 @@ namespace Pharmatech
 
                 if (_count == 0)
                 {
-                    dt.Columns.Add("MedID");
-                    dt.Columns.Add("Medname");
+                    dt.Columns.Add("Medication ID");
+                    dt.Columns.Add("Medication name");
                     dt.Columns.Add("Schedule");
                     dt.Columns.Add("Description");
                     dt.Columns.Add("Sale Price");
+                    dt.Columns.Add("Quantity");
+                    dt.Columns.Add("Total Price");
                 }
 
                 foreach (var item in products)
                 {                  
                     
                     var row = dt.NewRow();
-                    row["MedID"] = item.medID;
-                    row["Medname"] = item.medName;
+                    row["Medication ID"] = item.medID;
+                    row["Medication name"] = item.medName;
                     row["Schedule"] = item.scheduleLevel;
                     row["Description"] = item.description;
                     row["Sale Price"] = item.salePrice;
+                    row["Quantity"] = quantity;
+                    row["Total Price"] = item.salePrice * quantity;
 
-                    dt.Rows.Add(row);
-
+                    //dt.Rows.Add(row);
+                    dt.Rows.InsertAt(row, _count);
                     
+
+
+
+
+
                 }
                 reader.Close();
               
                 dataGrid_saleItems.AutoGenerateColumns = true;
                 // Finally bind the datasource to datagridview.
                 dataGrid_saleItems.ItemsSource = dt.DefaultView;
-
+                
                 //dataGrid_saleItems.ItemsSource = dt.AsDataView();
                 
 
                 _count++;
                 sqlBuilder.Clear();
                 cParameters.Clear();
+                product.Clear();
+                
+                
 
 
             }
@@ -507,7 +536,10 @@ namespace Pharmatech
             {
                 DataRowView drv = (DataRowView)dataGrid_saleItems.SelectedItem;
                 drv.Row.Delete();
-                
+                dt.AcceptChanges();
+
+
+
             }
 
         }

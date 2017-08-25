@@ -202,7 +202,7 @@ namespace Pharmatech
         {
             gridHidden_True();
             MedicineMainWindow medicineMainWindow = new MedicineMainWindow();
-            medicineMainWindow.label_MedicationWindowType.Content = "Update Medication";
+            medicineMainWindow.label_MedicationWindowType.Content = "View Medication";
             medicineMainWindow.Grid_MedicationMainWindow.Visibility = Visibility.Hidden;
             medicineMainWindow.Grid_SelectMedication.Visibility = Visibility.Visible;
             medicineMainWindow.ShowDialog();

@@ -33,6 +33,8 @@ namespace Pharmatech
             messageTimer.Interval = new TimeSpan(0, 0, 1);
             messageTimer.Start();
             gridHidden_True();
+            labelMedicationIsActive.Visibility = Visibility.Hidden;
+            textBox_IsActive.Visibility = Visibility.Hidden;
 
             for (int i = 1; i <= 7; i++)
             {
@@ -62,6 +64,8 @@ namespace Pharmatech
                 }
             }
 
+            // Set combobox's initial display to the first item.
+           // comboBox_selectMedication.SelectedIndex = 0;
         }
 
 
@@ -79,9 +83,7 @@ namespace Pharmatech
             Grid_medication.Visibility = Visibility.Hidden;
             Grid_Instruction.Visibility = Visibility.Hidden;
             Grid_Report.Visibility = Visibility.Hidden;
-            Grid_instruction.Visibility = Visibility.Hidden;
-            
-         
+            Grid_instruction.Visibility = Visibility.Hidden;        
         }
 
         private void button_newCashSale_Click(object sender, RoutedEventArgs e)
@@ -182,13 +184,13 @@ namespace Pharmatech
                 }
                 else if (dialogResult == MessageBoxResult.No)
                 {
-                   // Grid_PatientMain.Visibility = Visibility.Visible;                
+                    Grid_MedicationMainWindow.Visibility = Visibility.Visible;
                 }
             }
 
             if (label_MedicationWindowType.Content.ToString() == "Update Medication")
             {
-                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to update this medicine to the system?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to update this medicine on the system?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (dialogResult == MessageBoxResult.Yes)
                 {
                     // Add medicine item to system.
@@ -198,23 +200,12 @@ namespace Pharmatech
                 }
                 else if (dialogResult == MessageBoxResult.No)
                 {
-                    // Grid_PatientMain.Visibility = Visibility.Visible;                
+                    Grid_MedicationMainWindow.Visibility = Visibility.Visible; 
+                                   
                 }
+
+            
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -315,11 +306,9 @@ namespace Pharmatech
 
         private void button_nextSelectMedication_Click(object sender, RoutedEventArgs e)
         {
-
             comboBox_Schedule.Items.Clear();
-            gridHidden_True();
-            Grid_SelectMedication.Visibility = Visibility.Hidden;
-            Grid_MedicationMainWindow.Visibility = Visibility.Visible;
+            gridHidden_True();           
+
             string medName = comboBox_selectMedication.SelectedItem.ToString();
 
             if (label_MedicationWindowType.Content.ToString() == "View Medication")
@@ -342,12 +331,22 @@ namespace Pharmatech
                         textBox_SalePrice.Text = reader["salePrice"].ToString();
                         textBox_QuantityInStock.Text = reader["quantityInStock"].ToString();
                         textBox_QuantityInStock_Copy.Text = reader["Description"].ToString();
-
+                        textBox_IsActive.Text = reader["isActive"].ToString();
                     }
                     reader.Close();
                     con.Close();
                 }
-                comboBox_Schedule.SelectedIndex = 0;
+                 comboBox_Schedule.SelectedIndex = 0;
+
+                if (textBox_IsActive.Text == "n")
+                {
+                    labelMedicationIsActive.Content = "* Note: This item is currently removed and not in the pharmacy.";
+                    labelMedicationIsActive.Visibility = Visibility.Visible;
+                }
+
+
+                Grid_SelectMedication.Visibility = Visibility.Hidden;
+                Grid_MedicationMainWindow.Visibility = Visibility.Visible;
                 disableTextboxes();
             }
 
@@ -371,22 +370,39 @@ namespace Pharmatech
                         textBox_CostPrice.Text = reader["costPrice"].ToString();
                         textBox_SalePrice.Text = reader["salePrice"].ToString();
                         textBox_QuantityInStock.Text = reader["quantityInStock"].ToString();
-                        textBox_QuantityInStock_Copy.Text = reader["Description"].ToString();
+                        textBox_QuantityInStock_Copy.Text = reader["Description"].ToString();                     
 
                     }
                     reader.Close();
                     con.Close();
                 }
-                comboBox_Schedule.SelectedIndex = 0;
 
-
-
-
+                Grid_SelectMedication.Visibility = Visibility.Hidden;
+                Grid_MedicationMainWindow.Visibility = Visibility.Visible;
+                //    comboBox_Schedule.SelectedIndex = 0;
             }
+      
 
+             //Soft delete medication item from database.
+            if (label_MedicationWindowType.Content.ToString() == "Remove Medication")
+            {
+                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to delete medication item [" + comboBox_selectMedication.SelectedItem.ToString() + "]" +  "on the system?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (dialogResult == MessageBoxResult.Yes)
+                {
+                    // Soft delete/flag in-active medicine item in database.
+                    DataAccess.MedicationDA.DeleteMedication(medName);
+                    // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
+                    System.Windows.MessageBox.Show("Successfully deleted medicine item.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
 
-
-
+                    Grid_SelectMedication.Visibility = Visibility.Visible;
+                }
+                else if (dialogResult == MessageBoxResult.No)
+                {
+                    Grid_SelectMedication.Visibility = Visibility.Visible;
+                }
+            
+                
+            }
 
         }
 
@@ -418,7 +434,6 @@ namespace Pharmatech
             textBox_MedicationName.IsEnabled = false;
             comboBox_Schedule.IsEnabled = false;
             textBox_CostPrice.IsEnabled = false;
-            textBox_Markup.IsEnabled = false;
             textBox_SalePrice.IsEnabled = false;
             textBox_QuantityInStock.IsEnabled = false;
             textBox_QuantityInStock_Copy.IsEnabled = false;

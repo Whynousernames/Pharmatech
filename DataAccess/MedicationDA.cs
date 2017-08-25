@@ -55,15 +55,14 @@ namespace DataAccess
             return true;
         }
 
-        public static bool DeleteMedication(string id)
+        public static bool DeleteMedication(string medName)
         {
             // Function to delete a medication item from the database.
-
             SqlConnection con = new SqlConnection(connection);
             using (SqlCommand cmd = con.CreateCommand())
             {
-                cmd.CommandText = "UPDATE Medication SET isActive = 'n' WHERE medID = @id";
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.CommandText = "UPDATE Medication SET isActive = 'n' WHERE medName = @medNAme";
+                cmd.Parameters.AddWithValue("@medName", medName);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();

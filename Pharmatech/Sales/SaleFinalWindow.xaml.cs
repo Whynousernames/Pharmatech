@@ -12,6 +12,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Data;
 
 namespace Pharmatech
 {
@@ -20,8 +21,10 @@ namespace Pharmatech
     /// </summary>
     public partial class SaleFinalWindow : Window
     {
+        public double change;
+        public DataTable dt;
 
-       
+
 
         public SaleFinalWindow()
         {
@@ -33,8 +36,10 @@ namespace Pharmatech
             gridHidden_True();
             label_WindowType.Content = "New Cash Sale";
             Grid_Sale.Visibility = Visibility.Visible;
+            Grid_sales.Visibility = Visibility.Hidden;
             arrowHidden_True();
-            
+
+
             
 
         }
@@ -163,12 +168,17 @@ namespace Pharmatech
 
         private void button_back_Click(object sender, RoutedEventArgs e)
         {
-
+            
+            NewSaleWindow newSaleWindow = new NewSaleWindow();
+            newSaleWindow.Show();
+            this.Hide();
         }
 
         private void button_cancel_Click(object sender, RoutedEventArgs e)
         {
-
+            MainMenuWindow mainMenuWindow = new MainMenuWindow();
+            mainMenuWindow.ShowDialog();
+            this.Close();
         }
 
         private void button_AddPatient_Click(object sender, RoutedEventArgs e)
@@ -272,6 +282,107 @@ namespace Pharmatech
         private void button_CardSale_Click(object sender, RoutedEventArgs e)
         {
             label_displaySaleType.Content = "Card Sale";
+        }
+
+        private void textBox_amountRecieved_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (textBox_amountRecieved.Text != "")
+            {
+                
+                change = 0;
+                change = (int.Parse(textBox_amountRecieved.Text)) - (int.Parse(textBox_Total.Text));
+                textBox_Change.Text = change.ToString();
+            }
+            else
+            {
+                textBox_Change.Text = "";
+            }
+        }
+
+        private void button_completeSale_Click(object sender, RoutedEventArgs e)
+        {
+            double subTotal = Convert.ToDouble(textBox_SubTotal.Text);
+            double vatAmount = Convert.ToDouble(textBox_VatDisplay.Text);
+
+            if (Convert.ToDouble(textBox_Change.Text) >= 0)
+            {
+
+                if (label_displaySaleType.Content.ToString() != "Select sale type")
+                {
+                    MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to finalize the sale?", "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (dialogResult == MessageBoxResult.Yes)
+                    {
+                        string saleType;
+                        string descrip = "";
+                        MainMenuWindow window = new MainMenuWindow();
+                        string empID = window.label_IDDisplay.Content.ToString();
+                        string patientID = label_displayID.Content.ToString();
+                        StringBuilder strBuilder = new StringBuilder();
+                        string patientName = label_displayName.Content.ToString();
+
+
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            strBuilder.Append(row["Medname"].ToString() + " // ");
+
+
+                        }
+
+                        descrip = strBuilder.ToString();
+                        string date = DateTime.Now.ToString("MM/dd/yyyy");
+                        string docName = textBox_DoctorName.Text.ToString();
+
+                        if (label_SaleType.Content.ToString() == "Cash Sale")
+                        {
+                            saleType = "Cash";
+                        }
+                        else
+                        {
+                            saleType = "Card";
+                        }
+
+                        int saleAmount = Convert.ToInt32(textBox_Total.Text);
+
+
+
+
+                        DataAccess.SaleDA.NewSale(empID, patientID, DateTime.Parse(date), descrip, docName, saleType, saleAmount);
+                        SalesReportExporting.ExportToInvoice(dt, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SaleInvoice", "INVOICE", patientName, descrip, saleAmount, vatAmount, subTotal);
+
+                        // Open the pdf invoice.
+                        System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SaleInvoice");
+
+                        MessageBoxResult finalResult = System.Windows.MessageBox.Show("Sale successfully processed.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+
+                        if (finalResult == MessageBoxResult.OK)
+                        {
+                            MainMenuWindow mainWindow = new MainMenuWindow();
+                            mainWindow.Show();
+                            this.Close();
+                        }
+                    }
+                    else if (dialogResult == MessageBoxResult.No)
+                    {
+
+                    }
+
+
+
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Please select sale type.", "Warning.", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+            }
+            else
+            {
+
+                MessageBox.Show("Tendered amount is less than total.", "Warning.", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+            }
         }
     }
     }

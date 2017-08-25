@@ -118,6 +118,7 @@
     <Compile Include="Medicine\MedicineMainWindow.xaml.cs">
       <DependentUpon>MedicineMainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PatientValidation.cs" />
     <Compile Include="Patient\PatientMainWindow.xaml.cs">
       <DependentUpon>PatientMainWindow.xaml</DependentUpon>
     </Compile>

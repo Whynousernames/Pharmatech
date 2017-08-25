@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace BusinessObject
 {
-    class Sale
+    public class Sale
     {
+        public int medID { get; set; }
+        public string medName { get; set; }
+        public string scheduleLevel { get; set; }
+        public string description { get; set; }
+        public int salePrice { get; set; }
+
     }
 }

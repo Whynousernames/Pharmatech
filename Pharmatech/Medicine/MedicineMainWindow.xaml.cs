@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Data.SqlClient;
+using System.Configuration;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -20,8 +22,8 @@ namespace Pharmatech
     /// </summary>
     public partial class MedicineMainWindow : Window
     {
+        string conn = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
 
-       
 
         public MedicineMainWindow()
         {
@@ -31,9 +33,37 @@ namespace Pharmatech
             messageTimer.Interval = new TimeSpan(0, 0, 1);
             messageTimer.Start();
             gridHidden_True();
-            
+
+            for (int i = 1; i <= 7; i++)
+            {
+                comboBox_Schedule.Items.Add(i);
+            }
+
+
+            // Fill medicine combobox with medicine entries in database.
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                try
+                {
+                    SqlCommand sqlCmd = new SqlCommand("SELECT MedID, MedName FROM Medication", con);
+                    con.Open();
+                    SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                    while (sqlReader.Read())
+                    {
+                        comboBox_selectMedication.Items.Add(sqlReader["MedName"].ToString());
+                    }
+                    sqlReader.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Could not populate medication combobox from database.", ex.ToString());
+                }
+            }
 
         }
+
 
         void messageTimer_Tick(object sender, EventArgs e)
         {
@@ -129,8 +159,70 @@ namespace Pharmatech
         private void button_next_Click_1(object sender, RoutedEventArgs e)
         {
             gridHidden_True();
-            Grid_MedicationMainWindow.Visibility = Visibility.Hidden;
-            Grid_Instruction.Visibility = Visibility.Visible;
+            string medID = textBox_MedicationID.Text;
+            string medName = textBox_MedicationName.Text;
+            string schedLevel = comboBox_Schedule.SelectedItem.ToString();
+            int costPrice = Convert.ToInt32(textBox_CostPrice.Text);
+           // int markUp = Convert.ToInt32(textBox_Markup.Text);
+            int salePrice = Convert.ToInt32(textBox_SalePrice.Text);
+            int quantityStock = Convert.ToInt32(textBox_QuantityInStock.Text);
+            string medDescription = textBox_QuantityInStock_Copy.Text;
+
+
+
+            if (label_MedicationWindowType.Content.ToString() == "Add Medication")
+            {
+                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to add this medicine to the system?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (dialogResult == MessageBoxResult.Yes)
+                {
+                    // Add medicine item to system.
+                    DataAccess.MedicationDA.AddMedication(medName, schedLevel, medDescription, costPrice, salePrice, quantityStock);
+                   // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
+                    System.Windows.MessageBox.Show("Successfully added a new medicine.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                }
+                else if (dialogResult == MessageBoxResult.No)
+                {
+                   // Grid_PatientMain.Visibility = Visibility.Visible;                
+                }
+            }
+
+            if (label_MedicationWindowType.Content.ToString() == "Update Medication")
+            {
+                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to update this medicine to the system?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (dialogResult == MessageBoxResult.Yes)
+                {
+                    // Add medicine item to system.
+                    DataAccess.MedicationDA.UpdateMedication(medID, medName, schedLevel, medDescription, costPrice, salePrice, quantityStock);
+                    // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
+                    System.Windows.MessageBox.Show("Successfully updated medicine.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                }
+                else if (dialogResult == MessageBoxResult.No)
+                {
+                    // Grid_PatientMain.Visibility = Visibility.Visible;                
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //Grid_MedicationMainWindow.Visibility = Visibility.Hidden;
+            //Grid_Instruction.Visibility = Visibility.Visible;
+
+
         }
 
         private void button_AddPatient_Click(object sender, RoutedEventArgs e)
@@ -181,6 +273,8 @@ namespace Pharmatech
             gridHidden_True();
             MedicineMainWindow medicineMainWindow = new MedicineMainWindow();
             medicineMainWindow.label_MedicationWindowType.Content = "Add Medication";
+
+            
             medicineMainWindow.Grid_SelectMedication.Visibility = Visibility.Hidden;            
             medicineMainWindow.ShowDialog();
             this.Close();
@@ -212,7 +306,7 @@ namespace Pharmatech
         {
             gridHidden_True();
             MedicineMainWindow medicineMainWindow = new MedicineMainWindow();
-            medicineMainWindow.label_MedicationWindowType.Content = "Update Medication";
+            medicineMainWindow.label_MedicationWindowType.Content = "Remove Medication";
             medicineMainWindow.Grid_SelectMedication.Visibility = Visibility.Visible;
             medicineMainWindow.Grid_MedicationMainWindow.Visibility = Visibility.Hidden;
             medicineMainWindow.ShowDialog();
@@ -221,10 +315,79 @@ namespace Pharmatech
 
         private void button_nextSelectMedication_Click(object sender, RoutedEventArgs e)
         {
+
+            comboBox_Schedule.Items.Clear();
             gridHidden_True();
             Grid_SelectMedication.Visibility = Visibility.Hidden;
             Grid_MedicationMainWindow.Visibility = Visibility.Visible;
-            
+            string medName = comboBox_selectMedication.SelectedItem.ToString();
+
+            if (label_MedicationWindowType.Content.ToString() == "View Medication")
+            {
+                button_Next.Visibility = Visibility.Hidden;
+                using (SqlConnection con = new SqlConnection(conn))
+                {
+                    con.Open();
+                    string cmdString = "SELECT * FROM Medication WHERE medName = @medName";
+                    SqlCommand cmd = new SqlCommand(cmdString, con);
+                    cmd.Parameters.AddWithValue("@medName", medName);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        textBox_MedicationID.Text = reader["medID"].ToString();
+                        textBox_MedicationName.Text = reader["medName"].ToString();
+                        comboBox_Schedule.Items.Add(reader["scheduleLevel"].ToString());
+                        textBox_CostPrice.Text = reader["costPrice"].ToString();
+                        textBox_SalePrice.Text = reader["salePrice"].ToString();
+                        textBox_QuantityInStock.Text = reader["quantityInStock"].ToString();
+                        textBox_QuantityInStock_Copy.Text = reader["Description"].ToString();
+
+                    }
+                    reader.Close();
+                    con.Close();
+                }
+                comboBox_Schedule.SelectedIndex = 0;
+                disableTextboxes();
+            }
+
+
+            if (label_MedicationWindowType.Content.ToString() == "Update Medication")
+            {
+                button_Next.Content = "Update";
+                using (SqlConnection con = new SqlConnection(conn))
+                {
+                    con.Open();
+                    string cmdString = "SELECT * FROM Medication WHERE medName = @medName";
+                    SqlCommand cmd = new SqlCommand(cmdString, con);
+                    cmd.Parameters.AddWithValue("@medName", medName);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        textBox_MedicationID.Text = reader["medID"].ToString();
+                        textBox_MedicationName.Text = reader["medName"].ToString();
+                        comboBox_Schedule.Items.Add(reader["scheduleLevel"].ToString());
+                        textBox_CostPrice.Text = reader["costPrice"].ToString();
+                        textBox_SalePrice.Text = reader["salePrice"].ToString();
+                        textBox_QuantityInStock.Text = reader["quantityInStock"].ToString();
+                        textBox_QuantityInStock_Copy.Text = reader["Description"].ToString();
+
+                    }
+                    reader.Close();
+                    con.Close();
+                }
+                comboBox_Schedule.SelectedIndex = 0;
+
+
+
+
+            }
+
+
+
+
+
         }
 
         private void button_nextInstruction_Click(object sender, RoutedEventArgs e)
@@ -247,6 +410,19 @@ namespace Pharmatech
             ReportsMainWindow reportsMainWindow = new ReportsMainWindow();
             this.Hide();
             reportsMainWindow.ShowDialog();
+        }
+
+        void disableTextboxes()
+        {
+            textBox_MedicationID.IsEnabled = false;
+            textBox_MedicationName.IsEnabled = false;
+            comboBox_Schedule.IsEnabled = false;
+            textBox_CostPrice.IsEnabled = false;
+            textBox_Markup.IsEnabled = false;
+            textBox_SalePrice.IsEnabled = false;
+            textBox_QuantityInStock.IsEnabled = false;
+            textBox_QuantityInStock_Copy.IsEnabled = false;
+
         }
     }
 

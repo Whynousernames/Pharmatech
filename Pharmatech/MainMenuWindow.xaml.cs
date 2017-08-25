@@ -12,6 +12,9 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 
 
 namespace Pharmatech
@@ -21,8 +24,8 @@ namespace Pharmatech
     /// </summary>
     public partial class MainMenuWindow : Window
     {
+        string conn = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
 
-       
 
         public MainMenuWindow()
         {
@@ -35,13 +38,7 @@ namespace Pharmatech
             messageTimer.Start();
             gridHidden_True();
             arrowHidden_True();
-            
-
-
-
-
-
-
+            MainWindow mainWindow = new MainWindow();
         }
 
         void messageTimer_Tick(object sender, EventArgs e)
@@ -56,16 +53,13 @@ namespace Pharmatech
             //It displays a messagebox and arrows pointing to the relavent elements.
             //When the user clicks "OK" on the messagebox the messagebox and the arrows are closed.
             if (e.Key == Key.F1)
-            {
-                
+            {            
                 image_arrow.Visibility = Visibility.Visible;               
                 MessageBoxResult result = MessageBox.Show("Please select an item from the menu on the left to proceed." + Environment.NewLine , "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
                 if (result == MessageBoxResult.OK)
                 {
                     arrowHidden_True();
                 }
-                
-                                
 
             }
         }
@@ -90,8 +84,8 @@ namespace Pharmatech
             gridHidden_True();
             NewSaleWindow newCashSaleWindow = new NewSaleWindow();
             newCashSaleWindow.label_SaleWindowType.Content = "New Sale";
-            newCashSaleWindow.ShowDialog();
-            this.Close();
+            newCashSaleWindow.Show();
+            this.Hide();
         }
 
         private void button_Sale_Click(object sender, RoutedEventArgs e)

@@ -12,6 +12,10 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Windows.Forms;
 
 namespace Pharmatech
 {
@@ -21,7 +25,8 @@ namespace Pharmatech
     public partial class PatientMainWindow : Window
     {
 
-        
+        string conn = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
+        public string allergyID;
         
 
 
@@ -33,10 +38,110 @@ namespace Pharmatech
             messageTimer.Interval = new TimeSpan(0, 0, 1);
             messageTimer.Start();
             gridHidden_True();
+            arrowHidden_True();
 
             
 
+            if(label_PatientWindowType.Content.ToString() == "Remove Patient")
+            {
+                button_next.Content = "Remove this Patient";
+            }
+            if (label_PatientWindowType.Content.ToString() == "View Patient")
+            {
+                button_next.Visibility = Visibility.Hidden;
+            }
 
+
+
+            using (SqlConnection con = new SqlConnection(conn))
+                {
+                    try
+                    {
+                        SqlCommand sqlCmd = new SqlCommand("SELECT allergyName FROM Allergies", con);
+                        con.Open();
+                        SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                        while (sqlReader.Read())
+                        {
+                            comboBox_selectAllergy.Items.Add(sqlReader["allergyName"].ToString());
+                        }
+                        sqlReader.Close();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.MessageBox.Show("Could not populate allergies combobox from database.", ex.ToString());
+                    }
+                }
+
+
+        }
+
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            //The following is a method to display the "help function" on F1 keypress.
+            //It displays a messagebox and arrows pointing to the relavent elements.
+            //When the user clicks "OK" on the messagebox the messagebox and the arrows are closed.
+            if (e.Key == Key.F1)
+            {
+
+                image_arrow.Visibility = Visibility.Visible;
+                image_arrow_Copy.Visibility = Visibility.Visible;
+                image_arrow_Copy1.Visibility = Visibility.Visible;
+                image_arrow_Copy2.Visibility = Visibility.Visible;
+
+                if(label_PatientWindowType.Content.ToString() == "Add Patient")
+                {
+                    MessageBoxResult result = System.Windows.MessageBox.Show("Input patient details." + Environment.NewLine + "Add allergies to patient."
+                 + Environment.NewLine + "Allergies are displayed in the grid" + Environment.NewLine + "Click 'Add Patient Button' to add the patient to the system.", "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        arrowHidden_True();
+                    }
+                }
+                if (label_PatientWindowType.Content.ToString() == "View Patient")
+                {
+                    MessageBoxResult result = System.Windows.MessageBox.Show("Patient Details are displayed." + Environment.NewLine + "Allergies are displayed in the grid."
+                 + Environment.NewLine + "Click 'Cancel button' once complete.", "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        arrowHidden_True();
+                    }
+                }
+                if (label_PatientWindowType.Content.ToString() == "Update Patient")
+                {
+                    MessageBoxResult result = System.Windows.MessageBox.Show("Patient Details are displayed." + Environment.NewLine + "Allergies are displayed in the grid."
+                 + Environment.NewLine + "Make changes to existing patient details.", "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        arrowHidden_True();
+                    }
+                }
+                if (label_PatientWindowType.Content.ToString() == "Remove Patient")
+                {
+                    MessageBoxResult result = System.Windows.MessageBox.Show("Patient Details are displayed." + Environment.NewLine + "Allergies are displayed in the grid."
+                 + Environment.NewLine + "Click 'Remove Patient Button' to set patient as inactive", "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        arrowHidden_True();
+                    }
+                }
+
+
+
+
+
+
+            }
+        }
+
+        void arrowHidden_True()
+        {
+            image_arrow.Visibility = Visibility.Hidden;
+            image_arrow_Copy.Visibility = Visibility.Hidden;
+            image_arrow_Copy1.Visibility = Visibility.Hidden;
+            image_arrow_Copy2.Visibility = Visibility.Hidden;
         }
 
         void messageTimer_Tick(object sender, EventArgs e)
@@ -66,6 +171,8 @@ namespace Pharmatech
             newCashSaleWindow.label_SaleWindowType.Content = "New Sale";
             newCashSaleWindow.ShowDialog();
             this.Close();
+
+            
         }
 
         private void button_Sale_Click(object sender, RoutedEventArgs e)
@@ -106,30 +213,80 @@ namespace Pharmatech
 
         private void button_next_Click(object sender, RoutedEventArgs e)
         {
-            Grid_PatientMain.Visibility = Visibility.Hidden;
-            Grid_YesNoSelect.Visibility = Visibility.Visible;
 
+            string id = textBox_IDNumber.Text;
+            string firstName = textBox_FirstName.Text;
+            string surname = textBox_Surname.Text;
+            string contactNo = textBox_ContactNumber.Text;
+            string email = textBox_Email.Text;
+            string address1 = textBox_AddressLine1.Text;
+            string address2 = textBox_AddressLine2.Text;          
+            string patientID = textBox_IDNumber.Text;
+                               
 
-            //string firstName = textBox_FirstName.Text;
-            //string surname = textBox_Surname.Text;
-            //string contactNo = textBox_ContactNumber.Text;
-            //string email = textBox_Email.Text;
-            //string address1 = textBox_AddressLine1.Text;
-            //string address2 = textBox_AddressLine2.Text;
-
-
-            if (textBox_FirstName.Text.Length < 2)
+            if (label_PatientWindowType.Content.ToString() == "Add Patient")
             {
-                string firstName = "First Name";
+                Grid_PatientMain.Visibility = Visibility.Hidden;
+
+                if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(surname) || string.IsNullOrEmpty(contactNo) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(address1))
+                {
+                    System.Windows.MessageBox.Show("Not all fields are completed.", "Alert!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                    Grid_PatientMain.Visibility = Visibility.Visible;
+                }
+                else
+                { 
+                    MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to add this patient to the system?", "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (dialogResult == MessageBoxResult.Yes)
+                    {
+                        // Add Patient to system.
+                        DataAccess.PatientDA.AddPatient(id, firstName, surname, contactNo, email, address1, address2);
+                        DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
+                        System.Windows.MessageBox.Show("Successfully added a new patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                    }
+                    else if (dialogResult == MessageBoxResult.No)
+                    {
+                        Grid_PatientMain.Visibility = Visibility.Visible;
+                    }
+
+                }
+
+
             }
 
-            else if (textBox_Surname.Text.Length < 2)
+
+            if (label_PatientWindowType.Content.ToString() == "Remove Patient")
             {
 
-            }
-
+                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to delete this patient from the system?", "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (dialogResult == MessageBoxResult.Yes)
+                {
+                    // Delete Patient from system.
+                        DataAccess.PatientDA.DeletePatient(id);
+                        System.Windows.MessageBox.Show("Successfully deleted patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);                   
+                }
+                else if (dialogResult == MessageBoxResult.No)
+                {
+                    Grid_PatientMain.Visibility = Visibility.Visible;
+                }
                 
-        
+            }
+
+            if (label_PatientWindowType.Content.ToString() == "Update Patient")
+            {
+                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to update this patient on the system?", "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (dialogResult == MessageBoxResult.Yes)
+                {
+                    // Update patient on system.
+                    DataAccess.PatientDA.UpdatePatient(id, firstName, surname, contactNo, email, address1, address2);
+                    System.Windows.MessageBox.Show("Successfully updated patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                }
+                else if (dialogResult == MessageBoxResult.No)
+                {
+                    Grid_PatientMain.Visibility = Visibility.Visible;
+                }
+
+            }
+
 
 
 
@@ -162,6 +319,44 @@ namespace Pharmatech
 
         private void button_Add_Click(object sender, RoutedEventArgs e)
         {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                con.Open();
+                string cmdString = "SELECT allergyID, allergyName, allergyDescription FROM Allergies WHERE allergyName = @allergyName";
+                SqlCommand cmd = new SqlCommand(cmdString, con);
+                cmd.Parameters.AddWithValue("@allergyName", comboBox_selectAllergy.Text);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                dt.Columns.Add("AllergyID");
+                dt.Columns.Add("AllergyName");
+                dt.Columns.Add("AllergyDescription");
+
+                while (reader.Read())
+                {
+                    DataRow row = dt.NewRow();
+                    row["AllergyID"] = reader["allergyID"].ToString();
+                    row["AllergyDescription"] = reader["allergyDescription"].ToString();
+                    row["AllergyName"] = reader["allergyName"].ToString();
+                    dt.Rows.Add(row);
+
+
+                    allergyID = dt.Rows[0]["AllergyID"].ToString();
+
+                    //dataGrid_Allergies.Items.Add(reader["allergyID"].ToString());
+                    //dataGrid_Allergies.Items.Add(reader["allergyName"].ToString());
+                    //dataGrid_Allergies.Items.Add(reader["allergyDescription"].ToString());
+
+                }
+                dataGrid_Allergies.ItemsSource = dt.DefaultView;
+                con.Close();
+
+
+            }
+           
+
+
 
         }
 
@@ -184,8 +379,120 @@ namespace Pharmatech
 
         private void button_nextSelectPatient_Click(object sender, RoutedEventArgs e)
         {
-            Grid_SelectPatient.Visibility = Visibility.Hidden;
-            Grid_PatientMain.Visibility = Visibility.Visible;
+            string idNumber = textBox_IDNumberSelect.Text;
+
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                con.Open();
+                string cmdString = "SELECT * FROM Patient WHERE PatientIDNumber = @id";
+                SqlCommand cmd = new SqlCommand(cmdString, con);
+                cmd.Parameters.AddWithValue("@id", idNumber);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                // Check to see if the input Patient ID is present in the database.
+                if (reader.HasRows)
+                {
+                    Grid_SelectPatient.Visibility = Visibility.Hidden;
+                    Grid_PatientMain.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("The patient ID number entered is not currently on the system.", "Alert!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                con.Close();
+
+            }
+
+            if(label_PatientWindowType.Content.ToString() == "View Patient")
+            {
+                button_next.Visibility = Visibility.Hidden;
+                using (SqlConnection con = new SqlConnection(conn))
+                {
+                    con.Open();
+                    string cmdString = "SELECT * FROM Patient WHERE PatientIDNumber = @id";
+                    SqlCommand cmd = new SqlCommand(cmdString, con);
+                    cmd.Parameters.AddWithValue("@id", idNumber);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        textBox_IDNumber.Text = reader["PatientIDNumber"].ToString();
+                        textBox_FirstName.Text = reader["firstName"].ToString();
+                        textBox_Surname.Text = reader["lastName"].ToString();
+                        textBox_Email.Text = reader["email"].ToString();
+                        textBox_ContactNumber.Text = reader["contactNumber"].ToString();
+                        textBox_AddressLine1.Text = reader["physicalAddress1"].ToString();
+                        textBox_AddressLine2.Text = reader["physicalAddress2"].ToString();
+
+                    }
+                    reader.Close();
+                    con.Close();
+                }
+                disableTextBoxes();
+            }
+
+
+            if(label_PatientWindowType.Content.ToString() == "Remove Patient")
+            {
+                button_next.Width = 190;
+                button_next.Content = "Remove Patient";
+
+                using (SqlConnection con = new SqlConnection(conn))
+                {
+                    con.Open();
+                    string cmdString = "SELECT * FROM Patient WHERE PatientIDNumber = @id";
+                    SqlCommand cmd = new SqlCommand(cmdString, con);
+                    cmd.Parameters.AddWithValue("@id", idNumber);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        textBox_IDNumber.Text = reader["PatientIDNumber"].ToString();
+                        textBox_FirstName.Text = reader["firstName"].ToString();
+                        textBox_Surname.Text = reader["lastName"].ToString();
+                        textBox_Email.Text = reader["email"].ToString();
+                        textBox_ContactNumber.Text = reader["contactNumber"].ToString();
+                        textBox_AddressLine1.Text = reader["physicalAddress1"].ToString();
+                        textBox_AddressLine2.Text = reader["physicalAddress2"].ToString();
+
+                    }
+                    reader.Close();
+                    con.Close();
+                }
+
+                disableTextBoxes();
+            }
+
+            if(label_PatientWindowType.Content.ToString() == "Update Patient")
+            {
+                button_next.Width = 175;
+                button_next.Content = "Update Patient";
+
+                using (SqlConnection con = new SqlConnection(conn))
+                {
+                    con.Open();
+                    string cmdString = "SELECT * FROM Patient WHERE PatientIDNumber = @id";
+                    SqlCommand cmd = new SqlCommand(cmdString, con);
+                    cmd.Parameters.AddWithValue("@id", idNumber);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        textBox_IDNumber.Text = reader["PatientIDNumber"].ToString();
+                        textBox_FirstName.Text = reader["firstName"].ToString();
+                        textBox_Surname.Text = reader["lastName"].ToString();
+                        textBox_Email.Text = reader["email"].ToString();
+                        textBox_ContactNumber.Text = reader["contactNumber"].ToString();
+                        textBox_AddressLine1.Text = reader["physicalAddress1"].ToString();
+                        textBox_AddressLine2.Text = reader["physicalAddress2"].ToString();
+
+                    }
+                    reader.Close();
+                    con.Close();
+                }
+
+
+            }
         }
 
        
@@ -200,6 +507,10 @@ namespace Pharmatech
             patientMainWindow.Grid_SelectPatient.Visibility = Visibility.Hidden;
             patientMainWindow.ShowDialog();
             this.Close();
+
+
+
+
         }
 
         private void button_updatePatient_Click_1(object sender, RoutedEventArgs e)
@@ -284,6 +595,49 @@ namespace Pharmatech
             ReportsMainWindow reportsMainWindow = new ReportsMainWindow();
             this.Hide();
             reportsMainWindow.ShowDialog();
+        }
+
+        private void comboBox_selectAllergy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            {
+                using (SqlConnection con = new SqlConnection(conn))
+                {
+                    con.Open();
+                    string cmdString = "SELECT allergyDescription FROM Allergies WHERE allergyName = @allergyName";
+                    SqlCommand cmd = new SqlCommand(cmdString, con);
+                    cmd.Parameters.AddWithValue("@allergyName", comboBox_selectAllergy.Text);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        textBox_AllergyDescription.Text = reader["allergyDescription"].ToString();
+
+                    }
+
+                    con.Close();
+
+                }
+            }
+        }
+
+        // Simple function to disable textboxes, for viewing purposes only.
+        public void disableTextBoxes()
+        {
+            textBox_IDNumber.IsEnabled = false;
+            textBox_FirstName.IsEnabled = false;
+            textBox_Surname.IsEnabled = false;
+            textBox_Email.IsEnabled = false;
+            textBox_ContactNumber.IsEnabled = false;
+            textBox_AddressLine1.IsEnabled = false;
+            textBox_AddressLine2.IsEnabled = false;
+            textBox_City.IsEnabled = false;
+            textBox_Suburb.IsEnabled = false;
+            comboBox_selectAllergy.IsEnabled = false;
+            textBox_AllergyDescription.IsEnabled = false;
+            button_Remove.IsEnabled = false;
+            button_Add.IsEnabled = false;
+
         }
     }
 

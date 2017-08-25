@@ -42,8 +42,8 @@ namespace DataAccess
             SqlConnection con = new SqlConnection(connection);
             using (SqlCommand cmd = con.CreateCommand())
             {
-                cmd.CommandText = "DELETE FROM Patient WHERE PatientIDNumber = @id";
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.CommandText = "UPDATE Patient SET isActive = n WHERE patientIDNumber = @id";
+                cmd.Parameters.Add("@id", SqlDbType.NVarChar).Value = id;
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -54,12 +54,11 @@ namespace DataAccess
         public static bool UpdatePatient(string idNumber, string fname, string sname, string contactNo, string email, string address1, string address2)
         {
             // Update patient account on the database.
-
             SqlConnection con = new SqlConnection(connection);
             using (SqlCommand cmd = con.CreateCommand())
             {
-                cmd.CommandText = "UPDATE Patient SET firstName = @fname, lastName = @sname, contactNumber = @contactNo, email = @email, physicalAddress1 = @address1, physicalAddress2 = @address2 WHERE PatientIDNumber = @idNumber";
-                cmd.Parameters.AddWithValue("@id", idNumber);
+                cmd.CommandText = "UPDATE Patient SET firstName = @fname, lastName = @sname, contactNumber = @contactNo, email = @email, physicalAddress1 = @address1, physicalAddress2 = @address2 WHERE patientIDNumber = @idNumber";
+                cmd.Parameters.Add("@idNumber", SqlDbType.NVarChar).Value = idNumber; 
                 cmd.Parameters.AddWithValue("@fname", fname);
                 cmd.Parameters.AddWithValue("@sname", sname);
                 cmd.Parameters.AddWithValue("@contactNo", contactNo);

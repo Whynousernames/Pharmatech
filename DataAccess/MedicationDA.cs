@@ -19,7 +19,7 @@ namespace DataAccess
             SqlConnection con = new SqlConnection(connection);
             using (SqlCommand cmd = con.CreateCommand())
             {
-                cmd.CommandText = "INSERT INTO Medication (medName, scheduleLevel, description, costPrice, salePrice, quantityInStock) VALUES (@name, @schedlevel, @descrip, @costprice, @saleprice, @quantity)";
+                cmd.CommandText = "INSERT INTO Medication (medName, scheduleLevel, description, costPrice, salePrice, quantityInStock, isActive) VALUES (@name, @schedlevel, @descrip, @costprice, @saleprice, @quantity, 'y')";
                 cmd.Parameters.AddWithValue("@name", name);
                 cmd.Parameters.AddWithValue("@schedlevel", schedLevel);
                 cmd.Parameters.AddWithValue("@descrip", descrip);
@@ -62,7 +62,7 @@ namespace DataAccess
             SqlConnection con = new SqlConnection(connection);
             using (SqlCommand cmd = con.CreateCommand())
             {
-                cmd.CommandText = "DELETE FROM Medication WHERE medID = @id";
+                cmd.CommandText = "UPDATE Medication SET isActive = 'n' WHERE medID = @id";
                 cmd.Parameters.AddWithValue("@id", id);
                 con.Open();
                 cmd.ExecuteNonQuery();

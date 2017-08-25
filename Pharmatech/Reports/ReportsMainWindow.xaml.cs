@@ -18,7 +18,7 @@ using System.Data.SqlClient;
 using iTextSharp;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-
+using System.Globalization;
 
 namespace Pharmatech
 {
@@ -31,7 +31,12 @@ namespace Pharmatech
         DataTable dt = new DataTable();
         StringBuilder sqlBuilder = new StringBuilder(500);
         List<SqlParameter> cParameters = new List<SqlParameter>();
-        
+
+         // <add name = "connstring" providerName="System.Data.sqlclient" connectionString="Data Source = .; Initial Catalog = PharmaTech; User ID = THC; Password = password; Integrated Security = False"/>
+        // <add name = "connstring" providerName="System.Data.sqlclient" connectionString="Data Source = (local); database = PharmaTech; Integrated Security = True"/>
+
+
+
 
         public ReportsMainWindow()
         {
@@ -46,33 +51,73 @@ namespace Pharmatech
             comboBox_selectSaleType.Items.Add("Medical Aid");
             comboBox_selectSaleType.Items.Add("Card");
 
-            
+
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                try
+                {
+                    SqlCommand sqlCmd = new SqlCommand("SELECT MedID, MedName FROM Medication", con);
+                    con.Open();
+                    SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                    while (sqlReader.Read())
+                    {
+                        comboBox_select_Item.Items.Add(sqlReader["MedName"].ToString());
+
+
+                    }
+                    sqlReader.Close();
+
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Could not populate medication combobox from database.", ex.ToString());
+                }
+            }
+            FillSalesGrid();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            //The following is a method to display the "help function" on F1 keypress.
+            //It displays a messagebox and arrows pointing to the relavent elements.
+            //When the user clicks "OK" on the messagebox the messagebox and the arrows are closed.
+            if (e.Key == Key.F1)
+            {
+                    image_arrow.Visibility = Visibility.Visible;
+                    image_arrow_Copy.Visibility = Visibility.Visible;
+                    image_arrow_Copy1.Visibility = Visibility.Visible;
+                    image_arrow_Copy2.Visibility = Visibility.Visible;
+                    MessageBoxResult result = MessageBox.Show("Select filters to refine report display." + Environment.NewLine + "Click 'Generate Report Button' to apply filters."
+                     + Environment.NewLine + "Results are displayed in the grid." + Environment.NewLine + "Click 'Save to PDF Button' to save results to PDF", "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.OK)
+                    {
+                        arrowHidden_True();
+                    }
+            }
+        }
+
+        void arrowHidden_True()
+        {
+            image_arrow.Visibility = Visibility.Hidden;
+            image_arrow_Copy.Visibility = Visibility.Hidden;
+            image_arrow_Copy1.Visibility = Visibility.Hidden;
+            image_arrow_Copy2.Visibility = Visibility.Hidden;
         }
 
 
-
-
-
-
-
-
-        
-
-        
-        
         private void FillSalesGrid( )
-        {
-                    
+        {                   
             using (SqlConnection con = new SqlConnection(conn))
-            {
-
-
-                sqlBuilder.Append("SELECT saleID AS [SaleID], emplIDNumber AS [EmployeeID], patientIDNumber AS [PatientID], date, description AS Description, doctorName AS [DoctorName], saleType, saleAmount FROM Sale WHERE 1=1");
-
-
+            {              
+                sqlBuilder.Append("SELECT date AS [Date], saleID AS [Invoice ID], Patient.firstName + ' ' + Patient.lastName AS [Name], description AS Description, doctorName AS [DoctorName], saleType AS [Type of Sale], FORMAT(saleAmount, 'C', 'en-ZA') AS [SaleAmount] FROM Sale LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber WHERE 1=1 ORDER BY Sale.date");
 
                 if (!string.IsNullOrEmpty(comboBox_selectSaleType.Text))
                 {
+                    
                     try
                     {
                         sqlBuilder.Append(" AND saleType = @saleType");
@@ -81,6 +126,12 @@ namespace Pharmatech
                     catch
                     {
                         MessageBox.Show("no results");
+                    }
+
+                if (comboBox_selectSaleType.Text == "All Sales")
+                    {
+                        sqlBuilder.Remove(sqlBuilder.Length-25, 25);
+
                     }
                 }
 
@@ -108,51 +159,47 @@ namespace Pharmatech
                         cParameters.Add(new SqlParameter("@endDate", datePicker_EndDate.Text));
                     }
                 }
-                if(!string.IsNullOrEmpty(textBox_MedicationNameSelect.Text))
+                if(!string.IsNullOrEmpty(comboBox_select_Item.Text))
                 {
-                    sqlBuilder.Append(" AND medName = @medName");
-                    cParameters.Add(new SqlParameter("@medName", textBox_MedicationNameSelect.Text));
+                    sqlBuilder.Append(" AND Description LIKE @medName + '%'");
+                    cParameters.Add(new SqlParameter("@medName", comboBox_select_Item.SelectedItem.ToString()));
                 }
                 if (!string.IsNullOrEmpty(textBox_PatientIDSelect.Text))
                 {
                     sqlBuilder.Append(" AND patientIDNumber = @patientID");
                     cParameters.Add(new SqlParameter("@patientID", textBox_PatientIDSelect.Text));
                 }
-                if(!string.IsNullOrEmpty(textBox_MedicationNameSelect.Text))
-                {
-                    sqlBuilder.Append("AND medName = @medicationName");
-                    cParameters.Add(new SqlParameter("@medicationName", textBox_MedicationNameSelect.Text));
-                }
-
+                
                 SqlCommand cmd = new SqlCommand(sqlBuilder.ToString(), con);
                 if (cParameters.Count != 0)
                 {
                     cmd.Parameters.AddRange(cParameters.ToArray());
                 }
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 dt = new DataTable("Sale");
                 da.Fill(dt);
+               // totalSales(dt);
                 sqlBuilder.Clear();
                 cParameters.Clear();
                 dataGrid_Reports.ItemsSource = dt.DefaultView;
+                
+            }                                                   
+        }
 
 
-            }
+        // Function to remove the time portion of the Date/time value. 
+        private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.PropertyType == typeof(System.DateTime))
+                (e.Column as DataGridTextColumn).Binding.StringFormat = "dd/MM/yyyy";
+
+        }
 
 
-                //cmd.Parameters.Add("@saleType", SqlDbType.NVarChar);
-                //cmd.Parameters["@saleType"].Value = saleType;
-                //cmd.Parameters.Add("@startDate", SqlDbType.Date).Value = startDate;
-                //cmd.Parameters.Add("@endDate", SqlDbType.Date).Value = endDate;
-                //cmd.Parameters.Add("@patientID", SqlDbType.NVarChar);
-                          
-            }
-        
-
-            void messageTimer_Tick(object sender, EventArgs e)
+        void messageTimer_Tick(object sender, EventArgs e)
         {
             label_Time.Content = DateTime.Now.ToString();
-
         }
         
         void gridHidden_True()
@@ -323,14 +370,53 @@ namespace Pharmatech
         }
 
         private void button_saveToPDF_Click(object sender, RoutedEventArgs e)
-        {   
-            string saleType = comboBox_selectSaleType.SelectedItem.ToString();
-            string startDate = datePicker_StartDate.SelectedDate.Value.ToString("dd-MMM-yyyy");
-            string endDate = datePicker_EndDate.SelectedDate.Value.ToString("dd-MMM-yyyy");
-            SalesReportExporting.ExportDataTableToPdf(dt, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SalesReport", "Sales Report", saleType, startDate, endDate);
-            Grid_ViewPDF.Visibility = Visibility.Visible;
-            Grid_ReportsMainWindow.Visibility = Visibility.Hidden;                     
+        {
+            string startDate = "";
+            string endDate = "";
+            string saleType = comboBox_selectSaleType.Text;
+            string medName = comboBox_select_Item.Text;
+            string patientID = textBox_PatientIDSelect.Text;
+
+            if (string.IsNullOrEmpty(datePicker_StartDate.Text))
+            {
+
+                startDate = "N/A";
+            }
+            else
+            {
+                startDate = datePicker_StartDate.Text;
+            }
+
+            if (string.IsNullOrEmpty(datePicker_EndDate.Text))
+            {
+                endDate = "N/A";
+            }
+            else
+            {
+                endDate = datePicker_EndDate.Text;
+            }
+            if (string.IsNullOrEmpty(medName))
+            {
+                medName = "N/A";
+            }
+            if (string.IsNullOrEmpty(patientID))
+            {
+
+                patientID = "N/A";
+            }
+
+            if (dataGrid_Reports.HasItems)
+            {
+                SalesReportExporting.ExportDataTableToPdf(dt, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SalesReport", "Sales Report", saleType, startDate, endDate, medName, patientID);
+                Grid_ViewPDF.Visibility = Visibility.Visible;
+                Grid_ReportsMainWindow.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                MessageBox.Show("Please generate a report first!");
+            }
         }
+            
 
         private void button_No_Click(object sender, RoutedEventArgs e)
         {
@@ -360,6 +446,9 @@ namespace Pharmatech
         private void button_nextSelectMedication_Click_1(object sender, RoutedEventArgs e)
         {
             FillSalesGrid();
+            Grid_SelectMedication.Visibility = Visibility.Hidden;
+            Grid_ReportsMainWindow.Visibility = Visibility.Visible;
+            comboBox_select_Item.SelectedIndex = -1;
         }
 
         private void button_nextSelectPatientID_Click_1(object sender, RoutedEventArgs e)
@@ -391,6 +480,36 @@ namespace Pharmatech
 
             
         }
+
+        //private void totalSales(DataTable dt)
+        //{
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        // Function to total up sales amount at end of report.
+        //        object saleTotal = 0;
+        //        double vat = 0.14;
+        //        double totalwithvat = 0;
+        //        int grandtotal1 = 0;
+        //        DataRow rowbreak = dt.NewRow();
+        //        dt.Rows.Add(rowbreak);
+        //        DataRow dr = dt.NewRow();
+
+                
+        //        dt.Rows.Add(dr);
+        //        DataRow vatrow = dt.NewRow();
+        //        grandtotal1 = Convert.ToInt32(dt.Compute("Sum(SaleAmount)", string.Empty));
+        //        vatrow["Type of Sale"] = "VAT 14%:";
+        //        totalwithvat = grandtotal1 * vat;
+        //        vatrow["SaleAmount"] = totalwithvat;
+        //        dt.Rows.Add(vatrow);
+
+                
+        //        DataRow grandtotal = dt.NewRow();
+        //        grandtotal["Type of Sale"] = "GRAND TOTAL: ";
+        //        grandtotal["SaleAmount"] = grandtotal1;
+        //        dt.Rows.Add(grandtotal);
+        //    }
+        //}
 
         
     }

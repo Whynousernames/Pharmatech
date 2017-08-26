@@ -373,7 +373,6 @@ namespace Pharmatech
 
             if (string.IsNullOrEmpty(datePicker_StartDate.Text))
             {
-
                 startDate = "N/A";
             }
             else
@@ -395,7 +394,6 @@ namespace Pharmatech
             }
             if (string.IsNullOrEmpty(patientID))
             {
-
                 patientID = "N/A";
             }
 
@@ -469,9 +467,7 @@ namespace Pharmatech
                     MessageBox.Show("The patient ID number entered is not currently on the system.", "Warning!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
                 con.Close();
-
-            }
-            
+            }            
         }
 
         //private void totalSales(DataTable dt)

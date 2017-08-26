@@ -107,7 +107,7 @@ namespace Pharmatech
         {                   
             using (SqlConnection con = new SqlConnection(conn))
             {              
-                sqlBuilder.Append("SELECT date AS [Date], saleID AS [Invoice ID], Patient.firstName + ' ' + Patient.lastName AS [Name], description AS Description, doctorName AS [DoctorName], saleType AS [Type of Sale], FORMAT(saleAmount, 'C', 'en-ZA') AS [SaleAmount] FROM Sale LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber WHERE 1=1 ORDER BY Sale.date");
+                sqlBuilder.Append("SELECT date AS [Date], saleID AS [Invoice ID], Patient.firstName + ' ' + Patient.lastName AS [Name], description AS Description, doctorName AS [DoctorName], saleType AS [Type of Sale], FORMAT(saleAmount, 'C', 'en-ZA') AS [SaleAmount] FROM Sale LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber WHERE 1=1");
 
                 if (!string.IsNullOrEmpty(comboBox_selectSaleType.Text))
                 {
@@ -160,9 +160,11 @@ namespace Pharmatech
                 }
                 if (!string.IsNullOrEmpty(textBox_PatientIDSelect.Text))
                 {
-                    sqlBuilder.Append(" AND patientIDNumber = @patientID");
+                    sqlBuilder.Append(" AND Sale.patientIDNumber = @patientID");
                     cParameters.Add(new SqlParameter("@patientID", textBox_PatientIDSelect.Text));
                 }
+
+                sqlBuilder.Append(" ORDER BY Sale.date");
                 
                 SqlCommand cmd = new SqlCommand(sqlBuilder.ToString(), con);
                 if (cParameters.Count != 0)

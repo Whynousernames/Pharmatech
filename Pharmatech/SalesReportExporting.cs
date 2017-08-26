@@ -48,14 +48,14 @@ namespace Pharmatech
             //Add line break
             document.Add(new Chunk("\n", fntHead));
 
-            //Add parameters chosen for sales report
-            Paragraph parameters = new Paragraph();
-            parameters.Alignment = Element.ALIGN_LEFT;
+            ////Add parameters chosen for sales report
+            //Paragraph parameters = new Paragraph();
+            //parameters.Alignment = Element.ALIGN_LEFT;
             
-            parameters.Add(new Chunk("Sale Type: " + saleType + "\n", fntAuthor));
-            parameters.Add(new Chunk("By medicine name: " + medname + "\n", fntAuthor));
-            parameters.Add(new Chunk("By Patient: " + patientid, fntAuthor));
-            document.Add(parameters);
+            //parameters.Add(new Chunk("Sale Type: " + saleType + "\n", fntAuthor));
+            //parameters.Add(new Chunk("By medicine name: " + medname + "\n", fntAuthor));
+            //parameters.Add(new Chunk("By Patient: " + patientid, fntAuthor));
+            //document.Add(parameters);
 
             // Add another line break
             document.Add(new Chunk("\n", fntHead));

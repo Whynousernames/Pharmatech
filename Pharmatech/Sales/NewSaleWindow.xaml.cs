@@ -19,8 +19,6 @@ using BusinessObject;
 
 namespace Pharmatech
 {
-
-
     /// <summary>
     /// Interaction logic for MainMenuWindow.xaml
     /// </summary>
@@ -33,21 +31,14 @@ namespace Pharmatech
         List<SqlParameter> cParameters = new List<SqlParameter>();
         List<SqlParameter> pParameters = new List<SqlParameter>();
         
-        
-
         DataTable dt = new DataTable();
 
         int sum = 0;
         int quantity = 1;
 
-
         public List<Sale> products = new List<Sale>();
         public List<Patient> patientDetails = new List<Patient>();
         int _count = 0;
-
-
-
-
 
         public NewSaleWindow()
         {
@@ -70,8 +61,6 @@ namespace Pharmatech
             comboBox_Quantity.Items.Add("5");
             comboBox_Quantity.Items.Add("6");
 
-
-
             // Populate combobox with medicine pulled from the database.            
             using (SqlConnection conn = new SqlConnection(connection))
             {
@@ -84,13 +73,8 @@ namespace Pharmatech
                     while (sqlReader.Read())
                     {
                         comboBox_select_Item.Items.Add(sqlReader["MedName"].ToString());
-
-
                     }
                     sqlReader.Close();
-
-
-
 
                 }
                 catch (Exception ex)
@@ -99,7 +83,6 @@ namespace Pharmatech
                 }
             }
         }
-
 
 
         void messageTimer_Tick(object sender, EventArgs e)
@@ -116,7 +99,7 @@ namespace Pharmatech
             if (e.Key == Key.F1)
             {
 
-                image_arrow.Visibility = Visibility.Visible;
+               image_arrow.Visibility = Visibility.Visible;
                 image_arrow_Copy.Visibility = Visibility.Visible;
                 image_arrow_Copy1.Visibility = Visibility.Visible;
                 image_arrow_Copy2.Visibility = Visibility.Visible;
@@ -127,10 +110,6 @@ namespace Pharmatech
                 {
                     arrowHidden_True();
                 }
-
-
-
-
             }
         }
 
@@ -212,8 +191,6 @@ namespace Pharmatech
 
         }
 
-
-
         private void button_cashSaleSelect_Click(object sender, RoutedEventArgs e)
         {
             gridHidden_True();
@@ -232,9 +209,6 @@ namespace Pharmatech
             
             saleFinalWindow.textBox_Total.Text = sum.ToString();
 
-            
-
-
             double vatDisplay;
             double subTotal = 0;          
             vatDisplay = Math.Round(((sum / 1.14) - sum) * -1 , 2);           
@@ -243,13 +217,9 @@ namespace Pharmatech
             saleFinalWindow.textBox_VatDisplay.Text = vatDisplay.ToString();
 
             sum = 0;
-
             saleFinalWindow.dt = this.dt;
-
-
             saleFinalWindow.Show();
             this.Hide();
-
         }
 
         private void button_medicalAidSaleSelect_Click(object sender, RoutedEventArgs e)
@@ -274,7 +244,6 @@ namespace Pharmatech
             {
                 MessageBox.Show("You have not selected medication for this patient.", "Error.", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-
         }
 
         private void button_cancel_Click(object sender, RoutedEventArgs e)
@@ -309,19 +278,14 @@ namespace Pharmatech
         {
             if (!string.IsNullOrEmpty(comboBox_select_Item.Text.ToString()))
             {
-
                 quantity = 1;
                 
-
                 if(!string.IsNullOrEmpty(comboBox_Quantity.Text))
                 {
                     quantity = Convert.ToInt32(comboBox_Quantity.Text);
-                }
-                
-
+                }               
                 FillSalesItemGrid();
-                
-
+               
             }
             else
             {
@@ -482,8 +446,7 @@ namespace Pharmatech
                 }
 
                 foreach (var item in products)
-                {                  
-                    
+                {                                      
                     var row = dt.NewRow();
                     row["Medication ID"] = item.medID;
                     row["Medication name"] = item.medName;
@@ -492,38 +455,23 @@ namespace Pharmatech
                     row["Sale Price"] = item.salePrice;
                     row["Quantity"] = quantity;
                     row["Total Price"] = item.salePrice * quantity;
-
                     //dt.Rows.Add(row);
                     dt.Rows.InsertAt(row, _count);
-                    
-
-
-
-
 
                 }
                 reader.Close();
               
                 dataGrid_saleItems.AutoGenerateColumns = true;
                 // Finally bind the datasource to datagridview.
-                dataGrid_saleItems.ItemsSource = dt.DefaultView;
-                
+                dataGrid_saleItems.ItemsSource = dt.DefaultView;             
                 //dataGrid_saleItems.ItemsSource = dt.AsDataView();
-                
 
                 _count++;
                 sqlBuilder.Clear();
                 cParameters.Clear();
                 product.Clear();
-                
-                
-
 
             }
-
-
-
-
         }
 
         private void dataGrid_saleItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -538,20 +486,13 @@ namespace Pharmatech
                 DataRowView drv = (DataRowView)dataGrid_saleItems.SelectedItem;
                 drv.Row.Delete();
                 dt.AcceptChanges();
-
-
-
             }
 
         }
 
-        
-
         private void button_ProceedToSale_Click(object sender, RoutedEventArgs e)
         {
-            
-
-            
+                  
             using (SqlConnection con = new SqlConnection(conn))
             {
                 con.Open();
@@ -587,7 +528,6 @@ namespace Pharmatech
                         patient.address1 = (Convert.ToString(reader["physicalAddress1"]));
                         patient.address2 = (Convert.ToString(reader["physicalAddress2"]));
                         patientDetails.Add(patient);
-
                         
                     }
 

@@ -36,8 +36,6 @@ namespace Pharmatech
         // <add name = "connstring" providerName="System.Data.sqlclient" connectionString="Data Source = (local); database = PharmaTech; Integrated Security = True"/>
 
 
-
-
         public ReportsMainWindow()
         {
             InitializeComponent();
@@ -64,12 +62,8 @@ namespace Pharmatech
                     {
                         comboBox_select_Item.Items.Add(sqlReader["MedName"].ToString());
 
-
                     }
                     sqlReader.Close();
-
-
-
 
                 }
                 catch (Exception ex)
@@ -188,13 +182,13 @@ namespace Pharmatech
         }
 
 
-        // Function to remove the time portion of the Date/time value. 
-        private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            if (e.PropertyType == typeof(System.DateTime))
-                (e.Column as DataGridTextColumn).Binding.StringFormat = "dd/MM/yyyy";
+        //// Function to remove the time portion of the Date/time value. 
+        //private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        //{
+        //    if (e.PropertyType == typeof(System.DateTime))
+        //        (e.Column as DataGridTextColumn).Binding.StringFormat = "dd/MM/yyyy";
 
-        }
+        //}
 
 
         void messageTimer_Tick(object sender, EventArgs e)
@@ -477,7 +471,6 @@ namespace Pharmatech
                 con.Close();
 
             }
-
             
         }
 

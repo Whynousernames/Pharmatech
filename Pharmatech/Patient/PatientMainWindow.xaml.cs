@@ -490,14 +490,9 @@ namespace Pharmatech
                     reader.Close();
                     con.Close();
                 }
-
-
             }
         }
 
-       
-
-        
 
         private void button_AddPatient_Click_1(object sender, RoutedEventArgs e)
         {
@@ -507,9 +502,6 @@ namespace Pharmatech
             patientMainWindow.Grid_SelectPatient.Visibility = Visibility.Hidden;
             patientMainWindow.ShowDialog();
             this.Close();
-
-
-
 
         }
 

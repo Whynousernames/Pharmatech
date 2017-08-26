@@ -203,16 +203,8 @@ namespace Pharmatech
                     Grid_MedicationMainWindow.Visibility = Visibility.Visible; 
                                    
                 }
-
             
             }
-
-
-
-
-            //Grid_MedicationMainWindow.Visibility = Visibility.Hidden;
-            //Grid_Instruction.Visibility = Visibility.Visible;
-
 
         }
 
@@ -371,7 +363,6 @@ namespace Pharmatech
                         textBox_SalePrice.Text = reader["salePrice"].ToString();
                         textBox_QuantityInStock.Text = reader["quantityInStock"].ToString();
                         textBox_QuantityInStock_Copy.Text = reader["Description"].ToString();                     
-
                     }
                     reader.Close();
                     con.Close();
@@ -399,9 +390,7 @@ namespace Pharmatech
                 else if (dialogResult == MessageBoxResult.No)
                 {
                     Grid_SelectMedication.Visibility = Visibility.Visible;
-                }
-            
-                
+                }                           
             }
 
         }

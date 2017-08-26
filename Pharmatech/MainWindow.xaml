@@ -10,7 +10,7 @@
         <Grid.ContextMenu>
             <ContextMenu FontFamily="Minion Pro" Placement="Center"/>
         </Grid.ContextMenu>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="143" Margin="10,10,-209,0" VerticalAlignment="Top" Width="716" RenderTransformOrigin="0.5,0.5" Source="pack://siteoforigin:,,,/images/Pharmatech 2 - Transparrent.png"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="143" Margin="10,6,-209,0" VerticalAlignment="Top" Width="716" RenderTransformOrigin="0.5,0.5" Source="pack://siteoforigin:,,,/images/Pharmatech 2 - Transparrent.png"/>
         <Grid HorizontalAlignment="Left" Height="108" Margin="100,172,0,39" VerticalAlignment="Center" Width="280">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0*"/>
@@ -20,8 +20,8 @@
             <Label x:Name="label_Password" Grid.ColumnSpan="2" Content="Password" HorizontalAlignment="Left" Height="33" Margin="15,39,0,0" VerticalAlignment="Top" Width="95" FontSize="18" Foreground="#FF12A9FF"/>
             <TextBox x:Name="textBox_Username" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="18" Margin="115,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
         </Grid>
-        <PasswordBox x:Name="passwordBox_password" Margin="216,219,145,0" VerticalAlignment="Top"/>
-        <Button x:Name="button_login" Content="Login" HorizontalAlignment="Left" Margin="235,259,0,25" Width="86" FontSize="16" Cursor="Hand" Click="button_login_Click" Foreground="White" BorderBrush="#FF12A9FF" FontFamily="Segoe UI Semibold">
+        <PasswordBox x:Name="passwordBox_password" Margin="216,219,145,0" VerticalAlignment="Top" Width="159"/>
+        <Button x:Name="button_login" Content="Login" HorizontalAlignment="Left" Margin="245,249,0,35" Width="86" FontSize="16" Cursor="Hand" Click="button_login_Click" Foreground="White" BorderBrush="#FF12A9FF" FontFamily="Segoe UI Semibold">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FF2F98BF"/>
@@ -29,5 +29,6 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
+        <Rectangle HorizontalAlignment="Left" Height="134" Margin="107,158,0,0" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="302"/>
     </Grid>
 </Window>

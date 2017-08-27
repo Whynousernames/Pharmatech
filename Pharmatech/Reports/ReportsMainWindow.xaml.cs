@@ -485,7 +485,7 @@ namespace Pharmatech
         //        dt.Rows.Add(rowbreak);
         //        DataRow dr = dt.NewRow();
 
-                
+
         //        dt.Rows.Add(dr);
         //        DataRow vatrow = dt.NewRow();
         //        grandtotal1 = Convert.ToInt32(dt.Compute("Sum(SaleAmount)", string.Empty));
@@ -494,7 +494,7 @@ namespace Pharmatech
         //        vatrow["SaleAmount"] = totalwithvat;
         //        dt.Rows.Add(vatrow);
 
-                
+
         //        DataRow grandtotal = dt.NewRow();
         //        grandtotal["Type of Sale"] = "GRAND TOTAL: ";
         //        grandtotal["SaleAmount"] = grandtotal1;
@@ -502,7 +502,7 @@ namespace Pharmatech
         //    }
         //}
 
-        
+
     }
 
     

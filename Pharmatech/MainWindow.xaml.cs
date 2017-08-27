@@ -62,7 +62,7 @@ namespace Pharmatech
                         if (reader["employeeType"].ToString() == "A")
                             mainMenuWindow.label_EmployeeTypeDisplay.Content = "Admin";
                         if (reader["employeeType"].ToString() == "P")
-                            mainMenuWindow.label_EmployeeTypeDisplay.Content = "Pharmacist";
+                            mainMenuWindow.label_EmployeeTypeDisplay.Content = "Pharmacist";                           
 
                     }
                     reader.Close();

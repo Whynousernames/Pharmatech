@@ -174,7 +174,7 @@
                 <Label x:Name="label_PatientID" Content="Please input patient ID for search" HorizontalAlignment="Left" Height="62" Margin="0,34,-27,0" VerticalAlignment="Top" Width="681" FontSize="36" Foreground="#FF12A9FF" Grid.RowSpan="2"/>
                 <Label x:Name="label_PatientIDSelect" Content="Patient ID:" HorizontalAlignment="Left" Height="42" Margin="21,53,0,0" VerticalAlignment="Top" Width="211" FontSize="24" Foreground="#FF12A9FF" Grid.Row="2"/>
                 <TextBox x:Name="textBox_PatientIDSelect" HorizontalAlignment="Left" Height="38" Margin="248,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Foreground="#FF01213A" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.Row="2"/>
-                <Button x:Name="button_nextSelectPatientID" Content="Next" HorizontalAlignment="Left" Height="56" Margin="339,174,0,0" VerticalAlignment="Top" Width="147"  BorderBrush="{x:Null}" Foreground="White" FontSize="24"  Grid.Row="2" Click="button_nextSelectPatientID_Click_1"    >
+                <Button x:Name="button_nextSelectPatientID" Content="Next" HorizontalAlignment="Left" Height="56" Margin="347,74,0,0" VerticalAlignment="Top" Width="147"  BorderBrush="{x:Null}" Foreground="White" FontSize="24"  Grid.Row="2" Click="button_nextSelectPatientID_Click_1"    >
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF2F98BF"/>
@@ -182,7 +182,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:Name="button_cancelSelectPatient1" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="130,174,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" BorderBrush="{x:Null}" Foreground="White" FontSize="24" Grid.Row="2" >
+                <Button x:Name="button_cancelSelectPatient1" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="138,74,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" BorderBrush="{x:Null}" Foreground="White" FontSize="24" Grid.Row="2" >
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF2F98BF"/>
@@ -214,7 +214,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Label x:Name="label_PrintPDF_Copy" Content="Please note: the PDF file will be saved to your desktop." HorizontalAlignment="Left" Height="123" Margin="10,25,-507,0" VerticalAlignment="Top" Width="1151" FontSize="26" Foreground="#FF12A9FF" Grid.Row="1" Grid.RowSpan="2"/>
+                <Label x:Name="label_PrintPDF_Copy" Content="Please note: the PDF file will be saved to your desktop." HorizontalAlignment="Left" Height="123" Margin="10,7,-507,0" VerticalAlignment="Top" Width="1151" FontSize="26" Foreground="#FF12A9FF" Grid.RowSpan="2" Grid.Row="1"/>
             </Grid>
             <Image x:Name="image_arrow" HorizontalAlignment="Left" Height="127" Margin="1105,54,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2"/>
             <Image x:Name="image_arrow_Copy" HorizontalAlignment="Left" Height="127" Margin="1786,47,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.Row="2">

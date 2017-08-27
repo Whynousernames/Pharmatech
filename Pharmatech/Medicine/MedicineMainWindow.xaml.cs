@@ -319,8 +319,8 @@ namespace Pharmatech
                         textBox_MedicationID.Text = reader["medID"].ToString();
                         textBox_MedicationName.Text = reader["medName"].ToString();
                         comboBox_Schedule.Items.Add(reader["scheduleLevel"].ToString());
-                        textBox_CostPrice.Text = reader["costPrice"].ToString();
-                        textBox_SalePrice.Text = reader["salePrice"].ToString();
+                        textBox_CostPrice.Text = "R " + reader["costPrice"].ToString();
+                        textBox_SalePrice.Text = "R " + reader["salePrice"].ToString();
                         textBox_QuantityInStock.Text = reader["quantityInStock"].ToString();
                         textBox_QuantityInStock_Copy.Text = reader["Description"].ToString();
                         textBox_IsActive.Text = reader["isActive"].ToString();

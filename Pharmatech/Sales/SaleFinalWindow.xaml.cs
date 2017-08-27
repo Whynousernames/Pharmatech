@@ -315,7 +315,7 @@ namespace Pharmatech
                         string saleType;
                         string descrip = "";
                         MainMenuWindow window = new MainMenuWindow();
-                        string empID = window.label_IDDisplay.Content.ToString();
+                        string empID = window.label_ID.ToString();
                         string patientID = label_displayID.Content.ToString();
                         StringBuilder strBuilder = new StringBuilder();
                         string patientName = label_displayName.Content.ToString();

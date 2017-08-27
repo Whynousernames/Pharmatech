@@ -25,7 +25,7 @@ namespace Pharmatech
     public partial class MainMenuWindow : Window
     {
         string conn = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
-
+        internal object label_ID;
 
         public MainMenuWindow()
         {

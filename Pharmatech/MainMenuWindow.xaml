@@ -24,7 +24,7 @@
                 <RowDefinition Height="228*"/>
                 <RowDefinition Height="269*"/>
             </Grid.RowDefinitions>
-            <Rectangle HorizontalAlignment="Left" Height="850" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="1195" Margin="559,53,0,0" Grid.RowSpan="2" Grid.Row="1">
+            <Rectangle HorizontalAlignment="Left" Height="583" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="1123" Margin="559,53,0,0" Grid.RowSpan="2" Grid.Row="1">
                 <Rectangle.Effect>
                     <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
                 </Rectangle.Effect>
@@ -43,16 +43,16 @@
 
             </StackPanel>
             <Label x:Name="label_WindowType" Content="Main Menu" HorizontalAlignment="Center" Height="49" Margin="948,0,600,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="362" FontSize="24" Foreground="#FF12A9FF" FontWeight="Bold"/>
-            <Label x:Name="label_FirstName" Content="Name:" HorizontalAlignment="Left" Height="42" Margin="626,358,0,0" VerticalAlignment="Top" Width="134" FontSize="24" Foreground="#FF12A9FF" Grid.Row="1"/>
-            <Label x:Name="label_EmployeeID" Content="Employee ID:" HorizontalAlignment="Left" Height="42" Margin="626,429,0,0" VerticalAlignment="Top" Width="153" FontSize="24" Foreground="#FF12A9FF" Grid.RowSpan="2" Grid.Row="1"/>
-            <Label x:Name="label_EmployeeType" Content="Employee Type:" HorizontalAlignment="Left" Height="42" Margin="626,0,0,447" VerticalAlignment="Bottom" Width="176" FontSize="24" Foreground="#FF12A9FF" Grid.Row="2"/>
-            <Label x:Name="label_FirstNameDisplay"  HorizontalAlignment="Left" Height="42" Margin="832,358,0,0" VerticalAlignment="Top" Width="323" FontSize="24" Foreground="#FF12A9FF" Grid.Row="1"/>
-            <Label x:Name="label_IDDisplay"  HorizontalAlignment="Left" Height="42" Margin="832,429,0,0" VerticalAlignment="Top" Width="254" FontSize="24" Foreground="#FF12A9FF" Grid.RowSpan="2" Grid.Row="1" Content="4200"/>
-            <Label x:Name="label_EmployeeTypeDisplay" Content="Admin" HorizontalAlignment="Left" Height="42" Margin="832,49,0,0" VerticalAlignment="Top" Width="254" FontSize="24" Foreground="#FF12A9FF" Grid.Row="2"/>
-            <Label x:Name="label_FirstNameDisplay_Copy" Content="You are currently logged in as" HorizontalAlignment="Left" Height="62" Margin="780,138,0,0" VerticalAlignment="Top" Width="484" FontSize="36" Foreground="#FF12A9FF" Grid.Row="1"/>
+            <Label x:Name="label_FirstName" Content="Name:" HorizontalAlignment="Left" Height="42" Margin="636,294,0,0" VerticalAlignment="Top" Width="134" FontSize="24" Foreground="#FF12A9FF" Grid.Row="1"/>
+            <Label x:Name="label_EmployeeID" Content="Employee ID:" HorizontalAlignment="Left" Height="42" Margin="636,365,0,0" VerticalAlignment="Top" Width="153" FontSize="24" Foreground="#FF12A9FF" Grid.Row="1"/>
+            <Label x:Name="label_EmployeeType" Content="Employee Type:" HorizontalAlignment="Left" Height="42" Margin="636,0,0,511" VerticalAlignment="Bottom" Width="176" FontSize="24" Foreground="#FF12A9FF" Grid.Row="1" Grid.RowSpan="2"/>
+            <Label x:Name="label_FirstNameDisplay"  HorizontalAlignment="Left" Height="42" Margin="842,294,0,0" VerticalAlignment="Top" Width="323" FontSize="24" Foreground="#FF12A9FF" Grid.Row="1"/>
+            <Label x:Name="label_IDDisplay"  HorizontalAlignment="Left" Height="42" Margin="842,365,0,0" VerticalAlignment="Top" Width="254" FontSize="24" Foreground="#FF12A9FF" Grid.Row="1" Content="4200"/>
+            <Label x:Name="label_EmployeeTypeDisplay" Content="Admin" HorizontalAlignment="Left" Height="42" Margin="842,441,0,0" VerticalAlignment="Top" Width="254" FontSize="24" Foreground="#FF12A9FF" Grid.Row="1" Grid.RowSpan="2"/>
+            <Label x:Name="label_FirstNameDisplay_Copy" Content="You are currently logged in as" HorizontalAlignment="Left" Height="62" Margin="877,153,0,0" VerticalAlignment="Top" Width="484" FontSize="36" Foreground="#FF12A9FF" Grid.Row="1"/>
 
 
-            <Image x:Name="imageEmployee" HorizontalAlignment="Left" Height="249" Margin="1224,358,0,0" VerticalAlignment="Top" Width="290" Source="images/Nicholas_Photo.png" Grid.RowSpan="2" Grid.Row="1"/>
+            <Image x:Name="imageEmployee" HorizontalAlignment="Left" Height="249" Margin="1050,264,0,0" VerticalAlignment="Top" Width="290" Source="images/Nicholas_Photo.png" Grid.RowSpan="2" Grid.Row="1"/>
             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1060" Margin="258,-1,0,0" Grid.RowSpan="3" Stroke="#FFF4F4F5" VerticalAlignment="Top" Width="4">
                 <Rectangle.Effect>
                     <BlurEffect KernelType="Box"/>

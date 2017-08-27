@@ -432,8 +432,7 @@ namespace Pharmatech
         }
 
         private void button_GenerateReport_Click_1(object sender, RoutedEventArgs e)
-        {
-            
+        {            
             FillSalesGrid();
         }
 

@@ -27,6 +27,7 @@ namespace Pharmatech
         static string connection = System.Configuration.ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
         string conn = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
         StringBuilder sqlBuilder = new StringBuilder(500);
+        StringBuilder sqlBuilderAllergy = new StringBuilder(500);
         StringBuilder sqlBuilderPatient = new StringBuilder(500);
         List<SqlParameter> cParameters = new List<SqlParameter>();
         List<SqlParameter> pParameters = new List<SqlParameter>();
@@ -73,6 +74,7 @@ namespace Pharmatech
                     while (sqlReader.Read())
                     {
                         comboBox_select_Item.Items.Add(sqlReader["MedName"].ToString());
+                        
                     }
                     sqlReader.Close();
 
@@ -278,7 +280,33 @@ namespace Pharmatech
         {
             if (!string.IsNullOrEmpty(comboBox_select_Item.Text.ToString()))
             {
-                quantity = 1;
+                using (SqlConnection con = new SqlConnection(conn))
+                {
+                    try
+                    {
+                        SqlCommand sqlCmd = new SqlCommand("SELECT MedID, MedName FROM Medication WHERE MedID = "+comboBox_select_Item.Text.ToString()+"", con);
+                        con.Open();
+                        SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                        while (sqlReader.Read())
+                        {
+
+                            string allergyMedID = sqlReader["MedID"].ToString();
+                            string allergyMedName = sqlReader["MedName"].ToString();                            
+
+                        }
+                        sqlReader.Close();
+
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Could not populate medication combobox from database.", ex.ToString());
+                    }
+                }
+
+                    quantity = 1;
                 
                 if(!string.IsNullOrEmpty(comboBox_Quantity.Text))
                 {
@@ -455,8 +483,8 @@ namespace Pharmatech
                     row["Sale Price"] = item.salePrice;
                     row["Quantity"] = quantity;
                     row["Total Price"] = item.salePrice * quantity;
-                    //dt.Rows.Add(row);
-                    dt.Rows.InsertAt(row, _count);
+                    dt.Rows.Add(row);
+                    //dt.Rows.InsertAt(row, _count);
 
                 }
                 reader.Close();

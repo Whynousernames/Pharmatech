@@ -224,6 +224,18 @@ namespace Pharmatech
         {
 
         }
+
+        private void button_LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            gridHidden_True();
+            MainMenuWindow mainmenuwindow = new MainMenuWindow();
+            mainmenuwindow.Visibility = Visibility.Hidden;
+            this.Close();
+            MainWindow mainwindow = new MainWindow();
+            mainwindow.Visibility = Visibility.Visible;
+            mainwindow.ShowDialog();
+            
+        }
     }
 
 }

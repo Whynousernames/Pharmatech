@@ -4,10 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pharmatech"
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
         Title="Main Menu" Background="#FF01213A" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" WindowState="Maximized" WindowStartupLocation="CenterScreen" Width="1920" Height="1080" 
         KeyDown="Window_KeyDown"
         >
+    
     <Window.Resources>
         <ImageBrush x:Key="SaleResource" ImageSource= "pack://siteoforigin:,,,/images/CashSale_Icon.JPG" ></ImageBrush>
         <ImageBrush x:Key="EmployeeResource" ImageSource="pack://siteoforigin:,,,/images/Employee_Icon.JPG"></ImageBrush>
@@ -28,12 +30,12 @@
             <StackPanel x:Name="StackPanelMenu" Height="1080" Margin="0,-1,1653,0" VerticalAlignment="Top" Background="#FF0BA9F1" Grid.RowSpan="3" Width="257" RenderTransformOrigin="0.51,0.468">
                 <Label x:Name="label_Time" Content="Label" HorizontalAlignment="Center" Height="40" Width="257" VerticalAlignment="Top" FontSize="24" BorderBrush="#FF01213A" BorderThickness="1" Foreground="White" Margin="10,0,0,0"/>
                 <Grid HorizontalAlignment="Left" Height="62" Width="257"/>
-                <Button x:Name="button_Sale" Style="{StaticResource MyButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource SaleResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Sales" Click="button_Sale_Click"/>
-                <Button x:Name="button_Patient" Style="{StaticResource MyButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource PatientResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Patients" Click="button_Patient_Click"/>
-                <Button x:Name="button_Medication" Style="{StaticResource MyButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource MedicationResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Medication" Click="button_Medication_Click"/>
-                <Button x:Name="button_Instruction" Style="{StaticResource MyButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource PrescriptionResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Instruction" Click="button_Instruction_Click"/>
-                <Button x:Name="button_Employee" Style="{StaticResource MyButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource EmployeeResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Employees" Click="button_Employee_Click"/>
-                <Button x:Name="button_Reports" Style="{StaticResource MyButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource ReportsResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Reports" Click="button_Reports_Click"/>
+                <Button x:Name="button_Sale" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource SaleResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Sales" Click="button_Sale_Click"/>
+                <Button x:Name="button_Patient" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource PatientResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Patients" Click="button_Patient_Click"/>
+                <Button x:Name="button_Medication" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource MedicationResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Medication" Click="button_Medication_Click"/>
+                <Button x:Name="button_Instruction" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource PrescriptionResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Instruction" Click="button_Instruction_Click"/>
+                <Button x:Name="button_Employee" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource EmployeeResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Employees" Click="button_Employee_Click"/>
+                <Button x:Name="button_Reports" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource ReportsResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Reports" Click="button_Reports_Click"/>
             </StackPanel>
             <Label x:Name="label_SaleWindowType" Content="Main Menu" HorizontalAlignment="Center" Height="51" Margin="834,-1,706,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="400" FontSize="24" Foreground="#FF12A9FF" FontWeight="Bold"/>
             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1060" Margin="258,-1,0,0" Grid.RowSpan="3" Stroke="#FFF4F4F5" VerticalAlignment="Top" Width="4">

@@ -22,6 +22,7 @@ namespace Pharmatech
     /// <summary>
     /// Interaction logic for MainMenuWindow.xaml
     /// </summary>
+    /// 
     public partial class NewSaleWindow : Window
     {
         static string connection = System.Configuration.ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
@@ -32,6 +33,7 @@ namespace Pharmatech
         List<SqlParameter> cParameters = new List<SqlParameter>();
         List<SqlParameter> pParameters = new List<SqlParameter>();
         
+        
         DataTable dt = new DataTable();
 
         int sum = 0;
@@ -40,6 +42,18 @@ namespace Pharmatech
         public List<Sale> products = new List<Sale>();
         public List<Patient> patientDetails = new List<Patient>();
         int _count = 0;
+        public string allergyMedID;
+        public string allergyMedName;
+        public string medicationAllergyAllergyID;
+        public string allergyID;
+        public string allergyName;
+        public string allergyDescription;
+        public string patientAllergyID;
+        public string patientPatientID;
+
+
+
+        
 
         public NewSaleWindow()
         {
@@ -55,6 +69,8 @@ namespace Pharmatech
             Grid_patientSelect.Visibility = Visibility.Visible;
             arrowHidden_True();
 
+
+
             comboBox_Quantity.Items.Add("1");
             comboBox_Quantity.Items.Add("2");
             comboBox_Quantity.Items.Add("3");
@@ -62,19 +78,26 @@ namespace Pharmatech
             comboBox_Quantity.Items.Add("5");
             comboBox_Quantity.Items.Add("6");
 
+
+
+
             // Populate combobox with medicine pulled from the database.            
             using (SqlConnection conn = new SqlConnection(connection))
             {
                 try
                 {
+                    
                     SqlCommand sqlCmd = new SqlCommand("SELECT MedID, MedName FROM Medication", conn);
                     conn.Open();
                     SqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                     while (sqlReader.Read())
                     {
-                        comboBox_select_Item.Items.Add(sqlReader["MedName"].ToString());
-                        
+
+
+                        comboBox_select_Item.Items.Add(sqlReader["MedID"].ToString());
+                        //comboBox_select_Item.SelectedValuePath = sqlReader["MedID"].ToString();
+
                     }
                     sqlReader.Close();
 
@@ -284,35 +307,84 @@ namespace Pharmatech
                 {
                     try
                     {
-                        SqlCommand sqlCmd = new SqlCommand("SELECT MedID, MedName FROM Medication WHERE MedID = "+comboBox_select_Item.Text.ToString()+"", con);
+                        SqlCommand sqlCmd = new SqlCommand("SELECT MedID, MedName FROM Medication WHERE MedID = "+comboBox_select_Item.SelectedValue+"", con);
                         con.Open();
                         SqlDataReader sqlReader = sqlCmd.ExecuteReader();
-
                         while (sqlReader.Read())
                         {
 
-                            string allergyMedID = sqlReader["MedID"].ToString();
-                            string allergyMedName = sqlReader["MedName"].ToString();                            
+                            allergyMedID = sqlReader["MedID"].ToString();
+                            allergyMedName = sqlReader["MedName"].ToString();                            
 
                         }
                         sqlReader.Close();
+                        con.Close();
+                        con.Open();
 
 
+
+                        SqlCommand sqlCmdMA = new SqlCommand("SELECT allergyID FROM Medication_Allergies WHERE MedID LIKE "+allergyMedID.ToString()+"", con);
+                        SqlDataReader sqlReaderMA = sqlCmdMA.ExecuteReader();
+                        while (sqlReaderMA.Read())
+                        {
+                            medicationAllergyAllergyID = sqlReaderMA["allergyID"].ToString();
+                        }
+                        sqlReaderMA.Close();
+                        con.Close();
+                        con.Open();
+
+
+
+                        SqlCommand sqlCmdA = new SqlCommand("SELECT allergyID, allergyName, allergyDescription FROM Allergies WHERE allergyID = "+medicationAllergyAllergyID+"", con);
+                        SqlDataReader sqlReaderA = sqlCmdA.ExecuteReader();
+                        while (sqlReaderA.Read())
+                        {
+                            allergyID = sqlReaderA["allergyID"].ToString();
+                            allergyName = sqlReaderA["allergyName"].ToString();
+                            allergyDescription = sqlReaderA["allergyDescription"].ToString();
+                        }
+                       
+
+
+                        SqlCommand sqlCmdPA = new SqlCommand("SELECT allergyID, patientIDNumber FROM PatientAllergies WHERE allergyID = "+ allergyID +"", con);
+                        SqlDataReader sqlReaderPA = sqlCmdPA.ExecuteReader();
+                        while (sqlReaderPA.Read())
+                        {
+                            patientAllergyID = sqlReaderPA["allergyID"].ToString();
+                            patientPatientID = sqlReaderPA["patientIDNumber"].ToString();
+                        }
+                        
+
+
+                        if (medicationAllergyAllergyID == patientAllergyID)
+                        {
+                            MessageBox.Show("It worked");
+                        }
+                        else
+                        {
+                            quantity = 1;
+
+                            if (!string.IsNullOrEmpty(comboBox_Quantity.Text))
+                            {
+                                quantity = Convert.ToInt32(comboBox_Quantity.Text);
+                            }
+                            FillSalesItemGrid();
+                        }
+
+                        
+                        
+                        sqlReaderA.Close();
+                        sqlReaderPA.Close();
 
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Could not populate medication combobox from database.", ex.ToString());
+                        MessageBox.Show("Medication not found in Database", ex.ToString());
                     }
+
                 }
 
-                    quantity = 1;
-                
-                if(!string.IsNullOrEmpty(comboBox_Quantity.Text))
-                {
-                    quantity = Convert.ToInt32(comboBox_Quantity.Text);
-                }               
-                FillSalesItemGrid();
+                    
                
             }
             else
@@ -586,8 +658,10 @@ namespace Pharmatech
             
         }
 
+
         
     }
+
 }
 
 

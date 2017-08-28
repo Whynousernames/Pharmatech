@@ -4,30 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pharmatech"
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
-        Title="Login" Height="350" Width="525" Background="#FF12A9FF" ShowInTaskbar="False" Foreground="#FF01213A" HorizontalContentAlignment="Center" WindowStartupLocation="CenterScreen">
-    <Grid Background="#FF01213A" HorizontalAlignment="Center" ForceCursor="True">
+        Title="Login" Height="357.157" Width="530.01"  ShowInTaskbar="False" Foreground="#FF01213A" HorizontalContentAlignment="Center" WindowStartupLocation="CenterScreen">
+    <Grid Background="#e6f3ff" HorizontalAlignment="Center" ForceCursor="True" Margin="2,0,2,1" Width="518">
         <Grid.ContextMenu>
             <ContextMenu FontFamily="Minion Pro" Placement="Center"/>
         </Grid.ContextMenu>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="143" Margin="10,6,-209,0" VerticalAlignment="Top" Width="716" RenderTransformOrigin="0.5,0.5" Source="pack://siteoforigin:,,,/images/Pharmatech 2 - Transparrent.png"/>
-        <Grid HorizontalAlignment="Left" Height="108" Margin="100,172,0,39" VerticalAlignment="Center" Width="280">
+        <Image x:Name="image" HorizontalAlignment="Left" Height="114" Margin="37,37,-84,0" VerticalAlignment="Top" Width="565" RenderTransformOrigin="0.5,0.5" Source="pack://siteoforigin:,,,/images/Pharmatech 2 - Transparrent.png"/>
+        <Grid HorizontalAlignment="Left" Height="108" Margin="100,151,0,66" VerticalAlignment="Center" Width="296">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label x:Name="label_Username" Grid.ColumnSpan="2" Content="Username" HorizontalAlignment="Left" Height="33" Margin="15,1,0,0" VerticalAlignment="Top" Width="95" FontSize="18" Foreground="#FF12A9FF" />
-            <Label x:Name="label_Password" Grid.ColumnSpan="2" Content="Password" HorizontalAlignment="Left" Height="33" Margin="15,39,0,0" VerticalAlignment="Top" Width="95" FontSize="18" Foreground="#FF12A9FF"/>
-            <TextBox x:Name="textBox_Username" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="18" Margin="115,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
+            <Label x:Name="label_Username" Grid.ColumnSpan="2" Content="Username" HorizontalAlignment="Left" Height="33" Margin="18,6,0,0" VerticalAlignment="Top" Width="95" FontSize="18" />
+            <Label x:Name="label_Password" Grid.ColumnSpan="2" Content="Password" HorizontalAlignment="Left" Height="33" Margin="19,38,0,0" VerticalAlignment="Top" Width="95" FontSize="18" />
+            <TextBox x:Name="textBox_Username" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="18" Margin="115,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165"/>
         </Grid>
-        <PasswordBox x:Name="passwordBox_password" Margin="216,219,145,0" VerticalAlignment="Top" Width="159"/>
-        <Button x:Name="button_login" Content="Login" HorizontalAlignment="Left" Margin="245,249,0,32" Width="86" FontSize="16" Cursor="Hand" Click="button_login_Click" Foreground="White" BorderBrush="#FF12A9FF" FontFamily="Segoe UI Semibold">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="#FF2F98BF"/>
-                    <GradientStop Color="#FF424EC3" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
+        <PasswordBox x:Name="passwordBox_password" Margin="216,195,137,0" VerticalAlignment="Top" Width="165"/>
+        <Button x:Name="button_login" Content="Login" HorizontalAlignment="Left" Margin="216,230,0,48" Width="164" FontSize="16" Cursor="Hand" Click="button_login_Click" FontFamily="Segoe UI Semibold">
+
         </Button>
+        <Label x:Name="label_Copyright" Content="Copyright 2017 Total Healthcare Solutions" HorizontalAlignment="Left" Margin="318,291,0,0" VerticalAlignment="Top" FontSize="10"/>
     </Grid>
 </Window>

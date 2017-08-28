@@ -104,10 +104,11 @@ namespace Pharmatech
 
 
         private void FillSalesGrid( )
-        {                   
+        {
+                          
             using (SqlConnection con = new SqlConnection(conn))
             {              
-                sqlBuilder.Append("SELECT date AS [Date], saleID AS [Invoice ID], Patient.firstName + ' ' + Patient.lastName AS [Name], description AS Description, doctorName AS [DoctorName], saleType AS [Type of Sale], FORMAT(saleAmount, 'C', 'en-ZA') AS [SaleAmount] FROM Sale LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber WHERE 1=1");
+                sqlBuilder.Append("SELECT FORMAT(date, 'd', 'en-gb') AS Date, saleID AS [Invoice ID], Patient.firstName + ' ' + Patient.lastName AS [Name], description AS Description, doctorName AS [DoctorName], saleType AS [Type of Sale], FORMAT(saleAmount, 'C', 'en-ZA') AS [SaleAmount] FROM Sale LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber WHERE 1=1");
 
                 if (!string.IsNullOrEmpty(comboBox_selectSaleType.Text))
                 {
@@ -116,6 +117,7 @@ namespace Pharmatech
                     {
                         sqlBuilder.Append(" AND saleType = @saleType");
                         cParameters.Add(new SqlParameter("@saleType", comboBox_selectSaleType.SelectedItem.ToString()));
+
                     }
                     catch
                     {
@@ -125,7 +127,8 @@ namespace Pharmatech
                 if (comboBox_selectSaleType.Text == "All Sales")
                     {
                         sqlBuilder.Remove(sqlBuilder.Length-25, 25);
-
+                       
+                    
                     }
                 }
 
@@ -372,6 +375,7 @@ namespace Pharmatech
             string saleType = comboBox_selectSaleType.Text;
             string medName = comboBox_select_Item.Text;
             string patientID = textBox_PatientIDSelect.Text;
+            string Header = "sales report - " + saleType;
 
             if (string.IsNullOrEmpty(datePicker_StartDate.Text))
             {
@@ -401,7 +405,7 @@ namespace Pharmatech
 
             if (dataGrid_Reports.HasItems)
             {
-                SalesReportExporting.ExportDataTableToPdf(dt, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SalesReport", "Sales Report", saleType, startDate, endDate, medName, patientID);
+                SalesReportExporting.ExportDataTableToPdf(dt, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SalesReport", Header, saleType, startDate, endDate, medName, patientID);
                 Grid_ViewPDF.Visibility = Visibility.Visible;
                 Grid_ReportsMainWindow.Visibility = Visibility.Hidden;
             }

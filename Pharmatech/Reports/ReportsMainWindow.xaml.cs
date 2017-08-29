@@ -375,11 +375,11 @@ namespace Pharmatech
             string saleType = comboBox_selectSaleType.Text;
             string medName = comboBox_select_Item.Text;
             string patientID = textBox_PatientIDSelect.Text;
-            string Header = "sales report - " + saleType;
+            string Header = "sales report";
 
             if (string.IsNullOrEmpty(datePicker_StartDate.Text))
             {
-                startDate = "N/A";
+
             }
             else
             {
@@ -388,7 +388,7 @@ namespace Pharmatech
 
             if (string.IsNullOrEmpty(datePicker_EndDate.Text))
             {
-                endDate = "N/A";
+               // endDate = "N/A";
             }
             else
             {
@@ -398,12 +398,14 @@ namespace Pharmatech
             {
                 medName = "N/A";
             }
-            if (string.IsNullOrEmpty(patientID))
+            if (!string.IsNullOrEmpty(patientID))
             {
-                patientID = "N/A";
+              //  patientID = "n/a";
             }
 
-            if (dataGrid_Reports.HasItems)
+           
+
+            if (dataGrid_Reports.HasItems && !string.IsNullOrEmpty(startDate))
             {
                 SalesReportExporting.ExportDataTableToPdf(dt, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SalesReport", Header, saleType, startDate, endDate, medName, patientID);
                 Grid_ViewPDF.Visibility = Visibility.Visible;
@@ -411,7 +413,7 @@ namespace Pharmatech
             }
             else
             {
-                MessageBox.Show("Please generate a report first!");
+                MessageBox.Show("Please generate a report including a starting date!", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
             }
         }
             

@@ -24,20 +24,48 @@ namespace Pharmatech
             document.Open();
 
             //Report Header
-            BaseFont bfntHead = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-            Font fntHead = new Font(bfntHead, 16, 1, BaseColor.BLACK);
+            BaseFont bfntHead = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+            Font fntHead = new Font(bfntHead, 18, 1, BaseColor.BLACK);
             Paragraph prgHeading = new Paragraph();
             prgHeading.Alignment = Element.ALIGN_LEFT;
-            prgHeading.Add(new Chunk(strHeader.ToUpper(), fntHead));
-            document.Add(prgHeading);
+
+            if (string.IsNullOrEmpty(saleType))
+            {
+                prgHeading.Add(new Chunk(strHeader.ToUpper() + " - ALL SALES", fntHead));
+                document.Add(prgHeading);
+            }
+
+            else
+            {
+                prgHeading.Add(new Chunk(strHeader.ToUpper() + " - " + saleType, fntHead));
+                document.Add(prgHeading);
+            }
 
             //Author
             Paragraph prgAuthor = new Paragraph();
             BaseFont btnAuthor = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
             Font fntAuthor = new Font(btnAuthor, 10, 2, BaseColor.BLACK);
             prgAuthor.Alignment = Element.ALIGN_LEFT;
-            prgAuthor.Add(new Chunk("Powered By PharmaTech" + "\n", fntAuthor));
-            prgAuthor.Add(new Chunk("From: " + startDate + " To: " + endDate + "\n", fntAuthor));
+           
+            prgAuthor.Add(new Chunk("                       Powered By PharmaTech" + "\n", fntAuthor));
+
+            if (string.IsNullOrEmpty(endDate))
+            {
+
+                prgAuthor.Add(new Chunk("\n" + "From: 0" + startDate + " To: 0" + DateTime.Now.ToShortDateString() + "\n", fntAuthor));
+            }
+
+            else
+            {
+                prgAuthor.Add(new Chunk("\n" + "From: 0" + startDate + " To: 0" + endDate + "\n", fntAuthor));
+            }
+
+            if (!string.IsNullOrEmpty(patientid))
+            {
+                prgAuthor.Add(new Chunk("For Patient: " + patientid, fntAuthor));
+
+            }
+
             //  prgAuthor.Add(new Chunk("\nDate Created: " + DateTime.Now.ToShortDateString(), fntAuthor));
             document.Add(prgAuthor);
 
@@ -86,6 +114,7 @@ namespace Pharmatech
             }
             
             document.Add(table);
+            document.Add(new Chunk("\n", fntHead));
             Paragraph linebreak = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(0.0F, 100.0F, BaseColor.BLACK, Element.ALIGN_LEFT, 1)));
             document.Add(linebreak);
             document.Close();

@@ -181,10 +181,10 @@
                     <RowDefinition Height="278*"/>
                 </Grid.RowDefinitions>
                 <Label x:Name="label_PrintPDF" Content="Would you like to view the PDF now?" HorizontalAlignment="Left" Height="123" Margin="107,19,-604,0" VerticalAlignment="Top" Width="1151" FontSize="26" Grid.RowSpan="2"/>
-                <Button x:Name="button_Yes" Content="Yes"  HorizontalAlignment="Left" Height="86" Margin="379,75,0,0" VerticalAlignment="Top" Width="226"  FontSize="24"  Grid.Row="2" Click="button_Yes_Click"    >
+                <Button x:Name="button_Yes" Content="Yes"  HorizontalAlignment="Left" Height="53" Margin="307,75,0,0" VerticalAlignment="Top" Width="151"  FontSize="24"  Grid.Row="2" Click="button_Yes_Click"    >
 
                 </Button>
-                <Button x:Name="button_No" Content="No" HorizontalAlignment="Left" Height="86" Margin="58,75,0,0" VerticalAlignment="Top" Width="226"  FontSize="24" Grid.Row="2" Click="button_No_Click" >
+                <Button x:Name="button_No" Content="No" HorizontalAlignment="Left" Height="53" Margin="166,75,0,0" VerticalAlignment="Top" Width="118"  FontSize="24" Grid.Row="2" Click="button_No_Click" >
 
                 </Button>
                 <Label x:Name="label_PrintPDF_Copy" Content="Note: the PDF file will be saved to your desktop." HorizontalAlignment="Left" Height="123" Margin="10,7,-507,0" VerticalAlignment="Top" Width="1151" FontSize="26" Grid.RowSpan="2" Grid.Row="1"/>

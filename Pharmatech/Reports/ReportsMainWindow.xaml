@@ -107,37 +107,37 @@
                 <Button x:Name="button_viewEmployee" Content="View Employee" HorizontalAlignment="Left" Height="30" Margin="0,58,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
                 <Button x:Name="button_removeEmployee" Content="Remove Employee" HorizontalAlignment="Left" Height="29" Margin="0,85,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
             </Grid>
-            <Button x:Name="button_saveToPDF" Content="Save to PDF" HorizontalAlignment="Left" Margin="1675,433,0,49" Width="201"   FontSize="24"   Grid.Row="2" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_saveToPDF_Click"  >
+            <Button x:Name="button_saveToPDF" Content="Save to PDF" HorizontalAlignment="Left" Margin="1636,403,0,79" Width="201"   FontSize="24"   Grid.Row="2" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_saveToPDF_Click"  >
 
             </Button>
-            <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1523,433,0,0" VerticalAlignment="Top" Width="147"   FontSize="24" Grid.Row="2" Click="button_cancel_Click" >
+            <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1484,403,0,0" VerticalAlignment="Top" Width="147"   FontSize="24" Grid.Row="2" Click="button_cancel_Click" >
 
             </Button>
-            <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="1370,433,0,0" VerticalAlignment="Top" Width="147"  FontSize="24" Grid.Row="2" >
+            <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="1331,403,0,0" VerticalAlignment="Top" Width="147"  FontSize="24" Grid.Row="2" >
 
             </Button>
             <Grid x:Name="Grid_ReportsMainWindow" HorizontalAlignment="Left" Height="870" Margin="399,54,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="1443">
-                <Rectangle HorizontalAlignment="Left" Height="652" Stroke="Black" VerticalAlignment="Top" Width="488" Margin="10,208,0,0">
+                <Rectangle HorizontalAlignment="Left" Height="652" Stroke="Black" VerticalAlignment="Top" Width="488" Margin="-17,208,0,0">
                     <Rectangle.Effect>
                         <DropShadowEffect BlurRadius="10" ShadowDepth="9"/>
                     </Rectangle.Effect>
                 </Rectangle>
 
-                <Label x:Name="label_SelectSaleType" Content="Sale Type:" HorizontalAlignment="Left" Height="42" Margin="61,300,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
-                <ComboBox x:Name="comboBox_selectSaleType" HorizontalAlignment="Left" Height="42" Margin="203,300,0,0" VerticalAlignment="Top" Width="207" FontSize="24" />
-                <DatePicker x:Name="datePicker_StartDate" HorizontalAlignment="Left" Height="58" Margin="203,381,0,0" VerticalAlignment="Top" Width="229" DisplayDateEnd="2030-12-30" RenderTransformOrigin="0.616,0.49" Foreground="#FF01213A" FontSize="24" SelectedDateFormat="Short"/>
-                <Button x:Name="button_filterByPatientID" Content="Patient ID" HorizontalAlignment="Center" Height="56" Margin="200,594,1036,0" VerticalAlignment="Top" Width="207" FontSize="20" Click="button_filterByPatientID_Click" FontWeight="Normal" >
+                <Label x:Name="label_SelectSaleType" Content="Sale Type:" HorizontalAlignment="Left" Height="42" Margin="34,300,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
+                <ComboBox x:Name="comboBox_selectSaleType" HorizontalAlignment="Left" Height="42" Margin="176,300,0,0" VerticalAlignment="Top" Width="207" FontSize="24" />
+                <DatePicker x:Name="datePicker_StartDate" HorizontalAlignment="Left" Height="58" Margin="176,381,0,0" VerticalAlignment="Top" Width="229" DisplayDateEnd="2030-12-30" RenderTransformOrigin="0.616,0.49" Foreground="#FF01213A" FontSize="24" SelectedDateFormat="Short"/>
+                <Button x:Name="button_filterByPatientID" Content="Patient ID" HorizontalAlignment="Center" Height="56" Margin="173,594,1063,0" VerticalAlignment="Top" Width="207" FontSize="20" Click="button_filterByPatientID_Click" FontWeight="Normal" >
 
                 </Button>
-                <Button x:Name="button_filterByMedicationName" Content="Medication Name" HorizontalAlignment="Left" Height="56" Margin="199,528,0,0"  VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="207" FontSize="20" Click="button_filterByMedicationName_Click" FontWeight="Normal" >
+                <Button x:Name="button_filterByMedicationName" Content="Medication Name" HorizontalAlignment="Left" Height="56" Margin="172,528,0,0"  VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="207" FontSize="20" Click="button_filterByMedicationName_Click" FontWeight="Normal" >
 
                 </Button>
-                <Label x:Name="label_SelectFilter" Content="Filter By:" HorizontalAlignment="Left" Height="42" Margin="66,535,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
-                <Label x:Name="label_StartDate" Content="Start Date:" HorizontalAlignment="Left" Height="42" Margin="61,387,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
-                <Label x:Name="label_EndDate" Content="End Date:" HorizontalAlignment="Left" Height="42" Margin="61,454,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
-                <DataGrid x:Name="dataGrid_Reports" HorizontalAlignment="Left" Height="652" Margin="525,208,-32,0" VerticalAlignment="Top" Width="950" GridLinesVisibility="All"  RowHeight="22" ColumnHeaderHeight="40" FontSize="14" FontFamily="Arial" Style="{StaticResource AzureDataGrid}"/>
-                <DatePicker x:Name="datePicker_EndDate" HorizontalAlignment="Left" Height="58" Margin="203,445,0,0" VerticalAlignment="Top" Width="229" DisplayDateEnd="2030-12-30" RenderTransformOrigin="0.616,0.49" Foreground="#FF01213A" FontSize="24"/>
-                <Button x:Name="button_GenerateReport" Content="Generate Report" HorizontalAlignment="Left" Margin="132,706,0,87" Width="242"  FontSize="20" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_GenerateReport_Click_1" Style="{StaticResource MetroButton}">
+                <Label x:Name="label_SelectFilter" Content="Filter By:" HorizontalAlignment="Left" Height="42" Margin="39,535,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
+                <Label x:Name="label_StartDate" Content="Start Date:" HorizontalAlignment="Left" Height="42" Margin="34,387,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
+                <Label x:Name="label_EndDate" Content="End Date:" HorizontalAlignment="Left" Height="42" Margin="34,454,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
+                <DataGrid x:Name="dataGrid_Reports" HorizontalAlignment="Left" Height="652" Margin="483,208,-38,0" VerticalAlignment="Top" Width="998" GridLinesVisibility="All"  RowHeight="22" ColumnHeaderHeight="40" FontSize="14" FontFamily="Arial" Style="{StaticResource AzureDataGrid}"/>
+                <DatePicker x:Name="datePicker_EndDate" HorizontalAlignment="Left" Height="58" Margin="176,445,0,0" VerticalAlignment="Top" Width="229" DisplayDateEnd="2030-12-30" RenderTransformOrigin="0.616,0.49" Foreground="#FF01213A" FontSize="24"/>
+                <Button x:Name="button_GenerateReport" Content="Generate Report" HorizontalAlignment="Left" Margin="105,706,0,87" Width="242"  FontSize="20" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_GenerateReport_Click_1" Style="{StaticResource MetroButton}">
 
                 </Button>
                 <Label x:Name="label_params" Content="Enter parameters..." HorizontalAlignment="Left" Margin="32,226,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>

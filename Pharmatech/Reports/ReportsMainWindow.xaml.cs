@@ -108,7 +108,7 @@ namespace Pharmatech
                           
             using (SqlConnection con = new SqlConnection(conn))
             {              
-                sqlBuilder.Append("SELECT FORMAT(date, 'd', 'en-gb') AS Date, saleID AS [Invoice ID], Patient.firstName + ' ' + Patient.lastName AS [Name], description AS Description, doctorName AS [DoctorName], saleType AS [Type of Sale], FORMAT(saleAmount, 'C', 'en-ZA') AS [SaleAmount] FROM Sale LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber WHERE 1=1");
+                sqlBuilder.Append("SELECT FORMAT(date, 'd', 'en-gb') AS Date, saleID AS [Invoice ID], Patient.firstName + ' ' + Patient.lastName AS [Name], description AS Description, doctorName AS [DoctorName], saleType AS [Type of Sale], FORMAT(saleAmount, 'C', 'en-ZA') AS [Amount] FROM Sale LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber WHERE 1=1");
 
                 if (!string.IsNullOrEmpty(comboBox_selectSaleType.Text))
                 {

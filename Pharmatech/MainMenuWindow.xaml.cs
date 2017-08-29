@@ -236,6 +236,26 @@ namespace Pharmatech
             mainwindow.ShowDialog();
             
         }
+
+        private void button_addEmployee_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button_updateEmployee_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button_viewEmployee_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button_removeEmployee_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 }

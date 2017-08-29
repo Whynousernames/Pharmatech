@@ -87,6 +87,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Employee\EmployeeMainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainMenuWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -118,6 +122,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Employee\EmployeeMainWindow.xaml.cs">
+      <DependentUpon>EmployeeMainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="InputValidation.cs" />
     <Compile Include="MainMenuWindow.xaml.cs">

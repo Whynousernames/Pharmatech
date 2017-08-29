@@ -42,15 +42,7 @@ namespace Pharmatech
         public List<Sale> products = new List<Sale>();
         public List<Patient> patientDetails = new List<Patient>();
         int _count = 0;
-        public string allergyMedID;
-        public string allergyMedName;
-        public string medicationAllergyAllergyID;
-        public string allergyID;
-        public string allergyName;
-        public string allergyDescription;
-        public string patientAllergyID;
-        public string patientPatientID;
-
+        
 
 
         
@@ -93,6 +85,7 @@ namespace Pharmatech
 
                     while (sqlReader.Read())
                     {
+                        
 
 
                         comboBox_select_Item.Items.Add(sqlReader["MedID"].ToString());
@@ -307,74 +300,10 @@ namespace Pharmatech
                 {
                     try
                     {
-                        SqlCommand sqlCmd = new SqlCommand("SELECT MedID, MedName FROM Medication WHERE MedID = "+comboBox_select_Item.SelectedValue+"", con);
-                        con.Open();
-                        SqlDataReader sqlReader = sqlCmd.ExecuteReader();
-                        while (sqlReader.Read())
-                        {
-
-                            allergyMedID = sqlReader["MedID"].ToString();
-                            allergyMedName = sqlReader["MedName"].ToString();                            
-
-                        }
-                        sqlReader.Close();
-                        con.Close();
-                        con.Open();
-
-
-
-                        SqlCommand sqlCmdMA = new SqlCommand("SELECT allergyID FROM Medication_Allergies WHERE MedID LIKE "+allergyMedID.ToString()+"", con);
-                        SqlDataReader sqlReaderMA = sqlCmdMA.ExecuteReader();
-                        while (sqlReaderMA.Read())
-                        {
-                            medicationAllergyAllergyID = sqlReaderMA["allergyID"].ToString();
-                        }
-                        sqlReaderMA.Close();
-                        con.Close();
-                        con.Open();
-
-
-
-                        SqlCommand sqlCmdA = new SqlCommand("SELECT allergyID, allergyName, allergyDescription FROM Allergies WHERE allergyID = "+medicationAllergyAllergyID+"", con);
-                        SqlDataReader sqlReaderA = sqlCmdA.ExecuteReader();
-                        while (sqlReaderA.Read())
-                        {
-                            allergyID = sqlReaderA["allergyID"].ToString();
-                            allergyName = sqlReaderA["allergyName"].ToString();
-                            allergyDescription = sqlReaderA["allergyDescription"].ToString();
-                        }
-                       
-
-
-                        SqlCommand sqlCmdPA = new SqlCommand("SELECT allergyID, patientIDNumber FROM PatientAllergies WHERE allergyID = "+ allergyID +"", con);
-                        SqlDataReader sqlReaderPA = sqlCmdPA.ExecuteReader();
-                        while (sqlReaderPA.Read())
-                        {
-                            patientAllergyID = sqlReaderPA["allergyID"].ToString();
-                            patientPatientID = sqlReaderPA["patientIDNumber"].ToString();
-                        }
-                        
-
-
-                        if (medicationAllergyAllergyID == patientAllergyID)
-                        {
-                            MessageBox.Show("It worked");
-                        }
-                        else
-                        {
-                            quantity = 1;
-
-                            if (!string.IsNullOrEmpty(comboBox_Quantity.Text))
-                            {
-                                quantity = Convert.ToInt32(comboBox_Quantity.Text);
-                            }
-                            FillSalesItemGrid();
-                        }
-
+                        FillSalesItemGrid();
+                                    
                         
                         
-                        sqlReaderA.Close();
-                        sqlReaderPA.Close();
 
                     }
                     catch (Exception ex)
@@ -383,9 +312,10 @@ namespace Pharmatech
                     }
 
                 }
-
-                    
                
+
+
+
             }
             else
             {

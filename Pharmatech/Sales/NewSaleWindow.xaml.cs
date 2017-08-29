@@ -85,10 +85,10 @@ namespace Pharmatech
 
                     while (sqlReader.Read())
                     {
-                        
 
 
-                        comboBox_select_Item.Items.Add(sqlReader["MedID"].ToString());
+                        comboBox_select_Item.Items.Add(new { MedName = sqlReader["MedName"].ToString(), MedID = sqlReader["MedID"].ToString() });
+                        //comboBox_select_Item.Items.Add(sqlReader["MedID"].ToString());
                         //comboBox_select_Item.SelectedValuePath = sqlReader["MedID"].ToString();
 
                     }
@@ -296,23 +296,98 @@ namespace Pharmatech
         {
             if (!string.IsNullOrEmpty(comboBox_select_Item.Text.ToString()))
             {
-                using (SqlConnection con = new SqlConnection(conn))
+
+                using (SqlConnection conn = new SqlConnection(connection))
                 {
                     try
                     {
-                        FillSalesItemGrid();
-                                    
-                        
-                        
+
+                         
+                        SqlCommand sqlCmd = new SqlCommand("SELECT allergyName, allergyDescription FROM PatientAllergies PA Allergies A INNER JOIN Allergy ON PA.allergyID = A.allergyID WHERE PA.allergyID = A.allergyID AND PA.allergyID = 552 ", conn);
+                        conn.Open();
+                        SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                        while (sqlReader.Read())
+                        {
+
+
+                            comboBox_select_Item.Items.Add(new { MedName = sqlReader["MedName"].ToString(), MedID = sqlReader["MedID"].ToString() });
+                            //comboBox_select_Item.Items.Add(sqlReader["MedID"].ToString());
+                            //comboBox_select_Item.SelectedValuePath = sqlReader["MedID"].ToString();
+
+                        }
+                        sqlReader.Close();
 
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Medication not found in Database", ex.ToString());
+                        MessageBox.Show("Could not populate medication combobox from database.", ex.ToString());
                     }
-
                 }
-               
+
+
+
+
+
+
+                //using (SqlConnection con = new SqlConnection(conn))
+                //{
+                //    try
+                //    {
+                //        //LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber
+
+
+                //            if (!string.IsNullOrEmpty(comboBox_select_Item.Text.ToString()))
+                //            {
+                //                sqlBuilder.Append("SELECT allergyName, allergyDescription FROM PatientAllergies PA Allergies A INNER JOIN Allergy ON PA.allergyID = A.allergyID WHERE PA.allergyID = A.allergyID AND PA.allergyID IN SELECT DISTINCT allergyID FROM MedicationAllergies MA WHERE MAmedID = @MedID");
+                //                cParameters.Add(new SqlParameter("@MedID", comboBox_select_Item.SelectedValue.ToString()));
+                //            }
+
+                //        con.Open();
+                //            SqlCommand cmd = new SqlCommand(sqlBuilder.ToString(), con);
+                //            if (cParameters.Count != 0)
+                //            {
+                //                cmd.Parameters.AddRange(cParameters.ToArray());
+                //            }
+
+
+                //            SqlDataReader reader = cmd.ExecuteReader();
+
+                //            Sale sale = new Sale();
+
+                //            if (reader.HasRows)
+                //            {
+                //            while (reader.Read())
+                //            {
+                //                string allergyName = (Convert.ToString(reader["allergyName"]));
+                //                string allergyDesc = (Convert.ToString(reader["allergyDescription"]));
+
+
+                //                MessageBox.Show("It Worked");
+                //            }
+
+
+                //            }
+                //            else
+                //            {
+                //                Console.WriteLine("No rows found.");
+                //            }
+
+
+
+                //            FillSalesItemGrid();
+
+
+
+
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        MessageBox.Show("Medication not found in Database", ex.ToString());
+                //    }
+
+                //}
+
 
 
 

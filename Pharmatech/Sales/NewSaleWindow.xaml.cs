@@ -303,7 +303,7 @@ namespace Pharmatech
                     {
 
                          
-                        SqlCommand sqlCmd = new SqlCommand("SELECT allergyName, allergyDescription FROM PatientAllergies PA Allergies A INNER JOIN Allergy ON PA.allergyID = A.allergyID WHERE PA.allergyID = A.allergyID AND PA.allergyID = 552 ", conn);
+                        SqlCommand sqlCmd = new SqlCommand("SELECT allergyName, allergyDescription FROM PatientAllergies PA, Allergies A INNER JOIN Allergy ON PA.allergyID = A.allergyID WHERE PA.allergyID = A.allergyID AND PA.allergyID = 552 ", conn);
                         conn.Open();
                         SqlDataReader sqlReader = sqlCmd.ExecuteReader();
 

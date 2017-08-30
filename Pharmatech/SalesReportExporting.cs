@@ -47,7 +47,7 @@ namespace Pharmatech
             Font fntAuthor = new Font(btnAuthor, 10, 2, BaseColor.BLACK);
             prgAuthor.Alignment = Element.ALIGN_LEFT;
            
-            prgAuthor.Add(new Chunk("                       Powered By PharmaTech" + "\n", fntAuthor));
+            prgAuthor.Add(new Chunk("Powered By PharmaTech" + "\n", fntAuthor));
 
             if (string.IsNullOrEmpty(endDate))
             {

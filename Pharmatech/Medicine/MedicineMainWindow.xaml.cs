@@ -328,7 +328,8 @@ namespace Pharmatech
                     reader.Close();
                     con.Close();
                 }
-                 comboBox_Schedule.SelectedIndex = 0;
+
+                comboBox_Schedule.SelectedIndex = 0;
 
                 if (textBox_IsActive.Text == "n")
                 {
@@ -370,14 +371,14 @@ namespace Pharmatech
 
                 Grid_SelectMedication.Visibility = Visibility.Hidden;
                 Grid_MedicationMainWindow.Visibility = Visibility.Visible;
-                //    comboBox_Schedule.SelectedIndex = 0;
+                   comboBox_Schedule.SelectedIndex = 0;
             }
       
 
              //Soft delete medication item from database.
             if (label_MedicationWindowType.Content.ToString() == "Remove Medication")
             {
-                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to delete medication item [" + comboBox_selectMedication.SelectedItem.ToString() + "]" +  "on the system?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to delete medication item [" + comboBox_selectMedication.SelectedItem.ToString() + "] " +  "on the system?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (dialogResult == MessageBoxResult.Yes)
                 {
                     // Soft delete/flag in-active medicine item in database.

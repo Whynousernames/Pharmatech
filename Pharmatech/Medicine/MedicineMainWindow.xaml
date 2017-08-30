@@ -156,7 +156,7 @@
                 </Rectangle.Effect>
             </Rectangle>
             <Label x:Name="label_SelectMedicationName" Content="Select medicine item:" HorizontalAlignment="Center" Height="49" Margin="42,163,97,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="362" FontSize="24"  FontWeight="Bold"/>
-            <ComboBox x:Name="comboBox_selectMedication" HorizontalAlignment="Left" Height="36" Margin="375,169,0,0" VerticalAlignment="Top" Width="368" FontSize="24" Grid.ColumnSpan="2" IsTextSearchEnabled="True" IsEditable="True"/>
+            <ComboBox x:Name="comboBox_selectMedication" HorizontalAlignment="Left" Height="43" Margin="375,169,0,0" VerticalAlignment="Top" Width="368" FontSize="24" Grid.ColumnSpan="2" IsTextSearchEnabled="True" IsEditable="True"/>
             <Button x:Name="button_nextSelectMedication" Content="Next" HorizontalAlignment="Left" Height="56" Margin="468,307,0,0" VerticalAlignment="Top" Width="147"  FontSize="24"  Grid.ColumnSpan="2" Click="button_nextSelectMedication_Click" >
                 
             </Button>

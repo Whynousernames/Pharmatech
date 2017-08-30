@@ -87,9 +87,7 @@
 
             <ComboBox x:Name="comboBox_selectAllergy_Copy" HorizontalAlignment="Left" Height="36" Margin="269,146,0,0" VerticalAlignment="Top" Width="368" FontSize="24" Background="#FF31A5FC" BorderBrush="{x:Null}" Foreground="#FF01213A"/>
             <Grid x:Name="Grid_PatientMain" HorizontalAlignment="Left" Height="920" Margin="327,10,0,0" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Width="1542">
-                <Grid.DataContext>
-                    <local:PatientValidation/>
-                </Grid.DataContext>
+               
                 <Grid.RowDefinitions>
                     <RowDefinition Height="103*"/>
                     <RowDefinition Height="357*"/>

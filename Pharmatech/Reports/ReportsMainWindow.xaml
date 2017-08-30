@@ -156,7 +156,7 @@
                 <Button x:Name="button_cancelSelectPatient" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="130,174,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Row="2" >
 
                 </Button>
-                <ComboBox x:Name="comboBox_select_Item" HorizontalAlignment="Left" Height="43" Margin="237,59,0,0" VerticalAlignment="Top" Width="360" FontSize="24" Grid.Row="2" IsTextSearchEnabled="True" IsEditable="True"/>
+                <ComboBox x:Name="comboBox_select_Item" HorizontalAlignment="Left" Height="36" Margin="237,59,0,0" VerticalAlignment="Top" Width="360" FontSize="24" Grid.Row="2"/>
             </Grid>
             <Grid x:Name="Grid_SelectPatientID" HorizontalAlignment="Left" Height="429" Margin="782,155,0,0" VerticalAlignment="Top" Width="654" Grid.RowSpan="2" Grid.Row="1">
                 <Grid.RowDefinitions>

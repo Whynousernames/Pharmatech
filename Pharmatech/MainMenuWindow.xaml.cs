@@ -239,6 +239,9 @@ namespace Pharmatech
 
         private void button_addEmployee_Click(object sender, RoutedEventArgs e)
         {
+            gridHidden_True();
+            EmployeeMainWindow employeeMainWindow = new EmployeeMainWindow();
+            employeeMainWindow.ShowDialog();
 
         }
 

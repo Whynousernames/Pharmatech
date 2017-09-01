@@ -14,5 +14,7 @@ namespace BusinessObject
         public string description { get; set; }
         public int salePrice { get; set; }
 
+        public int quantity { get; set; }
+
     }
 }

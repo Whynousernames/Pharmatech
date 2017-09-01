@@ -37,15 +37,14 @@ namespace Pharmatech
         DataTable dt = new DataTable();
 
         int sum = 0;
-        int quantity = 1;
-
+        
         public List<Sale> products = new List<Sale>();
         public List<Patient> patientDetails = new List<Patient>();
         int _count = 0;
-        
 
 
         
+
 
         public NewSaleWindow()
         {
@@ -294,6 +293,8 @@ namespace Pharmatech
 
         private void button_addItem_Click(object sender, RoutedEventArgs e)
         {
+            
+
             if (!string.IsNullOrEmpty(comboBox_select_Item.Text.ToString()))
             {
 
@@ -301,103 +302,43 @@ namespace Pharmatech
                 {
                     try
                     {
-
-                         
-                        SqlCommand sqlCmd = new SqlCommand("SELECT allergyName, allergyDescription FROM PatientAllergies PA, Allergies A INNER JOIN Allergy ON PA.allergyID = A.allergyID WHERE PA.allergyID = A.allergyID AND PA.allergyID = 552 ", conn);
+                        SqlCommand sqlCmd2 = new SqlCommand("SELECT allergyName, allergyDescription FROM Allergies A INNER JOIN PatientAllergies PA ON A.allergyID = PA.allergyID WHERE A.allergyID = PA.allergyID AND PA.allergyID = (SELECT allergyID FROM Medication_Allergies MA WHERE MA.medID = " + comboBox_select_Item.SelectedValue.ToString() + ")", conn);
                         conn.Open();
-                        SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+                        SqlDataReader sqlReader = sqlCmd2.ExecuteReader();
 
-                        while (sqlReader.Read())
-                        {
+                        Allergies allergies = new Allergies();
 
+                        
+                            while (sqlReader.Read())
+                            {
+                                allergies.allergyName = Convert.ToString(sqlReader["allergyName"]);
+                                allergies.allergyDescription = Convert.ToString(sqlReader["allergyDescription"]);
 
-                            comboBox_select_Item.Items.Add(new { MedName = sqlReader["MedName"].ToString(), MedID = sqlReader["MedID"].ToString() });
-                            //comboBox_select_Item.Items.Add(sqlReader["MedID"].ToString());
-                            //comboBox_select_Item.SelectedValuePath = sqlReader["MedID"].ToString();
+                            }
 
-                        }
+                        MessageBox.Show(allergies.allergyName);
                         sqlReader.Close();
+
+
+                        
+                        
+                        FillSalesItemGrid();
+
 
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Could not populate medication combobox from database.", ex.ToString());
+                        MessageBox.Show(ex.ToString(), ex.ToString());
                     }
                 }
 
 
 
 
-
-
-                //using (SqlConnection con = new SqlConnection(conn))
-                //{
-                //    try
-                //    {
-                //        //LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber
-
-
-                //            if (!string.IsNullOrEmpty(comboBox_select_Item.Text.ToString()))
-                //            {
-                //                sqlBuilder.Append("SELECT allergyName, allergyDescription FROM PatientAllergies PA Allergies A INNER JOIN Allergy ON PA.allergyID = A.allergyID WHERE PA.allergyID = A.allergyID AND PA.allergyID IN SELECT DISTINCT allergyID FROM MedicationAllergies MA WHERE MAmedID = @MedID");
-                //                cParameters.Add(new SqlParameter("@MedID", comboBox_select_Item.SelectedValue.ToString()));
-                //            }
-
-                //        con.Open();
-                //            SqlCommand cmd = new SqlCommand(sqlBuilder.ToString(), con);
-                //            if (cParameters.Count != 0)
-                //            {
-                //                cmd.Parameters.AddRange(cParameters.ToArray());
-                //            }
-
-
-                //            SqlDataReader reader = cmd.ExecuteReader();
-
-                //            Sale sale = new Sale();
-
-                //            if (reader.HasRows)
-                //            {
-                //            while (reader.Read())
-                //            {
-                //                string allergyName = (Convert.ToString(reader["allergyName"]));
-                //                string allergyDesc = (Convert.ToString(reader["allergyDescription"]));
-
-
-                //                MessageBox.Show("It Worked");
-                //            }
-
-
-                //            }
-                //            else
-                //            {
-                //                Console.WriteLine("No rows found.");
-                //            }
-
-
-
-                //            FillSalesItemGrid();
-
-
-
-
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        MessageBox.Show("Medication not found in Database", ex.ToString());
-                //    }
-
-                //}
-
-
-
-
             }
-            else
-            {
-                MessageBox.Show("You have not selected medication for this patient.", "Error.", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-
         }
+
+
 
         private void button_AddPatient_Click(object sender, RoutedEventArgs e)
         {
@@ -531,6 +472,7 @@ namespace Pharmatech
                         sale.scheduleLevel = (Convert.ToString(reader["scheduleLevel"]));
                         sale.description = (Convert.ToString(reader["description"]));
                         sale.salePrice = (Convert.ToInt32(reader["salePrice"]));
+                        sale.quantity = Convert.ToInt32(comboBox_Quantity.Text.ToString());
                         products.Add(sale);
                     }
                 }
@@ -550,16 +492,18 @@ namespace Pharmatech
                     dt.Columns.Add("Total Price");
                 }
 
+                
+
                 foreach (var item in products)
-                {                                      
+                {
                     var row = dt.NewRow();
                     row["Medication ID"] = item.medID;
                     row["Medication name"] = item.medName;
                     row["Schedule"] = item.scheduleLevel;
                     row["Description"] = item.description;
                     row["Sale Price"] = item.salePrice;
-                    row["Quantity"] = quantity;
-                    row["Total Price"] = item.salePrice * quantity;
+                    row["Quantity"] = item.quantity;
+                    row["Total Price"] = item.salePrice * item.quantity;
                     dt.Rows.Add(row);
                     //dt.Rows.InsertAt(row, _count);
 
@@ -568,8 +512,8 @@ namespace Pharmatech
               
                 dataGrid_saleItems.AutoGenerateColumns = true;
                 // Finally bind the datasource to datagridview.
-                dataGrid_saleItems.ItemsSource = dt.DefaultView;             
-                //dataGrid_saleItems.ItemsSource = dt.AsDataView();
+                //dataGrid_saleItems.ItemsSource = dt.DefaultView;             
+                dataGrid_saleItems.ItemsSource = dt.AsDataView();
 
                 _count++;
                 sqlBuilder.Clear();

@@ -71,7 +71,9 @@ namespace Pharmatech
                     MessageBox.Show("Could not populate medication combobox from database.", ex.ToString());
                 }
             }
-            FillSalesGrid();
+
+
+           // FillSalesGrid();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -108,7 +110,7 @@ namespace Pharmatech
                           
             using (SqlConnection con = new SqlConnection(conn))
             {              
-                sqlBuilder.Append("SELECT FORMAT(date, 'd', 'en-gb') AS Date, saleID AS [Invoice ID], Patient.firstName + ' ' + Patient.lastName AS [Name], description AS Description, doctorName AS [DoctorName], saleType AS [Type of Sale], FORMAT(saleAmount, 'C', 'en-ZA') AS [Amount] FROM Sale LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber WHERE 1=1");
+                sqlBuilder.Append("SELECT FORMAT(date, 'd', 'en-gb') AS Date, saleID AS [Invoice ID], Patient.firstName + ' ' + Patient.lastName AS [Name], description AS Description,  saleType AS [Type of Sale], FORMAT(saleAmount, 'C', 'en-ZA') AS [Amount] FROM Sale LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber WHERE 1=1");
 
                 if (!string.IsNullOrEmpty(comboBox_selectSaleType.Text))
                 {
@@ -444,7 +446,7 @@ namespace Pharmatech
 
         private void button_nextSelectMedication_Click_1(object sender, RoutedEventArgs e)
         {
-            FillSalesGrid();
+           // FillSalesGrid();
             Grid_SelectMedication.Visibility = Visibility.Hidden;
             Grid_ReportsMainWindow.Visibility = Visibility.Visible;
             comboBox_select_Item.SelectedIndex = -1;
@@ -465,7 +467,7 @@ namespace Pharmatech
                 // Check to see if the input Patient ID is present in the database.
                 if (reader.HasRows)
                 {
-                    FillSalesGrid();
+                   // FillSalesGrid();
                     Grid_SelectPatientID.Visibility = Visibility.Hidden;
                     Grid_ReportsMainWindow.Visibility = Visibility.Visible;
                 }

@@ -46,7 +46,7 @@
                 <Button x:Name="button_Employee" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource EmployeeResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Employees" Click="button_Employee_Click"/>
                 <Button x:Name="button_Reports" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource ReportsResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Reports" Click="button_Reports_Click"/>
             </StackPanel>
-            <Label x:Name="label_PatientWindowType" Content="Patient" HorizontalAlignment="Center" Height="49" Margin="874,0,674,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="362" FontSize="24"  FontWeight="Bold"/>
+            <Label x:Name="label_PatientWindowType" Content="Employee" HorizontalAlignment="Center" Height="49" Margin="874,0,674,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="362" FontSize="24"  FontWeight="Bold"/>
             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1060" Margin="258,-1,0,0" Grid.RowSpan="3" Stroke="#FFF4F4F5" VerticalAlignment="Top" Width="4">
                 <Rectangle.Effect>
                     <BlurEffect KernelType="Box"/>
@@ -86,7 +86,7 @@
             </Grid>
 
             <ComboBox x:Name="comboBox_selectAllergy_Copy" HorizontalAlignment="Left" Height="36" Margin="269,146,0,0" VerticalAlignment="Top" Width="368" FontSize="24" Background="#FF31A5FC" BorderBrush="{x:Null}" Foreground="#FF01213A"/>
-            <Grid x:Name="Grid_PatientMain" HorizontalAlignment="Left" Height="920" Margin="327,10,0,0" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Width="1542">
+            <Grid x:Name="Grid_PatientMain" HorizontalAlignment="Left" Height="920" Margin="327,82,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="1542">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="103*"/>
@@ -100,44 +100,54 @@
                     </Rectangle.Effect>
                 </Rectangle>
 
-                <Label x:Name="label_PatientContact" Content="Contact Number:" HorizontalAlignment="Left" Height="42" Margin="92,251,0,0" VerticalAlignment="Top" Width="200" FontSize="24" Grid.Row="1"/>
-                <Label x:Name="label_PatientEmail" Content="E-Mail:" HorizontalAlignment="Left" Height="42" Margin="92,318,0,0" VerticalAlignment="Top" Width="134" FontSize="24" Grid.Row="1"/>
-                <Label x:Name="label_PatientAddressLine1" Content="Address Line 1:" HorizontalAlignment="Left" Height="42" Margin="92,384,0,0" VerticalAlignment="Top" Width="176" FontSize="24" Grid.Row="1"/>
-                <Label x:Name="label_PatientDetails" Content="Create employee account..." HorizontalAlignment="Left" Height="62" Margin="93,15,0,0" VerticalAlignment="Top" Width="411" FontSize="26" FontWeight="Bold"/>
-                <Label x:Name="label_PatientSurname" Content="Surname:" HorizontalAlignment="Left" Height="42" Margin="92,185,0,0" VerticalAlignment="Top" Width="134" FontSize="24"  Grid.Row="1"/>
-                <Label x:Name="label_PatientFirstName" Content="First Name:" HorizontalAlignment="Left" Height="42" Margin="92,118,0,0" VerticalAlignment="Top" Width="134" FontSize="24" Grid.Row="1"/>
-                <Label x:Name="label_PatientID" Content="ID Number:" HorizontalAlignment="Left" Height="42" Margin="92,48,0,0" VerticalAlignment="Top" Width="134" FontSize="24" Grid.Row="1" />
-                <Label x:Name="label_PatientAddressLine2" Content="Address Line 2:" HorizontalAlignment="Left" Height="42" Margin="92,448,0,0" VerticalAlignment="Top" Width="176" FontSize="24"  Grid.Row="1"/>
-                <Label x:Name="label_PatientSuburb" Content="Suburb:" HorizontalAlignment="Left" Height="42" Margin="92,508,0,0" VerticalAlignment="Top" Width="176" FontSize="24"  Grid.Row="1"/>
-                <Label x:Name="label_PatientCity" Content="City:" HorizontalAlignment="Left" Height="42" Margin="92,568,0,0" VerticalAlignment="Top" Width="176" FontSize="24"  Grid.Row="1"/>
-                <TextBox x:Name="textBox_IDNumber" HorizontalAlignment="Left" Height="38" Margin="348,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"  SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Text="{Binding Id, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"/>
-                <TextBox x:Name="textBox_FirstName" HorizontalAlignment="Left" Height="38" Margin="348,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"  SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Text="{Binding Fname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"/>
-                <TextBox x:Name="textBox_Surname" HorizontalAlignment="Left" Height="38" Margin="348,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"  SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.Row="1" Text="{Binding Sname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBox x:Name="textBox_ContactNumber" HorizontalAlignment="Left" Height="38" Margin="348,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.Row="1" Text="{Binding ContactNo, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBox x:Name="textBox_Email" HorizontalAlignment="Left" Height="38" Margin="348,322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.Row="1" Text="{Binding Email, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBox x:Name="textBox_AddressLine1" HorizontalAlignment="Left" Height="38" Margin="348,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"  SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.Row="1" Text="{Binding Address1, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBox x:Name="textBox_AddressLine2" HorizontalAlignment="Left" Height="38" Margin="348,452,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="368" FontSize="24"  SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.Row="1" Text="{Binding Address2, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBox x:Name="textBox_Suburb" HorizontalAlignment="Left" Height="38" Margin="348,512,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"  SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.Row="1" />
-                <TextBox x:Name="textBox_City" HorizontalAlignment="Left" Height="38" Margin="348,572,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.Row="1" />
+                <Label x:Name="label_PatientContact" Content="Contact Number:" HorizontalAlignment="Left" Height="42" Margin="96,153,0,0" VerticalAlignment="Top" Width="200" FontSize="24" Grid.Row="1"/>
+                <Label x:Name="label_PatientEmail" Content="E-Mail:" HorizontalAlignment="Left" Height="42" Margin="96,220,0,0" VerticalAlignment="Top" Width="134" FontSize="24" Grid.Row="1"/>
+                <Label x:Name="label_PatientAddressLine1" Content="Address Line 1:" HorizontalAlignment="Left" Height="42" Margin="96,286,0,0" VerticalAlignment="Top" Width="176" FontSize="24" Grid.Row="1"/>
+                <Label x:Name="label_PatientDetails" Content="Create account..." HorizontalAlignment="Left" Height="62" Margin="93,15,0,0" VerticalAlignment="Top" Width="411" FontSize="26" FontWeight="Bold"/>
+                <Label x:Name="label_PatientSurname" Content="Surname:" HorizontalAlignment="Left" Height="42" Margin="96,87,0,0" VerticalAlignment="Top" Width="134" FontSize="24"  Grid.Row="1"/>
+                <Label x:Name="label_PatientFirstName" Content="First Name:" HorizontalAlignment="Left" Height="42" Margin="96,20,0,0" VerticalAlignment="Top" Width="134" FontSize="24" Grid.Row="1"/>
+                <Label x:Name="label_PatientAddressLine2" Content="Address Line 2:" HorizontalAlignment="Left" Height="42" Margin="96,350,0,0" VerticalAlignment="Top" Width="176" FontSize="24"  Grid.Row="1"/>
+                <Label x:Name="label_PatientSuburb" Content="Suburb:" HorizontalAlignment="Left" Height="42" Margin="96,410,0,0" VerticalAlignment="Top" Width="176" FontSize="24"  Grid.Row="1"/>
+                <Label x:Name="label_PatientCity" Content="City:" HorizontalAlignment="Left" Height="42" Margin="96,470,0,0" VerticalAlignment="Top" Width="176" FontSize="24"  Grid.Row="1"/>
+                <TextBox x:Name="textBox_FirstName" HorizontalAlignment="Left" Height="38" Margin="334,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"  Text="{Binding Fname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"/>
+                <TextBox x:Name="textBox_Surname" HorizontalAlignment="Left" Height="38" Margin="334,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"  Grid.Row="1" Text="{Binding Sname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox x:Name="textBox_ContactNumber" HorizontalAlignment="Left" Height="38" Margin="334,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Grid.Row="1" Text="{Binding ContactNo, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox x:Name="textBox_Email" HorizontalAlignment="Left" Height="38" Margin="334,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Grid.Row="1" Text="{Binding Email, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox x:Name="textBox_AddressLine1" HorizontalAlignment="Left" Height="38" Margin="334,290,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"  Grid.Row="1" Text="{Binding Address1, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox x:Name="textBox_AddressLine2" HorizontalAlignment="Left" Height="38" Margin="334,354,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="368" FontSize="24"  Grid.Row="1" Text="{Binding Address2, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox x:Name="textBox_Suburb" HorizontalAlignment="Left" Height="38" Margin="334,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Grid.Row="1" />
+                <TextBox x:Name="textBox_City" HorizontalAlignment="Left" Height="38" Margin="334,474,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Grid.Row="1" />
 
 
 
-                <Button x:Name="button_EmpCreate" Content="Create Account" HorizontalAlignment="Left" Height="56" Margin="318,635,0,0" VerticalAlignment="Top" Width="256" FontSize="24" Grid.Row="1" Click="button_EmpCreate_Click" >
+                <Button x:Name="button_EmpCreate" Content="Create Account" HorizontalAlignment="Left" Height="73" Margin="376,606,0,0" VerticalAlignment="Top" Width="256" FontSize="24" Grid.Row="1" Click="button_EmpCreate_Click" >
 
                 </Button>
-                <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1187,650,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Row="1" >
+                <Label x:Name="label_EmpUsername" Content="Username:" HorizontalAlignment="Left" Margin="132,74,0,0" VerticalAlignment="Top" FontSize="22"/>
+                <Label x:Name="label_EmpPassword" Content="Password:" HorizontalAlignment="Left" Margin="132,117,0,0" VerticalAlignment="Top" FontSize="22"/>
+                <Label x:Name="label_EmpRePassword" Content="Re-Enter Password:" HorizontalAlignment="Left" Margin="132,160,0,0" VerticalAlignment="Top" FontSize="22"/>
+                <TextBox x:Name="textBox_EmpUsername" HorizontalAlignment="Left" Height="36" Margin="348,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" FontSize="20"/>
 
-                </Button>
-                <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="1017,650,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" Grid.Row="1" >
-
-                </Button>
-                <Label x:Name="label_EmpUsername" Content="Username:" HorizontalAlignment="Left" Margin="132,86,0,0" VerticalAlignment="Top" FontSize="22"/>
-                <Label x:Name="label_EmpPassword" Content="Password:" HorizontalAlignment="Left" Margin="132,129,0,0" VerticalAlignment="Top" FontSize="22"/>
-                <Label x:Name="label_EmpRePassword" Content="Re-Enter Password:" HorizontalAlignment="Left" Margin="132,172,0,0" VerticalAlignment="Top" FontSize="22" Grid.RowSpan="2"/>
-                <TextBox x:Name="textBox_EmpUsername" HorizontalAlignment="Left" Height="36" Margin="348,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" FontSize="20"/>
-                
-                <PasswordBox x:Name="passwordBox_EmpRePassword" HorizontalAlignment="Left" Margin="348,177,0,0" Grid.RowSpan="2" VerticalAlignment="Top" FontSize="20" Width="226"/>
-                <PasswordBox x:Name="passwordBox_EmpPassword" HorizontalAlignment="Left" Margin="348,135,0,0" VerticalAlignment="Top" FontSize="20" Width="226"/>
+                <PasswordBox x:Name="passwordBox_EmpRePassword" HorizontalAlignment="Left" Margin="348,165,0,0" VerticalAlignment="Top" FontSize="20" Width="226"/>
+                <PasswordBox x:Name="passwordBox_EmpPassword" HorizontalAlignment="Left" Margin="348,123,0,0" VerticalAlignment="Top" FontSize="20" Width="226"/>
+                <Label x:Name="label_EmpType" Content="Choose Access Level:" HorizontalAlignment="Left" Margin="96,540,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="24"/>
+                <RadioButton x:Name="radioButton" GroupName="AccessType" Content="Pharmacist" IsChecked="True" HorizontalAlignment="Left" Margin="370,549,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20"/>
+                <RadioButton x:Name="radioButton1" GroupName="AccessType" Content="Administrator" HorizontalAlignment="Left" Margin="536,549,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20"/>
+                <Rectangle HorizontalAlignment="Left" Height="907" Stroke="black" VerticalAlignment="Top" Width="681" Margin="822,3,0,0" Grid.RowSpan="2">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
+                    </Rectangle.Effect>
+                </Rectangle>
+                <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="1030,631,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" Grid.Row="1" />
+                <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1211,631,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Row="1" />
+                <Label x:Name="label_ChangePassword" Content="Change account password..." HorizontalAlignment="Left" Margin="860,18,0,0" VerticalAlignment="Top" FontSize="26" FontWeight="Bold"/>
+                <Label x:Name="label_EmpUsername_Copy" Content="Username:" HorizontalAlignment="Left" Margin="892,74,0,0" VerticalAlignment="Top" FontSize="22"/>
+                <Label x:Name="label_EmpPassword_Copy" Content="New Password:" HorizontalAlignment="Left" Margin="892,117,0,0" VerticalAlignment="Top" FontSize="22"/>
+                <Label x:Name="label_EmpRePassword_Copy" Content="Re-Enter Password:" HorizontalAlignment="Left" Margin="892,160,0,0" VerticalAlignment="Top" FontSize="22"/>
+                <TextBox x:Name="textBox_EmpUsername_Copy" HorizontalAlignment="Left" Height="36" Margin="1108,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" FontSize="20"/>
+                <PasswordBox x:Name="passwordBox_EmpRePassword_Copy" HorizontalAlignment="Left" Margin="1108,165,0,0" VerticalAlignment="Top" FontSize="20" Width="226"/>
+                <PasswordBox x:Name="passwordBox_EmpPassword_Copy" HorizontalAlignment="Left" Margin="1108,123,0,0" VerticalAlignment="Top" FontSize="20" Width="226"/>
+                <Button x:Name="button_ChangePassword" Content="Change Password" HorizontalAlignment="Left" Margin="998,22,0,0" Grid.Row="1" VerticalAlignment="Top" Width="266" FontSize="24" Height="62" FontWeight="Normal"/>
 
 
 
@@ -174,7 +184,7 @@
             </Grid>
 
             <Image x:Name="image_arrow" HorizontalAlignment="Left" Height="127" Margin="910,49,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2"/>
-            <Image x:Name="image_arrow_Copy" HorizontalAlignment="Left" Height="127" Margin="1318,49,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2"/>
+            <Image x:Name="image_arrow_Copy" HorizontalAlignment="Left" Height="127" Margin="1809,55,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2"/>
             <Image x:Name="image_arrow_Copy1" HorizontalAlignment="Left" Height="127" Margin="1318,319,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.Row="1"/>
             <Image x:Name="image_arrow_Copy2" HorizontalAlignment="Left" Height="127" Margin="1176,390,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.Row="2">
                 <Image.RenderTransform>

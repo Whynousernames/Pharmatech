@@ -448,7 +448,7 @@ namespace Pharmatech
 
                 if (!string.IsNullOrEmpty(comboBox_select_Item.Text.ToString()))
                 {
-                    sqlBuilder.Append("SELECT medID, medName, scheduleLevel, description, salePrice FROM Medication WHERE MedName = @medName");
+                    sqlBuilder.Append("SELECT medName, scheduleLevel, description, salePrice FROM Medication WHERE MedName = @medName");
                     cParameters.Add(new SqlParameter("@medName", comboBox_select_Item.Text.ToString()));
                 }
 
@@ -467,7 +467,7 @@ namespace Pharmatech
                 {
                     while (reader.Read())
                     {
-                        sale.medID = (Convert.ToInt32(reader["medID"]));
+                      //  sale.medID = (Convert.ToInt32(reader["medID"]));
                         sale.medName = (Convert.ToString(reader["medName"]));
                         sale.scheduleLevel = (Convert.ToString(reader["scheduleLevel"]));
                         sale.description = (Convert.ToString(reader["description"]));
@@ -483,7 +483,7 @@ namespace Pharmatech
 
                 if (_count == 0)
                 {
-                    dt.Columns.Add("Medication ID");
+                   // dt.Columns.Add("Medication ID");
                     dt.Columns.Add("Medication name");
                     dt.Columns.Add("Schedule");
                     dt.Columns.Add("Description");
@@ -497,7 +497,7 @@ namespace Pharmatech
                 foreach (var item in products)
                 {
                     var row = dt.NewRow();
-                    row["Medication ID"] = item.medID;
+                 //   row["Medication ID"] = item.medID;
                     row["Medication name"] = item.medName;
                     row["Schedule"] = item.scheduleLevel;
                     row["Description"] = item.description;

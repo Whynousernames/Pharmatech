@@ -13,12 +13,12 @@ namespace DataAccess
     {
         static string connection = System.Configuration.ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
 
-        public static bool AddEmployee(string fname, string sname, string contactNo, string email, string address1, string address2, string suburb, string city, string username, string password, char emptype)
+        public static bool AddEmployee(string fname, string sname, string contactNo, string email, string address1, string address2, string username, string password, char emptype)
         {
             // Add new employee account to database
     
             SqlConnection con = new SqlConnection(connection.ToString());
-            using (SqlCommand cmd = new SqlCommand("INSERT INTO [Employee] VALUES (@fname, @sname, @contactNo, @email, @address1, @address2, @suburb, @city, @username, @password, @emptype)", con))
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Employee (firstName, lastName, contactNumber, email, physicalAddressLine1, physicalAddressLine2, username, password, employeeType) VALUES (@fname, @sname, @contactNo, @email, @address1, @address2, @username, @password, @emptype)", con))
             {
                 Guid userGuid = System.Guid.NewGuid();
                 cmd.Parameters.AddWithValue("@fname", fname);
@@ -27,8 +27,6 @@ namespace DataAccess
                 cmd.Parameters.AddWithValue("@email", email);
                 cmd.Parameters.AddWithValue("@address1", address1);
                 cmd.Parameters.AddWithValue("@address2", address2);
-                cmd.Parameters.AddWithValue("@suburb", suburb);
-                cmd.Parameters.AddWithValue("@city", city);
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password", Security.HashSHA1(password));
                 cmd.Parameters.AddWithValue("@emptype", emptype);

@@ -52,12 +52,12 @@ namespace Pharmatech
             if (string.IsNullOrEmpty(endDate))
             {
 
-                prgAuthor.Add(new Chunk("\n" + "From: 0" + startDate + " To: 0" + DateTime.Now.ToShortDateString() + "\n", fntAuthor));
+                prgAuthor.Add(new Chunk("\n" + "From: " + startDate + " To: 0" + DateTime.Now.ToShortDateString() + "\n", fntAuthor));
             }
 
             else
             {
-                prgAuthor.Add(new Chunk("\n" + "From: 0" + startDate + " To: 0" + endDate + "\n", fntAuthor));
+                prgAuthor.Add(new Chunk("\n" + "From: " + startDate + " To: 0" + endDate + "\n", fntAuthor));
             }
 
             if (!string.IsNullOrEmpty(patientid))
@@ -90,7 +90,7 @@ namespace Pharmatech
 
             //Write the table
             PdfPTable table = new PdfPTable(dtblTable.Columns.Count);
-            table.SetWidths(new int[] { 1, 1, 1, 2, 1, 1, 1});
+            table.SetWidths(new int[] { 1, 1, 1, 2, 1, 1});
             //Table header
             BaseFont btnColumnHeader = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
             Font fntColumnHeader = new Font(btnColumnHeader, 8, 0, BaseColor.BLACK);
@@ -169,7 +169,7 @@ namespace Pharmatech
 
             //Write the table
             PdfPTable table = new PdfPTable(dtblTable.Columns.Count);
-            table.SetWidths(new int[] {1, 1, 1, 1, 1});
+            table.SetWidths(new int[] {1, 1, 1, 1, 1, 1});
             //Table header
             BaseFont btnColumnHeader = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
             Font fntColumnHeader = new Font(btnColumnHeader, 8, 0, BaseColor.BLACK);

@@ -211,86 +211,86 @@ namespace Pharmatech
             Grid_Report.Visibility = Visibility.Visible;
         }
 
-        private void button_next_Click(object sender, RoutedEventArgs e)
-        {
+        //private void button_next_Click(object sender, RoutedEventArgs e)
+        //{
 
-            string id = textBox_IDNumber.Text;
-            string firstName = textBox_FirstName.Text;
-            string surname = textBox_Surname.Text;
-            string contactNo = textBox_ContactNumber.Text;
-            string email = textBox_Email.Text;
-            string address1 = textBox_AddressLine1.Text;
-            string address2 = textBox_AddressLine2.Text;          
-            string patientID = textBox_IDNumber.Text;
+          
+        //    string firstName = textBox_FirstName.Text;
+        //    string surname = textBox_Surname.Text;
+        //    string contactNo = textBox_ContactNumber.Text;
+        //    string email = textBox_Email.Text;
+        //    string address1 = textBox_AddressLine1.Text;
+        //    string address2 = textBox_AddressLine2.Text;          
+            
                                
 
-            if (label_PatientWindowType.Content.ToString() == "Add Patient")
-            {
-                Grid_PatientMain.Visibility = Visibility.Hidden;
+        //    if (label_PatientWindowType.Content.ToString() == "Add Patient")
+        //    {
+        //        Grid_PatientMain.Visibility = Visibility.Hidden;
 
-                if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(surname) || string.IsNullOrEmpty(contactNo) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(address1))
-                {
-                    System.Windows.MessageBox.Show("Not all fields are completed.", "Alert!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-                    Grid_PatientMain.Visibility = Visibility.Visible;
-                }
-                else
-                { 
-                    MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to add this patient to the system?", "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                    if (dialogResult == MessageBoxResult.Yes)
-                    {
-                        // Add Patient to system.
-                        DataAccess.PatientDA.AddPatient(id, firstName, surname, contactNo, email, address1, address2);
-                        DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
-                        System.Windows.MessageBox.Show("Successfully added a new patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-                    }
-                    else if (dialogResult == MessageBoxResult.No)
-                    {
-                        Grid_PatientMain.Visibility = Visibility.Visible;
-                    }
+        //        if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(surname) || string.IsNullOrEmpty(contactNo) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(address1))
+        //        {
+        //            System.Windows.MessageBox.Show("Not all fields are completed.", "Alert!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+        //            Grid_PatientMain.Visibility = Visibility.Visible;
+        //        }
+        //        else
+        //        { 
+        //            MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to add this patient to the system?", "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+        //            if (dialogResult == MessageBoxResult.Yes)
+        //            {
+        //                // Add Patient to system.
+        //                DataAccess.PatientDA.AddPatient(id, firstName, surname, contactNo, email, address1, address2);
+        //                DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
+        //                System.Windows.MessageBox.Show("Successfully added a new patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+        //            }
+        //            else if (dialogResult == MessageBoxResult.No)
+        //            {
+        //                Grid_PatientMain.Visibility = Visibility.Visible;
+        //            }
 
-                }
-
-
-            }
+        //        }
 
 
-            if (label_PatientWindowType.Content.ToString() == "Remove Patient")
-            {
+        //    }
 
-                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to delete this patient from the system?", "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                if (dialogResult == MessageBoxResult.Yes)
-                {
-                    // Delete Patient from system.
-                        DataAccess.PatientDA.DeletePatient(id);
-                        System.Windows.MessageBox.Show("Successfully deleted patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);                   
-                }
-                else if (dialogResult == MessageBoxResult.No)
-                {
-                    Grid_PatientMain.Visibility = Visibility.Visible;
-                }
+
+        //    if (label_PatientWindowType.Content.ToString() == "Remove Patient")
+        //    {
+
+        //        MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to delete this patient from the system?", "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+        //        if (dialogResult == MessageBoxResult.Yes)
+        //        {
+        //            // Delete Patient from system.
+        //                DataAccess.PatientDA.DeletePatient(id);
+        //                System.Windows.MessageBox.Show("Successfully deleted patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);                   
+        //        }
+        //        else if (dialogResult == MessageBoxResult.No)
+        //        {
+        //            Grid_PatientMain.Visibility = Visibility.Visible;
+        //        }
                 
-            }
+        //    }
 
-            if (label_PatientWindowType.Content.ToString() == "Update Patient")
-            {
-                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to update this patient on the system?", "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                if (dialogResult == MessageBoxResult.Yes)
-                {
-                    // Update patient on system.
-                    DataAccess.PatientDA.UpdatePatient(id, firstName, surname, contactNo, email, address1, address2);
-                    System.Windows.MessageBox.Show("Successfully updated patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-                }
-                else if (dialogResult == MessageBoxResult.No)
-                {
-                    Grid_PatientMain.Visibility = Visibility.Visible;
-                }
+        //    if (label_PatientWindowType.Content.ToString() == "Update Patient")
+        //    {
+        //        MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to update this patient on the system?", "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+        //        if (dialogResult == MessageBoxResult.Yes)
+        //        {
+        //            // Update patient on system.
+        //            DataAccess.PatientDA.UpdatePatient(id, firstName, surname, contactNo, email, address1, address2);
+        //            System.Windows.MessageBox.Show("Successfully updated patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+        //        }
+        //        else if (dialogResult == MessageBoxResult.No)
+        //        {
+        //            Grid_PatientMain.Visibility = Visibility.Visible;
+        //        }
 
-            }
-
-
+        //    }
 
 
-        }
+
+
+        //}
 
         private void button_cancel_Click(object sender, RoutedEventArgs e)
         {
@@ -616,7 +616,6 @@ namespace Pharmatech
         // Simple function to disable textboxes, for viewing purposes only.
         public void disableTextBoxes()
         {
-            textBox_IDNumber.IsEnabled = false;
             textBox_FirstName.IsEnabled = false;
             textBox_Surname.IsEnabled = false;
             textBox_Email.IsEnabled = false;
@@ -631,26 +630,39 @@ namespace Pharmatech
 
         private void button_EmpCreate_Click(object sender, RoutedEventArgs e)
         {
-            string id = textBox_IDNumber.Text;
+            var username = textBox_EmpUsername.Text;
+            var password = passwordBox_EmpPassword.Password.ToString();
+            var repassword = passwordBox_EmpRePassword.Password.ToString();
             string firstName = textBox_FirstName.Text;
             string surname = textBox_Surname.Text;
             string contactNo = textBox_ContactNumber.Text;
             string email = textBox_Email.Text;
             string address1 = textBox_AddressLine1.Text;
             string address2 = textBox_AddressLine2.Text;
-            string patientID = textBox_IDNumber.Text;
+            string suburb = textBox_Suburb.Text;
+            string city = textBox_City.Text;
+            char empType = 'a';
 
-
-            if (passwordBox_EmpPassword.Password.ToString() == passwordBox_EmpRePassword.Password.ToString())
+            if(radioButton.IsChecked == true)
             {
+                empType = 'P';
+            }
 
-              //
+            else if (radioButton1.IsChecked == true)
+            {
+                empType = 'A';
+            }
 
+
+            if (password == repassword)
+            {
+                // Add employee account to database
+                DataAccess.EmployeeDA.AddEmployee(firstName, surname, contactNo, email, address1, address2, username, password, empType);
             }
 
             else
             {
-                //
+                System.Windows.MessageBox.Show("Your entered passwords do not match.", "Halt, go back!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
             }
 

@@ -221,7 +221,7 @@ namespace Pharmatech
 
             for (int i = 0; i < dataGrid_saleItems.Items.Count - 1; i++)
             {
-                sum += (int.Parse((dataGrid_saleItems.Columns[4].GetCellContent(dataGrid_saleItems.Items[i]) as TextBlock).Text));
+                sum += (int.Parse((dataGrid_saleItems.Columns[5].GetCellContent(dataGrid_saleItems.Items[i]) as TextBlock).Text));
             }
             
             saleFinalWindow.textBox_Total.Text = sum.ToString();

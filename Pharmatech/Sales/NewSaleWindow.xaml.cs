@@ -293,8 +293,8 @@ namespace Pharmatech
 
         private void button_addItem_Click(object sender, RoutedEventArgs e)
         {
-            
 
+            string allergyName;
             if (!string.IsNullOrEmpty(comboBox_select_Item.Text.ToString()))
             {
 
@@ -302,19 +302,23 @@ namespace Pharmatech
                 {
                     try
                     {
-                        SqlCommand sqlCmd2 = new SqlCommand("SELECT allergyName, allergyDescription FROM Allergies A INNER JOIN PatientAllergies PA ON A.allergyID = PA.allergyID WHERE A.allergyID = PA.allergyID AND PA.allergyID = (SELECT allergyID FROM Medication_Allergies MA WHERE MA.medID = " + comboBox_select_Item.SelectedValue.ToString() + ")", conn);
-                        conn.Open();
-                        SqlDataReader sqlReader = sqlCmd2.ExecuteReader();
+                        //SqlCommand sqlCmd2 = new SqlCommand("SELECT allergyName, allergyDescription FROM Allergies A INNER JOIN PatientAllergies PA ON A.allergyID = PA.allergyID WHERE A.allergyID = PA.allergyID AND PA.allergyID = (SELECT allergyID FROM Medication_Allergies MA WHERE MA.medID = " + comboBox_select_Item.SelectedValue.ToString() + ")", conn);
 
+                        SqlCommand sqlCmd2 = new SqlCommand("SELECT allergyName, allergyDescription FROM Allergies A INNER JOIN PatientAllergies PA ON A.allergyID = PA.allergyID WHERE PA.allergyID IN (SELECT allergyID FROM Medication_Allergies MA WHERE MA.medID = 31)", conn);
+                        sqlCmd2.Parameters.AddWithValue("@medID", comboBox_select_Item.SelectedValue);
+                        conn.Open();
                         Allergies allergies = new Allergies();
+                        SqlDataReader sqlReader = sqlCmd2.ExecuteReader();                        
 
                         
                             while (sqlReader.Read())
                             {
                                 allergies.allergyName = Convert.ToString(sqlReader["allergyName"]);
                                 allergies.allergyDescription = Convert.ToString(sqlReader["allergyDescription"]);
+                            allergyName = Convert.ToString(sqlReader["allergyName"]);
+                            MessageBox.Show(allergyName);
 
-                            }
+                        }
 
                         MessageBox.Show(allergies.allergyName);
                         sqlReader.Close();

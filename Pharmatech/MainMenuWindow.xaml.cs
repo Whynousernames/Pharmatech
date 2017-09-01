@@ -25,7 +25,7 @@ namespace Pharmatech
     public partial class MainMenuWindow : Window
     {
         string conn = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
-        internal object label_ID;
+        
 
         public MainMenuWindow()
         {
@@ -39,6 +39,9 @@ namespace Pharmatech
             gridHidden_True();
             arrowHidden_True();
             MainWindow mainWindow = new MainWindow();
+
+            label_IDDisplay.Content = Convert.ToString(this.Resources["empIDNumber"]);
+            label_FirstNameDisplay.Content = Convert.ToString(this.Resources["empFName"]) + "" + Convert.ToString(this.Resources["empLName"]);
         }
 
         void messageTimer_Tick(object sender, EventArgs e)

@@ -56,13 +56,16 @@ namespace Pharmatech
 
                     while (reader.Read())
                     {
-                        mainMenuWindow.label_FirstNameDisplay.Content = reader["firstName"].ToString() + " " + reader["lastName"].ToString();
-                        mainMenuWindow.label_IDDisplay.Content = reader["empIDNumber"].ToString();
+                        
+                        Application.Current.Resources["empIDNumber"] = Convert.ToString(reader["empIDNumber"]);
+                        Application.Current.Resources["empFName"] = Convert.ToString(reader["firstName"]);
+                        Application.Current.Resources["empLName"] = Convert.ToString(reader["lastName"]);
 
                         if (reader["employeeType"].ToString() == "A")
-                            mainMenuWindow.label_EmployeeTypeDisplay.Content = "Admin";
+                            Application.Current.Resources["userType"] = "A";
                         if (reader["employeeType"].ToString() == "P")
-                            mainMenuWindow.label_EmployeeTypeDisplay.Content = "Pharmacist";                           
+                            Application.Current.Resources["userType"] = "P";              
+                        
 
                     }
                     reader.Close();

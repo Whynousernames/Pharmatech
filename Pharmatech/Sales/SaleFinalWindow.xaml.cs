@@ -315,7 +315,8 @@ namespace Pharmatech
                         string saleType;
                         string descrip = "";
                         MainMenuWindow window = new MainMenuWindow();
-                        string empID = window.label_ID.ToString();
+                        //string empID = window.label_ID.ToString();
+                        string empID = "4200";
                         string patientID = label_displayID.Content.ToString();
                         StringBuilder strBuilder = new StringBuilder();
                         string patientName = label_displayName.Content.ToString();
@@ -324,7 +325,7 @@ namespace Pharmatech
 
                         foreach (DataRow row in dt.Rows)
                         {
-                            strBuilder.Append(row["Medname"].ToString() + " // ");
+                            strBuilder.Append(row["Medication name"].ToString() + " // ");
 
 
                         }

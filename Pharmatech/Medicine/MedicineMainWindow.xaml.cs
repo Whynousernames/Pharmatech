@@ -429,6 +429,8 @@ namespace Pharmatech
             textBox_QuantityInStock_Copy.IsEnabled = false;
 
         }
+
+        
     }
 
 }

@@ -78,7 +78,7 @@ namespace Pharmatech
                 try
                 {
                     
-                    SqlCommand sqlCmd = new SqlCommand("SELECT MedID, MedName FROM Medication", conn);
+                    SqlCommand sqlCmd = new SqlCommand("SELECT MedID, MedName FROM Medication ORDER BY MedName", conn);
                     conn.Open();
                     SqlDataReader sqlReader = sqlCmd.ExecuteReader();
 

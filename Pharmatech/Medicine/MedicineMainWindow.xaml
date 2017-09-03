@@ -84,18 +84,18 @@
                 </Rectangle.Effect>
             </Rectangle>
 
-            <Label x:Name="label_CostPrice" Content="Cost Price:" HorizontalAlignment="Left" Height="42" Margin="43,343,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
-            <Label x:Name="label_SalePrice" Content="Sale Price:" HorizontalAlignment="Left" Height="42" Margin="43,422,0,0" VerticalAlignment="Top" Width="176" FontSize="24"/>
-            <Label x:Name="label_MedicationDetails" Content="Medication Details" HorizontalAlignment="Left" Height="62" Margin="256,3,0,0" VerticalAlignment="Top" Width="411" FontSize="36"/>
-            <Label x:Name="label_Schedule" Content="Schedule Level:" HorizontalAlignment="Left" Height="42" Margin="43,265,0,0" VerticalAlignment="Top" Width="176" FontSize="24"/>
-            <Label x:Name="label_MedicationName" Content="Medication Name:" HorizontalAlignment="Left" Height="42" Margin="43,182,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
-            <Label x:Name="label_MedicationID" Content="Medication ID:" HorizontalAlignment="Left" Height="42" Margin="43,110,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
-            <Label x:Name="label_QuantityInStock" Content="Quantity In Stock:" HorizontalAlignment="Left" Height="42" Margin="43,502,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
-            <TextBox x:Name="textBox_MedicationID" HorizontalAlignment="Left" Height="38" Margin="313,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
-            <TextBox x:Name="textBox_MedicationName" HorizontalAlignment="Left" Height="38" Margin="313,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
-            <TextBox x:Name="textBox_CostPrice" HorizontalAlignment="Left" Height="38" Margin="313,345,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
-            <TextBox x:Name="textBox_SalePrice" HorizontalAlignment="Left" Height="38" Margin="313,426,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
-            <TextBox x:Name="textBox_QuantityInStock" HorizontalAlignment="Left" Height="38" Margin="313,506,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
+            <Label x:Name="label_CostPrice" Content="Cost Price:" HorizontalAlignment="Left" Height="42" Margin="47,395,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
+            <Label x:Name="label_SalePrice" Content="Sale Price:" HorizontalAlignment="Left" Height="42" Margin="47,474,0,0" VerticalAlignment="Top" Width="176" FontSize="24"/>
+            <Label x:Name="label_MedicationDetails" Content="Medication Details" HorizontalAlignment="Left" Height="62" Margin="256,9,0,0" VerticalAlignment="Top" Width="411" FontSize="36"/>
+            <Label x:Name="label_Schedule" Content="Schedule Level:" HorizontalAlignment="Left" Height="42" Margin="47,317,0,0" VerticalAlignment="Top" Width="176" FontSize="24"/>
+            <Label x:Name="label_MedicationName" Content="Medication Name:" HorizontalAlignment="Left" Height="42" Margin="47,234,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
+            <Label x:Name="label_MedicationID" Content="Medication ID:" HorizontalAlignment="Left" Height="42" Margin="47,162,0,0" VerticalAlignment="Top" Width="200" FontSize="24" Visibility="Hidden"/>
+            <Label x:Name="label_QuantityInStock" Content="Quantity In Stock:" HorizontalAlignment="Left" Height="42" Margin="47,554,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
+            <TextBox x:Name="textBox_MedicationID" HorizontalAlignment="Left" Height="38" Margin="317,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Visibility="Hidden"/>
+            <TextBox x:Name="textBox_MedicationName" HorizontalAlignment="Left" Height="38" Margin="317,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
+            <TextBox x:Name="textBox_CostPrice" HorizontalAlignment="Left" Height="38" Margin="317,391,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
+            <TextBox x:Name="textBox_SalePrice" HorizontalAlignment="Left" Height="38" Margin="317,472,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
+            <TextBox x:Name="textBox_QuantityInStock" HorizontalAlignment="Left" Height="38" Margin="317,552,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
             <Label x:Name="label_MedicationAllergies" Content="Medication Allergies" HorizontalAlignment="Left" Height="62" Margin="1006,10,0,0" VerticalAlignment="Top" Width="411" FontSize="36"/>
             <Label x:Name="label_AllergyDescription" Content="Allergy Description:" HorizontalAlignment="Left" Height="42" Margin="815,272,0,0" VerticalAlignment="Top" Width="226" FontSize="24" />
             <Label x:Name="label_AllergyName" Content="Allergy Name:" HorizontalAlignment="Left" Height="42" Margin="815,189,0,0" VerticalAlignment="Top" Width="166" FontSize="24"/>
@@ -104,25 +104,25 @@
             <TextBox x:Name="textBox_AllergyDescription" HorizontalAlignment="Left" Height="75" Margin="1071,276,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"  SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
             <ComboBox x:Name="comboBox_selectAllergy" HorizontalAlignment="Left" Height="36" Margin="1071,123,0,0" VerticalAlignment="Top" Width="368" FontSize="24" BorderBrush="{x:Null}" />
             <Button x:Name="button_Next" Content="Finalize" HorizontalAlignment="Left" Margin="1317,856,0,8" Width="147"   FontSize="24" Click="button_next_Click_1"  >
-                
+
             </Button>
             <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1138,856,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click"  FontSize="24" >
-                
+
             </Button>
             <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="968,856,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" >
-                
+
             </Button>
             <Button x:Name="button_Remove" Content="Remove" HorizontalAlignment="Left" Height="48" Margin="1071,362,0,0" VerticalAlignment="Top" Width="127"  FontSize="24" Click="button_Remove_Click" >
-               
+
             </Button>
             <Button x:Name="button_Add" Content="Add" HorizontalAlignment="Left" Height="48" Margin="1312,362,0,0" VerticalAlignment="Top" Width="127" FontSize="24" Click="button_Add_Click" >
-                
+
             </Button>
             <DataGrid x:Name="dataGrid_Allergies" HorizontalAlignment="Left" Height="338" Margin="815,460,0,0" VerticalAlignment="Top" Width="624" GridLinesVisibility="Horizontal"/>
-            <ComboBox x:Name="comboBox_Schedule" HorizontalAlignment="Left" Height="36" Margin="313,271,0,0" VerticalAlignment="Top" Width="360" FontSize="24" BorderBrush="{x:Null}"/>
-            <Label x:Name="label_MedicationDescription" Content="Medication Description:" HorizontalAlignment="Left" Height="42" Margin="43,582,0,0" VerticalAlignment="Top" Width="275" FontSize="24"/>
-            <TextBox x:Name="textBox_QuantityInStock_Copy" HorizontalAlignment="Left" Height="112" Margin="313,584,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"  SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
-            <Label x:Name="labelMedicationIsActive" Content="" HorizontalAlignment="Left" Height="40" Margin="173,727,0,0" VerticalAlignment="Top" Width="494" Background="#FFD30C0C" FontSize="16" Visibility="Hidden"/>
+            <ComboBox x:Name="comboBox_Schedule" HorizontalAlignment="Left" Height="36" Margin="313,322,0,0" VerticalAlignment="Top" Width="360" FontSize="24" BorderBrush="{x:Null}"/>
+            <Label x:Name="label_MedicationDescription" Content="Medication Description:" HorizontalAlignment="Left" Height="42" Margin="47,634,0,0" VerticalAlignment="Top" Width="368" FontSize="24"/>
+            <TextBox x:Name="textBox_QuantityInStock_Copy" HorizontalAlignment="Left" Height="112" Margin="317,630,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"  SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
+            <Label x:Name="labelMedicationIsActive" Content="" HorizontalAlignment="Left" Height="40" Margin="115,121,0,0" VerticalAlignment="Top" Width="494" Background="#FFD30C0C" FontSize="16" Visibility="Hidden" FontWeight="Bold"/>
             <TextBox x:Name="textBox_IsActive" HorizontalAlignment="Left" Height="23" Margin="313,727,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="48" Visibility="Hidden"/>
         </Grid>
         <Grid x:Name="Grid_Instruction" HorizontalAlignment="Left" Height="894" Margin="732,7,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="714" Grid.Row="1">
@@ -132,17 +132,17 @@
             <TextBox x:Name="textBox_InstructionDetails" HorizontalAlignment="Left" Height="155" Margin="289,212,0,0" TextWrapping="Wrap" Text="Take 1 tablet 3 times a day" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
             <ComboBox x:Name="comboBox_selectInstructionID" HorizontalAlignment="Left" Height="36" Margin="289,133,0,0" VerticalAlignment="Top" Width="368" FontSize="24" BorderBrush="{x:Null}"/>
             <Button x:Name="button_RemoveInstructions" Content="Remove" HorizontalAlignment="Left" Height="48" Margin="289,372,0,0" VerticalAlignment="Top" Width="127"  FontSize="24" Click="button_Remove_Click" >
-                
+
             </Button>
             <Button x:Name="button_AddInstructions" Content="Add" HorizontalAlignment="Left" Height="48" Margin="530,372,0,0" VerticalAlignment="Top" Width="127"   FontSize="24" Click="button_Add_Click" >
-                
+
             </Button>
             <DataGrid x:Name="dataGrid_Allergies_Copy" HorizontalAlignment="Left" Height="338" Margin="33,470,0,0" VerticalAlignment="Top" Width="624" GridLinesVisibility="Horizontal"/>
             <Button x:Name="button_nextInstruction" Content="Next" HorizontalAlignment="Left" Height="56" Margin="509,828,0,0" VerticalAlignment="Top" Width="147" FontSize="24" Click="button_nextInstruction_Click"  >
-                
+
             </Button>
             <Button x:Name="button_cancelInstruction" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="330,828,0,0" VerticalAlignment="Top" Width="147"   FontSize="24" Click="button_cancelInstruction_Click" >
-                
+
             </Button>
         </Grid>
         <Grid x:Name="Grid_SelectMedication" HorizontalAlignment="Left" Height="480" Margin="529,96,0,0" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Width="876">
@@ -158,10 +158,10 @@
             <Label x:Name="label_SelectMedicationName" Content="Select medicine item:" HorizontalAlignment="Center" Height="49" Margin="42,163,97,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="362" FontSize="24"  FontWeight="Bold"/>
             <ComboBox x:Name="comboBox_selectMedication" HorizontalAlignment="Left" Height="43" Margin="375,169,0,0" VerticalAlignment="Top" Width="368" FontSize="24" Grid.ColumnSpan="2" IsTextSearchEnabled="True" IsEditable="True"/>
             <Button x:Name="button_nextSelectMedication" Content="Next" HorizontalAlignment="Left" Height="56" Margin="468,307,0,0" VerticalAlignment="Top" Width="147"  FontSize="24"  Grid.ColumnSpan="2" Click="button_nextSelectMedication_Click" >
-                
+
             </Button>
             <Button x:Name="button_cancelSelectMedication" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="289,307,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click"  FontSize="24" >
-                
+
             </Button>
         </Grid>
 

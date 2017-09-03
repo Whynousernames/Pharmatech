@@ -23,11 +23,7 @@ namespace Pharmatech
 
         private void OnPropertyChanged(string p)
         {
-            PropertyChangedEventHandler ph = PropertyChanged;
-            if (ph != null)
-            {
-                ph(this, new PropertyChangedEventArgs(p));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(p));
 
         }
 

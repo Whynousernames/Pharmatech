@@ -294,7 +294,7 @@ namespace Pharmatech
         private void button_addItem_Click(object sender, RoutedEventArgs e)
         {
 
-            string allergyName;
+            
             if (!string.IsNullOrEmpty(comboBox_select_Item.Text.ToString()))
             {
 
@@ -304,7 +304,8 @@ namespace Pharmatech
                     {
                         //SqlCommand sqlCmd2 = new SqlCommand("SELECT allergyName, allergyDescription FROM Allergies A INNER JOIN PatientAllergies PA ON A.allergyID = PA.allergyID WHERE A.allergyID = PA.allergyID AND PA.allergyID = (SELECT allergyID FROM Medication_Allergies MA WHERE MA.medID = " + comboBox_select_Item.SelectedValue.ToString() + ")", conn);
 
-                        SqlCommand sqlCmd2 = new SqlCommand("SELECT allergyName, allergyDescription FROM Allergies A INNER JOIN PatientAllergies PA ON A.allergyID = PA.allergyID WHERE PA.allergyID IN (SELECT allergyID FROM Medication_Allergies MA WHERE MA.medID = 31)", conn);
+                        SqlCommand sqlCmd2 = new SqlCommand("SELECT allergyName, allergyDescription FROM Allergies A INNER JOIN PatientAllergies PA ON A.allergyID = PA.allergyID WHERE PA.allergyID = (SELECT allergyID FROM Medication_Allergies MA WHERE MA.medID = @medID) AND PA.patientIDNumber = @patientIDNumber ", conn);
+                        sqlCmd2.Parameters.AddWithValue("@patientIDNumber", label_DisplayPatientID.Content);
                         sqlCmd2.Parameters.AddWithValue("@medID", comboBox_select_Item.SelectedValue);
                         conn.Open();
                         Allergies allergies = new Allergies();
@@ -315,18 +316,37 @@ namespace Pharmatech
                             {
                                 allergies.allergyName = Convert.ToString(sqlReader["allergyName"]);
                                 allergies.allergyDescription = Convert.ToString(sqlReader["allergyDescription"]);
-                            allergyName = Convert.ToString(sqlReader["allergyName"]);
-                            MessageBox.Show(allergyName);
+                           
+                            
 
                         }
 
-                        MessageBox.Show(allergies.allergyName);
+                            if(!string.IsNullOrEmpty(allergies.allergyName))
+                        {
+
+                            MessageBoxResult dialogResult = System.Windows.MessageBox.Show(label_DisplayPatientName.Content.ToString() +" "+"is allergic to" +" "+allergies.allergyName+ " " +"which is in " + comboBox_select_Item.Text.ToString()+" would you still like to add this medication to the sale?" , "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                            if (dialogResult == MessageBoxResult.Yes)
+                            {
+                                FillSalesItemGrid();
+                            }
+                            else
+                            {
+                                comboBox_select_Item.SelectedIndex = 0;
+                                comboBox_Quantity.SelectedIndex = 0;
+                            }
+                        }
+                            else
+                        {
+                            FillSalesItemGrid();
+                        }
+
+                        
                         sqlReader.Close();
 
 
                         
                         
-                        FillSalesItemGrid();
+                        
 
 
                     }

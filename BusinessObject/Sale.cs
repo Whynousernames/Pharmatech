@@ -16,5 +16,7 @@ namespace BusinessObject
 
         public int quantity { get; set; }
 
+        public int quantityInStock { get; set; }
+
     }
 }

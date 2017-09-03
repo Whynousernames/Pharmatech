@@ -67,7 +67,7 @@ namespace Pharmatech
             comboBox_Quantity.Items.Add("3");
             comboBox_Quantity.Items.Add("4");
             comboBox_Quantity.Items.Add("5");
-            comboBox_Quantity.Items.Add("6");
+            comboBox_Quantity.Items.Add("15");
 
 
 
@@ -469,7 +469,7 @@ namespace Pharmatech
 
                 if (!string.IsNullOrEmpty(comboBox_select_Item.Text.ToString()))
                 {
-                    sqlBuilder.Append("SELECT medName, scheduleLevel, description, salePrice FROM Medication WHERE MedName = @medName");
+                    sqlBuilder.Append("SELECT medName, scheduleLevel, description, salePrice, quantityInStock FROM Medication WHERE MedName = @medName");
                     cParameters.Add(new SqlParameter("@medName", comboBox_select_Item.Text.ToString()));
                 }
 
@@ -494,7 +494,18 @@ namespace Pharmatech
                         sale.description = (Convert.ToString(reader["description"]));
                         sale.salePrice = (Convert.ToInt32(reader["salePrice"]));
                         sale.quantity = Convert.ToInt32(comboBox_Quantity.Text.ToString());
-                        products.Add(sale);
+                        sale.quantityInStock = Convert.ToInt32(reader["quantityInStock"]);
+
+                        if (sale.quantityInStock > sale.quantity)
+                        {
+                            products.Add(sale);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Not enough " + sale.medName + " in stock. Only "+sale.quantityInStock.ToString() + "available.","Warning");
+                            
+                        }
+                        
                     }
                 }
                 else
@@ -514,7 +525,7 @@ namespace Pharmatech
                 }
 
                 
-
+                
                 foreach (var item in products)
                 {
                     var row = dt.NewRow();

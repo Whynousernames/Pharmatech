@@ -40,9 +40,21 @@ namespace Pharmatech
             gridHidden_True();
             arrowHidden_True();
 
-            
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT firstName + ' ' + lastName AS Name, username, contactNumber AS [Contact Number], employeeType AS [Employee Type] FROM Employee", con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
 
-            if(label_PatientWindowType.Content.ToString() == "Remove Patient")
+                DataTable dt = new DataTable("Employees");
+                da.Fill(dt);
+                dataGrid_Employees.ItemsSource = dt.DefaultView;
+
+
+            }
+
+
+
+            if (label_PatientWindowType.Content.ToString() == "Remove Patient")
             {
               //  button_next.Content = "Remove this Patient";
             }
@@ -203,6 +215,18 @@ namespace Pharmatech
         {
             gridHidden_True();
             Grid_Employee.Visibility = Visibility.Visible;
+
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT firstName + ' ' + lastName AS Name, username, contactNumber AS [Contact Number], employeeType AS [Employee Type] FROM Employee", con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                DataTable dt = new DataTable("Employees");
+                da.Fill(dt);
+                dataGrid_Employees.ItemsSource = dt.DefaultView;
+
+
+            }
         }
 
         private void button_Reports_Click(object sender, RoutedEventArgs e)
@@ -666,10 +690,71 @@ namespace Pharmatech
 
             }
 
+
+            // Fill and update employee grid on adding account to db
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT firstName + ' ' + lastName AS Name, username, contactNumber AS [Contact Number], employeeType AS [Employee Type] FROM Employee", con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                DataTable dt = new DataTable("Employees");
+                da.Fill(dt);
+                dataGrid_Employees.ItemsSource = dt.DefaultView;
+
+
+            }
+
+
+
         }
 
         private void button_back_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void button_ChangePassword_Click(object sender, RoutedEventArgs e)
+        {
+            string username = textBox_EmpUsername_Copy.Text;
+            var password = passwordBox_EmpPassword_Copy.Password.ToString();
+            var repassword = passwordBox_EmpRePassword_Copy.Password.ToString();
+
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                con.Open();
+                string cmdString = "SELECT * FROM Employee WHERE username = @username";
+                SqlCommand cmd = new SqlCommand(cmdString, con);
+                cmd.Parameters.AddWithValue("@username", username);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                // Check to see if the input username is present in the database.
+                if (reader.HasRows)
+                {
+                    if (password == repassword)
+                    {
+                        DataAccess.EmployeeDA.ChangeEmployeePassword(username, password);
+                        System.Windows.MessageBox.Show("Successfully changed password for employee account: " + username, "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+
+                    }
+
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Your entered passwords do not match.", "Halt, go back!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+                    }
+
+                }
+
+                else
+                {
+                    System.Windows.MessageBox.Show("The username entered is not currently on the system.", "Alert!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                con.Close();
+
+
+            }
+
+ 
 
         }
     }

@@ -502,6 +502,7 @@ namespace Pharmatech
             patientMainWindow.Grid_SelectPatient.Visibility = Visibility.Hidden;
             patientMainWindow.ShowDialog();
             this.Close();
+            
 
         }
 
@@ -631,6 +632,10 @@ namespace Pharmatech
             button_Add.IsEnabled = false;
 
         }
+
+        
+
+
     }
 
 }

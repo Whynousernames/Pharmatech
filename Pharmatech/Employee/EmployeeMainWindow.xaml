@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pharmatech"
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        mc:Ignorable="d"
+        mc:Ignorable="d"        
         Title="Main Menu" SizeToContent="WidthAndHeight" Background="#e6f3ff" ResizeMode="CanMinimize" WindowState="Maximized" WindowStartupLocation="CenterScreen" Width="1920" Height="1080"
         KeyDown="Window_KeyDown"
         >
@@ -147,7 +147,8 @@
                 <TextBox x:Name="textBox_EmpUsername_Copy" HorizontalAlignment="Left" Height="36" Margin="1108,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" FontSize="20"/>
                 <PasswordBox x:Name="passwordBox_EmpRePassword_Copy" HorizontalAlignment="Left" Margin="1108,165,0,0" VerticalAlignment="Top" FontSize="20" Width="226"/>
                 <PasswordBox x:Name="passwordBox_EmpPassword_Copy" HorizontalAlignment="Left" Margin="1108,123,0,0" VerticalAlignment="Top" FontSize="20" Width="226"/>
-                <Button x:Name="button_ChangePassword" Content="Change Password" HorizontalAlignment="Left" Margin="998,22,0,0" Grid.Row="1" VerticalAlignment="Top" Width="266" FontSize="24" Height="62" FontWeight="Normal"/>
+                <Button x:Name="button_ChangePassword" Content="Change Password" HorizontalAlignment="Left" Margin="1004,22,0,0" Grid.Row="1" VerticalAlignment="Top" Width="266" FontSize="24" Height="62" FontWeight="Normal" Click="button_ChangePassword_Click"/>
+                <DataGrid x:Name="dataGrid_Employees" HorizontalAlignment="Left" Margin="900,260,0,0" Grid.Row="1" VerticalAlignment="Top" Height="210" Width="544" GridLinesVisibility="All" Style="{StaticResource AzureDataGrid}" FontSize="16"/>
 
 
 
@@ -185,7 +186,7 @@
 
             <Image x:Name="image_arrow" HorizontalAlignment="Left" Height="127" Margin="910,49,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2"/>
             <Image x:Name="image_arrow_Copy" HorizontalAlignment="Left" Height="127" Margin="1809,55,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2"/>
-            <Image x:Name="image_arrow_Copy1" HorizontalAlignment="Left" Height="127" Margin="1318,319,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.Row="1"/>
+            <Image x:Name="image_arrow_Copy1" HorizontalAlignment="Left" Height="127" Margin="1809,197,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.Row="1"/>
             <Image x:Name="image_arrow_Copy2" HorizontalAlignment="Left" Height="127" Margin="1176,390,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.Row="2">
                 <Image.RenderTransform>
                     <TransformGroup>

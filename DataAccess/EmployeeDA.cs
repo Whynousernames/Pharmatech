@@ -37,6 +37,24 @@ namespace DataAccess
             return true;
         }
 
+        public static bool ChangeEmployeePassword(string username, string password)
+        {
+            SqlConnection con = new SqlConnection(connection);
+            using (SqlCommand cmd = con.CreateCommand())
+            {
+                cmd.CommandText = "UPDATE Employee SET password = @password WHERE username = @username";           
+                cmd.Parameters.AddWithValue("@password", Security.HashSHA1(password));
+                cmd.Parameters.AddWithValue("@username", username);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+            }
+
+            return true;
+
+        }
+
         public static int AuthenticateLogin(string username, string password)
         {
             int empID = 0;

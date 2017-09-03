@@ -87,7 +87,7 @@
                 </Rectangle>
                 <Label x:Name="label_selectItem" Content="Select medication:" HorizontalAlignment="Left" Height="42" Margin="14,186,0,0" VerticalAlignment="Top" Width="212" FontSize="24"  Grid.ColumnSpan="2"/>
                 <DataGrid x:Name="dataGrid_saleItems"  HorizontalAlignment="Left" Height="458" Margin="0,347,0,0" VerticalAlignment="Top" Width="865" GridLinesVisibility="Horizontal"  Grid.ColumnSpan="2" SelectionChanged="dataGrid_saleItems_SelectionChanged" AutoGenerateColumns="False"/>
-                <ComboBox x:Name="comboBox_select_Item" HorizontalAlignment="Left" Height="36" Margin="149,191,0,0" VerticalAlignment="Top" Width="360" FontSize="24"   Grid.Column="1" DisplayMemberPath="MedName" SelectedValuePath="MedID"/>
+                <ComboBox x:Name="comboBox_select_Item" HorizontalAlignment="Left" Height="36" Margin="149,191,0,0" VerticalAlignment="Top" Width="360" FontSize="24"   Grid.Column="1" DisplayMemberPath="MedName" SelectedValuePath="MedID" IsTextSearchEnabled="True" IsEditable="True"/>
                 <Button x:Name="button_addItem" Content="Add Item" HorizontalAlignment="Left" Margin="340,254,0,550" Width="161" FontSize="24" Cursor="Hand" Click="button_addItem_Click" Grid.Column="1">
 
                 </Button>

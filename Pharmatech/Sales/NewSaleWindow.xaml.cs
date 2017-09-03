@@ -302,8 +302,7 @@ namespace Pharmatech
                 {
                     try
                     {
-                        //SqlCommand sqlCmd2 = new SqlCommand("SELECT allergyName, allergyDescription FROM Allergies A INNER JOIN PatientAllergies PA ON A.allergyID = PA.allergyID WHERE A.allergyID = PA.allergyID AND PA.allergyID = (SELECT allergyID FROM Medication_Allergies MA WHERE MA.medID = " + comboBox_select_Item.SelectedValue.ToString() + ")", conn);
-
+                        
                         SqlCommand sqlCmd2 = new SqlCommand("SELECT allergyName, allergyDescription FROM Allergies A INNER JOIN PatientAllergies PA ON A.allergyID = PA.allergyID WHERE PA.allergyID = (SELECT allergyID FROM Medication_Allergies MA WHERE MA.medID = @medID) AND PA.patientIDNumber = @patientIDNumber ", conn);
                         sqlCmd2.Parameters.AddWithValue("@patientIDNumber", label_DisplayPatientID.Content);
                         sqlCmd2.Parameters.AddWithValue("@medID", comboBox_select_Item.SelectedValue);
@@ -342,10 +341,7 @@ namespace Pharmatech
 
                         
                         sqlReader.Close();
-
-
-                        
-                        
+                        conn.Close();                  
                         
 
 
@@ -465,7 +461,8 @@ namespace Pharmatech
 
             using (SqlConnection con = new SqlConnection(conn))
             {
-                dt.Clear();
+                dt.Clear();                
+                dt.AcceptChanges();
                 con.Open();
                 
                 
@@ -537,12 +534,13 @@ namespace Pharmatech
                 dataGrid_saleItems.AutoGenerateColumns = true;
                 // Finally bind the datasource to datagridview.
                 //dataGrid_saleItems.ItemsSource = dt.DefaultView;             
-                dataGrid_saleItems.ItemsSource = dt.AsDataView();
+                dataGrid_saleItems.ItemsSource = this.dt.AsDataView();
 
                 _count++;
                 sqlBuilder.Clear();
                 cParameters.Clear();
                 product.Clear();
+                dt.AcceptChanges();
 
             }
         }
@@ -558,7 +556,16 @@ namespace Pharmatech
             {
                 DataRowView drv = (DataRowView)dataGrid_saleItems.SelectedItem;
                 drv.Row.Delete();
+
+
                 dt.AcceptChanges();
+                dataGrid_saleItems.ItemsSource = dt.DefaultView;
+
+
+
+
+
+
             }
 
         }

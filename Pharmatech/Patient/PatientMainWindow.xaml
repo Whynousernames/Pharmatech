@@ -20,7 +20,7 @@
         <ImageBrush x:Key="MedicationResource" ImageSource="pack://siteoforigin:,,,/images/Medication_Icon.JPG"></ImageBrush>
         <ImageBrush x:Key="PrescriptionResource" ImageSource="pack://siteoforigin:,,,/images/Prescription_Icon.JPG"></ImageBrush>
         <ImageBrush x:Key="ReportsResource" ImageSource="pack://siteoforigin:,,,/images/Report_Icon.JPG"></ImageBrush>
-        
+
 
         <Style TargetType="TextBox">
             <Style.Triggers>
@@ -122,7 +122,7 @@
 
 
                 <TextBox x:Name="textBox_IDNumber" HorizontalAlignment="Left" Height="38" Margin="366,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Text="{Binding Id, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.RowSpan="2"/>
-                
+
                 <TextBox x:Name="textBox_FirstName" HorizontalAlignment="Left" Height="38" Margin="364,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Text="{Binding Fname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"/>
                 <TextBox x:Name="textBox_Surname" HorizontalAlignment="Left" Height="38" Margin="366,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Grid.Row="1" Text="{Binding Sname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox x:Name="textBox_ContactNumber" HorizontalAlignment="Left" Height="38" Margin="364,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Grid.Row="1" Text="{Binding ContactNo, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
@@ -136,13 +136,13 @@
                 <Label x:Name="label_AllergyType" Content="Allergy Type:" HorizontalAlignment="Left" Height="42" Margin="864,117,0,0" VerticalAlignment="Top" Width="166" FontSize="24"/>
                 <TextBox x:Name="textBox_AllergyDescription" HorizontalAlignment="Left" Height="75" Margin="1120,14,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="368" FontSize="24" Grid.Row="1"/>
                 <ComboBox x:Name="comboBox_selectAllergy" HorizontalAlignment="Left" Height="36" Margin="1120,123,0,0" VerticalAlignment="Top" Width="368" FontSize="24"    SelectionChanged="comboBox_selectAllergy_SelectionChanged"/>
-                <Button x:Name="button_next" Content="Next" HorizontalAlignment="Left" Height="56" Margin="1366,650,0,0" VerticalAlignment="Top" Width="147" FontSize="24" Click="button_next_Click" Grid.Row="1" >
+                <Button x:Name="button_next" Content="Next" HorizontalAlignment="Left" Height="56" Margin="1300,650,0,0" VerticalAlignment="Top" Width="213" FontSize="24" Click="button_next_Click" Grid.Row="1" >
 
                 </Button>
-                <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1187,650,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Row="1" >
+                <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1121,650,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Row="1" >
 
                 </Button>
-                <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="1017,650,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" Grid.Row="1" >
+                <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="951,650,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" Grid.Row="1" >
 
                 </Button>
                 <Button x:Name="button_Remove" Content="Remove" HorizontalAlignment="Left" Height="48" Margin="1120,129,0,0" VerticalAlignment="Top" Width="127"  FontSize="24" Click="button_Remove_Click" Grid.Row="1" >

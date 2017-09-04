@@ -193,8 +193,8 @@ namespace Pharmatech
                     case nameof(ContactNo):
                         if (string.IsNullOrEmpty(ContactNo))
                             result = "Contact number is required.";
-                        else if (ContactNo.Length < 10)
-                            result = "Invalid contact number entered. Too short! Include area code.";
+                        else if (ContactNo.Length != 10)
+                            result = "Invalid contact number entered. Include area code.";
                         break;
 
                     case nameof(Address1):

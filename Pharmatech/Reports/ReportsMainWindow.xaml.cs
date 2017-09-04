@@ -379,6 +379,28 @@ namespace Pharmatech
             string medName = comboBox_select_Item.Text;
             string patientID = textBox_PatientIDSelect.Text;
             string Header = "sales report";
+            string patientName = "";
+
+
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                con.Open();
+                string cmdString = "SELECT * FROM Patient WHERE patientIDNumber = @id";
+                SqlCommand cmd = new SqlCommand(cmdString, con);
+                cmd.Parameters.AddWithValue("@id", patientID);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                // Check to see if the input Patient ID is present in the database.
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        patientName = reader["firstName"].ToString() + " " + reader["lastName"].ToString();
+                    }
+                }
+
+                con.Close();
+            }
 
             if (string.IsNullOrEmpty(datePicker_StartDate.Text))
             {
@@ -410,7 +432,7 @@ namespace Pharmatech
 
             if (dataGrid_Reports.HasItems && !string.IsNullOrEmpty(startDate))
             {
-                SalesReportExporting.ExportDataTableToPdf(dt, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SalesReport", Header, saleType, startDate, endDate, medName, patientID);
+                SalesReportExporting.ExportDataTableToPdf(dt, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SalesReport", Header, saleType, startDate, endDate, medName, patientName);
                 Grid_ViewPDF.Visibility = Visibility.Visible;
                 Grid_ReportsMainWindow.Visibility = Visibility.Hidden;
             }
@@ -465,34 +487,34 @@ namespace Pharmatech
 
         private void button_nextSelectPatientID_Click_1(object sender, RoutedEventArgs e)
         {
-            FillSalesGrid();
-            Grid_SelectPatientID.Visibility = Visibility.Hidden;
-            Grid_ReportsMainWindow.Visibility = Visibility.Visible;
+            //FillSalesGrid();
+            //Grid_SelectPatientID.Visibility = Visibility.Hidden;
+            //Grid_ReportsMainWindow.Visibility = Visibility.Visible;
 
 
-            //string idNumber = textBox_PatientIDSelect.Text;
+            string idNumber = textBox_PatientIDSelect.Text;
 
-            //using (SqlConnection con = new SqlConnection(conn))
-            //{
-            //    con.Open();
-            //    string cmdString = "SELECT * FROM Sale WHERE PatientIDNumber = @id";
-            //    SqlCommand cmd = new SqlCommand(cmdString, con);
-            //    cmd.Parameters.AddWithValue("@id", idNumber);
-            //    SqlDataReader reader = cmd.ExecuteReader();
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                con.Open();
+                string cmdString = "SELECT * FROM Sale WHERE PatientIDNumber = @id";
+                SqlCommand cmd = new SqlCommand(cmdString, con);
+                cmd.Parameters.AddWithValue("@id", idNumber);
+                SqlDataReader reader = cmd.ExecuteReader();
 
-            //    // Check to see if the input Patient ID is present in the database.
-            //    if (reader.HasRows)
-            //    {
-            //        FillSalesGrid();
-            //        Grid_SelectPatientID.Visibility = Visibility.Hidden;
-            //        Grid_ReportsMainWindow.Visibility = Visibility.Visible;
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("The patient ID number entered is not currently on the system.", "Warning!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            //    }
-            //    con.Close();
-            //}            
+                // Check to see if the input Patient ID is present in the database.
+                if (reader.HasRows)
+                {
+                    FillSalesGrid();
+                    Grid_SelectPatientID.Visibility = Visibility.Hidden;
+                    Grid_ReportsMainWindow.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    MessageBox.Show("The patient ID number entered is not currently on the system.", "Warning!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                con.Close();
+            }
         }
 
         //private void totalSales(DataTable dt)

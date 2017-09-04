@@ -9,6 +9,10 @@
         Title="Main Menu" SizeToContent="WidthAndHeight" Background="#e6f3ff" ResizeMode="CanMinimize" WindowState="Maximized" WindowStartupLocation="CenterScreen" Width="1920" Height="1080"
         KeyDown="Window_KeyDown"
         >
+    <Window.DataContext>
+        <local:PatientValidation></local:PatientValidation>
+    </Window.DataContext>
+
     <Window.Resources>
         <ImageBrush x:Key="SaleResource" ImageSource= "pack://siteoforigin:,,,/images/CashSale_Icon.JPG" ></ImageBrush>
         <ImageBrush x:Key="EmployeeResource" ImageSource="pack://siteoforigin:,,,/images/Employee_Icon.JPG"></ImageBrush>
@@ -16,6 +20,8 @@
         <ImageBrush x:Key="MedicationResource" ImageSource="pack://siteoforigin:,,,/images/Medication_Icon.JPG"></ImageBrush>
         <ImageBrush x:Key="PrescriptionResource" ImageSource="pack://siteoforigin:,,,/images/Prescription_Icon.JPG"></ImageBrush>
         <ImageBrush x:Key="ReportsResource" ImageSource="pack://siteoforigin:,,,/images/Report_Icon.JPG"></ImageBrush>
+
+
 
         <Style TargetType="TextBox">
             <Style.Triggers>
@@ -143,12 +149,13 @@
                 <Label x:Name="label_ChangePassword" Content="Change account password..." HorizontalAlignment="Left" Margin="860,18,0,0" VerticalAlignment="Top" FontSize="26" FontWeight="Bold"/>
                 <Label x:Name="label_EmpUsername_Copy" Content="Username:" HorizontalAlignment="Left" Margin="892,74,0,0" VerticalAlignment="Top" FontSize="22"/>
                 <Label x:Name="label_EmpPassword_Copy" Content="New Password:" HorizontalAlignment="Left" Margin="892,117,0,0" VerticalAlignment="Top" FontSize="22"/>
-                <Label x:Name="label_EmpRePassword_Copy" Content="Re-Enter Password:" HorizontalAlignment="Left" Margin="892,160,0,0" VerticalAlignment="Top" FontSize="22"/>
+                <Label x:Name="label_EmpRePassword_Copy" Content="Confirm Password:" HorizontalAlignment="Left" Margin="892,160,0,0" VerticalAlignment="Top" FontSize="22"/>
                 <TextBox x:Name="textBox_EmpUsername_Copy" HorizontalAlignment="Left" Height="36" Margin="1108,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" FontSize="20"/>
                 <PasswordBox x:Name="passwordBox_EmpRePassword_Copy" HorizontalAlignment="Left" Margin="1108,165,0,0" VerticalAlignment="Top" FontSize="20" Width="226"/>
                 <PasswordBox x:Name="passwordBox_EmpPassword_Copy" HorizontalAlignment="Left" Margin="1108,123,0,0" VerticalAlignment="Top" FontSize="20" Width="226"/>
                 <Button x:Name="button_ChangePassword" Content="Change Password" HorizontalAlignment="Left" Margin="1004,22,0,0" Grid.Row="1" VerticalAlignment="Top" Width="266" FontSize="24" Height="62" FontWeight="Normal" Click="button_ChangePassword_Click"/>
-                <DataGrid x:Name="dataGrid_Employees" HorizontalAlignment="Left" Margin="900,260,0,0" Grid.Row="1" VerticalAlignment="Top" Height="210" Width="544" GridLinesVisibility="All" Style="{StaticResource AzureDataGrid}" FontSize="16"/>
+                <DataGrid x:Name="dataGrid_Employees" HorizontalAlignment="Left" Margin="892,260,0,0" Grid.Row="1" VerticalAlignment="Top" Height="210" Width="558" GridLinesVisibility="All" FontSize="16"/>
+                <Label x:Name="label_ChangePassword_Copy" Content="Current employees on the system:" HorizontalAlignment="Left" Margin="860,191,0,0" VerticalAlignment="Top" FontSize="26" FontWeight="Bold" Grid.Row="1"/>
 
 
 

@@ -68,6 +68,7 @@ namespace Pharmatech
             comboBox_Quantity.Items.Add("4");
             comboBox_Quantity.Items.Add("5");
             comboBox_Quantity.Items.Add("15");
+            comboBox_Quantity.SelectedIndex = 1;
 
 
 

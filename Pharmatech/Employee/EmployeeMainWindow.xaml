@@ -126,7 +126,7 @@
 
 
 
-                <Button x:Name="button_EmpCreate" Content="Create Account" HorizontalAlignment="Left" Height="73" Margin="376,606,0,0" VerticalAlignment="Top" Width="256" FontSize="24" Grid.Row="1" Click="button_EmpCreate_Click" >
+                <Button x:Name="button_EmpCreate" Content="Create Account" HorizontalAlignment="Left" Height="73" Margin="376,606,0,0" VerticalAlignment="Top" Width="256" FontSize="24" Grid.Row="1" Click="button_EmpCreate_Click" BorderBrush="Black" BorderThickness="2" >
 
                 </Button>
                 <Label x:Name="label_EmpUsername" Content="Username:" HorizontalAlignment="Left" Margin="132,74,0,0" VerticalAlignment="Top" FontSize="22"/>
@@ -144,8 +144,8 @@
                         <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
                     </Rectangle.Effect>
                 </Rectangle>
-                <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="1030,631,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" Grid.Row="1" />
-                <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1211,631,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Row="1" />
+                <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="1030,631,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" Grid.Row="1" BorderBrush="Black" BorderThickness="2"/>
+                <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1211,631,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Row="1" BorderBrush="Black" BorderThickness="2" />
                 <Label x:Name="label_ChangePassword" Content="Change account password..." HorizontalAlignment="Left" Margin="860,18,0,0" VerticalAlignment="Top" FontSize="26" FontWeight="Bold"/>
                 <Label x:Name="label_EmpUsername_Copy" Content="Username:" HorizontalAlignment="Left" Margin="892,74,0,0" VerticalAlignment="Top" FontSize="22"/>
                 <Label x:Name="label_EmpPassword_Copy" Content="New Password:" HorizontalAlignment="Left" Margin="892,117,0,0" VerticalAlignment="Top" FontSize="22"/>
@@ -153,9 +153,9 @@
                 <TextBox x:Name="textBox_EmpUsername_Copy" HorizontalAlignment="Left" Height="36" Margin="1108,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" FontSize="20"/>
                 <PasswordBox x:Name="passwordBox_EmpRePassword_Copy" HorizontalAlignment="Left" Margin="1108,165,0,0" VerticalAlignment="Top" FontSize="20" Width="226"/>
                 <PasswordBox x:Name="passwordBox_EmpPassword_Copy" HorizontalAlignment="Left" Margin="1108,123,0,0" VerticalAlignment="Top" FontSize="20" Width="226"/>
-                <Button x:Name="button_ChangePassword" Content="Change Password" HorizontalAlignment="Left" Margin="1004,22,0,0" Grid.Row="1" VerticalAlignment="Top" Width="266" FontSize="24" Height="62" FontWeight="Normal" Click="button_ChangePassword_Click"/>
-                <DataGrid x:Name="dataGrid_Employees" HorizontalAlignment="Left" Margin="892,260,0,0" Grid.Row="1" VerticalAlignment="Top" Height="210" Width="558" GridLinesVisibility="All" FontSize="16"/>
-                <Label x:Name="label_ChangePassword_Copy" Content="Current employees on the system:" HorizontalAlignment="Left" Margin="860,191,0,0" VerticalAlignment="Top" FontSize="26" FontWeight="Bold" Grid.Row="1"/>
+                <Button x:Name="button_ChangePassword" Content="Change Password" HorizontalAlignment="Left" Margin="1004,22,0,0" Grid.Row="1" VerticalAlignment="Top" Width="266" FontSize="24" Height="62" FontWeight="Bold" Click="button_ChangePassword_Click" BorderBrush="Black" BorderThickness="2"/>
+                <DataGrid x:Name="dataGrid_Employees" HorizontalAlignment="Left" Margin="892,246,0,0" Grid.Row="1" VerticalAlignment="Top" Height="210" Width="558" GridLinesVisibility="All" FontSize="16"/>
+                <Label x:Name="label_ChangePassword_Copy" Content="Current employees on the system:" HorizontalAlignment="Left" Margin="860,191,0,0" VerticalAlignment="Top" FontSize="26" Grid.Row="1"/>
 
 
 

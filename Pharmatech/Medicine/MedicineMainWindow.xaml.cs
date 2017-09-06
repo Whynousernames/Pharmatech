@@ -164,27 +164,35 @@ namespace Pharmatech
             string medID = textBox_MedicationID.Text;
             string medName = textBox_MedicationName.Text;
             string schedLevel = comboBox_Schedule.SelectedItem.ToString();
-            int costPrice = Convert.ToInt32(textBox_CostPrice.Text);
+            string costPrice = textBox_CostPrice.Text;
            // int markUp = Convert.ToInt32(textBox_Markup.Text);
-            int salePrice = Convert.ToInt32(textBox_SalePrice.Text);
-            int quantityStock = Convert.ToInt32(textBox_QuantityInStock.Text);
-            string medDescription = textBox_QuantityInStock_Copy.Text;
-
+            string salePrice = textBox_SalePrice.Text;
+            string quantityStock = textBox_QuantityInStock.Text;
+            string medDescription = textBox_QuantityInStock_Copy.Text;           
 
 
             if (label_MedicationWindowType.Content.ToString() == "Add Medication")
             {
-                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to add this medicine to the system?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                if (dialogResult == MessageBoxResult.Yes)
+                if (string.IsNullOrEmpty(medName) || string.IsNullOrEmpty(schedLevel) || string.IsNullOrEmpty(costPrice) || string.IsNullOrEmpty(salePrice) || string.IsNullOrEmpty(quantityStock) || string.IsNullOrEmpty(medDescription))
                 {
-                    // Add medicine item to system.
-                    DataAccess.MedicationDA.AddMedication(medName, schedLevel, medDescription, costPrice, salePrice, quantityStock);
-                   // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
-                    System.Windows.MessageBox.Show("Successfully added a new medicine.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                    System.Windows.MessageBox.Show("Not all fields are completed.", "Alert!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 }
-                else if (dialogResult == MessageBoxResult.No)
+
+                else
                 {
-                    Grid_MedicationMainWindow.Visibility = Visibility.Visible;
+
+                    MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to add this medicine to the system?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (dialogResult == MessageBoxResult.Yes)
+                    {
+                        // Add medicine item to system.
+                        DataAccess.MedicationDA.AddMedication(medName, schedLevel, medDescription, Convert.ToInt32(costPrice), Convert.ToInt32(salePrice), Convert.ToInt32(quantityStock));
+                        // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
+                        //  System.Windows.MessageBox.Show("Successfully added a new medicine.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                    }
+                    else if (dialogResult == MessageBoxResult.No)
+                    {
+                        Grid_MedicationMainWindow.Visibility = Visibility.Visible;
+                    }
                 }
             }
 
@@ -194,9 +202,9 @@ namespace Pharmatech
                 if (dialogResult == MessageBoxResult.Yes)
                 {
                     // Add medicine item to system.
-                    DataAccess.MedicationDA.UpdateMedication(medID, medName, schedLevel, medDescription, costPrice, salePrice, quantityStock);
+                    DataAccess.MedicationDA.UpdateMedication(medID, medName, schedLevel, medDescription, Convert.ToInt32(costPrice), Convert.ToInt32(salePrice), Convert.ToInt32(quantityStock));
                     // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
-                    System.Windows.MessageBox.Show("Successfully updated medicine.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                   // System.Windows.MessageBox.Show("Successfully updated medicine.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 }
                 else if (dialogResult == MessageBoxResult.No)
                 {
@@ -319,8 +327,8 @@ namespace Pharmatech
                         textBox_MedicationID.Text = reader["medID"].ToString();
                         textBox_MedicationName.Text = reader["medName"].ToString();
                         comboBox_Schedule.Items.Add(reader["scheduleLevel"].ToString());
-                        textBox_CostPrice.Text = "R " + reader["costPrice"].ToString();
-                        textBox_SalePrice.Text = "R " + reader["salePrice"].ToString();
+                        textBox_CostPrice.Text = reader["costPrice"].ToString();
+                        textBox_SalePrice.Text = reader["salePrice"].ToString();
                         textBox_QuantityInStock.Text = reader["quantityInStock"].ToString();
                         textBox_QuantityInStock_Copy.Text = reader["Description"].ToString();
                         textBox_IsActive.Text = reader["isActive"].ToString();
@@ -333,6 +341,7 @@ namespace Pharmatech
 
                 if (textBox_IsActive.Text == "n")
                 {
+                   
                     labelMedicationIsActive.Content = "* Note: This item is currently removed and not in the pharmacy.";
                     labelMedicationIsActive.Visibility = Visibility.Visible;
                 }
@@ -384,7 +393,7 @@ namespace Pharmatech
                     // Soft delete/flag in-active medicine item in database.
                     DataAccess.MedicationDA.DeleteMedication(medName);
                     // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
-                    System.Windows.MessageBox.Show("Successfully deleted medicine item.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                   // System.Windows.MessageBox.Show("Successfully deleted medicine item.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
 
                     Grid_SelectMedication.Visibility = Visibility.Visible;
                 }

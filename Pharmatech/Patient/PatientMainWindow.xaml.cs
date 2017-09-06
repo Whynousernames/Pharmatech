@@ -226,7 +226,7 @@ namespace Pharmatech
 
             if (label_PatientWindowType.Content.ToString() == "Add Patient")
             {
-                Grid_PatientMain.Visibility = Visibility.Hidden;
+               // Grid_PatientMain.Visibility = Visibility.Hidden;
 
                 if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(surname) || string.IsNullOrEmpty(contactNo) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(address1))
                 {
@@ -241,7 +241,7 @@ namespace Pharmatech
                         // Add Patient to system.
                         DataAccess.PatientDA.AddPatient(id, firstName, surname, contactNo, email, address1, address2);
                         DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
-                        System.Windows.MessageBox.Show("Successfully added a new patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                      //  System.Windows.MessageBox.Show("Successfully added a new patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                     }
                     else if (dialogResult == MessageBoxResult.No)
                     {
@@ -262,7 +262,7 @@ namespace Pharmatech
                 {
                     // Delete Patient from system.
                         DataAccess.PatientDA.DeletePatient(id);
-                        System.Windows.MessageBox.Show("Successfully deleted patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);                   
+                     //   System.Windows.MessageBox.Show("Successfully deleted patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);                   
                 }
                 else if (dialogResult == MessageBoxResult.No)
                 {
@@ -278,7 +278,7 @@ namespace Pharmatech
                 {
                     // Update patient on system.
                     DataAccess.PatientDA.UpdatePatient(id, firstName, surname, contactNo, email, address1, address2);
-                    System.Windows.MessageBox.Show("Successfully updated patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                  //  System.Windows.MessageBox.Show("Successfully updated patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 }
                 else if (dialogResult == MessageBoxResult.No)
                 {

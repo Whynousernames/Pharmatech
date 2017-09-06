@@ -680,8 +680,13 @@ namespace Pharmatech
 
             if (password == repassword)
             {
-                // Add employee account to database
-                DataAccess.EmployeeDA.AddEmployee(firstName, surname, contactNo, email, address1, address2, username, password, empType);
+                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to add account [" + username + "] to the system?", "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (dialogResult == MessageBoxResult.Yes)
+                {
+                    // Add employee account to database
+                    DataAccess.EmployeeDA.AddEmployee(firstName, surname, contactNo, email, address1, address2, username, password, empType);
+                }
+
             }
 
             else

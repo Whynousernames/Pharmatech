@@ -22,7 +22,7 @@
             <TextBox x:Name="textBox_Username" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="18" Margin="115,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165"/>
         </Grid>
         <PasswordBox x:Name="passwordBox_password" Margin="216,195,137,0" VerticalAlignment="Top" Width="165"/>
-        <Button x:Name="button_login" Content="Login" HorizontalAlignment="Left" Margin="216,230,0,48" Width="164" FontSize="16" Cursor="Hand" Click="button_login_Click" FontFamily="Segoe UI Semibold">
+        <Button x:Name="button_login" Content="Login" HorizontalAlignment="Left" Margin="216,230,0,48" Width="164" FontSize="16" Cursor="Hand" Click="button_login_Click" FontFamily="Segoe UI Semibold" BorderBrush="Black">
 
         </Button>
         <Label x:Name="label_Copyright" Content="Copyright 2017 Total Healthcare Solutions" HorizontalAlignment="Left" Margin="318,291,0,0" VerticalAlignment="Top" FontSize="10"/>

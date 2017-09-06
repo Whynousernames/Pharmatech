@@ -69,7 +69,7 @@
                 <Button x:Name="button_Employee" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource EmployeeResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Employees" Click="button_Employee_Click"/>
                 <Button x:Name="button_Reports" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource ReportsResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Reports" Click="button_Reports_Click"/>
             </StackPanel>
-            <Label x:Name="label_WindowType" Content="Reporting" HorizontalAlignment="Center" Height="49" Margin="948,0,600,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="362" FontSize="24" FontWeight="Bold"/>
+            <Label x:Name="label_WindowType" Content="Reporting" HorizontalAlignment="Center" Height="49" Margin="948,0,600,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="362" FontSize="30" FontWeight="Bold"/>
             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1060" Margin="258,-1,0,0" Grid.RowSpan="3" Stroke="#FFF4F4F5" VerticalAlignment="Top" Width="4">
                 <Rectangle.Effect>
                     <BlurEffect KernelType="Box"/>
@@ -107,13 +107,13 @@
                 <Button x:Name="button_viewEmployee" Content="View Employee" HorizontalAlignment="Left" Height="30" Margin="0,58,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
                 <Button x:Name="button_removeEmployee" Content="Remove Employee" HorizontalAlignment="Left" Height="29" Margin="0,85,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
             </Grid>
-            <Button x:Name="button_saveToPDF" Content="Save to PDF" HorizontalAlignment="Left" Margin="1636,403,0,79" Width="201"   FontSize="24"   Grid.Row="2" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_saveToPDF_Click"  >
+            <Button x:Name="button_saveToPDF" Content="Save to PDF" HorizontalAlignment="Left" Margin="1636,403,0,79" Width="201"   FontSize="24"   Grid.Row="2" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_saveToPDF_Click"  BorderBrush="Black" BorderThickness="2">
 
             </Button>
-            <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1484,403,0,0" VerticalAlignment="Top" Width="147"   FontSize="24" Grid.Row="2" Click="button_cancel_Click" >
+            <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1484,403,0,0" VerticalAlignment="Top" Width="147"   FontSize="24" Grid.Row="2" Click="button_cancel_Click" BorderBrush="Black" BorderThickness="2">
 
             </Button>
-            <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="1331,403,0,0" VerticalAlignment="Top" Width="147"  FontSize="24" Grid.Row="2" >
+            <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="1331,403,0,0" VerticalAlignment="Top" Width="147"  FontSize="24" Grid.Row="2" BorderBrush="Black" BorderThickness="2">
 
             </Button>
             <Grid x:Name="Grid_ReportsMainWindow" HorizontalAlignment="Left" Height="870" Margin="399,54,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="1443">
@@ -126,10 +126,10 @@
                 <Label x:Name="label_SelectSaleType" Content="Sale Type:" HorizontalAlignment="Left" Height="42" Margin="34,300,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
                 <ComboBox x:Name="comboBox_selectSaleType" HorizontalAlignment="Left" Height="42" Margin="176,300,0,0" VerticalAlignment="Top" Width="207" FontSize="24" />
                 <DatePicker x:Name="datePicker_StartDate" HorizontalAlignment="Left" Height="58" Margin="176,381,0,0" VerticalAlignment="Top" Width="229" DisplayDateEnd="2030-12-30" RenderTransformOrigin="0.616,0.49" Foreground="#FF01213A" FontSize="24" SelectedDateFormat="Short"/>
-                <Button x:Name="button_filterByPatientID" Content="Patient ID" HorizontalAlignment="Center" Height="56" Margin="188,756,1048,0" VerticalAlignment="Top" Width="207" FontSize="20" Click="button_filterByPatientID_Click" FontWeight="Normal" >
+                <Button x:Name="button_filterByPatientID" Content="Patient ID" HorizontalAlignment="Center" Height="56" Margin="188,756,1048,0" VerticalAlignment="Top" Width="207" FontSize="20" Click="button_filterByPatientID_Click" FontWeight="Normal" BorderBrush="Black" BorderThickness="2">
 
                 </Button>
-                <Button x:Name="button_filterByMedicationName" Content="Medication Name" HorizontalAlignment="Left" Height="56" Margin="187,690,0,0"  VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="207" FontSize="20" Click="button_filterByMedicationName_Click" FontWeight="Normal" >
+                <Button x:Name="button_filterByMedicationName" Content="Medication Name" HorizontalAlignment="Left" Height="56" Margin="187,690,0,0"  VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="207" FontSize="20" Click="button_filterByMedicationName_Click" FontWeight="Normal" BorderBrush="Black" BorderThickness="2">
 
                 </Button>
                 <Label x:Name="label_SelectFilter" Content="Filter By:" HorizontalAlignment="Left" Height="42" Margin="54,697,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
@@ -137,7 +137,7 @@
                 <Label x:Name="label_EndDate" Content="End Date:" HorizontalAlignment="Left" Height="42" Margin="34,454,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
                 <DataGrid x:Name="dataGrid_Reports" HorizontalAlignment="Left" Height="652" Margin="483,208,-38,0" VerticalAlignment="Top" Width="998" GridLinesVisibility="All"  RowHeight="22" ColumnHeaderHeight="40" FontSize="14" FontFamily="Arial" Style="{StaticResource AzureDataGrid}"/>
                 <DatePicker x:Name="datePicker_EndDate" HorizontalAlignment="Left" Height="58" Margin="176,445,0,0" VerticalAlignment="Top" Width="229" DisplayDateEnd="2030-12-30" RenderTransformOrigin="0.616,0.49" Foreground="#FF01213A" FontSize="24"/>
-                <Button x:Name="button_GenerateReport" Content="Generate Report" HorizontalAlignment="Left" Margin="114,523,0,270" Width="242"  FontSize="20" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_GenerateReport_Click_1" Style="{StaticResource MetroButton}">
+                <Button x:Name="button_GenerateReport" Content="Generate Report" HorizontalAlignment="Left" Margin="114,523,0,270" Width="242"  FontSize="20" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_GenerateReport_Click_1" Style="{StaticResource MetroButton}" BorderBrush="Black" BorderThickness="2">
 
                 </Button>
                 <Label x:Name="label_params" Content="Enter parameters..." HorizontalAlignment="Left" Margin="32,226,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
@@ -152,10 +152,10 @@
                 </Grid.RowDefinitions>
                 <Label x:Name="label_MedicationName" Content="Please input medication name for search" HorizontalAlignment="Left" Height="62" Margin="0,34,-27,0" VerticalAlignment="Top" Width="681" FontSize="36" Grid.RowSpan="2"/>
                 <Label x:Name="label_MedicationNameSelect" Content="Medication Name:" HorizontalAlignment="Left" Height="42" Margin="21,53,0,0" VerticalAlignment="Top" Width="211" FontSize="24" Grid.Row="2"/>
-                <Button x:Name="button_nextSelectMedication" Content="Next" HorizontalAlignment="Left" Height="56" Margin="415,132,0,0" VerticalAlignment="Top" Width="147"   FontSize="24"  Grid.Row="2" Click="button_nextSelectMedication_Click_1"   >
+                <Button x:Name="button_nextSelectMedication" Content="Next" HorizontalAlignment="Left" Height="56" Margin="415,132,0,0" VerticalAlignment="Top" Width="147"   FontSize="24"  Grid.Row="2" Click="button_nextSelectMedication_Click_1" BorderBrush="Black" BorderThickness="2">
 
                 </Button>
-                <Button x:Name="button_cancelSelectPatient" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="206,132,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Row="2" >
+                <Button x:Name="button_cancelSelectPatient" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="206,132,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Row="2" BorderBrush="Black" BorderThickness="2">
 
                 </Button>
                 <ComboBox x:Name="comboBox_select_Item" HorizontalAlignment="Left" Height="40" Margin="237,59,0,0" VerticalAlignment="Top" Width="360" FontSize="24" Grid.Row="2" IsTextSearchEnabled="True" IsEditable="True"/>
@@ -169,10 +169,10 @@
                 <Label x:Name="label_PatientID" Content="Please input patient ID for search" HorizontalAlignment="Left" Height="62" Margin="0,34,-27,0" VerticalAlignment="Top" Width="681" FontSize="36" Grid.RowSpan="2"/>
                 <Label x:Name="label_PatientIDSelect" Content="Patient ID:" HorizontalAlignment="Left" Height="42" Margin="21,53,0,0" VerticalAlignment="Top" Width="211" FontSize="24" Grid.Row="2"/>
                 <TextBox x:Name="textBox_PatientIDSelect" HorizontalAlignment="Left" Height="38" Margin="168,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"  Grid.Row="2"/>
-                <Button x:Name="button_nextSelectPatientID" Content="Next" HorizontalAlignment="Left" Height="56" Margin="347,114,0,0" VerticalAlignment="Top" Width="147"  FontSize="24"  Grid.Row="2" Click="button_nextSelectPatientID_Click_1"    >
+                <Button x:Name="button_nextSelectPatientID" Content="Next" HorizontalAlignment="Left" Height="56" Margin="347,114,0,0" VerticalAlignment="Top" Width="147"  FontSize="24"  Grid.Row="2" Click="button_nextSelectPatientID_Click_1" BorderBrush="Black" BorderThickness="2">
 
                 </Button>
-                <Button x:Name="button_cancelSelectPatient1" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="138,114,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Row="2" >
+                <Button x:Name="button_cancelSelectPatient1" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="138,114,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Row="2" BorderBrush="Black" BorderThickness="2">
 
                 </Button>
             </Grid>
@@ -183,10 +183,10 @@
                     <RowDefinition Height="278*"/>
                 </Grid.RowDefinitions>
                 <Label x:Name="label_PrintPDF" Content="Would you like to view the PDF now?" HorizontalAlignment="Left" Height="123" Margin="107,19,-604,0" VerticalAlignment="Top" Width="1151" FontSize="26" Grid.RowSpan="2"/>
-                <Button x:Name="button_Yes" Content="Yes"  HorizontalAlignment="Left" Height="53" Margin="307,75,0,0" VerticalAlignment="Top" Width="151"  FontSize="24"  Grid.Row="2" Click="button_Yes_Click"    >
+                <Button x:Name="button_Yes" Content="Yes"  HorizontalAlignment="Left" Height="53" Margin="307,75,0,0" VerticalAlignment="Top" Width="151"  FontSize="24"  Grid.Row="2" Click="button_Yes_Click"  BorderBrush="Black" BorderThickness="2">
 
                 </Button>
-                <Button x:Name="button_No" Content="No" HorizontalAlignment="Left" Height="53" Margin="166,75,0,0" VerticalAlignment="Top" Width="118"  FontSize="24" Grid.Row="2" Click="button_No_Click" >
+                <Button x:Name="button_No" Content="No" HorizontalAlignment="Left" Height="53" Margin="166,75,0,0" VerticalAlignment="Top" Width="118"  FontSize="24" Grid.Row="2" Click="button_No_Click" BorderBrush="Black" BorderThickness="2" >
 
                 </Button>
                 <Label x:Name="label_PrintPDF_Copy" Content="Note: the PDF file will be saved to your desktop." HorizontalAlignment="Left" Height="52" Margin="77,58,0,0" VerticalAlignment="Top" Width="567" FontSize="26" Grid.RowSpan="2"/>

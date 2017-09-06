@@ -654,9 +654,9 @@ namespace Pharmatech
 
         private void button_EmpCreate_Click(object sender, RoutedEventArgs e)
         {
-            var username = textBox_EmpUsername.Text;
-            var password = passwordBox_EmpPassword.Password.ToString();
-            var repassword = passwordBox_EmpRePassword.Password.ToString();
+            string username = textBox_EmpUsername.Text;
+            string password = passwordBox_EmpPassword.Password.ToString();
+            string repassword = passwordBox_EmpRePassword.Password.ToString();
             string firstName = textBox_FirstName.Text;
             string surname = textBox_Surname.Text;
             string contactNo = textBox_ContactNumber.Text;
@@ -677,8 +677,12 @@ namespace Pharmatech
                 empType = 'A';
             }
 
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(surname) || string.IsNullOrEmpty(contactNo) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(address1) || string.IsNullOrEmpty(address2) || string.IsNullOrEmpty(password))
+            {
+                System.Windows.MessageBox.Show("Not all fields are completed.", "Alert!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+            }
 
-            if (password == repassword)
+            else if (password == repassword)
             {
                 MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to add account [" + username + "] to the system?", "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (dialogResult == MessageBoxResult.Yes)

@@ -85,6 +85,7 @@ namespace Pharmatech
             Grid_Report.Visibility = Visibility.Hidden;
             Grid_instruction.Visibility = Visibility.Hidden;
             button_AddStock.Visibility = Visibility.Hidden;
+            Grid_AddStock.Visibility = Visibility.Hidden;
         }
         
         private void button_newCashSale_Click(object sender, RoutedEventArgs e)

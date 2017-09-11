@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+using BusinessObject;
 
 namespace Pharmatech
 {
@@ -23,6 +26,8 @@ namespace Pharmatech
     {
         public double change;
         public DataTable dt;
+        static string connection = System.Configuration.ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
+        string conn = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
 
 
 
@@ -320,13 +325,55 @@ namespace Pharmatech
                         string patientID = label_displayID.Content.ToString();
                         StringBuilder strBuilder = new StringBuilder();
                         string patientName = label_displayName.Content.ToString();
+                        
 
 
 
                         foreach (DataRow row in dt.Rows)
                         {
                             strBuilder.Append(row["Medication name"].ToString() + " // ");
+                            int existingStock = 0;
 
+
+
+                            using (SqlConnection conn = new SqlConnection(connection))
+                            {
+                                try
+                                {
+                                    
+                                    
+                                    
+                                    SqlConnection con = new SqlConnection(connection);
+                                    using (SqlCommand cmd = con.CreateCommand())
+                                    {
+                                        cmd.CommandText = "UPDATE Medication SET quantityInStock = @quantity WHERE medName = @medName";
+
+                                        SqlCommand sqlCmd = new SqlCommand("SELECT quantityInStock FROM Medication WHERE medName = @medName", conn);
+                                        sqlCmd.Parameters.AddWithValue("@medName", row["Medication name"]);
+                                        conn.Open();
+                                        SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                                        while (sqlReader.Read())
+                                        {
+                                            existingStock = Convert.ToInt32(sqlReader["quantityInStock"]);
+
+                                        }
+
+                                        cmd.Parameters.AddWithValue("@quantity", (existingStock - Convert.ToInt32(row["Quantity"])));
+                                        cmd.Parameters.AddWithValue("@medName", row["Medication name"]);
+                                        con.Open();
+                                        cmd.ExecuteNonQuery();
+                                        sqlReader.Close();
+                                        con.Close();
+                                    }
+                                    
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("Medication not found", ex.ToString());
+                                }
+                            }
 
                         }
 

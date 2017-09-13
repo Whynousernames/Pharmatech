@@ -320,7 +320,9 @@ namespace Pharmatech
 
                         else
                         {
-                            MessageBox.Show("Patient does not have Medical Aid.", "Error.", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                            gridHidden_True();
+                            Grid_saleTypeSelect.Visibility = Visibility.Visible;
+                            button_medicalAidSaleSelect.IsEnabled = false;
                         }
 
                         

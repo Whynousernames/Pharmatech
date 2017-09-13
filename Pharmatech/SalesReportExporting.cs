@@ -27,7 +27,7 @@ namespace Pharmatech
             BaseFont bfntHead = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
             Font fntHead = new Font(bfntHead, 18, 1, BaseColor.BLACK);
             Paragraph prgHeading = new Paragraph();
-            prgHeading.Alignment = Element.ALIGN_LEFT;
+            prgHeading.Alignment = Element.ALIGN_CENTER;
 
             if (string.IsNullOrEmpty(saleType))
             {
@@ -45,7 +45,7 @@ namespace Pharmatech
             Paragraph prgAuthor = new Paragraph();
             BaseFont btnAuthor = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
             Font fntAuthor = new Font(btnAuthor, 10, 2, BaseColor.BLACK);
-            prgAuthor.Alignment = Element.ALIGN_LEFT;
+            prgAuthor.Alignment = Element.ALIGN_CENTER;
            
             prgAuthor.Add(new Chunk("Powered By PharmaTech" + "\n", fntAuthor));
 

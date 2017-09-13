@@ -36,7 +36,7 @@
             <Setter Property="Background" Value="{StaticResource HeaderBrush}" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="BorderBrush" Value="{StaticResource HeaderBorderBrush}" />
-            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderThickness" Value="1" />
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="MinWidth" Value="0" />
@@ -135,7 +135,7 @@
                 <Label x:Name="label_SelectFilter" Content="Filter By:" HorizontalAlignment="Left" Height="42" Margin="54,697,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
                 <Label x:Name="label_StartDate" Content="Start Date:" HorizontalAlignment="Left" Height="42" Margin="34,387,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
                 <Label x:Name="label_EndDate" Content="End Date:" HorizontalAlignment="Left" Height="42" Margin="34,454,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
-                <DataGrid x:Name="dataGrid_Reports" HorizontalAlignment="Left" Height="652" Margin="483,208,-38,0" VerticalAlignment="Top" Width="998" GridLinesVisibility="All"  RowHeight="22" ColumnHeaderHeight="40" FontSize="14" FontFamily="Arial" Style="{StaticResource AzureDataGrid}"/>
+                <DataGrid x:Name="dataGrid_Reports" ItemsSource="{Binding Sale}"  HorizontalAlignment="Left" Height="652" Margin="483,208,-38,0" VerticalAlignment="Top" Width="998" GridLinesVisibility="All"  RowHeight="22" ColumnHeaderHeight="40" FontSize="14" FontFamily="Arial" AutoGenerateColumns="true"/>
                 <DatePicker x:Name="datePicker_EndDate" HorizontalAlignment="Left" Height="58" Margin="176,445,0,0" VerticalAlignment="Top" Width="229" DisplayDateEnd="2030-12-30" RenderTransformOrigin="0.616,0.49" Foreground="#FF01213A" FontSize="24"/>
                 <Button x:Name="button_GenerateReport" Content="Generate Report" HorizontalAlignment="Left" Margin="114,523,0,270" Width="242"  FontSize="20" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_GenerateReport_Click_1" Style="{StaticResource MetroButton}" BorderBrush="Black" BorderThickness="2">
 

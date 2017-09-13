@@ -230,12 +230,9 @@ namespace Pharmatech
 
         private void button_LogOut_Click(object sender, RoutedEventArgs e)
         {
-            gridHidden_True();
-            MainMenuWindow mainmenuwindow = new MainMenuWindow();
-            mainmenuwindow.Visibility = Visibility.Hidden;
-            this.Close();
+            
             MainWindow mainwindow = new MainWindow();
-            mainwindow.Visibility = Visibility.Visible;
+            CloseAllWindows();
             mainwindow.ShowDialog();
             
         }
@@ -244,7 +241,7 @@ namespace Pharmatech
         {
             gridHidden_True();
             EmployeeMainWindow employeeMainWindow = new EmployeeMainWindow();
-            employeeMainWindow.ShowDialog();
+            employeeMainWindow.Show();
 
         }
 
@@ -261,6 +258,12 @@ namespace Pharmatech
         private void button_removeEmployee_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void CloseAllWindows()
+        {
+            for (int intCounter = App.Current.Windows.Count - 1; intCounter >= 0; intCounter--)
+                App.Current.Windows[intCounter].Hide();
         }
     }
 

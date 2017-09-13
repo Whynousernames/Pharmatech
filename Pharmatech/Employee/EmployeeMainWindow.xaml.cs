@@ -48,9 +48,10 @@ namespace Pharmatech
                 DataTable dt = new DataTable("Employees");
                 da.Fill(dt);
                 dataGrid_Employees.ItemsSource = dt.DefaultView;
-
+                con.Close();
 
             }
+            
 
 
 

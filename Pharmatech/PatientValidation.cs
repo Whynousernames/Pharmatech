@@ -162,7 +162,7 @@ namespace Pharmatech
                 {
                     case nameof(Id):
                         if (string.IsNullOrEmpty(Id))
-                            result = "ID number is required.";
+                            result = "ID number is mandatory.";
 
                         else if (InputValidation.validateIDNumber(Id) != true)
                             result = "Invalid ID number.";
@@ -170,21 +170,21 @@ namespace Pharmatech
 
                     case nameof(Fname):
                         if (string.IsNullOrEmpty(Fname))
-                            result = "First name is required.";
+                            result = "First name is mandatory.";
                         else if (Fname.Length < 2)
                             result = "Invalid name entered. Too short.";
                         break;
 
                     case nameof(Sname):
                         if (string.IsNullOrEmpty(Sname))
-                            result = "Surname is required.";
+                            result = "Surname is mandatory.";
                         else if (Sname.Length < 2)
                             result = "Invalid name entered. Too short.";
                         break;
 
                     case nameof(Email):
                         if (string.IsNullOrEmpty(Email))
-                            result = "Email address is required.";
+                            result = "Email address is mandatory.";
 
                         else if (InputValidation.emailIsValid(Email) != true)
                             result = "Invalid email address.";
@@ -192,31 +192,31 @@ namespace Pharmatech
 
                     case nameof(ContactNo):
                         if (string.IsNullOrEmpty(ContactNo))
-                            result = "Contact number is required.";
+                            result = "Contact number is mandatory.";
                         else if (ContactNo.Length != 10)
                             result = "Invalid contact number entered. Include area code.";
                         break;
 
                     case nameof(Address1):
                         if (string.IsNullOrEmpty(Address1))
-                            result = "Address is required.";
+                            result = "Address is mandatory.";
                         break;
 
                     case nameof(Address2):
                         if (string.IsNullOrEmpty(Address2))
-                            result = "Address is required.";
+                            result = "Address is mandatory.";
                         break;
 
                     case nameof(Suburb):
                         if (string.IsNullOrEmpty(Suburb))
-                            result = "Suburb is required.";
+                            result = "Suburb is mandatory.";
                         else if (Suburb.Length < 3)
                             result = "Invalid suburb entered. Too short.";
                         break;
 
                     case nameof(City):
                         if (string.IsNullOrEmpty(City))
-                            result = "City is required.";
+                            result = "City is mandatory.";
                         else if (City.Length < 3)
                             result = "Invalid city entered. Too short.";
                         break;

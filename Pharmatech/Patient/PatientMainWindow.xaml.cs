@@ -257,7 +257,8 @@ namespace Pharmatech
             if (label_PatientWindowType.Content.ToString() == "Remove Patient")
             {
 
-                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to delete this patient from the system?", "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to delete this patient, " + firstName + " " + surname + ",  from the system?", "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
                 if (dialogResult == MessageBoxResult.Yes)
                 {
                     // Delete Patient from system.
@@ -423,18 +424,25 @@ namespace Pharmatech
                         textBox_ContactNumber.Text = reader["contactNumber"].ToString();
                         textBox_AddressLine1.Text = reader["physicalAddress1"].ToString();
                         textBox_AddressLine2.Text = reader["physicalAddress2"].ToString();
+                        textBox_isActivePatient.Text = reader["isActive"].ToString();
 
                     }
                     reader.Close();
                     con.Close();
                 }
                 disableTextBoxes();
+
+                if (textBox_isActivePatient.Text == "n")
+                {
+                    label_isPatientActive.Content = "* Note: This patient is removed and is for viewing purposes only.";
+                    label_isPatientActive.Visibility = Visibility.Visible;
+                }
             }
 
 
             if(label_PatientWindowType.Content.ToString() == "Remove Patient")
             {
-                button_next.Width = 190;
+                button_next.Width = 220;
                 button_next.Content = "Remove Patient";
 
                 using (SqlConnection con = new SqlConnection(conn))

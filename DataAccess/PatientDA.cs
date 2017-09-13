@@ -42,7 +42,7 @@ namespace DataAccess
             SqlConnection con = new SqlConnection(connection);
             using (SqlCommand cmd = con.CreateCommand())
             {
-                cmd.CommandText = "UPDATE Patient SET isActive = n WHERE patientIDNumber = @id";
+                cmd.CommandText = "UPDATE Patient SET isActive = 'n' WHERE patientIDNumber = @id";
                 cmd.Parameters.Add("@id", SqlDbType.NVarChar).Value = id;
                 con.Open();
                 cmd.ExecuteNonQuery();

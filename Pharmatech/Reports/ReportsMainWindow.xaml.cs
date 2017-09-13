@@ -19,6 +19,8 @@ using iTextSharp;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Globalization;
+using BusinessObject;
+using System.Collections.ObjectModel;
 
 namespace Pharmatech
 {
@@ -32,7 +34,9 @@ namespace Pharmatech
         StringBuilder sqlBuilder = new StringBuilder(500);
         List<SqlParameter> cParameters = new List<SqlParameter>();
 
-         // <add name = "connstring" providerName="System.Data.sqlclient" connectionString="Data Source = .; Initial Catalog = PharmaTech; User ID = THC; Password = password; Integrated Security = False"/>
+        ObservableCollection<Sale> saleCollection = new ObservableCollection<Sale>();
+
+        // <add name = "connstring" providerName="System.Data.sqlclient" connectionString="Data Source = .; Initial Catalog = PharmaTech; User ID = THC; Password = password; Integrated Security = False"/>
         // <add name = "connstring" providerName="System.Data.sqlclient" connectionString="Data Source = (local); database = PharmaTech; Integrated Security = True"/>
 
 
@@ -83,16 +87,16 @@ namespace Pharmatech
             //When the user clicks "OK" on the messagebox the messagebox and the arrows are closed.
             if (e.Key == Key.F1)
             {
-                    image_arrow.Visibility = Visibility.Visible;
-                    image_arrow_Copy.Visibility = Visibility.Visible;
-                    image_arrow_Copy1.Visibility = Visibility.Visible;
-                    image_arrow_Copy2.Visibility = Visibility.Visible;
-                    MessageBoxResult result = MessageBox.Show("Select filters to refine report display." + Environment.NewLine + "Click 'Generate Report Button' to apply filters."
-                     + Environment.NewLine + "Results are displayed in the grid." + Environment.NewLine + "Click 'Save to PDF Button' to save results to PDF", "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
-                    if (result == MessageBoxResult.OK)
-                    {
-                        arrowHidden_True();
-                    }
+                image_arrow.Visibility = Visibility.Visible;
+                image_arrow_Copy.Visibility = Visibility.Visible;
+                image_arrow_Copy1.Visibility = Visibility.Visible;
+                image_arrow_Copy2.Visibility = Visibility.Visible;
+                MessageBoxResult result = MessageBox.Show("Select filters to refine report display." + Environment.NewLine + "Click 'Generate Report Button' to apply filters."
+                 + Environment.NewLine + "Results are displayed in the grid." + Environment.NewLine + "Click 'Save to PDF Button' to save results to PDF", "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
+                if (result == MessageBoxResult.OK)
+                {
+                    arrowHidden_True();
+                }
             }
         }
 
@@ -105,16 +109,17 @@ namespace Pharmatech
         }
 
 
-        private void FillSalesGrid( )
+        private void FillSalesGrid()
         {
-                          
+            Sale saleReport = new Sale();
+
             using (SqlConnection con = new SqlConnection(conn))
-            {              
-                sqlBuilder.Append("SELECT FORMAT(date, 'd', 'en-gb') AS Date, saleID AS [Invoice ID], Patient.firstName + ' ' + Patient.lastName AS [Name], description AS Description,  saleType AS [Type of Sale], FORMAT(saleAmount, 'C', 'en-ZA') AS [Amount] FROM Sale LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber WHERE 1=1");
+            {
+                sqlBuilder.Append("SELECT FORMAT(date, 'd', 'en-gb') AS Date, saleID AS [Invoice ID], Patient.firstName + ' ' + Patient.lastName AS [Name], description AS Description,  saleType AS [Sale Type], saleAmount AS [Amount (R)] FROM Sale LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber WHERE 1=1");
 
                 if (!string.IsNullOrEmpty(comboBox_selectSaleType.Text))
                 {
-                    
+
                     try
                     {
                         sqlBuilder.Append(" AND saleType = @saleType");
@@ -126,29 +131,29 @@ namespace Pharmatech
                         MessageBox.Show("no results");
                     }
 
-                if (comboBox_selectSaleType.Text == "All Sales")
+                    if (comboBox_selectSaleType.Text == "All Sales")
                     {
-                        sqlBuilder.Remove(sqlBuilder.Length-25, 25);
-                       
-                    
+                        sqlBuilder.Remove(sqlBuilder.Length - 25, 25);
+
+
                     }
                 }
 
-                if(!string.IsNullOrEmpty(datePicker_StartDate.Text) || !string.IsNullOrEmpty(datePicker_EndDate.Text))
+                if (!string.IsNullOrEmpty(datePicker_StartDate.Text) || !string.IsNullOrEmpty(datePicker_EndDate.Text))
                 {
                     //nested if statement to check if the datePickers are empty
                     //this allows all ranges of results to be queried from the report
 
-                    if(!string.IsNullOrEmpty(datePicker_StartDate.Text) && string.IsNullOrEmpty(datePicker_EndDate.Text))
+                    if (!string.IsNullOrEmpty(datePicker_StartDate.Text) && string.IsNullOrEmpty(datePicker_EndDate.Text))
                     {
                         sqlBuilder.Append(" AND date > @startDate");
                         cParameters.Add(new SqlParameter("@startDate", datePicker_StartDate.Text));
-                        
+
                     }
                     else if (string.IsNullOrEmpty(datePicker_StartDate.Text) && !string.IsNullOrEmpty(datePicker_EndDate.Text))
                     {
                         sqlBuilder.Append(" AND date < @endDate");
-                        
+
                         cParameters.Add(new SqlParameter("@endDate", datePicker_EndDate.Text));
                     }
                     else
@@ -158,7 +163,7 @@ namespace Pharmatech
                         cParameters.Add(new SqlParameter("@endDate", datePicker_EndDate.Text));
                     }
                 }
-                if(!string.IsNullOrEmpty(comboBox_select_Item.Text))
+                if (!string.IsNullOrEmpty(comboBox_select_Item.Text))
                 {
                     sqlBuilder.Append(" AND Description LIKE @medName + '%'");
                     cParameters.Add(new SqlParameter("@medName", comboBox_select_Item.SelectedItem.ToString()));
@@ -170,7 +175,7 @@ namespace Pharmatech
                 }
 
                 sqlBuilder.Append(" ORDER BY Sale.date");
-                
+
                 SqlCommand cmd = new SqlCommand(sqlBuilder.ToString(), con);
                 if (cParameters.Count != 0)
                 {
@@ -180,12 +185,15 @@ namespace Pharmatech
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 dt = new DataTable("Sale");
                 da.Fill(dt);
-               // totalSales(dt);
+                // totalSales(dt);
                 sqlBuilder.Clear();
                 cParameters.Clear();
                 dataGrid_Reports.ItemsSource = dt.DefaultView;
-                
-            }                                                   
+
+        }
+    
+            
+                                                              
         }
 
 

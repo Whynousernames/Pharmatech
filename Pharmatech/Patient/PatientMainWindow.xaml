@@ -29,13 +29,13 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
         <Style TargetType="ToolTip">
             <Setter Property="FontSize" Value="18"></Setter>
             <Setter Property="Background" Value="#E2382F"></Setter>
             <Setter Property="Foreground" Value="Black"></Setter>
         </Style>
-        
+
 
     </Window.Resources>
     <Viewbox>
@@ -128,8 +128,8 @@
 
 
                 <TextBox x:Name="textBox_IDNumber" HorizontalAlignment="Left" Height="38" Margin="366,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Text="{Binding Id, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.RowSpan="2">
-                   
-                    
+
+
                 </TextBox>
 
                 <TextBox x:Name="textBox_FirstName" HorizontalAlignment="Left" Height="38" Margin="364,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Text="{Binding Fname, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" TextChanged="textBox_FirstName_TextChanged"/>
@@ -160,8 +160,10 @@
                 <Button x:Name="button_Add" Content="Add" HorizontalAlignment="Left" Height="48" Margin="1280,129,0,0" VerticalAlignment="Top" Width="151"   FontSize="24" Click="button_Add_Click" Grid.Row="1" BorderBrush="Black" BorderThickness="2" >
 
                 </Button>
-                <DataGrid x:Name="dataGrid_Allergies" HorizontalAlignment="Left" Height="338" Margin="864,254,0,0" VerticalAlignment="Top" Width="624" GridLinesVisibility="Horizontal"  Grid.Row="1"/>
+                <DataGrid x:Name="dataGrid_Allergies" HorizontalAlignment="Left" Height="338" Margin="864,254,0,0" VerticalAlignment="Top" Width="624" GridLinesVisibility="All"  Grid.Row="1" FontSize="18"/>
                 <Label x:Name="label_MandatoryFields" Content="Indicates mandatory fields" HorizontalAlignment="Left" Margin="128,91,0,0" VerticalAlignment="Top" FontSize="22" Visibility="Hidden"/>
+                <TextBox x:Name="textBox_isActivePatient" HorizontalAlignment="Left" Height="23" Margin="340,512,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
+                <Label x:Name="label_isPatientActive" Content="" HorizontalAlignment="Left" Height="40" Margin="162,80,0,0" VerticalAlignment="Top" Width="554" Background="#E2382F" FontSize="18" FontWeight="Bold" Visibility="Hidden"/>
             </Grid>
             <Grid x:Name="Grid_YesNoSelect" HorizontalAlignment="Left" Height="417" Margin="758,197,0,0" Grid.Row="1" VerticalAlignment="Top" Width="655" Background="#FF01213A" Grid.RowSpan="2" Visibility="Hidden">
                 <Label x:Name="label1" Content="Add a medical aid for Dean" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="58" Margin="0,10,0,0" VerticalAlignment="Top" Width="655" FontSize="24" Foreground="#FF31A5FC"/>

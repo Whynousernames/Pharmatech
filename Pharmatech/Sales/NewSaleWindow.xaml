@@ -16,7 +16,9 @@
         <ImageBrush x:Key="PatientResource" ImageSource="pack://siteoforigin:,,,/images/Patient_Icon.JPG"></ImageBrush>
         <ImageBrush x:Key="MedicationResource" ImageSource="pack://siteoforigin:,,,/images/Medication_Icon.JPG"></ImageBrush>
         <ImageBrush x:Key="PrescriptionResource" ImageSource="pack://siteoforigin:,,,/images/Prescription_Icon.JPG"></ImageBrush>
+
         <ImageBrush x:Key="ReportsResource" ImageSource="pack://siteoforigin:,,,/images/Report_Icon.JPG"></ImageBrush>
+        
 
     </Window.Resources>
     <Viewbox HorizontalAlignment="Left" Height="1080" Margin="10,0,-6,-29" Stretch="Fill" VerticalAlignment="Top" Width="1910" >
@@ -108,7 +110,7 @@
                 <Label x:Name="label_PatientID" Content="Patient ID:" HorizontalAlignment="Left" Height="42" Margin="16,105,0,0" VerticalAlignment="Top" Width="184" FontSize="24" Grid.ColumnSpan="2"/>
                 <Label x:Name="label_DisplayPatientName" Content="Nicholas Mott" HorizontalAlignment="Left" Height="42" Margin="155,50,0,0" VerticalAlignment="Top" Width="184" FontSize="24"  Grid.Column="1"/>
                 <Label x:Name="label_DisplayPatientID" Content="9109125356089" HorizontalAlignment="Left" Height="42" Margin="151,105,0,0" VerticalAlignment="Top" Width="184" FontSize="24"  Grid.Column="1"/>
-                <ComboBox x:Name="comboBox_Quantity" HorizontalAlignment="Left" Height="42" Margin="627,191,0,0" VerticalAlignment="Top" Width="56" FontSize="24"  BorderBrush="{x:Null}" Grid.Column="1"/>
+                <ComboBox x:Name="comboBox_Quantity" HorizontalAlignment="Left" Height="42" Margin="627,187,0,0" VerticalAlignment="Top" Width="56" FontSize="24"  BorderBrush="{x:Null}" Grid.Column="1"/>
                 <Label x:Name="label_Quantity" Content="Qty:" HorizontalAlignment="Left" Height="42" Margin="556,190,0,0" VerticalAlignment="Top" Width="51" FontSize="24"  Grid.Column="1"/>
                 <Label x:Name="label_itemInstructions" Content="Medication Instructions:" HorizontalAlignment="Left" Height="42" Margin="710,158,0,0" VerticalAlignment="Top" Width="270" FontSize="24"  Grid.Column="1"/>
                 <Button x:Name="button_AddInstruction" Content="Add Instruction" HorizontalAlignment="Left" Height="56" Margin="997,244,0,0" VerticalAlignment="Top" Width="308"  FontSize="24" Click="button_AddInstruction_Click" Grid.Column="1" >

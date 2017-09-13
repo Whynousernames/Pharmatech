@@ -324,58 +324,97 @@ namespace Pharmatech
                         string empID = "4200";
                         string patientID = label_displayID.Content.ToString();
                         StringBuilder strBuilder = new StringBuilder();
-                        string patientName = label_displayName.Content.ToString();
+                        string patientName = label_displayName.Content.ToString();     
                         
-
-
-
-                        foreach (DataRow row in dt.Rows)
+                        if (label_displaySaleType.Content.ToString() =="Medical Aid")
                         {
-                            strBuilder.Append(row["Medication name"].ToString() + " // ");
-                            int existingStock = 0;
-
-
-
-                            using (SqlConnection conn = new SqlConnection(connection))
+                            using (SqlConnection conn2 = new SqlConnection(connection))
                             {
-                                try
+                                conn2.Open();
+                                using (SqlCommand cmd2 = conn2.CreateCommand())
                                 {
-                                    
-                                    
-                                    
-                                    SqlConnection con = new SqlConnection(connection);
-                                    using (SqlCommand cmd = con.CreateCommand())
+                                    int amountRemaining = 0;
+                                    try
                                     {
-                                        cmd.CommandText = "UPDATE Medication SET quantityInStock = @quantity WHERE medName = @medName";
-
-                                        SqlCommand sqlCmd = new SqlCommand("SELECT quantityInStock FROM Medication WHERE medName = @medName", conn);
-                                        sqlCmd.Parameters.AddWithValue("@medName", row["Medication name"]);
-                                        conn.Open();
-                                        SqlDataReader sqlReader = sqlCmd.ExecuteReader();
-
-                                        while (sqlReader.Read())
+                                        SqlCommand sqlCmd2 = new SqlCommand("SELECT amountRemaining FROM Patient_MedicalAid_Account WHERE patientIDNumber = @patientIDNumber", conn2);
+                                        sqlCmd2.Parameters.AddWithValue("@patientIDNumber", label_displayID.Content.ToString());
+                                        
+                                        SqlDataReader sqlReader2 = sqlCmd2.ExecuteReader();
+                                        while (sqlReader2.Read())
                                         {
-                                            existingStock = Convert.ToInt32(sqlReader["quantityInStock"]);
+                                            amountRemaining = Convert.ToInt32(sqlReader2["amountRemaining"]);
+                                           
+                                        }
+
+
+                                        cmd2.CommandText = "UPDATE Patient_MedicalAid_Account SET amountRemaining = @amountRemaining WHERE patientIDNumber = @patientIDNumber";
+                                        cmd2.Parameters.AddWithValue("@amountRemaining", amountRemaining - Convert.ToInt32(textBox_Total.Text));
+                                        cmd2.Parameters.AddWithValue("@patientIDNumber", label_displayID.Content.ToString());
+                                        conn2.Close();
+                                        conn2.Open();
+                                        cmd2.ExecuteNonQuery();
+                                        sqlReader2.Close();
+                                        conn2.Close();
+
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show(ex.ToString(), ex.ToString());
+                                    }
+                                }
+                            }
+                        }               
+
+
+                            foreach (DataRow row in dt.Rows)
+                            {
+                                strBuilder.Append(row["Medication name"].ToString() + " // ");
+                                int existingStock = 0;
+
+
+
+                                using (SqlConnection conn = new SqlConnection(connection))
+                                {
+                                    try
+                                    {
+
+
+
+                                        SqlConnection con = new SqlConnection(connection);
+                                        using (SqlCommand cmd = con.CreateCommand())
+                                        {
+                                            cmd.CommandText = "UPDATE Medication SET quantityInStock = @quantity WHERE medName = @medName";
+
+                                            SqlCommand sqlCmd = new SqlCommand("SELECT quantityInStock FROM Medication WHERE medName = @medName", conn);
+                                            sqlCmd.Parameters.AddWithValue("@medName", row["Medication name"]);
+                                            conn.Open();
+                                            SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                                            while (sqlReader.Read())
+                                            {
+                                                existingStock = Convert.ToInt32(sqlReader["quantityInStock"]);
+
+                                            }
+
+                                            cmd.Parameters.AddWithValue("@quantity", (existingStock - Convert.ToInt32(row["Quantity"])));
+                                            cmd.Parameters.AddWithValue("@medName", row["Medication name"]);
+                                            con.Open();
+                                            cmd.ExecuteNonQuery();
+                                            sqlReader.Close();
+                                            con.Close();
+
 
                                         }
 
-                                        cmd.Parameters.AddWithValue("@quantity", (existingStock - Convert.ToInt32(row["Quantity"])));
-                                        cmd.Parameters.AddWithValue("@medName", row["Medication name"]);
-                                        con.Open();
-                                        cmd.ExecuteNonQuery();
-                                        sqlReader.Close();
-                                        con.Close();
+
                                     }
-                                    
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show("Medication not found", ex.ToString());
+                                    }
+                                }
 
-                                }
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show("Medication not found", ex.ToString());
-                                }
                             }
-
-                        }
 
                         descrip = strBuilder.ToString();
                         string date = DateTime.Now.ToString("MM/dd/yyyy");
@@ -384,6 +423,12 @@ namespace Pharmatech
                         if (label_SaleType.Content.ToString() == "Cash Sale")
                         {
                             saleType = "Cash";
+                        }
+                        else if (label_displaySaleType.Content.ToString() == "Medical Aid")
+                        {
+                            saleType = "Medical Aid";
+
+                            
                         }
                         else
                         {

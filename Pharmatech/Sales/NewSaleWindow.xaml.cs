@@ -245,18 +245,95 @@ namespace Pharmatech
             gridHidden_True();
             Grid_Sale.Visibility = Visibility.Visible;
             SaleFinalWindow saleFinalWindow = new SaleFinalWindow();
-            saleFinalWindow.button_CashSale.Visibility = Visibility.Hidden;
+            saleFinalWindow.dataGrid_saleItems.ItemsSource = dt.DefaultView;
+            saleFinalWindow.label_displayName.Content = this.label_DisplayPatientName.Content.ToString();
+            saleFinalWindow.label_displayID.Content = this.label_DisplayPatientID.Content.ToString();
             saleFinalWindow.button_CardSale.Visibility = Visibility.Hidden;
-            saleFinalWindow.ShowDialog();
-            this.Close();
+            saleFinalWindow.button_CashSale.Visibility = Visibility.Hidden;
+
+            for (int i = 0; i < dataGrid_saleItems.Items.Count - 1; i++)
+            {
+                sum += (int.Parse((dataGrid_saleItems.Columns[5].GetCellContent(dataGrid_saleItems.Items[i]) as TextBlock).Text));
+            }
+
+            saleFinalWindow.textBox_Total.Text = sum.ToString();
+
+            double vatDisplay;
+            double subTotal = 0;
+            vatDisplay = Math.Round(((sum / 1.14) - sum) * -1, 2);
+            subTotal = sum - vatDisplay;
+            saleFinalWindow.textBox_SubTotal.Text = subTotal.ToString();
+            saleFinalWindow.textBox_VatDisplay.Text = vatDisplay.ToString();
+            saleFinalWindow.label_displaySaleType.Content = "Medical Aid";
+
+            sum = 0;
+            saleFinalWindow.dt = this.dt;
+            saleFinalWindow.Show();
+            this.Hide();
         }
 
         private void button_next_Click(object sender, RoutedEventArgs e)
         {
-            if(dataGrid_saleItems.HasItems)
+            if (dataGrid_saleItems.HasItems)
             {
                 gridHidden_True();
                 Grid_saleTypeSelect.Visibility = Visibility.Visible;
+
+                for (int i = 0; i < dataGrid_saleItems.Items.Count - 1; i++)
+                {
+                    sum += (int.Parse((dataGrid_saleItems.Columns[5].GetCellContent(dataGrid_saleItems.Items[i]) as TextBlock).Text));
+                }
+                using (SqlConnection conn2 = new SqlConnection(connection))
+                {
+                    try
+                    {
+                        SqlCommand sqlCmd2 = new SqlCommand("SELECT amountRemaining FROM Patient_MedicalAid_Account WHERE patientIDNumber = @patientIDNumber", conn2);
+                        sqlCmd2.Parameters.AddWithValue("@patientIDNumber", label_DisplayPatientID.Content.ToString());
+                        conn2.Open();
+                        SqlDataReader sqlReader2 = sqlCmd2.ExecuteReader();
+                        if (sqlReader2.HasRows)
+                        {
+                            int amountRemaining = 0;
+                            while (sqlReader2.Read())
+                            {
+                                amountRemaining = Convert.ToInt32(sqlReader2["amountRemaining"]);
+
+                            }
+
+                            if (amountRemaining < sum)
+                            {
+                                gridHidden_True();
+                                Grid_saleTypeSelect.Visibility = Visibility.Visible;
+                                button_medicalAidSaleSelect.IsEnabled = false;
+                                MessageBox.Show("Patient does not have enough Medical Aid funds, proceed with cash sale.", "Error.", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+                            }
+                            else
+                            {
+                                gridHidden_True();
+                                Grid_saleTypeSelect.Visibility = Visibility.Visible;
+                            }
+                            sqlReader2.Close();
+                            conn2.Close();
+                            sum = 0;
+                        }
+
+                        else
+                        {
+                            MessageBox.Show("Patient does not have Medical Aid.", "Error.", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        }
+
+                        
+                    }
+
+                    catch
+                    {
+                        MessageBox.Show("Database error", "Error.", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+                    }
+                    
+
+                }
             }
             else
             {

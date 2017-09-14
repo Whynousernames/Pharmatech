@@ -165,33 +165,37 @@ namespace Pharmatech
             gridHidden_True();
             string medID = textBox_MedicationID.Text;
             string medName = textBox_MedicationName.Text;
-            string schedLevel = comboBox_Schedule.SelectedItem.ToString();
-            int costPrice = Convert.ToInt32(textBox_CostPrice.Text);
-            int quantityStock = Convert.ToInt32(textBox_QuantityInStock.Text);
+            string schedLevel = comboBox_Schedule.Text;
+            string costPrice = textBox_CostPrice.Text;
+            string quantityStock = textBox_QuantityInStock.Text;
             // int markUp = Convert.ToInt32(textBox_Markup.Text);
-            int salePrice = Convert.ToInt32(textBox_SalePrice.Text);
-            
-            
-            
-
-            
+            string salePrice = textBox_SalePrice.Text;
             string medDescription = textBox_QuantityInStock_Copy.Text;
 
 
 
             if (label_MedicationWindowType.Content.ToString() == "Add Medication")
             {
-                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to add this medicine to the system?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                if (dialogResult == MessageBoxResult.Yes)
+                if (string.IsNullOrEmpty(medName) || string.IsNullOrEmpty(schedLevel) || string.IsNullOrEmpty(costPrice) || string.IsNullOrEmpty(salePrice) || string.IsNullOrEmpty(quantityStock) || string.IsNullOrEmpty(medDescription))
                 {
-                    // Add medicine item to system.
-                    DataAccess.MedicationDA.AddMedication(medName, schedLevel, medDescription, costPrice, salePrice, quantityStock);
-                   // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
-                    System.Windows.MessageBox.Show("Successfully added a new medicine.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-                }
-                else if (dialogResult == MessageBoxResult.No)
-                {
+                    System.Windows.MessageBox.Show("Not all fields are completed.", "Alert!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                     Grid_MedicationMainWindow.Visibility = Visibility.Visible;
+                }
+                else
+                {
+
+                    MessageBoxResult dialogResult = System.Windows.MessageBox.Show("Are you sure you would like to add this medicine to the system?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (dialogResult == MessageBoxResult.Yes)
+                    {
+                        // Add medicine item to system.
+                        DataAccess.MedicationDA.AddMedication(medName, schedLevel, medDescription, Convert.ToInt32(costPrice), Convert.ToInt32(salePrice), Convert.ToInt32(quantityStock));
+                        // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
+                        System.Windows.MessageBox.Show("Successfully added a new medicine.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                    }
+                    else if (dialogResult == MessageBoxResult.No)
+                    {
+                        Grid_MedicationMainWindow.Visibility = Visibility.Visible;
+                    }
                 }
             }
 
@@ -201,7 +205,7 @@ namespace Pharmatech
                 if (dialogResult == MessageBoxResult.Yes)
                 {
                     // Add medicine item to system.
-                    DataAccess.MedicationDA.UpdateMedication(medID, medName, schedLevel, medDescription, costPrice, salePrice, quantityStock);
+                    DataAccess.MedicationDA.AddMedication(medName, schedLevel, medDescription, Convert.ToInt32(costPrice), Convert.ToInt32(salePrice), Convert.ToInt32(quantityStock));
                     // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
                     System.Windows.MessageBox.Show("Successfully updated medicine.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 }
@@ -458,6 +462,66 @@ namespace Pharmatech
         {
             Grid_AddStock.Visibility = Visibility.Visible;
             Grid_MedicationMainWindow.Visibility = Visibility.Hidden;
+        }
+
+        private void textBox_QuantityInStock_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            System.Windows.Controls.TextBox textBox = sender as System.Windows.Controls.TextBox;
+            Int32 selectionStart = textBox.SelectionStart;
+            Int32 selectionLength = textBox.SelectionLength;
+            String newText = String.Empty;
+            int count = 0;
+            foreach (Char c in textBox.Text.ToCharArray())
+            {
+                if (Char.IsDigit(c) || Char.IsControl(c) || (c == '.' && count == 0))
+                {
+                    newText += c;
+                    if (c == '.')
+                        count += 1;
+                }
+            }
+            textBox.Text = newText;
+            textBox.SelectionStart = selectionStart <= textBox.Text.Length ? selectionStart : textBox.Text.Length;
+        }
+
+        private void textBox_CostPrice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            System.Windows.Controls.TextBox textBox = sender as System.Windows.Controls.TextBox;
+            Int32 selectionStart = textBox.SelectionStart;
+            Int32 selectionLength = textBox.SelectionLength;
+            String newText = String.Empty;
+            int count = 0;
+            foreach (Char c in textBox.Text.ToCharArray())
+            {
+                if (Char.IsDigit(c) || Char.IsControl(c) || (c == '.' && count == 0))
+                {
+                    newText += c;
+                    if (c == '.')
+                        count += 1;
+                }
+            }
+            textBox.Text = newText;
+            textBox.SelectionStart = selectionStart <= textBox.Text.Length ? selectionStart : textBox.Text.Length;
+        }
+
+        private void textBox_SalePrice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            System.Windows.Controls.TextBox textBox = sender as System.Windows.Controls.TextBox;
+            Int32 selectionStart = textBox.SelectionStart;
+            Int32 selectionLength = textBox.SelectionLength;
+            String newText = String.Empty;
+            int count = 0;
+            foreach (Char c in textBox.Text.ToCharArray())
+            {
+                if (Char.IsDigit(c) || Char.IsControl(c) || (c == '.' && count == 0))
+                {
+                    newText += c;
+                    if (c == '.')
+                        count += 1;
+                }
+            }
+            textBox.Text = newText;
+            textBox.SelectionStart = selectionStart <= textBox.Text.Length ? selectionStart : textBox.Text.Length;
         }
     }
 

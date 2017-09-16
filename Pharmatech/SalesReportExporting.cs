@@ -52,12 +52,12 @@ namespace Pharmatech
             if (string.IsNullOrEmpty(endDate))
             {
 
-                prgAuthor.Add(new Chunk("\n" + "From: " + startDate + " To: 0" + DateTime.Now.ToShortDateString() + "\n", fntAuthor));
+                prgAuthor.Add(new Chunk("\n" + "From: " + startDate + " To: " + DateTime.Now.ToShortDateString() + "\n", fntAuthor));
             }
 
             else
             {
-                prgAuthor.Add(new Chunk("\n" + "From: " + startDate + " To: 0" + endDate + "\n", fntAuthor));
+                prgAuthor.Add(new Chunk("\n" + "From: " + startDate + " To: " + endDate + "\n", fntAuthor));
             }
 
             if (!string.IsNullOrEmpty(patientid))
@@ -148,7 +148,7 @@ namespace Pharmatech
             Font fntAuthor = new Font(btnAuthor, 10, 2, BaseColor.BLACK);
             prgAuthor.Alignment = Element.ALIGN_CENTER;
             prgAuthor.Add(new Chunk("Powered By PharmaTech", fntAuthor));
-            prgAuthor.Add(new Chunk("\nDate Created: " + DateTime.Now.ToShortDateString(), fntAuthor));
+            prgAuthor.Add(new Chunk("\nDate Issued: " + DateTime.Now.ToShortDateString(), fntAuthor));
             document.Add(prgAuthor);
 
             //Add a line seperation
@@ -177,8 +177,9 @@ namespace Pharmatech
             for (int i = 0; i < dtblTable.Columns.Count; i++)
             {
                 PdfPCell cell = new PdfPCell();
-                cell.HorizontalAlignment = Element.ALIGN_CENTER;
-                cell.VerticalAlignment = Element.ALIGN_CENTER;
+
+                cell.HorizontalAlignment = 1;
+                //cell.VerticalAlignment = Element.ALIGN_CENTER;
                 cell.BackgroundColor = BaseColor.LIGHT_GRAY;
                 cell.AddElement(new Chunk(dtblTable.Columns[i].ColumnName, fntColumnHeader));
                 table.AddCell(cell);
@@ -194,8 +195,13 @@ namespace Pharmatech
 
             document.Add(table);
 
+            //Add another space and a linebreak
+            document.Add(new Chunk("\n", fntHead));
+            Paragraph linebreak = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(0.0F, 100.0F, BaseColor.BLACK, Element.ALIGN_LEFT, 1)));
+            document.Add(linebreak);
+
             Paragraph total = new Paragraph();
-            total.Alignment = Element.ALIGN_CENTER;
+            total.Alignment = Element.ALIGN_RIGHT;
             total.Add(new Chunk("Sub-Total: R" +  subTotal + "\n", fntAuthor));
             total.Add(new Chunk("VAT Amount: R " + vatAmount + "\n", fntAuthor));
             total.Add(new Chunk("TOTAL: R " + salePrice, fntAuthor));

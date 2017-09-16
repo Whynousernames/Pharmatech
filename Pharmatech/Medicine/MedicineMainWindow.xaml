@@ -78,7 +78,7 @@
                 </Rectangle.Effect>
             </Rectangle>
 
-            <Rectangle HorizontalAlignment="Left" Height="821" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="681" Margin="31,3,0,0">
+            <Rectangle HorizontalAlignment="Left" Height="887" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="681" Margin="31,3,0,0">
                 <Rectangle.Effect>
                     <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
                 </Rectangle.Effect>
@@ -93,9 +93,9 @@
             <Label x:Name="label_QuantityInStock" Content="Quantity In Stock:" HorizontalAlignment="Left" Height="42" Margin="47,554,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
             <TextBox x:Name="textBox_MedicationID" HorizontalAlignment="Left" Height="38" Margin="317,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Visibility="Hidden"/>
             <TextBox x:Name="textBox_MedicationName" HorizontalAlignment="Left" Height="38" Margin="317,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
-            <TextBox x:Name="textBox_CostPrice" HorizontalAlignment="Left" Height="38" Margin="317,391,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
-            <TextBox x:Name="textBox_SalePrice" HorizontalAlignment="Left" Height="38" Margin="317,472,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
-            <TextBox x:Name="textBox_QuantityInStock" HorizontalAlignment="Left" Height="38" Margin="317,552,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
+            <TextBox x:Name="textBox_CostPrice" HorizontalAlignment="Left" Height="38" Margin="317,391,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" TextChanged="textBox_CostPrice_TextChanged"/>
+            <TextBox x:Name="textBox_SalePrice" HorizontalAlignment="Left" Height="38" Margin="317,472,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" TextChanged="textBox_SalePrice_TextChanged"/>
+            <TextBox x:Name="textBox_QuantityInStock" HorizontalAlignment="Left" Height="38" Margin="317,552,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" TextChanged="textBox_QuantityInStock_TextChanged"/>
             <Label x:Name="label_MedicationAllergies" Content="Medication Allergies" HorizontalAlignment="Left" Height="62" Margin="1006,10,0,0" VerticalAlignment="Top" Width="411" FontSize="36"/>
             <Label x:Name="label_AllergyDescription" Content="Allergy Description:" HorizontalAlignment="Left" Height="42" Margin="815,272,0,0" VerticalAlignment="Top" Width="226" FontSize="24" />
             <Label x:Name="label_AllergyName" Content="Allergy Name:" HorizontalAlignment="Left" Height="42" Margin="815,189,0,0" VerticalAlignment="Top" Width="166" FontSize="24"/>
@@ -124,7 +124,7 @@
             <TextBox x:Name="textBox_QuantityInStock_Copy" HorizontalAlignment="Left" Height="112" Margin="317,630,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"  SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
             <Label x:Name="labelMedicationIsActive" Content="" HorizontalAlignment="Left" Height="40" Margin="115,121,0,0" VerticalAlignment="Top" Width="550" Background="#E2382F" FontSize="18" Visibility="Hidden" FontWeight="Bold"/>
             <TextBox x:Name="textBox_IsActive" HorizontalAlignment="Left" Height="23" Margin="313,727,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="48" Visibility="Hidden"/>
-            <Button x:Name="button_AddStock" Content="Add Stock" HorizontalAlignment="Left" Height="56" Margin="538,760,0,0" VerticalAlignment="Top" Width="147"  FontSize="24" Click="button_AddStock_Click" BorderBrush="Black" BorderThickness="2"/>
+            <Button x:Name="button_AddStock" Content="Add Stock" HorizontalAlignment="Left" Height="64" Margin="400,782,0,0" VerticalAlignment="Top" Width="211"  FontSize="24" Click="button_AddStock_Click" BorderBrush="Black" BorderThickness="2"/>
         </Grid>
         <Grid x:Name="Grid_Instruction" HorizontalAlignment="Left" Height="894" Margin="2061,32,-865,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="714">
             <Label x:Name="label_Instructions" Content="Instructions" HorizontalAlignment="Left" Height="62" Margin="245,10,0,0" VerticalAlignment="Top" Width="411" FontSize="36"/>

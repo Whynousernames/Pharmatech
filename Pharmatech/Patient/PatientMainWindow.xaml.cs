@@ -702,6 +702,66 @@ namespace Pharmatech
             textBox.Text = newText;
             textBox.SelectionStart = selectionStart <= textBox.Text.Length ? selectionStart : textBox.Text.Length;
         }
+
+        private void textBox_IDNumber_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            System.Windows.Controls.TextBox textBox = sender as System.Windows.Controls.TextBox;
+            Int32 selectionStart = textBox.SelectionStart;
+            Int32 selectionLength = textBox.SelectionLength;
+            String newText = String.Empty;
+            int count = 0;
+            foreach (Char c in textBox.Text.ToCharArray())
+            {
+                if (Char.IsDigit(c) || Char.IsControl(c) || (c == '.' && count == 0))
+                {
+                    newText += c;
+                    if (c == '.')
+                        count += 1;
+                }
+            }
+            textBox.Text = newText;
+            textBox.SelectionStart = selectionStart <= textBox.Text.Length ? selectionStart : textBox.Text.Length;
+        }
+
+        private void textBox_Suburb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            System.Windows.Controls.TextBox textBox = sender as System.Windows.Controls.TextBox;
+            Int32 selectionStart = textBox.SelectionStart;
+            Int32 selectionLength = textBox.SelectionLength;
+            String newText = String.Empty;
+            int count = 0;
+            foreach (Char c in textBox.Text.ToCharArray())
+            {
+                if (Char.IsLetter(c) || Char.IsControl(c) || (c == '.' && count == 0))
+                {
+                    newText += c;
+                    if (c == '.')
+                        count += 1;
+                }
+            }
+            textBox.Text = newText;
+            textBox.SelectionStart = selectionStart <= textBox.Text.Length ? selectionStart : textBox.Text.Length;
+        }
+
+        private void textBox_City_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            System.Windows.Controls.TextBox textBox = sender as System.Windows.Controls.TextBox;
+            Int32 selectionStart = textBox.SelectionStart;
+            Int32 selectionLength = textBox.SelectionLength;
+            String newText = String.Empty;
+            int count = 0;
+            foreach (Char c in textBox.Text.ToCharArray())
+            {
+                if (Char.IsLetter(c) || Char.IsControl(c) || (c == '.' && count == 0))
+                {
+                    newText += c;
+                    if (c == '.')
+                        count += 1;
+                }
+            }
+            textBox.Text = newText;
+            textBox.SelectionStart = selectionStart <= textBox.Text.Length ? selectionStart : textBox.Text.Length;
+        }
     }
 
 }

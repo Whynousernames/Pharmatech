@@ -52,6 +52,7 @@ namespace Pharmatech
             comboBox_selectSaleType.Items.Add("Cash");
             comboBox_selectSaleType.Items.Add("Medical Aid");
             comboBox_selectSaleType.Items.Add("Card");
+            comboBox_selectSaleType.SelectedIndex = 0;
 
 
             using (SqlConnection con = new SqlConnection(conn))
@@ -115,6 +116,7 @@ namespace Pharmatech
 
             using (SqlConnection con = new SqlConnection(conn))
             {
+                //sqlBuilder.Append("SELECT CASE WHEN row_number() over(partition BY patientIDNumber ORDER BY patientIDNumber ASC) = 1 THEN patientIDNumber ELSE NULL END, Date, saleID, description, saleType, saleAmount FROM (SELECT CASE WHEN (GROUPING(Sale.patientIDNumber) = 1) THEN 'Sub-Total' ELSE ISNULL(Sale.patientIDNumber, 'UNKNOWN') END AS Name, Sale.date, Sale.saleID, Sale.description, Sale.saleType, sum(Sale.saleAmount) AS Amount FROM Sale GROUP BY rollup((Sale.date,Sale.saleID,Sale.patientIDNumber,Sale.description,Sale.saleType)) ) t;");
                 sqlBuilder.Append("SELECT FORMAT(date, 'd', 'en-gb') AS Date, saleID AS [Invoice ID], Patient.firstName + ' ' + Patient.lastName AS [Name], description AS Description,  saleType AS [Sale Type], saleAmount AS [Amount (R)] FROM Sale LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber WHERE 1=1");
 
                 if (!string.IsNullOrEmpty(comboBox_selectSaleType.Text))

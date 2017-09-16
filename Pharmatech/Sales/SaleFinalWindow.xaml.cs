@@ -368,7 +368,7 @@ namespace Pharmatech
 
                             foreach (DataRow row in dt.Rows)
                             {
-                                strBuilder.Append(row["Medication name"].ToString() + " // ");
+                                strBuilder.Append(row["Medication name"].ToString() + "  X" + row["Quantity"] + " // ");
                                 int existingStock = 0;
 
 

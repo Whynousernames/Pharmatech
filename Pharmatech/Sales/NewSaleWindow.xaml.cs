@@ -358,11 +358,7 @@ namespace Pharmatech
             
         }
 
-        private void button_AddInstruction_Click(object sender, RoutedEventArgs e)
-        {
-            gridHidden_True();
-            Grid_AddInstruction.Visibility = Visibility.Visible;
-        }
+        
 
         private void button_ProceedInstructions_Click(object sender, RoutedEventArgs e)
         {
@@ -575,6 +571,7 @@ namespace Pharmatech
                         sale.salePrice = (Convert.ToInt32(reader["salePrice"]));
                         sale.quantity = Convert.ToInt32(comboBox_Quantity.Text.ToString());
                         sale.quantityInStock = Convert.ToInt32(reader["quantityInStock"]);
+                        sale.instruction = textBox_instruction.Text;
 
                         if (sale.quantityInStock > sale.quantity)
                         {
@@ -602,6 +599,7 @@ namespace Pharmatech
                     dt.Columns.Add("Sale Price");
                     dt.Columns.Add("Quantity");
                     dt.Columns.Add("Total Price");
+                    dt.Columns.Add("Instructions");
                 }
 
                 
@@ -616,6 +614,7 @@ namespace Pharmatech
                     row["Sale Price"] = item.salePrice;
                     row["Quantity"] = item.quantity;
                     row["Total Price"] = item.salePrice * item.quantity;
+                    row["Instructions"] = item.instruction;
                     dt.Rows.Add(row);
                     //dt.Rows.InsertAt(row, _count);
 
@@ -632,6 +631,7 @@ namespace Pharmatech
                 cParameters.Clear();
                 product.Clear();
                 dt.AcceptChanges();
+                textBox_instruction.Clear();
 
             }
         }

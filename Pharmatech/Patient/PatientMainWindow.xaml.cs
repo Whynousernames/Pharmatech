@@ -16,6 +16,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Windows.Forms;
+using BusinessObject;
 
 namespace Pharmatech
 {
@@ -27,7 +28,9 @@ namespace Pharmatech
 
         string conn = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
         public string allergyID;
-        
+        public List<Allergies> allergiesList = new List<Allergies>();
+        int _count = 0;
+        DataTable dt = new DataTable();
 
 
         public PatientMainWindow()
@@ -320,7 +323,7 @@ namespace Pharmatech
 
         private void button_Add_Click(object sender, RoutedEventArgs e)
         {
-            DataTable dt = new DataTable();
+            
 
             using (SqlConnection con = new SqlConnection(conn))
             {
@@ -330,27 +333,53 @@ namespace Pharmatech
                 cmd.Parameters.AddWithValue("@allergyName", comboBox_selectAllergy.Text);
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                dt.Columns.Add("AllergyID");
-                dt.Columns.Add("AllergyName");
-                dt.Columns.Add("AllergyDescription");
+                
+
+                Allergies allergies = new Allergies();
 
                 while (reader.Read())
                 {
-                    DataRow row = dt.NewRow();
-                    row["AllergyID"] = reader["allergyID"].ToString();
-                    row["AllergyDescription"] = reader["allergyDescription"].ToString();
-                    row["AllergyName"] = reader["allergyName"].ToString();
-                    dt.Rows.Add(row);
 
+                    allergies.allergyID = reader["allergyID"].ToString();
+                    allergies.allergyDescription = reader["allergyDescription"].ToString();
+                    allergies.allergyName = reader["allergyName"].ToString();
+                    //var row = dt.NewRow();
+                    //row["AllergyID"] = reader["allergyID"].ToString();
+                    //row["AllergyDescription"] = reader["allergyDescription"].ToString();
+                    //row["AllergyName"] = reader["allergyName"].ToString();
+                    //dt.Rows.Add(row);
 
-                    allergyID = dt.Rows[0]["AllergyID"].ToString();
+                    allergiesList.Add(allergies);
+
+                    //allergyID = dt.Rows[0]["AllergyID"].ToString();
 
                     //dataGrid_Allergies.Items.Add(reader["allergyID"].ToString());
                     //dataGrid_Allergies.Items.Add(reader["allergyName"].ToString());
                     //dataGrid_Allergies.Items.Add(reader["allergyDescription"].ToString());
 
                 }
-                dataGrid_Allergies.ItemsSource = dt.DefaultView;
+
+
+                if (_count == 0)
+                {
+                    
+                    dt.Columns.Add("Name");
+                    dt.Columns.Add("Description");
+                }
+
+                foreach (var item in allergiesList)
+                {
+                    var row = dt.NewRow();
+                    row["Name"] = item.allergyName;
+                    row["Description"] = item.allergyDescription;
+                    dt.Rows.Add(row);
+                }
+                dataGrid_Allergies .AutoGenerateColumns = true;
+                reader.Close();
+                con.Close();
+                _count++;
+                dataGrid_Allergies.ItemsSource = dt.AsDataView();
+                allergiesList.Clear();
                 con.Close();
 
 

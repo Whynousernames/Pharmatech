@@ -133,7 +133,7 @@ namespace Pharmatech
             PatientMainWindow patientMainWindow = new PatientMainWindow();           
             patientMainWindow.label_PatientWindowType.Content = "Add Patient";
             patientMainWindow.Grid_SelectPatient.Visibility = Visibility.Hidden;            
-            patientMainWindow.ShowDialog();
+            patientMainWindow.Show();
             this.Close();
         }
 

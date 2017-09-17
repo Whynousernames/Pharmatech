@@ -14,6 +14,9 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using BusinessObject;
+using System.Data;
+
 
 namespace Pharmatech
 {
@@ -23,6 +26,10 @@ namespace Pharmatech
     public partial class MedicineMainWindow : Window
     {
         string conn = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
+        public string allergyID;
+        public List<Allergies> allergiesList = new List<Allergies>();
+        int _count = 0;
+        DataTable dt = new DataTable();
 
 
         public MedicineMainWindow()
@@ -64,8 +71,29 @@ namespace Pharmatech
                 }
             }
 
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                try
+                {
+                    SqlCommand sqlCmd = new SqlCommand("SELECT allergyName FROM Allergies", con);
+                    con.Open();
+                    SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                    while (sqlReader.Read())
+                    {
+                        comboBox_selectAllergy.Items.Add(sqlReader["allergyName"].ToString());
+                    }
+                    sqlReader.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show("Could not populate allergies combobox from database.", ex.ToString());
+                }
+            }
+
             // Set combobox's initial display to the first item.
-           // comboBox_selectMedication.SelectedIndex = 0;
+            // comboBox_selectMedication.SelectedIndex = 0;
         }
 
 
@@ -152,7 +180,65 @@ namespace Pharmatech
 
         private void button_Add_Click(object sender, RoutedEventArgs e)
         {
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                con.Open();
+                string cmdString = "SELECT allergyID, allergyName, allergyDescription FROM Allergies WHERE allergyName = @allergyName";
+                SqlCommand cmd = new SqlCommand(cmdString, con);
+                cmd.Parameters.AddWithValue("@allergyName", comboBox_selectAllergy.Text);
+                SqlDataReader reader = cmd.ExecuteReader();
 
+
+
+                Allergies allergies = new Allergies();
+
+                while (reader.Read())
+                {
+
+                    allergies.allergyID = reader["allergyID"].ToString();
+                    allergies.allergyDescription = reader["allergyDescription"].ToString();
+                    allergies.allergyName = reader["allergyName"].ToString();
+                    //var row = dt.NewRow();
+                    //row["AllergyID"] = reader["allergyID"].ToString();
+                    //row["AllergyDescription"] = reader["allergyDescription"].ToString();
+                    //row["AllergyName"] = reader["allergyName"].ToString();
+                    //dt.Rows.Add(row);
+
+                    allergiesList.Add(allergies);
+
+                    //allergyID = dt.Rows[0]["AllergyID"].ToString();
+
+                    //dataGrid_Allergies.Items.Add(reader["allergyID"].ToString());
+                    //dataGrid_Allergies.Items.Add(reader["allergyName"].ToString());
+                    //dataGrid_Allergies.Items.Add(reader["allergyDescription"].ToString());
+
+                }
+
+
+                if (_count == 0)
+                {
+
+                    dt.Columns.Add("Name");
+                    dt.Columns.Add("Description");
+                }
+
+                foreach (var item in allergiesList)
+                {
+                    var row = dt.NewRow();
+                    row["Name"] = item.allergyName;
+                    row["Description"] = item.allergyDescription;
+                    dt.Rows.Add(row);
+                }
+                dataGrid_Allergies.AutoGenerateColumns = true;
+                reader.Close();
+                con.Close();
+                _count++;
+                dataGrid_Allergies.ItemsSource = dt.AsDataView();
+                allergiesList.Clear();
+                con.Close();
+
+
+            }
         }
 
         private void button_Remove_Click(object sender, RoutedEventArgs e)

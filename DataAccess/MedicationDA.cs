@@ -61,7 +61,7 @@ namespace DataAccess
             SqlConnection con = new SqlConnection(connection);
             using (SqlCommand cmd = con.CreateCommand())
             {
-                cmd.CommandText = "UPDATE Medication SET isActive = 'n' WHERE medName = @medNAme";
+                cmd.CommandText = "UPDATE Medication SET isActive = 'n' WHERE medName = @medName";
                 cmd.Parameters.AddWithValue("@medName", medName);
                 con.Open();
                 cmd.ExecuteNonQuery();

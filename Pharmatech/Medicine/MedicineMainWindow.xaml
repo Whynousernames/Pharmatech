@@ -186,28 +186,26 @@
 
             </Button>
         </Grid>
-        <Grid x:Name="Grid_AddStock" HorizontalAlignment="Left" Height="480" Margin="577,150,0,0" Grid.Row="1" VerticalAlignment="Top" Width="876" Grid.RowSpan="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="43*"/>
-                <RowDefinition Height="197*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="167*"/>
-                <ColumnDefinition Width="125*"/>
-            </Grid.ColumnDefinitions>
-            <Rectangle HorizontalAlignment="Left" Height="434" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="810" Margin="26,-14,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                <Rectangle.Effect>
-                    <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
-                </Rectangle.Effect>
-            </Rectangle>
-            <Label x:Name="label_AddStock" Content="Add stock:" HorizontalAlignment="Center" Height="49" Margin="42,77,97,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="362" FontSize="24"  FontWeight="Bold" Grid.Row="1"/>
-            <Button x:Name="button_finalAddStock" Content="Add" HorizontalAlignment="Left" Height="56" Margin="468,221,0,0" VerticalAlignment="Top" Width="147"  FontSize="24"  Grid.ColumnSpan="2" Click="button_finalAddStock_Click" BorderBrush="Black" BorderThickness="2" Grid.Row="1"/>
-            <Button x:Name="button_cancelAddStock" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="289,221,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click"  FontSize="24" BorderBrush="Black" BorderThickness="2" Grid.Row="1"/>
-            <TextBox x:Name="textBox_AddStock" HorizontalAlignment="Left" Height="38" Margin="372,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Grid.Row="1"/>
-        </Grid>
-<<<<<<< HEAD
-    </Grid>
-=======
+            <Grid x:Name="Grid_AddStock" HorizontalAlignment="Left" Height="480" Margin="577,150,0,0" Grid.Row="1" VerticalAlignment="Top" Width="876" Grid.RowSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="197*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="167*"/>
+                    <ColumnDefinition Width="125*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle HorizontalAlignment="Left" Height="434" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="810" Margin="26,-14,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
+                    </Rectangle.Effect>
+                </Rectangle>
+                <Label x:Name="label_AddStock" Content="Add stock:" HorizontalAlignment="Center" Height="49" Margin="42,77,97,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="362" FontSize="24"  FontWeight="Bold" Grid.Row="1"/>
+                <Button x:Name="button_finalAddStock" Content="Add" HorizontalAlignment="Left" Height="56" Margin="468,221,0,0" VerticalAlignment="Top" Width="147"  FontSize="24"  Grid.ColumnSpan="2" Click="button_finalAddStock_Click" BorderBrush="Black" BorderThickness="2" Grid.Row="1"/>
+                <Button x:Name="button_cancelAddStock" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="289,221,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click"  FontSize="24" BorderBrush="Black" BorderThickness="2" Grid.Row="1"/>
+                <TextBox x:Name="textBox_AddStock" HorizontalAlignment="Left" Height="38" Margin="372,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Grid.Row="1"/>
+            </Grid>
+        
             <Label x:Name="label_Sales" Content="Sales" HorizontalAlignment="Left" Margin="90,128,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="8.517,2.609" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Patient" Content="Patient" HorizontalAlignment="Left" Margin="83,277,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Meds" Content="Medication" HorizontalAlignment="Left" Margin="63,424,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.RowSpan="2" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
@@ -218,7 +216,6 @@
         </Grid>
     </Viewbox>
 
->>>>>>> c0e8027df442e8da05d602036122e0194b2d192e
 </Window>
 
     

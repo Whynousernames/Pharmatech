@@ -303,9 +303,10 @@ namespace Pharmatech
                             if (amountRemaining < sum)
                             {
                                 gridHidden_True();
+                                MessageBox.Show("Patient does not have enough Medical Aid funds, proceed with cash sale.", "Error.", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                                 Grid_saleTypeSelect.Visibility = Visibility.Visible;
                                 button_medicalAidSaleSelect.IsEnabled = false;
-                                MessageBox.Show("Patient does not have enough Medical Aid funds, proceed with cash sale.", "Error.", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                                
 
                             }
                             else
@@ -323,6 +324,7 @@ namespace Pharmatech
                             gridHidden_True();
                             Grid_saleTypeSelect.Visibility = Visibility.Visible;
                             button_medicalAidSaleSelect.IsEnabled = false;
+                            MessageBox.Show("Patient does not have a Medical Aid account, proceed with cash sale.", "Error.", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         }
 
                         

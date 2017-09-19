@@ -21,8 +21,8 @@
 
 
     </Window.Resources>
-    <Viewbox HorizontalAlignment="Left" Height="1080" Margin="10,0,-6,-29" Stretch="Fill" VerticalAlignment="Top" Width="1910" >
-        <Grid Height="1080" Width="1910">
+    <Viewbox >
+        <Grid HorizontalAlignment="Left" Height="1080" VerticalAlignment="Top" Width="1910" Margin="10,0,-6,-29" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="43*"/>
                 <RowDefinition Height="228*"/>
@@ -182,7 +182,13 @@
                 <Label x:Name="label1_Copy" Content="Sale Type" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="58" Margin="-10,68,0,0" VerticalAlignment="Top" Width="655" FontSize="28" FontWeight="Bold"/>
                 <Button x:Name="button_medicalAidSaleSelect" Content="Medical Aid Sale" HorizontalAlignment="Left" Margin="323,190,0,162" Width="338"  FontSize="24" Cursor="Hand"  FontWeight="Bold" Click="button_medicalAidSaleSelect_Click"/>
             </Grid>
-
+            <Label x:Name="label_Sales" Content="Sales" HorizontalAlignment="Left" Margin="90,128,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="8.517,2.609" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
+            <Label x:Name="label_Patient" Content="Patient" HorizontalAlignment="Left" Margin="83,277,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
+            <Label x:Name="label_Meds" Content="Medication" HorizontalAlignment="Left" Margin="63,424,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.RowSpan="2" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
+            <Label x:Name="label_Instr" Content="Instructions" HorizontalAlignment="Left" Margin="61,115,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
+            <Label x:Name="label_Emp" Content="Employees" HorizontalAlignment="Left" Margin="65,261,0,0" VerticalAlignment="Top" Height="38" Width="128" Grid.Row="2" FontSize="22" RenderTransformOrigin="0.571,-1.029" FontFamily="Arial" FontWeight="Bold"/>
+            <Label x:Name="label_Rep" Content="Reporting" HorizontalAlignment="Left" Margin="69,411,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
+            
         </Grid>
 
     </Viewbox>

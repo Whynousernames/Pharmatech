@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
 using BusinessObject;
+using System.IO;
 
 namespace Pharmatech
 {
@@ -32,8 +33,13 @@ namespace Pharmatech
         StringBuilder sqlBuilderPatient = new StringBuilder(500);
         List<SqlParameter> cParameters = new List<SqlParameter>();
         List<SqlParameter> pParameters = new List<SqlParameter>();
-        
-        
+        string empIDNumber;
+        string empFName;
+        string empLName;
+        string empType;
+        string[] employeeDetails = new string[5];
+
+
         DataTable dt = new DataTable();
 
         int sum = 0;
@@ -69,6 +75,34 @@ namespace Pharmatech
             comboBox_Quantity.Items.Add("5");
             comboBox_Quantity.Items.Add("15");
             comboBox_Quantity.SelectedIndex = 1;
+
+            using (StreamReader reader = new StreamReader("emp.txt"))
+            {
+                while (!reader.EndOfStream)
+                {
+
+                    for (var i = 0; i < 5; i++)
+                    {
+                        var currLine = reader.ReadLine();
+                        employeeDetails[i] = currLine;
+                    }
+                }
+            }
+
+            empIDNumber = employeeDetails[0];
+            empFName = employeeDetails[1];
+            empLName = employeeDetails[2];
+            empType = employeeDetails[3];
+
+            if (empType == "P")
+            {
+                button_Medication.IsEnabled = false;
+                button_Instruction.IsEnabled = false;
+                button_Reports.IsEnabled = false;
+                button_Employee.IsEnabled = false;
+            }
+            
+
 
 
 

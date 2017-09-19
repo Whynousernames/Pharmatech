@@ -17,6 +17,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Windows.Forms;
 using BusinessObject;
+using System.IO;
 
 namespace Pharmatech
 {
@@ -31,6 +32,12 @@ namespace Pharmatech
         public List<Allergies> allergiesList = new List<Allergies>();
         int _count = 0;
         DataTable dt = new DataTable();
+
+        string empIDNumber;
+        string empFName;
+        string empLName;
+        string empType;
+        string[] employeeDetails = new string[5];
 
 
         public PatientMainWindow()
@@ -52,6 +59,32 @@ namespace Pharmatech
             if (label_PatientWindowType.Content.ToString() == "View Patient")
             {
                 button_next.Visibility = Visibility.Hidden;
+            }
+
+            using (StreamReader reader = new StreamReader("emp.txt"))
+            {
+                while (!reader.EndOfStream)
+                {
+
+                    for (var i = 0; i < 5; i++)
+                    {
+                        var currLine = reader.ReadLine();
+                        employeeDetails[i] = currLine;
+                    }
+                }
+            }
+
+            empIDNumber = employeeDetails[0];
+            empFName = employeeDetails[1];
+            empLName = employeeDetails[2];
+            empType = employeeDetails[3];
+
+            if (empType == "P")
+            {
+                button_Medication.IsEnabled = false;
+                button_Instruction.IsEnabled = false;
+                button_Reports.IsEnabled = false;
+                button_Employee.IsEnabled = false;
             }
 
 

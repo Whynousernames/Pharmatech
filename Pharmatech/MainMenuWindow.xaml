@@ -53,9 +53,6 @@
             <Label x:Name="label_IDDisplay"  HorizontalAlignment="Left" Height="42" Margin="842,365,0,0" VerticalAlignment="Top" Width="254" FontSize="24"  Grid.Row="1" Content="42"/>
             <Label x:Name="label_EmployeeTypeDisplay" Content="Admin" HorizontalAlignment="Left" Height="42" Margin="842,441,0,0" VerticalAlignment="Top" Width="254" FontSize="24"  Grid.Row="1" Grid.RowSpan="2"/>
             <Label x:Name="label_FirstNameDisplay_Copy" Content="You are currently logged in as" HorizontalAlignment="Left" Height="62" Margin="877,153,0,0" VerticalAlignment="Top" Width="484" FontSize="36" Grid.Row="1"/>
-
-
-            <Image x:Name="imageEmployee" HorizontalAlignment="Left" Height="249" Margin="1120,264,0,0" VerticalAlignment="Top" Width="290" Source="images/Nicholas_Photo.png" Grid.RowSpan="2" Grid.Row="1"/>
             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1060" Margin="258,-1,0,0" Grid.RowSpan="3" Stroke="#FFF4F4F5" VerticalAlignment="Top" Width="4">
                 <Rectangle.Effect>
                     <BlurEffect KernelType="Box"/>

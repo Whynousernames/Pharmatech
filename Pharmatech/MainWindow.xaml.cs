@@ -17,7 +17,7 @@ using DataAccess;
 using BusinessLogic;
 using System.Configuration;
 using System.Data.SqlClient;
-
+using System.IO;
 
 namespace Pharmatech
 {
@@ -40,12 +40,17 @@ namespace Pharmatech
 
             var username = textBox_Username.Text;
             var password = passwordBox_password.Password.ToString();
+            string empIDNumber = "";
+            string empFName = "";
+            string empLName = "";
+            string empType = "";
+            string startTime = DateTime.Now.ToString();
             
             int empID = EmployeeDA.AuthenticateLogin(username, password);
             if (empID > 0)
             {
                 
-                MainMenuWindow mainMenuWindow = new MainMenuWindow();
+                
                 using (SqlConnection con = new SqlConnection(conn))
                 {
                     con.Open();
@@ -57,21 +62,33 @@ namespace Pharmatech
                     while (reader.Read())
                     {
                         
-                        Application.Current.Resources["empIDNumber"] = Convert.ToString(reader["empIDNumber"]);
-                        Application.Current.Resources["empFName"] = Convert.ToString(reader["firstName"]);
-                        Application.Current.Resources["empLName"] = Convert.ToString(reader["lastName"]);
+                        empIDNumber = Convert.ToString(reader["empIDNumber"]);
+                        empFName = Convert.ToString(reader["firstName"]);
+                        empLName = Convert.ToString(reader["lastName"]);
 
                         if (reader["employeeType"].ToString() == "A")
-                            Application.Current.Resources["userType"] = "A";
+                            empType = "A";
                         if (reader["employeeType"].ToString() == "P")
-                            Application.Current.Resources["userType"] = "P";              
+                            empType = "P";
+
                         
 
+
                     }
+                    using (StreamWriter writeText = new StreamWriter("emp.txt"))
+                    {
+                        writeText.WriteLine(empIDNumber.ToString());
+                        writeText.WriteLine(empFName.ToString());
+                        writeText.WriteLine(empLName.ToString());
+                        writeText.WriteLine(empType.ToString());
+                        writeText.WriteLine(startTime.ToString());
+
+                    }
+
                     reader.Close();
                     con.Close();
                 }
-
+                MainMenuWindow mainMenuWindow = new MainMenuWindow();
                 mainMenuWindow.Show();
                 this.Close();
             }

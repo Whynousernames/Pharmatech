@@ -15,7 +15,7 @@ using System.Windows.Threading;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-
+using System.IO;
 
 namespace Pharmatech
 {
@@ -25,7 +25,12 @@ namespace Pharmatech
     public partial class MainMenuWindow : Window
     {
         string conn = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
-        
+        string empIDNumber;
+        string empFName;
+        string empLName;
+        string empType;
+        string startTime;
+        string[] employeeDetails = new string[5];
 
         public MainMenuWindow()
         {
@@ -38,10 +43,46 @@ namespace Pharmatech
             messageTimer.Start();
             gridHidden_True();
             arrowHidden_True();
-            MainWindow mainWindow = new MainWindow();
+            
 
-            label_IDDisplay.Content = Convert.ToString(this.Resources["empIDNumber"]);
-            label_FirstNameDisplay.Content = Convert.ToString(this.Resources["empFName"]) + "" + Convert.ToString(this.Resources["empLName"]);
+            using (StreamReader reader = new StreamReader("emp.txt"))
+            {
+                while(!reader.EndOfStream)
+                {
+                    
+                    for(var i = 0; i < 5; i++)
+                    {
+                        var currLine = reader.ReadLine();
+                        employeeDetails[i] = currLine;
+                    }
+                }
+            }
+
+            empIDNumber = employeeDetails[0];
+            empFName = employeeDetails[1];
+            empLName = employeeDetails[2];
+            empType = employeeDetails[3];
+            startTime = employeeDetails[4];
+
+
+
+
+
+            label_IDDisplay.Content = empIDNumber;
+            label_FirstNameDisplay.Content = empFName.ToUpper() + " " + empLName.ToUpper();
+            if (empType == "A")
+            {
+                label_EmployeeTypeDisplay.Content = "ADMIN";
+            }
+            else
+            {
+                label_EmployeeTypeDisplay.Content = "PHARMACIST";
+                button_Medication.IsEnabled = false;
+                button_Instruction.IsEnabled = false;
+                button_Reports.IsEnabled = false;
+                button_Employee.IsEnabled = false;
+            }
+            
         }
 
         void messageTimer_Tick(object sender, EventArgs e)
@@ -230,10 +271,15 @@ namespace Pharmatech
 
         private void button_LogOut_Click(object sender, RoutedEventArgs e)
         {
-            
-            MainWindow mainwindow = new MainWindow();
-            CloseAllWindows();
-            mainwindow.ShowDialog();
+            MessageBoxResult result = MessageBox.Show("Your session has been recorded. Session start time "+startTime.ToString() + " session end time " + DateTime.Now.ToString()  + Environment.NewLine, "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
+            if (result == MessageBoxResult.OK)
+            {
+                MainWindow mainwindow = new MainWindow();
+                CloseAllWindows();
+                mainwindow.ShowDialog();
+            }
+
+           
             
         }
 

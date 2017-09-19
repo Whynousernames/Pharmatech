@@ -35,6 +35,7 @@
         </Style>
 
     </Window.Resources>
+    <Viewbox>
     <Grid HorizontalAlignment="Left" Height="1080" VerticalAlignment="Top" Width="1910" Margin="10,0,-6,-29">
         <Grid.RowDefinitions>
             <RowDefinition Height="43*"/>
@@ -204,7 +205,20 @@
             <Button x:Name="button_cancelAddStock" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="289,221,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click"  FontSize="24" BorderBrush="Black" BorderThickness="2" Grid.Row="1"/>
             <TextBox x:Name="textBox_AddStock" HorizontalAlignment="Left" Height="38" Margin="372,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Grid.Row="1"/>
         </Grid>
+<<<<<<< HEAD
     </Grid>
+=======
+            <Label x:Name="label_Sales" Content="Sales" HorizontalAlignment="Left" Margin="90,128,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="8.517,2.609" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
+            <Label x:Name="label_Patient" Content="Patient" HorizontalAlignment="Left" Margin="83,277,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
+            <Label x:Name="label_Meds" Content="Medication" HorizontalAlignment="Left" Margin="63,424,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.RowSpan="2" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
+            <Label x:Name="label_Instr" Content="Instructions" HorizontalAlignment="Left" Margin="61,115,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
+            <Label x:Name="label_Emp" Content="Employees" HorizontalAlignment="Left" Margin="65,261,0,0" VerticalAlignment="Top" Height="38" Width="128" Grid.Row="2" FontSize="22" RenderTransformOrigin="0.571,-1.029" FontFamily="Arial" FontWeight="Bold"/>
+            <Label x:Name="label_Rep" Content="Reporting" HorizontalAlignment="Left" Margin="69,411,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
+            
+        </Grid>
+    </Viewbox>
+
+>>>>>>> c0e8027df442e8da05d602036122e0194b2d192e
 </Window>
 
     

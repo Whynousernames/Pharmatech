@@ -25,7 +25,7 @@ namespace Pharmatech
     /// </summary>
     public partial class PatientMainWindow : Window
     {
-
+        static string connection = System.Configuration.ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
         string conn = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
         public string allergyID;
         public List<Allergies> allergiesList = new List<Allergies>();
@@ -69,6 +69,15 @@ namespace Pharmatech
                             comboBox_selectAllergy.Items.Add(sqlReader["allergyName"].ToString());
                         }
                         sqlReader.Close();
+
+                        SqlCommand sqlCmd2 = new SqlCommand("SELECT cityName FROM City", con);
+                        SqlDataReader sqlReader2 = sqlCmd2.ExecuteReader();
+                        while (sqlReader2.Read())
+                        {
+                        comboBox_selectCity.Items.Add(sqlReader2["cityName"].ToString());
+                        }
+                    sqlReader2.Close();
+                    con.Close();
 
                     }
                     catch (Exception ex)
@@ -214,6 +223,75 @@ namespace Pharmatech
             Grid_Report.Visibility = Visibility.Visible;
         }
 
+        private void button_Add_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                con.Open();
+                string cmdString = "SELECT allergyID, allergyName, allergyDescription FROM Allergies WHERE allergyName = @allergyName";
+                SqlCommand cmd = new SqlCommand(cmdString, con);
+                cmd.Parameters.AddWithValue("@allergyName", comboBox_selectAllergy.Text);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+
+
+                Allergies allergies = new Allergies();
+
+                while (reader.Read())
+                {
+
+                    allergies.allergyID = reader["allergyID"].ToString();
+                    allergies.allergyDescription = reader["allergyDescription"].ToString();
+                    allergies.allergyName = reader["allergyName"].ToString();
+                    //var row = dt.NewRow();
+                    //row["AllergyID"] = reader["allergyID"].ToString();
+                    //row["AllergyDescription"] = reader["allergyDescription"].ToString();
+                    //row["AllergyName"] = reader["allergyName"].ToString();
+                    //dt.Rows.Add(row);
+
+                    allergiesList.Add(allergies);
+
+                    //allergyID = dt.Rows[0]["AllergyID"].ToString();
+
+                    //dataGrid_Allergies.Items.Add(reader["allergyID"].ToString());
+                    //dataGrid_Allergies.Items.Add(reader["allergyName"].ToString());
+                    //dataGrid_Allergies.Items.Add(reader["allergyDescription"].ToString());
+
+                }
+
+
+                if (_count == 0)
+                {
+
+                    dt.Columns.Add("Name");
+                    dt.Columns.Add("Description");
+                }
+
+                foreach (var item in allergiesList)
+                {
+                    var row = dt.NewRow();
+                    row["Name"] = item.allergyName;
+                    row["Description"] = item.allergyDescription;
+                    dt.Rows.Add(row);
+                }
+                dataGrid_Allergies.AutoGenerateColumns = true;
+                reader.Close();
+                con.Close();
+                _count++;
+                dataGrid_Allergies.ItemsSource = dt.AsDataView();
+                allergiesList.Clear();
+                con.Close();
+
+
+            }
+
+
+
+
+        }
+
         private void button_next_Click(object sender, RoutedEventArgs e)
         {
 
@@ -243,8 +321,56 @@ namespace Pharmatech
                     {
                         // Add Patient to system.
                         DataAccess.PatientDA.AddPatient(id, firstName, surname, contactNo, email, address1, address2);
-                        DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
-                      //  System.Windows.MessageBox.Show("Successfully added a new patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                        // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
+                        //  System.Windows.MessageBox.Show("Successfully added a new patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+
+                            int allergyID = 0;
+
+
+
+                            using (SqlConnection conn = new SqlConnection(connection))
+                            {
+                                try
+                                {
+                                    
+                                    SqlConnection con = new SqlConnection(connection);
+                                    using (SqlCommand cmd = con.CreateCommand())
+                                    {
+                                        cmd.CommandText = "INSERT INTO PatientAllergies(allergyID, patientIDNumber) VALUES(@aID, @idNumber)";
+                                        
+                                        SqlCommand sqlCmd = new SqlCommand("SELECT allergyID FROM Allergies WHERE allergyName = @aName", conn);
+                                        sqlCmd.Parameters.AddWithValue("@aName", row["Name"]);
+                                        conn.Open();
+                                        SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                                        while (sqlReader.Read())
+                                        {
+                                            allergyID = Convert.ToInt32(sqlReader["allergyID"]);
+
+                                        }
+
+                                        cmd.Parameters.AddWithValue("@aID", allergyID.ToString());
+                                        cmd.Parameters.AddWithValue("@idNumber", textBox_IDNumber.Text);
+                                        con.Open();
+                                        cmd.ExecuteNonQuery();
+                                        sqlReader.Close();
+                                        con.Close();
+
+
+                                    }
+
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    System.Windows.MessageBox.Show(ex.ToString(), ex.ToString());
+                                }
+                            }
+
+                        }
                     }
                     else if (dialogResult == MessageBoxResult.No)
                     {
@@ -321,74 +447,7 @@ namespace Pharmatech
             }
         }
 
-        private void button_Add_Click(object sender, RoutedEventArgs e)
-        {
-            
-
-            using (SqlConnection con = new SqlConnection(conn))
-            {
-                con.Open();
-                string cmdString = "SELECT allergyID, allergyName, allergyDescription FROM Allergies WHERE allergyName = @allergyName";
-                SqlCommand cmd = new SqlCommand(cmdString, con);
-                cmd.Parameters.AddWithValue("@allergyName", comboBox_selectAllergy.Text);
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                
-
-                Allergies allergies = new Allergies();
-
-                while (reader.Read())
-                {
-
-                    allergies.allergyID = reader["allergyID"].ToString();
-                    allergies.allergyDescription = reader["allergyDescription"].ToString();
-                    allergies.allergyName = reader["allergyName"].ToString();
-                    //var row = dt.NewRow();
-                    //row["AllergyID"] = reader["allergyID"].ToString();
-                    //row["AllergyDescription"] = reader["allergyDescription"].ToString();
-                    //row["AllergyName"] = reader["allergyName"].ToString();
-                    //dt.Rows.Add(row);
-
-                    allergiesList.Add(allergies);
-
-                    //allergyID = dt.Rows[0]["AllergyID"].ToString();
-
-                    //dataGrid_Allergies.Items.Add(reader["allergyID"].ToString());
-                    //dataGrid_Allergies.Items.Add(reader["allergyName"].ToString());
-                    //dataGrid_Allergies.Items.Add(reader["allergyDescription"].ToString());
-
-                }
-
-
-                if (_count == 0)
-                {
-                    
-                    dt.Columns.Add("Name");
-                    dt.Columns.Add("Description");
-                }
-
-                foreach (var item in allergiesList)
-                {
-                    var row = dt.NewRow();
-                    row["Name"] = item.allergyName;
-                    row["Description"] = item.allergyDescription;
-                    dt.Rows.Add(row);
-                }
-                dataGrid_Allergies .AutoGenerateColumns = true;
-                reader.Close();
-                con.Close();
-                _count++;
-                dataGrid_Allergies.ItemsSource = dt.AsDataView();
-                allergiesList.Clear();
-                con.Close();
-
-
-            }
-           
-
-
-
-        }
+        
 
         private void button_Remove_Click(object sender, RoutedEventArgs e)
         {
@@ -661,8 +720,8 @@ namespace Pharmatech
             textBox_ContactNumber.IsEnabled = false;
             textBox_AddressLine1.IsEnabled = false;
             textBox_AddressLine2.IsEnabled = false;
-            textBox_City.IsEnabled = false;
-            textBox_Suburb.IsEnabled = false;
+            comboBox_selectCity.IsEnabled = false;
+            comboBox_selectSuburb.IsEnabled = false;
             comboBox_selectAllergy.IsEnabled = false;
             textBox_AllergyDescription.IsEnabled = false;
             button_Remove.IsEnabled = false;
@@ -790,6 +849,49 @@ namespace Pharmatech
             }
             textBox.Text = newText;
             textBox.SelectionStart = selectionStart <= textBox.Text.Length ? selectionStart : textBox.Text.Length;
+        }
+
+        private void comboBox_selectSuburb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void comboBox_selectCity_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void comboBox_selectCity_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            comboBox_selectSuburb.Items.Clear();
+            comboBox_selectSuburb.Items.Refresh();
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                try
+                {
+                    SqlCommand sqlCmd = new SqlCommand("SELECT suburbName FROM Suburb WHERE cityName = @cityName", con);
+                    con.Open();
+                    sqlCmd.Parameters.AddWithValue("@cityName", comboBox_selectCity.Text.ToString());
+                    SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                    while (sqlReader.Read())
+                    {
+                        comboBox_selectSuburb.Items.Add(sqlReader["suburbName"].ToString());
+
+                    }
+                    sqlReader.Close();
+
+
+                    con.Close();
+
+
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show("Could not populate allergies combobox from database.", ex.ToString());
+                }
+            }
+            comboBox_selectSuburb.Items.Refresh();
         }
     }
 

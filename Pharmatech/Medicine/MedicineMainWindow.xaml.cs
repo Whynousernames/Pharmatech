@@ -25,6 +25,7 @@ namespace Pharmatech
     /// </summary>
     public partial class MedicineMainWindow : Window
     {
+        static string connection = System.Configuration.ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
         string conn = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
         public string allergyID;
         public List<Allergies> allergiesList = new List<Allergies>();
@@ -276,7 +277,67 @@ namespace Pharmatech
                         // Add medicine item to system.
                         DataAccess.MedicationDA.AddMedication(medName, schedLevel, medDescription, Convert.ToInt32(costPrice), Convert.ToInt32(salePrice), Convert.ToInt32(quantityStock));
                         // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
-                        System.Windows.MessageBox.Show("Successfully added a new medicine.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                        //System.Windows.MessageBox.Show("Successfully added a new medicine.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+
+                            int allergyID = 0;
+                            int medID2 = 0;
+
+
+
+                            using (SqlConnection conn = new SqlConnection(connection))
+                            {
+                                try
+                                {
+
+                                    SqlConnection con = new SqlConnection(connection);
+                                    using (SqlCommand cmd = con.CreateCommand())
+                                    {
+                                        cmd.CommandText = "INSERT INTO Medication_Allergies(allergyID, medID) VALUES(@aID, @mID)";
+
+                                        SqlCommand sqlCmd = new SqlCommand("SELECT allergyID FROM Allergies WHERE allergyName = @aName", conn);
+                                        sqlCmd.Parameters.AddWithValue("@aName", row["Name"]);
+                                        conn.Open();
+                                        SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                                        while (sqlReader.Read())
+                                        {
+                                            allergyID = Convert.ToInt32(sqlReader["allergyID"]);
+
+                                        }
+                                        sqlReader.Close();
+
+                                        SqlCommand sqlCmd2 = new SqlCommand("SELECT medID FROM Medication WHERE medName = @medName", conn);
+                                        sqlCmd2.Parameters.AddWithValue("@medName", textBox_MedicationName.Text.ToString());
+
+                                        SqlDataReader sqlReader2 = sqlCmd2.ExecuteReader();
+
+                                        while (sqlReader2.Read())
+                                        {
+                                            medID2 = Convert.ToInt32(sqlReader2["medID"]);
+                                        }
+
+                                        cmd.Parameters.AddWithValue("@aID", allergyID.ToString());
+                                        cmd.Parameters.AddWithValue("@mID", medID2.ToString());
+                                        con.Open();
+                                        cmd.ExecuteNonQuery();
+                                        
+                                        con.Close();
+
+
+                                    }
+
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    System.Windows.MessageBox.Show(ex.ToString(), ex.ToString());
+                                }
+                            }
+
+                        }
                     }
                     else if (dialogResult == MessageBoxResult.No)
                     {

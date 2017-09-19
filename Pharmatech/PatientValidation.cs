@@ -18,6 +18,7 @@ namespace Pharmatech
         private string _address2;
         private string _suburb;
         private string _city;
+        private string _MedValid;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -144,6 +145,19 @@ namespace Pharmatech
             }
         }
 
+        public string MedValid
+        {
+            get
+            {
+                return _MedValid;
+            }
+
+            set
+            {
+                _MedValid = value;
+            }
+        }
+
         public string Error
         {
             get
@@ -219,6 +233,11 @@ namespace Pharmatech
                             result = "City is mandatory.";
                         else if (City.Length < 3)
                             result = "Invalid city entered. Too short.";
+                        break;
+
+                    case nameof(MedValid):
+                        if (string.IsNullOrEmpty(MedValid))
+                            result = "This field is mandatory";
                         break;
 
                 }

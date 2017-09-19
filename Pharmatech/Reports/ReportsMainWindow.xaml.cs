@@ -117,7 +117,7 @@ namespace Pharmatech
             using (SqlConnection con = new SqlConnection(conn))
             {
                 //sqlBuilder.Append("SELECT CASE WHEN row_number() over(partition BY patientIDNumber ORDER BY patientIDNumber ASC) = 1 THEN patientIDNumber ELSE NULL END, Date, saleID, description, saleType, saleAmount FROM (SELECT CASE WHEN (GROUPING(Sale.patientIDNumber) = 1) THEN 'Sub-Total' ELSE ISNULL(Sale.patientIDNumber, 'UNKNOWN') END AS Name, Sale.date, Sale.saleID, Sale.description, Sale.saleType, sum(Sale.saleAmount) AS Amount FROM Sale GROUP BY rollup((Sale.date,Sale.saleID,Sale.patientIDNumber,Sale.description,Sale.saleType)) ) t;");
-                sqlBuilder.Append("SELECT FORMAT(date, 'd', 'en-gb') AS Date, saleID AS [Invoice ID], Patient.firstName + ' ' + Patient.lastName AS [Name], description AS Description,  saleType AS [Sale Type], saleAmount AS [Amount (R)] FROM Sale LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber WHERE 1=1");
+                sqlBuilder.Append("SELECT FORMAT(date, 'd', 'en-gb') AS Date, saleID AS [Invoice ID], Patient.firstName + ' ' + Patient.lastName AS [Name], description AS Description,  saleType AS [Sale Type], saleAmount AS [Amount] FROM Sale LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber WHERE 1=1");
 
                 if (!string.IsNullOrEmpty(comboBox_selectSaleType.Text))
                 {
@@ -187,7 +187,7 @@ namespace Pharmatech
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 dt = new DataTable("Sale");
                 da.Fill(dt);
-                // totalSales(dt);
+                totalSales(dt);
                 sqlBuilder.Clear();
                 cParameters.Clear();
                 dataGrid_Reports.ItemsSource = dt.DefaultView;
@@ -482,7 +482,7 @@ namespace Pharmatech
             else
             {
                 FillSalesGrid();
-                label_SalesSummary.Content = "Sales Summary: " + comboBox_selectSaleType.SelectedItem.ToString() + " - for the dates: " + datePicker_StartDate.Text + " to " + datePicker_EndDate.Text;
+                label_SalesSummary.Content = "Sales Summary: " + comboBox_selectSaleType.SelectedItem.ToString() + "\nFrom: " + datePicker_StartDate.Text + " To: " + datePicker_EndDate.Text;
             }
 
         }
@@ -527,35 +527,35 @@ namespace Pharmatech
             }
         }
 
-        //private void totalSales(DataTable dt)
-        //{
-        //    if (dt.Rows.Count > 0)
-        //    {
-        //        // Function to total up sales amount at end of report.
-        //        object saleTotal = 0;
-        //        double vat = 0.14;
-        //        double totalwithvat = 0;
-        //        int grandtotal1 = 0;
-        //        DataRow rowbreak = dt.NewRow();
-        //        dt.Rows.Add(rowbreak);
-        //        DataRow dr = dt.NewRow();
+        private void totalSales(DataTable dt)
+        {
+            if (dt.Rows.Count > 0)
+            {
+                // Function to total up sales amount at end of report.
+                object saleTotal = 0;
+                double vat = 0.14;
+                double totalwithvat = 0;
+                int grandtotal1 = 0;
+                DataRow rowbreak = dt.NewRow();
+                dt.Rows.Add(rowbreak);
+                DataRow dr = dt.NewRow();
 
 
-        //        dt.Rows.Add(dr);
-        //        DataRow vatrow = dt.NewRow();
-        //        grandtotal1 = Convert.ToInt32(dt.Compute("Sum(SaleAmount)", string.Empty));
-        //        vatrow["Type of Sale"] = "VAT 14%:";
-        //        totalwithvat = grandtotal1 * vat;
-        //        vatrow["SaleAmount"] = totalwithvat;
-        //        dt.Rows.Add(vatrow);
+                dt.Rows.Add(dr);
+                DataRow vatrow = dt.NewRow();
+                grandtotal1 = Convert.ToInt32(dt.Compute("Sum(Amount)", string.Empty));
+                vatrow["Sale Type"] = "VAT 14%:";
+                totalwithvat = grandtotal1 * vat;
+                vatrow["Amount"] =  totalwithvat;
+                dt.Rows.Add(vatrow);
 
 
-        //        DataRow grandtotal = dt.NewRow();
-        //        grandtotal["Type of Sale"] = "GRAND TOTAL: ";
-        //        grandtotal["SaleAmount"] = grandtotal1;
-        //        dt.Rows.Add(grandtotal);
-        //    }
-        //}
+                DataRow grandtotal = dt.NewRow();
+                grandtotal["Sale Type"] = "GRAND TOTAL:";
+                grandtotal["Amount"] = grandtotal1;
+                dt.Rows.Add(grandtotal);
+            }
+        }
 
 
     }

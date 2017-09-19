@@ -62,7 +62,7 @@ namespace Pharmatech
 
             if (!string.IsNullOrEmpty(patientid))
             {
-                prgAuthor.Add(new Chunk("For Patient: " + patientid, fntAuthor));
+                prgAuthor.Add(new Chunk("Patient Name: " + patientid, fntAuthor));
 
             }
 

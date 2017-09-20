@@ -48,6 +48,7 @@ namespace Pharmatech
             messageTimer.Interval = new TimeSpan(0, 0, 1);
             messageTimer.Start();
             gridHidden_True();
+            arrowHidden_True();
             comboBox_selectSaleType.Items.Add("All Sales");
             comboBox_selectSaleType.Items.Add("Cash");
             comboBox_selectSaleType.Items.Add("Medical Aid");

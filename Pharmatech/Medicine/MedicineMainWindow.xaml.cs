@@ -352,7 +352,7 @@ namespace Pharmatech
                 if (dialogResult == MessageBoxResult.Yes)
                 {
                     // Add medicine item to system.
-                    DataAccess.MedicationDA.AddMedication(medName, schedLevel, medDescription, Convert.ToInt32(costPrice), Convert.ToInt32(salePrice), Convert.ToInt32(quantityStock));
+                    DataAccess.MedicationDA.UpdateMedication(medID, medName, schedLevel, medDescription, Convert.ToInt32(costPrice), Convert.ToInt32(salePrice), Convert.ToInt32(quantityStock));
                     // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
                     System.Windows.MessageBox.Show("Successfully updated medicine.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 }

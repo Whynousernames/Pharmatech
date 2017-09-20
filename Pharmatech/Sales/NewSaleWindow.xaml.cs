@@ -68,13 +68,7 @@ namespace Pharmatech
 
 
 
-            comboBox_Quantity.Items.Add("1");
-            comboBox_Quantity.Items.Add("2");
-            comboBox_Quantity.Items.Add("3");
-            comboBox_Quantity.Items.Add("4");
-            comboBox_Quantity.Items.Add("5");
-            comboBox_Quantity.Items.Add("15");
-            comboBox_Quantity.SelectedIndex = 1;
+           
 
             using (StreamReader reader = new StreamReader("emp.txt"))
             {
@@ -443,7 +437,7 @@ namespace Pharmatech
                             else
                             {
                                 comboBox_select_Item.SelectedIndex = 0;
-                                comboBox_Quantity.SelectedIndex = 0;
+                                
                             }
                         }
                             else
@@ -605,7 +599,7 @@ namespace Pharmatech
                         sale.scheduleLevel = (Convert.ToString(reader["scheduleLevel"]));
                         sale.description = (Convert.ToString(reader["description"]));
                         sale.salePrice = (Convert.ToInt32(reader["salePrice"]));
-                        sale.quantity = Convert.ToInt32(comboBox_Quantity.Text.ToString());
+                        sale.quantity = Convert.ToInt32(textBox_quantity.Text.ToString());
                         sale.quantityInStock = Convert.ToInt32(reader["quantityInStock"]);
                         sale.instruction = textBox_instruction.Text;
 

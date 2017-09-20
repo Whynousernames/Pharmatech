@@ -111,10 +111,10 @@
                 <Label x:Name="label_PatientID" Content="Patient ID:" HorizontalAlignment="Left" Height="42" Margin="16,105,0,0" VerticalAlignment="Top" Width="184" FontSize="24" Grid.ColumnSpan="2"/>
                 <Label x:Name="label_DisplayPatientName" Content="Nicholas Mott" HorizontalAlignment="Left" Height="42" Margin="155,50,0,0" VerticalAlignment="Top" Width="184" FontSize="24"  Grid.Column="1"/>
                 <Label x:Name="label_DisplayPatientID" Content="9109125356089" HorizontalAlignment="Left" Height="42" Margin="151,105,0,0" VerticalAlignment="Top" Width="184" FontSize="24"  Grid.Column="1"/>
-                <ComboBox x:Name="comboBox_Quantity" HorizontalAlignment="Left" Height="42" Margin="627,187,0,0" VerticalAlignment="Top" Width="56" FontSize="24"  BorderBrush="{x:Null}" Grid.Column="1"/>
-                <Label x:Name="label_Quantity" Content="Qty:" HorizontalAlignment="Left" Height="42" Margin="556,190,0,0" VerticalAlignment="Top" Width="51" FontSize="24"  Grid.Column="1"/>
+                <Label x:Name="label_Quantity" Content="Qty:" HorizontalAlignment="Left" Height="42" Margin="540,190,0,0" VerticalAlignment="Top" Width="51" FontSize="24"  Grid.Column="1"/>
                 <Label x:Name="label_itemInstructions" Content="Medication Instructions:" HorizontalAlignment="Left" Height="42" Margin="710,158,0,0" VerticalAlignment="Top" Width="270" FontSize="24"  Grid.Column="1"/>
                 <TextBox x:Name="textBox_instruction" HorizontalAlignment="Left" Height="152" Margin="988,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="369" FontSize="24"   Grid.Column="1"/>
+                <TextBox x:Name="textBox_quantity" HorizontalAlignment="Left" Height="38" Margin="597,190,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="96" FontSize="24"   Grid.Column="1"/>
             </Grid>
             <Grid x:Name="Grid_AddInstruction" HorizontalAlignment="Left" Height="489" Margin="606,196,0,0" Grid.Row="1" VerticalAlignment="Top" Width="655" Background="#FF01213A" Grid.RowSpan="2" Visibility="Hidden">
                 <Label x:Name="label_AddInstruction" Content="Please enter instruction details below" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="58" Margin="0,10,0,0" VerticalAlignment="Top" Width="655" FontSize="24" />
@@ -162,7 +162,7 @@
             </Image>
             <Image x:Name="image_arrow_Copy2" HorizontalAlignment="Left" Height="127" Margin="1746,223,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.Row="2"/>
 
-            <Grid x:Name="Grid_patientSelect" HorizontalAlignment="Left" Height="408" Margin="819,205,0,0" VerticalAlignment="Top" Width="610" Background="#e6f3ff" Grid.Row="1" Grid.RowSpan="2">
+            <Grid x:Name="Grid_patientSelect" HorizontalAlignment="Left" Height="408" Margin="819,277,0,0" VerticalAlignment="Top" Width="610" Background="#e6f3ff" Grid.Row="1" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="167*"/>
                     <ColumnDefinition Width="453*"/>
@@ -177,7 +177,7 @@
             </Grid>
 
 
-            <Grid x:Name="Grid_saleTypeSelect" HorizontalAlignment="Left" Height="417" Margin="790,196,0,0" VerticalAlignment="Top" Width="689" Background="#e6f3ff" Grid.Row="1" Grid.RowSpan="2">
+            <Grid x:Name="Grid_saleTypeSelect" HorizontalAlignment="Left" Height="417" Margin="787,346,0,0" VerticalAlignment="Top" Width="689" Background="#e6f3ff" Grid.Row="1" Grid.RowSpan="2">
                 <Button x:Name="button_cashSaleSelect" Content="Cash Sale" HorizontalAlignment="Left" Margin="55,190,0,162" Width="254" FontSize="24" Cursor="Hand"  FontWeight="Bold" Click="button_cashSaleSelect_Click"/>
                 <Label x:Name="label1_Copy" Content="Sale Type" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="58" Margin="-10,68,0,0" VerticalAlignment="Top" Width="655" FontSize="28" FontWeight="Bold"/>
                 <Button x:Name="button_medicalAidSaleSelect" Content="Medical Aid Sale" HorizontalAlignment="Left" Margin="323,190,0,162" Width="338"  FontSize="24" Cursor="Hand"  FontWeight="Bold" Click="button_medicalAidSaleSelect_Click"/>
@@ -188,7 +188,7 @@
             <Label x:Name="label_Instr" Content="Instructions" HorizontalAlignment="Left" Margin="61,115,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Emp" Content="Employees" HorizontalAlignment="Left" Margin="65,261,0,0" VerticalAlignment="Top" Height="38" Width="128" Grid.Row="2" FontSize="22" RenderTransformOrigin="0.571,-1.029" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Rep" Content="Reporting" HorizontalAlignment="Left" Margin="69,411,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
-            
+
         </Grid>
 
     </Viewbox>

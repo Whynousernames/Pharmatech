@@ -115,7 +115,7 @@ namespace Pharmatech
                     }
                     catch (Exception ex)
                     {
-                        System.Windows.MessageBox.Show("Could not populate allergies combobox from database.", ex.ToString());
+                        System.Windows.MessageBox.Show(ex.ToString(), ex.ToString());
                     }
                 }
 
@@ -336,6 +336,8 @@ namespace Pharmatech
             string address1 = textBox_AddressLine1.Text;
             string address2 = textBox_AddressLine2.Text;          
             string patientID = textBox_IDNumber.Text;
+            string suburb = comboBox_selectSuburb.Text;
+            string city = comboBox_selectCity.Text;
                                
 
             if (label_PatientWindowType.Content.ToString() == "Add Patient")
@@ -353,7 +355,7 @@ namespace Pharmatech
                     if (dialogResult == MessageBoxResult.Yes)
                     {
                         // Add Patient to system.
-                        DataAccess.PatientDA.AddPatient(id, firstName, surname, contactNo, email, address1, address2);
+                       DataAccess.PatientDA.AddPatient(id, firstName, surname, contactNo, email, address1, address2, city, suburb);
                         // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
                         //  System.Windows.MessageBox.Show("Successfully added a new patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
 
@@ -440,7 +442,7 @@ namespace Pharmatech
                 if (dialogResult == MessageBoxResult.Yes)
                 {
                     // Update patient on system.
-                    DataAccess.PatientDA.UpdatePatient(id, firstName, surname, contactNo, email, address1, address2);
+                    DataAccess.PatientDA.UpdatePatient(id, firstName, surname, contactNo, email, address1, address2, city, suburb);
                   //  System.Windows.MessageBox.Show("Successfully updated patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 }
                 else if (dialogResult == MessageBoxResult.No)
@@ -546,6 +548,8 @@ namespace Pharmatech
                         textBox_AddressLine1.Text = reader["physicalAddress1"].ToString();
                         textBox_AddressLine2.Text = reader["physicalAddress2"].ToString();
                         textBox_isActivePatient.Text = reader["isActive"].ToString();
+                        comboBox_selectCity.Text = reader["cityName"].ToString();
+                        comboBox_selectSuburb.Text = reader["suburbName"].ToString();
 
                     }
                     reader.Close();

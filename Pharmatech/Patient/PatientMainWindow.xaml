@@ -143,7 +143,7 @@
                 <Label x:Name="label_AllergyType" Content="Allergy Type:" HorizontalAlignment="Left" Height="42" Margin="864,117,0,0" VerticalAlignment="Top" Width="166" FontSize="24"/>
                 <TextBox x:Name="textBox_AllergyDescription" HorizontalAlignment="Left" Height="75" Margin="1120,14,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="368" FontSize="24" Grid.Row="1"/>
                 <ComboBox x:Name="comboBox_selectAllergy" HorizontalAlignment="Left" Height="36" Margin="1120,123,0,0" VerticalAlignment="Top" Width="368" FontSize="24"    SelectionChanged="comboBox_selectAllergy_SelectionChanged"/>
-                <Button x:Name="button_next" Content="Next" HorizontalAlignment="Left" Height="56" Margin="1300,650,0,0" VerticalAlignment="Top" Width="213" FontSize="24" Click="button_next_Click" Grid.Row="1" BorderBrush="Black" BorderThickness="2" >
+                <Button x:Name="button_next" Content="Complete" HorizontalAlignment="Left" Height="56" Margin="1300,650,0,0" VerticalAlignment="Top" Width="213" FontSize="24" Click="button_next_Click" Grid.Row="1" BorderBrush="Black" BorderThickness="2" >
 
                 </Button>
                 <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1121,650,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Row="1" BorderBrush="Black" BorderThickness="2" >

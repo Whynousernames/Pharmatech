@@ -27,9 +27,7 @@ namespace Pharmatech
 
         string conn = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
         public string allergyID;
-        
-
-
+       
         public EmployeeMainWindow()
         {
             InitializeComponent();
@@ -52,8 +50,6 @@ namespace Pharmatech
 
             }
             
-
-
 
             if (label_PatientWindowType.Content.ToString() == "Remove Patient")
             {
@@ -141,11 +137,6 @@ namespace Pharmatech
                     }
                 }
 
-
-
-
-
-
             }
         }
 
@@ -184,7 +175,6 @@ namespace Pharmatech
             newCashSaleWindow.label_SaleWindowType.Content = "New Sale";
             newCashSaleWindow.ShowDialog();
             this.Close();
-
             
         }
 
@@ -225,7 +215,6 @@ namespace Pharmatech
                 DataTable dt = new DataTable("Employees");
                 da.Fill(dt);
                 dataGrid_Employees.ItemsSource = dt.DefaultView;
-
 
             }
         }
@@ -714,8 +703,6 @@ namespace Pharmatech
 
             }
 
-
-
         }
 
         private void button_back_Click(object sender, RoutedEventArgs e)
@@ -744,15 +731,12 @@ namespace Pharmatech
                     {
                         DataAccess.EmployeeDA.ChangeEmployeePassword(username, password);
                         System.Windows.MessageBox.Show("Successfully changed password for employee account: " + username, "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-
                     }
 
                     else
                     {
                         System.Windows.MessageBox.Show("Your entered passwords do not match.", "Halt, go back!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-
                     }
-
                 }
 
                 else
@@ -760,12 +744,7 @@ namespace Pharmatech
                     System.Windows.MessageBox.Show("The username entered is not currently on the system.", "Alert!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
                 con.Close();
-
-
             }
-
- 
-
         }
 
         private void textBox_ContactNumber_TextChanged(object sender, TextChangedEventArgs e)

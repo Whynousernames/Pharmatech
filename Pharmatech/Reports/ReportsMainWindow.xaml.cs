@@ -78,7 +78,6 @@ namespace Pharmatech
                 }
             }
 
-
             FillSalesGrid();
         }
 
@@ -193,21 +192,8 @@ namespace Pharmatech
                 cParameters.Clear();
                 dataGrid_Reports.ItemsSource = dt.DefaultView;
 
-        }
-    
-            
-                                                              
-        }
-
-
-        //// Function to remove the time portion of the Date/time value. 
-        //private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        //{
-        //    if (e.PropertyType == typeof(System.DateTime))
-        //        (e.Column as DataGridTextColumn).Binding.StringFormat = "dd/MM/yyyy";
-
-        //}
-
+        }                                                                         
+      }     
 
         void messageTimer_Tick(object sender, EventArgs e)
         {
@@ -557,12 +543,7 @@ namespace Pharmatech
                 dt.Rows.Add(grandtotal);
             }
         }
-
-
     }
-
-    
-
-
+  
 }
 

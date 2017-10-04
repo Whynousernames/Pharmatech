@@ -10,7 +10,7 @@
     <Window.DataContext>
         <local:PatientValidation></local:PatientValidation>
     </Window.DataContext>
-    
+
     <Window.Resources>
         <ImageBrush x:Key="SaleResource" ImageSource= "pack://siteoforigin:,,,/images/CashSale_Icon.JPG" ></ImageBrush>
         <ImageBrush x:Key="EmployeeResource" ImageSource="pack://siteoforigin:,,,/images/Employee_Icon.JPG"></ImageBrush>
@@ -36,156 +36,156 @@
 
     </Window.Resources>
     <Viewbox>
-    <Grid HorizontalAlignment="Left" Height="1080" VerticalAlignment="Top" Width="1910" Margin="10,0,-6,-29">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="43*"/>
-            <RowDefinition Height="228*"/>
-            <RowDefinition Height="269*"/>
-        </Grid.RowDefinitions>
+        <Grid HorizontalAlignment="Left" Height="1080" VerticalAlignment="Top" Width="1910" Margin="10,0,-6,-29">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="43*"/>
+                <RowDefinition Height="228*"/>
+                <RowDefinition Height="269*"/>
+            </Grid.RowDefinitions>
 
-        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="1574,0,0,0" VerticalAlignment="Top" Width="330" Source="../images/Pharmatech 2 - Transparrent.png" Grid.RowSpan="2"/>
-        <StackPanel x:Name="StackPanelMenu" Height="1080" Margin="0,-1,1653,0" VerticalAlignment="Top" Background="#FF0BA9F1" Grid.RowSpan="3" Width="257" RenderTransformOrigin="0.51,0.468">
-            <Label x:Name="label_Time" Content="Label" HorizontalAlignment="Center" Height="40" Width="257" VerticalAlignment="Top" FontSize="24" BorderBrush="#FF01213A" BorderThickness="1" Foreground="White" Margin="10,0,0,0"/>
-            <Grid HorizontalAlignment="Left" Height="62" Width="257"/>
-            <Button x:Name="button_Sale" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource SaleResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Sales" Click="button_Sale_Click"/>
-            <Button x:Name="button_Patient" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource PatientResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Patients" Click="button_Patient_Click"/>
-            <Button x:Name="button_Medication" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource MedicationResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Medication" Click="button_Medication_Click"/>
-            <Button x:Name="button_Instruction" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource PrescriptionResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Instruction" Click="button_Instruction_Click"/>
-            <Button x:Name="button_Employee" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource EmployeeResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Employees" Click="button_Employee_Click"/>
-            <Button x:Name="button_Reports" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource ReportsResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Reports" Click="button_Reports_Click"/>
-        </StackPanel>
-        <Label x:Name="label_MedicationWindowType" Content="Medication" HorizontalAlignment="Center" Height="49" Margin="874,0,674,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="362" FontSize="30" FontWeight="Bold"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1060" Margin="258,-1,0,0" Grid.RowSpan="3" Stroke="#FFF4F4F5" VerticalAlignment="Top" Width="4">
-            <Rectangle.Effect>
-                <BlurEffect KernelType="Box"/>
-            </Rectangle.Effect>
-        </Rectangle>
-        <Grid x:Name="Grid_sales" HorizontalAlignment="Left" Height="114" Margin="246,53,0,0" Grid.Row="1" VerticalAlignment="Top" Width="148">
-            <Button x:Name="button_newCashSale" Content="New Sale" HorizontalAlignment="Left" Height="29" VerticalAlignment="Bottom" Width="121" Background="#FF2B95E3" Foreground="#FFF0F5FB" Cursor="Hand" BorderBrush="#FF31A5FC" Click="button_newCashSale_Click" Margin="0,0,0,85"/>
-        </Grid>
-        <Grid x:Name="Grid_patient" HorizontalAlignment="Left" Height="114" Margin="246,197,0,0" Grid.Row="1" VerticalAlignment="Top" Width="148">
-            <Button x:Name="button_AddPatient" Content="Add Patient" HorizontalAlignment="Left" Margin="0,4,0,81" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_AddPatient_Click" />
-            <Button x:Name="button_updatePatient" Content="Update Patient" HorizontalAlignment="Left" Height="29" Margin="0,31,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_updatePatient_Click"/>
-            <Button x:Name="button_ViewPatient" Content="View Patient" HorizontalAlignment="Left" Height="30" Margin="0,58,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_ViewPatient_Click"/>
-            <Button x:Name="button_removePatient" Content="Remove Patient" HorizontalAlignment="Left" Height="29" Margin="0,85,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_removePatient_Click"/>
-
-
-        </Grid>
-        <Grid x:Name="Grid_medication" HorizontalAlignment="Left" Height="114" Margin="246,344,0,0" Grid.Row="1" VerticalAlignment="Top" Width="148" Grid.RowSpan="2">
-            <Button x:Name="button_addMedication" Content="Add Medication" HorizontalAlignment="Left" Height="29" Margin="0,4,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_addMedication_Click"/>
-            <Button x:Name="button_updateMedication" Content="Update Medication" HorizontalAlignment="Left" Height="29" Margin="0,31,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_updateMedication_Click"/>
-            <Button x:Name="button_viewMedication" Content="View Medication" HorizontalAlignment="Left" Height="30" Margin="0,58,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_viewMedication_Click"/>
-            <Button x:Name="button_removeMedication" Content="Remove Medication" HorizontalAlignment="Left" Height="29" Margin="0,85,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_removeMedication_Click"/>
-        </Grid>
-        <Grid x:Name="Grid_Report" HorizontalAlignment="Left" Height="114" Margin="246,338,0,0" Grid.Row="2" VerticalAlignment="Top" Width="148">
-            <Button x:Name="button_generateReport" Content="Generate Report" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_generateReport_Click"/>
-        </Grid>
-        <Grid x:Name="Grid_instruction" HorizontalAlignment="Left" Height="114" Margin="246,37,0,0" Grid.Row="2" VerticalAlignment="Top" Width="148">
-            <Button x:Name="button_addInstruction" Content="Add Instruction" HorizontalAlignment="Left" Height="29" Margin="0,4,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
-            <Button x:Name="button_updateInstruction" Content="Update Instruction" HorizontalAlignment="Left" Height="29" Margin="0,31,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
-            <Button x:Name="button_viewInstruction" Content="View Instruction" HorizontalAlignment="Left" Height="30" Margin="0,58,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
-            <Button x:Name="button_removeInstruction" Content="Remove Instruction" HorizontalAlignment="Left" Height="29" Margin="0,85,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
-        </Grid>
-        <Grid x:Name="Grid_Employee" HorizontalAlignment="Left" Height="114" Margin="246,185,0,0" Grid.Row="2" VerticalAlignment="Top" Width="148">
-            <Button x:Name="button_addEmployee" Content="Add Employee" HorizontalAlignment="Left" Height="29" Margin="0,4,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
-            <Button x:Name="button_updateEmployee" Content="Update Employee" HorizontalAlignment="Left" Height="29" Margin="0,31,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
-            <Button x:Name="button_viewEmployee" Content="View Employee" HorizontalAlignment="Left" Height="30" Margin="0,58,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
-            <Button x:Name="button_removeEmployee" Content="Remove Employee" HorizontalAlignment="Left" Height="29" Margin="0,85,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
-        </Grid>
-        <Grid x:Name="Grid_MedicationMainWindow" HorizontalAlignment="Left" Height="920" Margin="353,14,0,0" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Width="1492">
-            <Rectangle HorizontalAlignment="Left" Height="821" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="681" Margin="783,3,0,0">
+            <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="1574,0,0,0" VerticalAlignment="Top" Width="330" Source="../images/Pharmatech 2 - Transparrent.png" Grid.RowSpan="2"/>
+            <StackPanel x:Name="StackPanelMenu" Height="1080" Margin="0,-1,1653,0" VerticalAlignment="Top" Background="#FF0BA9F1" Grid.RowSpan="3" Width="257" RenderTransformOrigin="0.51,0.468">
+                <Label x:Name="label_Time" Content="Label" HorizontalAlignment="Center" Height="40" Width="257" VerticalAlignment="Top" FontSize="24" BorderBrush="#FF01213A" BorderThickness="1" Foreground="White" Margin="10,0,0,0"/>
+                <Grid HorizontalAlignment="Left" Height="62" Width="257"/>
+                <Button x:Name="button_Sale" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource SaleResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Sales" Click="button_Sale_Click"/>
+                <Button x:Name="button_Patient" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource PatientResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Patients" Click="button_Patient_Click"/>
+                <Button x:Name="button_Medication" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource MedicationResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Medication" Click="button_Medication_Click"/>
+                <Button x:Name="button_Instruction" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource PrescriptionResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Instruction" Click="button_Instruction_Click"/>
+                <Button x:Name="button_Employee" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource EmployeeResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Employees" Click="button_Employee_Click"/>
+                <Button x:Name="button_Reports" Style="{StaticResource MetroButton}" Content="" HorizontalAlignment="Center" Height="148" VerticalAlignment="Top" Width="237" Background="{StaticResource ReportsResource}" ClickMode="Press" BorderBrush="#FF01213A" ToolTip="Reports" Click="button_Reports_Click"/>
+            </StackPanel>
+            <Label x:Name="label_MedicationWindowType" Content="Medication" HorizontalAlignment="Center" Height="49" Margin="874,0,674,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="362" FontSize="30" FontWeight="Bold"/>
+            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1060" Margin="258,-1,0,0" Grid.RowSpan="3" Stroke="#FFF4F4F5" VerticalAlignment="Top" Width="4">
                 <Rectangle.Effect>
-                    <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
+                    <BlurEffect KernelType="Box"/>
                 </Rectangle.Effect>
             </Rectangle>
+            <Grid x:Name="Grid_sales" HorizontalAlignment="Left" Height="114" Margin="246,53,0,0" Grid.Row="1" VerticalAlignment="Top" Width="148">
+                <Button x:Name="button_newCashSale" Content="New Sale" HorizontalAlignment="Left" Height="29" VerticalAlignment="Bottom" Width="121" Background="#FF2B95E3" Foreground="#FFF0F5FB" Cursor="Hand" BorderBrush="#FF31A5FC" Click="button_newCashSale_Click" Margin="0,0,0,85"/>
+            </Grid>
+            <Grid x:Name="Grid_patient" HorizontalAlignment="Left" Height="114" Margin="246,197,0,0" Grid.Row="1" VerticalAlignment="Top" Width="148">
+                <Button x:Name="button_AddPatient" Content="Add Patient" HorizontalAlignment="Left" Margin="0,4,0,81" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_AddPatient_Click" />
+                <Button x:Name="button_updatePatient" Content="Update Patient" HorizontalAlignment="Left" Height="29" Margin="0,31,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_updatePatient_Click"/>
+                <Button x:Name="button_ViewPatient" Content="View Patient" HorizontalAlignment="Left" Height="30" Margin="0,58,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_ViewPatient_Click"/>
+                <Button x:Name="button_removePatient" Content="Remove Patient" HorizontalAlignment="Left" Height="29" Margin="0,85,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_removePatient_Click"/>
 
-            <Rectangle HorizontalAlignment="Left" Height="887" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="681" Margin="31,3,0,0">
-                <Rectangle.Effect>
-                    <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
-                </Rectangle.Effect>
-            </Rectangle>
 
-            <Label x:Name="label_CostPrice" Content="Cost Price (R):" HorizontalAlignment="Left" Height="42" Margin="47,395,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
-            <Label x:Name="label_SalePrice" Content="Sale Price (R):" HorizontalAlignment="Left" Height="42" Margin="47,474,0,0" VerticalAlignment="Top" Width="176" FontSize="24"/>
-            <Label x:Name="label_MedicationDetails" Content="Medication Details" HorizontalAlignment="Left" Height="62" Margin="256,9,0,0" VerticalAlignment="Top" Width="411" FontSize="36"/>
-            <Label x:Name="label_Schedule" Content="Schedule Level:" HorizontalAlignment="Left" Height="42" Margin="47,317,0,0" VerticalAlignment="Top" Width="176" FontSize="24"/>
-            <Label x:Name="label_MedicationName" Content="Medication Name:" HorizontalAlignment="Left" Height="42" Margin="47,234,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
-            <Label x:Name="label_MedicationID" Content="Medication ID:" HorizontalAlignment="Left" Height="42" Margin="47,162,0,0" VerticalAlignment="Top" Width="200" FontSize="24" Visibility="Hidden"/>
-            <Label x:Name="label_QuantityInStock" Content="Quantity In Stock:" HorizontalAlignment="Left" Height="42" Margin="47,554,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
-            <TextBox x:Name="textBox_MedicationID" HorizontalAlignment="Left" Height="38" Margin="317,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Visibility="Hidden"/>
-            <TextBox x:Name="textBox_MedicationName" HorizontalAlignment="Left" Height="38" Margin="317,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Text="{Binding MedValid, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="textBox_CostPrice" HorizontalAlignment="Left" Height="38" Margin="317,391,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Text="{Binding MedValid, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" TextChanged="textBox_CostPrice_TextChanged"/>
-            <TextBox x:Name="textBox_SalePrice" HorizontalAlignment="Left" Height="38" Margin="317,472,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Text="{Binding MedValid, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" TextChanged="textBox_SalePrice_TextChanged"/>
-            <TextBox x:Name="textBox_QuantityInStock" HorizontalAlignment="Left" Height="38" Margin="317,552,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Text="{Binding MedValid, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" TextChanged="textBox_QuantityInStock_TextChanged"/>
-            <Label x:Name="label_MedicationAllergies" Content="Medication Allergies" HorizontalAlignment="Left" Height="62" Margin="1006,10,0,0" VerticalAlignment="Top" Width="411" FontSize="36"/>
-            <Label x:Name="label_AllergyDescription" Content="Allergy Description:" HorizontalAlignment="Left" Height="42" Margin="815,272,0,0" VerticalAlignment="Top" Width="226" FontSize="24" />
-            <Label x:Name="label_AllergyName" Content="Allergy Name:" HorizontalAlignment="Left" Height="42" Margin="815,189,0,0" VerticalAlignment="Top" Width="166" FontSize="24"/>
-            <Label x:Name="label_AllergyType" Content="Allergy Type:" HorizontalAlignment="Left" Height="42" Margin="815,117,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
-            <TextBox x:Name="textBox_AllergyName" HorizontalAlignment="Left" Height="38" Margin="1071,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"/>
-            <TextBox x:Name="textBox_AllergyDescription" HorizontalAlignment="Left" Height="75" Margin="1071,276,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"/>
-            <ComboBox x:Name="comboBox_selectAllergy" HorizontalAlignment="Left" Height="36" Margin="1071,123,0,0" VerticalAlignment="Top" Width="368" FontSize="24"/>
-            <Button x:Name="button_Next" Content="Finalize" HorizontalAlignment="Left" Margin="1317,856,0,8" Width="147"   FontSize="24" Click="button_next_Click_1" BorderBrush="Black" BorderThickness="2" >
+            </Grid>
+            <Grid x:Name="Grid_medication" HorizontalAlignment="Left" Height="114" Margin="246,344,0,0" Grid.Row="1" VerticalAlignment="Top" Width="148" Grid.RowSpan="2">
+                <Button x:Name="button_addMedication" Content="Add Medication" HorizontalAlignment="Left" Height="29" Margin="0,4,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_addMedication_Click"/>
+                <Button x:Name="button_updateMedication" Content="Update Medication" HorizontalAlignment="Left" Height="29" Margin="0,31,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_updateMedication_Click"/>
+                <Button x:Name="button_viewMedication" Content="View Medication" HorizontalAlignment="Left" Height="30" Margin="0,58,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_viewMedication_Click"/>
+                <Button x:Name="button_removeMedication" Content="Remove Medication" HorizontalAlignment="Left" Height="29" Margin="0,85,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_removeMedication_Click"/>
+            </Grid>
+            <Grid x:Name="Grid_Report" HorizontalAlignment="Left" Height="114" Margin="246,338,0,0" Grid.Row="2" VerticalAlignment="Top" Width="148">
+                <Button x:Name="button_generateReport" Content="Generate Report" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand" Click="button_generateReport_Click"/>
+            </Grid>
+            <Grid x:Name="Grid_instruction" HorizontalAlignment="Left" Height="114" Margin="246,37,0,0" Grid.Row="2" VerticalAlignment="Top" Width="148">
+                <Button x:Name="button_addInstruction" Content="Add Instruction" HorizontalAlignment="Left" Height="29" Margin="0,4,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
+                <Button x:Name="button_updateInstruction" Content="Update Instruction" HorizontalAlignment="Left" Height="29" Margin="0,31,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
+                <Button x:Name="button_viewInstruction" Content="View Instruction" HorizontalAlignment="Left" Height="30" Margin="0,58,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
+                <Button x:Name="button_removeInstruction" Content="Remove Instruction" HorizontalAlignment="Left" Height="29" Margin="0,85,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
+            </Grid>
+            <Grid x:Name="Grid_Employee" HorizontalAlignment="Left" Height="114" Margin="246,185,0,0" Grid.Row="2" VerticalAlignment="Top" Width="148">
+                <Button x:Name="button_addEmployee" Content="Add Employee" HorizontalAlignment="Left" Height="29" Margin="0,4,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
+                <Button x:Name="button_updateEmployee" Content="Update Employee" HorizontalAlignment="Left" Height="29" Margin="0,31,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
+                <Button x:Name="button_viewEmployee" Content="View Employee" HorizontalAlignment="Left" Height="30" Margin="0,58,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
+                <Button x:Name="button_removeEmployee" Content="Remove Employee" HorizontalAlignment="Left" Height="29" Margin="0,85,0,0" VerticalAlignment="Top" Width="121" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Foreground="#FFF0F5FB" Cursor="Hand"/>
+            </Grid>
+            <Grid x:Name="Grid_MedicationMainWindow" HorizontalAlignment="Left" Height="920" Margin="353,14,0,0" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Width="1492">
+                <Rectangle HorizontalAlignment="Left" Height="821" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="681" Margin="783,3,0,0">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
+                    </Rectangle.Effect>
+                </Rectangle>
 
-            </Button>
-            <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1138,856,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click"  FontSize="24" BorderBrush="Black" BorderThickness="2">
+                <Rectangle HorizontalAlignment="Left" Height="887" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="681" Margin="31,3,0,0">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
+                    </Rectangle.Effect>
+                </Rectangle>
 
-            </Button>
-            <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="968,856,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" BorderBrush="Black" BorderThickness="2">
+                <Label x:Name="label_CostPrice" Content="Cost Price (R):" HorizontalAlignment="Left" Height="42" Margin="47,395,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
+                <Label x:Name="label_SalePrice" Content="Sale Price (R):" HorizontalAlignment="Left" Height="42" Margin="47,474,0,0" VerticalAlignment="Top" Width="176" FontSize="24"/>
+                <Label x:Name="label_MedicationDetails" Content="Medication Details" HorizontalAlignment="Left" Height="62" Margin="256,9,0,0" VerticalAlignment="Top" Width="411" FontSize="36"/>
+                <Label x:Name="label_Schedule" Content="Schedule Level:" HorizontalAlignment="Left" Height="42" Margin="47,317,0,0" VerticalAlignment="Top" Width="176" FontSize="24"/>
+                <Label x:Name="label_MedicationName" Content="Medication Name:" HorizontalAlignment="Left" Height="42" Margin="47,234,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
+                <Label x:Name="label_MedicationID" Content="Medication ID:" HorizontalAlignment="Left" Height="42" Margin="47,162,0,0" VerticalAlignment="Top" Width="200" FontSize="24" Visibility="Hidden"/>
+                <Label x:Name="label_QuantityInStock" Content="Quantity In Stock:" HorizontalAlignment="Left" Height="42" Margin="47,554,0,0" VerticalAlignment="Top" Width="200" FontSize="24"/>
+                <TextBox x:Name="textBox_MedicationID" HorizontalAlignment="Left" Height="38" Margin="317,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Visibility="Hidden"/>
+                <TextBox x:Name="textBox_MedicationName" HorizontalAlignment="Left" Height="38" Margin="317,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Text="{Binding MedValid, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox x:Name="textBox_CostPrice" HorizontalAlignment="Left" Height="38" Margin="317,391,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Text="{Binding MedValid, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" TextChanged="textBox_CostPrice_TextChanged"/>
+                <TextBox x:Name="textBox_SalePrice" HorizontalAlignment="Left" Height="38" Margin="317,472,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Text="{Binding MedValid, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" TextChanged="textBox_SalePrice_TextChanged"/>
+                <TextBox x:Name="textBox_QuantityInStock" HorizontalAlignment="Left" Height="38" Margin="317,552,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Text="{Binding MedValid, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" TextChanged="textBox_QuantityInStock_TextChanged"/>
+                <Label x:Name="label_MedicationAllergies" Content="Medication Allergies" HorizontalAlignment="Left" Height="62" Margin="1006,10,0,0" VerticalAlignment="Top" Width="411" FontSize="36"/>
+                <Label x:Name="label_AllergyDescription" Content="Allergy Description:" HorizontalAlignment="Left" Height="42" Margin="815,272,0,0" VerticalAlignment="Top" Width="226" FontSize="24" />
+                <Label x:Name="label_AllergyName" Content="Allergy Name:" HorizontalAlignment="Left" Height="42" Margin="815,189,0,0" VerticalAlignment="Top" Width="166" FontSize="24"/>
+                <Label x:Name="label_AllergyType" Content="Allergy Type:" HorizontalAlignment="Left" Height="42" Margin="815,117,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
+                <TextBox x:Name="textBox_AllergyName" HorizontalAlignment="Left" Height="38" Margin="1071,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"/>
+                <TextBox x:Name="textBox_AllergyDescription" HorizontalAlignment="Left" Height="75" Margin="1071,276,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"/>
+                <ComboBox x:Name="comboBox_selectAllergy" HorizontalAlignment="Left" Height="36" Margin="1071,123,0,0" VerticalAlignment="Top" Width="368" FontSize="24"/>
+                <Button x:Name="button_Next" Content="Complete" HorizontalAlignment="Left" Margin="1285,856,0,8" Width="179"   FontSize="24" Click="button_next_Click_1" BorderBrush="Black" BorderThickness="2" >
 
-            </Button>
-            <Button x:Name="button_Remove" Content="Remove" HorizontalAlignment="Left" Height="48" Margin="1071,362,0,0" VerticalAlignment="Top" Width="127"  FontSize="24" Click="button_Remove_Click" BorderBrush="Black" BorderThickness="2">
+                </Button>
+                <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1114,856,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click"  FontSize="24" BorderBrush="Black" BorderThickness="2">
 
-            </Button>
-            <Button x:Name="button_Add" Content="Add" HorizontalAlignment="Left" Height="48" Margin="1312,362,0,0" VerticalAlignment="Top" Width="127" FontSize="24" Click="button_Add_Click" BorderBrush="Black" BorderThickness="2">
+                </Button>
+                <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="944,856,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" BorderBrush="Black" BorderThickness="2">
 
-            </Button>
-            <DataGrid x:Name="dataGrid_Allergies" HorizontalAlignment="Left" Height="338" Margin="815,460,0,0" VerticalAlignment="Top" Width="624" GridLinesVisibility="Horizontal"/>
-            <ComboBox x:Name="comboBox_Schedule" HorizontalAlignment="Left" Height="36" Margin="313,322,0,0" VerticalAlignment="Top" Width="360" FontSize="24" Text="{Binding MedValid, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
-            <Label x:Name="label_MedicationDescription" Content="Medication Description:" HorizontalAlignment="Left" Height="42" Margin="47,634,0,0" VerticalAlignment="Top" Width="368" FontSize="24" />
-            <TextBox x:Name="textBox_QuantityInStock_Copy" HorizontalAlignment="Left" Height="112" Margin="317,630,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Text="{Binding MedValid, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
-            <Label x:Name="labelMedicationIsActive" Content="" HorizontalAlignment="Left" Height="40" Margin="115,121,0,0" VerticalAlignment="Top" Width="550" Background="#E2382F" FontSize="18" Visibility="Hidden" FontWeight="Bold"/>
-            <TextBox x:Name="textBox_IsActive" HorizontalAlignment="Left" Height="23" Margin="313,727,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="48" Visibility="Hidden"/>
-            <Button x:Name="button_AddStock" Content="Add Stock" HorizontalAlignment="Left" Height="64" Margin="400,782,0,0" VerticalAlignment="Top" Width="211"  FontSize="24" Click="button_AddStock_Click" BorderBrush="Black" BorderThickness="2"/>
-        </Grid>
-        <Grid x:Name="Grid_Instruction" HorizontalAlignment="Left" Height="894" Margin="2061,32,-865,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="714">
-            <Label x:Name="label_Instructions" Content="Instructions" HorizontalAlignment="Left" Height="62" Margin="245,10,0,0" VerticalAlignment="Top" Width="411" FontSize="36"/>
-            <Label x:Name="label_InstructionDetails" Content="Instruction Details:" HorizontalAlignment="Left" Height="42" Margin="33,208,0,0" VerticalAlignment="Top" Width="226" FontSize="24"/>
-            <Label x:Name="label_InstructionID" Content="Instruction ID:" HorizontalAlignment="Left" Height="42" Margin="33,127,0,0" VerticalAlignment="Top" Width="166" FontSize="24"/>
-            <TextBox x:Name="textBox_InstructionDetails" HorizontalAlignment="Left" Height="155" Margin="289,212,0,0" TextWrapping="Wrap" Text="Take 1 tablet 3 times a day" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
-            <ComboBox x:Name="comboBox_selectInstructionID" HorizontalAlignment="Left" Height="36" Margin="289,133,0,0" VerticalAlignment="Top" Width="368" FontSize="24" BorderBrush="{x:Null}"/>
-            <Button x:Name="button_RemoveInstructions" Content="Remove" HorizontalAlignment="Left" Height="48" Margin="289,372,0,0" VerticalAlignment="Top" Width="127"  FontSize="24" Click="button_Remove_Click" >
+                </Button>
+                <Button x:Name="button_Remove" Content="Remove" HorizontalAlignment="Left" Height="48" Margin="1071,362,0,0" VerticalAlignment="Top" Width="127"  FontSize="24" Click="button_Remove_Click" BorderBrush="Black" BorderThickness="2">
 
-            </Button>
-            <Button x:Name="button_AddInstructions" Content="Add" HorizontalAlignment="Left" Height="48" Margin="530,372,0,0" VerticalAlignment="Top" Width="127"   FontSize="24" Click="button_Add_Click" >
+                </Button>
+                <Button x:Name="button_Add" Content="Add" HorizontalAlignment="Left" Height="48" Margin="1312,362,0,0" VerticalAlignment="Top" Width="127" FontSize="24" Click="button_Add_Click" BorderBrush="Black" BorderThickness="2">
 
-            </Button>
-            <DataGrid x:Name="dataGrid_Allergies_Copy" HorizontalAlignment="Left" Height="338" Margin="33,470,0,0" VerticalAlignment="Top" Width="624" GridLinesVisibility="Horizontal"/>
-            <Button x:Name="button_nextInstruction" Content="Next" HorizontalAlignment="Left" Height="56" Margin="509,828,0,0" VerticalAlignment="Top" Width="147" FontSize="24" Click="button_nextInstruction_Click" BorderBrush="Black" BorderThickness="2" >
+                </Button>
+                <DataGrid x:Name="dataGrid_Allergies" HorizontalAlignment="Left" Height="338" Margin="815,460,0,0" VerticalAlignment="Top" Width="624" GridLinesVisibility="Horizontal"/>
+                <ComboBox x:Name="comboBox_Schedule" HorizontalAlignment="Left" Height="36" Margin="313,322,0,0" VerticalAlignment="Top" Width="360" FontSize="24" Text="{Binding MedValid, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label x:Name="label_MedicationDescription" Content="Medication Description:" HorizontalAlignment="Left" Height="42" Margin="47,634,0,0" VerticalAlignment="Top" Width="368" FontSize="24" />
+                <TextBox x:Name="textBox_QuantityInStock_Copy" HorizontalAlignment="Left" Height="112" Margin="317,630,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Text="{Binding MedValid, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label x:Name="labelMedicationIsActive" Content="" HorizontalAlignment="Left" Height="40" Margin="115,121,0,0" VerticalAlignment="Top" Width="550" Background="#E2382F" FontSize="18" Visibility="Hidden" FontWeight="Bold"/>
+                <TextBox x:Name="textBox_IsActive" HorizontalAlignment="Left" Height="23" Margin="313,727,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="48" Visibility="Hidden"/>
+                <Button x:Name="button_AddStock" Content="Add Stock" HorizontalAlignment="Left" Height="64" Margin="400,782,0,0" VerticalAlignment="Top" Width="211"  FontSize="24" Click="button_AddStock_Click" BorderBrush="Black" BorderThickness="2"/>
+            </Grid>
+            <Grid x:Name="Grid_Instruction" HorizontalAlignment="Left" Height="894" Margin="2061,32,-865,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="714">
+                <Label x:Name="label_Instructions" Content="Instructions" HorizontalAlignment="Left" Height="62" Margin="245,10,0,0" VerticalAlignment="Top" Width="411" FontSize="36"/>
+                <Label x:Name="label_InstructionDetails" Content="Instruction Details:" HorizontalAlignment="Left" Height="42" Margin="33,208,0,0" VerticalAlignment="Top" Width="226" FontSize="24"/>
+                <Label x:Name="label_InstructionID" Content="Instruction ID:" HorizontalAlignment="Left" Height="42" Margin="33,127,0,0" VerticalAlignment="Top" Width="166" FontSize="24"/>
+                <TextBox x:Name="textBox_InstructionDetails" HorizontalAlignment="Left" Height="155" Margin="289,212,0,0" TextWrapping="Wrap" Text="Take 1 tablet 3 times a day" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}"/>
+                <ComboBox x:Name="comboBox_selectInstructionID" HorizontalAlignment="Left" Height="36" Margin="289,133,0,0" VerticalAlignment="Top" Width="368" FontSize="24" BorderBrush="{x:Null}"/>
+                <Button x:Name="button_RemoveInstructions" Content="Remove" HorizontalAlignment="Left" Height="48" Margin="289,372,0,0" VerticalAlignment="Top" Width="127"  FontSize="24" Click="button_Remove_Click" >
 
-            </Button>
-            <Button x:Name="button_cancelInstruction" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="330,828,0,0" VerticalAlignment="Top" Width="147"   FontSize="24" Click="button_cancelInstruction_Click" BorderBrush="Black" BorderThickness="2">
+                </Button>
+                <Button x:Name="button_AddInstructions" Content="Add" HorizontalAlignment="Left" Height="48" Margin="530,372,0,0" VerticalAlignment="Top" Width="127"   FontSize="24" Click="button_Add_Click" >
 
-            </Button>
-        </Grid>
-        <Grid x:Name="Grid_SelectMedication" HorizontalAlignment="Left" Height="480" Margin="577,150,0,0" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Width="876">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="167*"/>
-                <ColumnDefinition Width="125*"/>
-            </Grid.ColumnDefinitions>
-            <Rectangle HorizontalAlignment="Left" Height="434" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="810" Margin="26,-14,0,0" Grid.ColumnSpan="2">
-                <Rectangle.Effect>
-                    <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
-                </Rectangle.Effect>
-            </Rectangle>
-            <Label x:Name="label_SelectMedicationName" Content="Select medicine item:" HorizontalAlignment="Center" Height="49" Margin="42,163,97,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="362" FontSize="24"  FontWeight="Bold"/>
-            <ComboBox x:Name="comboBox_selectMedication" HorizontalAlignment="Left" Height="43" Margin="375,169,0,0" VerticalAlignment="Top" Width="368" FontSize="24" Grid.ColumnSpan="2" IsTextSearchEnabled="True" IsEditable="True"/>
-            <Button x:Name="button_nextSelectMedication" Content="Next" HorizontalAlignment="Left" Height="56" Margin="468,307,0,0" VerticalAlignment="Top" Width="147"  FontSize="24"  Grid.ColumnSpan="2" Click="button_nextSelectMedication_Click" BorderBrush="Black" BorderThickness="2">
+                </Button>
+                <DataGrid x:Name="dataGrid_Allergies_Copy" HorizontalAlignment="Left" Height="338" Margin="33,470,0,0" VerticalAlignment="Top" Width="624" GridLinesVisibility="Horizontal"/>
+                <Button x:Name="button_nextInstruction" Content="Next" HorizontalAlignment="Left" Height="56" Margin="509,828,0,0" VerticalAlignment="Top" Width="147" FontSize="24" Click="button_nextInstruction_Click" BorderBrush="Black" BorderThickness="2" >
 
-            </Button>
-            <Button x:Name="button_cancelSelectMedication" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="289,307,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click"  FontSize="24" BorderBrush="Black" BorderThickness="2">
+                </Button>
+                <Button x:Name="button_cancelInstruction" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="330,828,0,0" VerticalAlignment="Top" Width="147"   FontSize="24" Click="button_cancelInstruction_Click" BorderBrush="Black" BorderThickness="2">
 
-            </Button>
-        </Grid>
+                </Button>
+            </Grid>
+            <Grid x:Name="Grid_SelectMedication" HorizontalAlignment="Left" Height="480" Margin="577,150,0,0" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Width="876">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="167*"/>
+                    <ColumnDefinition Width="125*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle HorizontalAlignment="Left" Height="434" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="810" Margin="26,-14,0,0" Grid.ColumnSpan="2">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
+                    </Rectangle.Effect>
+                </Rectangle>
+                <Label x:Name="label_SelectMedicationName" Content="Select medicine item:" HorizontalAlignment="Center" Height="49" Margin="42,163,97,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="362" FontSize="24"  FontWeight="Bold"/>
+                <ComboBox x:Name="comboBox_selectMedication" HorizontalAlignment="Left" Height="43" Margin="375,169,0,0" VerticalAlignment="Top" Width="368" FontSize="24" Grid.ColumnSpan="2" IsTextSearchEnabled="True" IsEditable="True"/>
+                <Button x:Name="button_nextSelectMedication" Content="Next" HorizontalAlignment="Left" Height="56" Margin="468,307,0,0" VerticalAlignment="Top" Width="147"  FontSize="24"  Grid.ColumnSpan="2" Click="button_nextSelectMedication_Click" BorderBrush="Black" BorderThickness="2">
+
+                </Button>
+                <Button x:Name="button_cancelSelectMedication" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="289,307,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click"  FontSize="24" BorderBrush="Black" BorderThickness="2">
+
+                </Button>
+            </Grid>
             <Grid x:Name="Grid_AddStock" HorizontalAlignment="Left" Height="480" Margin="577,150,0,0" Grid.Row="1" VerticalAlignment="Top" Width="876" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="43*"/>
@@ -205,14 +205,14 @@
                 <Button x:Name="button_cancelAddStock" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="289,221,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click"  FontSize="24" BorderBrush="Black" BorderThickness="2" Grid.Row="1"/>
                 <TextBox x:Name="textBox_AddStock" HorizontalAlignment="Left" Height="38" Margin="372,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Grid.Row="1"/>
             </Grid>
-        
+
             <Label x:Name="label_Sales" Content="Sales" HorizontalAlignment="Left" Margin="90,128,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="8.517,2.609" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Patient" Content="Patient" HorizontalAlignment="Left" Margin="83,277,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Meds" Content="Medication" HorizontalAlignment="Left" Margin="63,424,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.RowSpan="2" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Instr" Content="Instructions" HorizontalAlignment="Left" Margin="61,115,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Emp" Content="Employees" HorizontalAlignment="Left" Margin="65,261,0,0" VerticalAlignment="Top" Height="38" Width="128" Grid.Row="2" FontSize="22" RenderTransformOrigin="0.571,-1.029" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Rep" Content="Reporting" HorizontalAlignment="Left" Margin="69,411,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
-            
+
         </Grid>
     </Viewbox>
 

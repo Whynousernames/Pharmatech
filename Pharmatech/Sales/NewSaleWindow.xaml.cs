@@ -47,10 +47,7 @@ namespace Pharmatech
         public List<Sale> products = new List<Sale>();
         public List<Patient> patientDetails = new List<Patient>();
         int _count = 0;
-
-
-        
-
+     
 
         public NewSaleWindow()
         {
@@ -65,10 +62,7 @@ namespace Pharmatech
             Grid_sales.Visibility = Visibility.Hidden;
             Grid_patientSelect.Visibility = Visibility.Visible;
             arrowHidden_True();
-
-
-
-           
+        
 
             using (StreamReader reader = new StreamReader("emp.txt"))
             {
@@ -96,11 +90,6 @@ namespace Pharmatech
                 button_Employee.IsEnabled = false;
             }
             
-
-
-
-
-
             // Populate combobox with medicine pulled from the database.            
             using (SqlConnection conn = new SqlConnection(connection))
             {
@@ -335,7 +324,6 @@ namespace Pharmatech
                                 Grid_saleTypeSelect.Visibility = Visibility.Visible;
                                 button_medicalAidSaleSelect.IsEnabled = false;
                                 
-
                             }
                             else
                             {
@@ -354,7 +342,6 @@ namespace Pharmatech
                             button_medicalAidSaleSelect.IsEnabled = false;
                             MessageBox.Show("Patient does not have a Medical Aid account, proceed with cash sale.", "Error.", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         }
-
                         
                     }
 
@@ -362,8 +349,7 @@ namespace Pharmatech
                     {
                         MessageBox.Show("Database error", "Error.", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
-                    }
-                    
+                    }                  
 
                 }
             }
@@ -387,9 +373,7 @@ namespace Pharmatech
             this.Close();
             
         }
-
         
-
         private void button_ProceedInstructions_Click(object sender, RoutedEventArgs e)
         {
             gridHidden_True();
@@ -420,9 +404,7 @@ namespace Pharmatech
                             while (sqlReader.Read())
                             {
                                 allergies.allergyName = Convert.ToString(sqlReader["allergyName"]);
-                                allergies.allergyDescription = Convert.ToString(sqlReader["allergyDescription"]);
-                           
-                            
+                                allergies.allergyDescription = Convert.ToString(sqlReader["allergyDescription"]);                                                  
 
                         }
 
@@ -449,8 +431,6 @@ namespace Pharmatech
                         sqlReader.Close();
                         conn.Close();                  
                         
-
-
                     }
                     catch (Exception ex)
                     {
@@ -458,12 +438,8 @@ namespace Pharmatech
                     }
                 }
 
-
-
-
             }
         }
-
 
 
         private void button_AddPatient_Click(object sender, RoutedEventArgs e)
@@ -570,8 +546,7 @@ namespace Pharmatech
                 dt.Clear();                
                 dt.AcceptChanges();
                 con.Open();
-                
-                
+                               
 
                 if (!string.IsNullOrEmpty(comboBox_select_Item.Text.ToString()))
                 {
@@ -677,15 +652,8 @@ namespace Pharmatech
             {
                 DataRowView drv = (DataRowView)dataGrid_saleItems.SelectedItem;
                 drv.Row.Delete();
-
-
                 dt.AcceptChanges();
                 dataGrid_saleItems.ItemsSource = dt.DefaultView;
-
-
-
-
-
 
             }
 
@@ -754,12 +722,9 @@ namespace Pharmatech
 
                 con.Close();
 
-            }
-            
+            }       
             
         }
-
-
         
     }
 

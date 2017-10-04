@@ -173,11 +173,6 @@ namespace Pharmatech
                     }
                 }
 
-
-
-
-
-
             }
         }
 
@@ -320,9 +315,6 @@ namespace Pharmatech
 
             }
 
-
-
-
         }
 
         private void button_next_Click(object sender, RoutedEventArgs e)
@@ -394,9 +386,7 @@ namespace Pharmatech
                                         sqlReader.Close();
                                         con.Close();
 
-
                                     }
-
 
                                 }
                                 catch (Exception ex)
@@ -413,7 +403,6 @@ namespace Pharmatech
                     }
 
                 }
-
 
             }
 
@@ -452,9 +441,6 @@ namespace Pharmatech
 
             }
 
-
-
-
         }
 
         private void button_cancel_Click(object sender, RoutedEventArgs e)
@@ -481,8 +467,7 @@ namespace Pharmatech
                 this.Close();
             }
         }
-
-        
+      
 
         private void button_Remove_Click(object sender, RoutedEventArgs e)
         {
@@ -548,8 +533,8 @@ namespace Pharmatech
                         textBox_AddressLine1.Text = reader["physicalAddress1"].ToString();
                         textBox_AddressLine2.Text = reader["physicalAddress2"].ToString();
                         textBox_isActivePatient.Text = reader["isActive"].ToString();
-                        comboBox_selectCity.Text = reader["cityName"].ToString();
-                        comboBox_selectSuburb.Text = reader["suburbName"].ToString();
+                       // comboBox_selectCity.Text = reader["cityName"].ToString();
+                      //  comboBox_selectSuburb.Text = reader["suburbName"].ToString();
 
                     }
                     reader.Close();
@@ -598,8 +583,6 @@ namespace Pharmatech
 
             if(label_PatientWindowType.Content.ToString() == "Update Patient")
             {
-                button_next.Width = 175;
-                button_next.Content = "Update Patient";
 
                 using (SqlConnection con = new SqlConnection(conn))
                 {

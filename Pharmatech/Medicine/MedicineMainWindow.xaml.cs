@@ -285,8 +285,6 @@ namespace Pharmatech
                             int allergyID = 0;
                             int medID2 = 0;
 
-
-
                             using (SqlConnection conn = new SqlConnection(connection))
                             {
                                 try
@@ -322,10 +320,8 @@ namespace Pharmatech
                                         cmd.Parameters.AddWithValue("@aID", allergyID.ToString());
                                         cmd.Parameters.AddWithValue("@mID", medID2.ToString());
                                         con.Open();
-                                        cmd.ExecuteNonQuery();
-                                        
+                                        cmd.ExecuteNonQuery();                                    
                                         con.Close();
-
 
                                     }
 
@@ -504,7 +500,6 @@ namespace Pharmatech
 
             if (label_MedicationWindowType.Content.ToString() == "Update Medication")
             {
-                button_Next.Content = "Update";
                 button_AddStock.Visibility = Visibility.Visible;
                 using (SqlConnection con = new SqlConnection(conn))
                 {

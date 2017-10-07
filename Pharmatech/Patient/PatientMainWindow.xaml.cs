@@ -33,11 +33,18 @@ namespace Pharmatech
         int _count = 0;
         DataTable dt = new DataTable();
 
+        int medAidSelected = 0;
+
         string empIDNumber;
         string empFName;
         string empLName;
         string empType;
         string[] employeeDetails = new string[5];
+
+        string medAidID;
+        string medAidName;
+        string medAidDescription;
+        string medAidAmountRemaining;
 
 
         public PatientMainWindow()
@@ -201,6 +208,7 @@ namespace Pharmatech
             Grid_YesNoSelect.Visibility = Visibility.Hidden;
             Grid_MedicalAidSelect.Visibility = Visibility.Hidden;
             Grid_YesNoSelect.Visibility = Visibility.Hidden;
+            Grid_AddMedicalAid.Visibility = Visibility.Hidden;
             
         }
 
@@ -366,7 +374,7 @@ namespace Pharmatech
                                     SqlConnection con = new SqlConnection(connection);
                                     using (SqlCommand cmd = con.CreateCommand())
                                     {
-                                        cmd.CommandText = "INSERT INTO PatientAllergies(allergyID, patientIDNumber) VALUES(@aID, @idNumber)";
+                                        cmd.CommandText = "INSERT INTO PatientAllergies(allergyID, patientIDNumber) VALUES(@aID, @idNumber)";                                        
                                         
                                         SqlCommand sqlCmd = new SqlCommand("SELECT allergyID FROM Allergies WHERE allergyName = @aName", conn);
                                         sqlCmd.Parameters.AddWithValue("@aName", row["Name"]);
@@ -381,11 +389,31 @@ namespace Pharmatech
 
                                         cmd.Parameters.AddWithValue("@aID", allergyID.ToString());
                                         cmd.Parameters.AddWithValue("@idNumber", textBox_IDNumber.Text);
+
+
+                                        
                                         con.Open();
-                                        cmd.ExecuteNonQuery();
+                                        cmd.ExecuteNonQuery();                                        
                                         sqlReader.Close();
                                         con.Close();
 
+                                    }
+
+                                    using (SqlCommand cmd2 = con.CreateCommand())
+                                    {
+                                        if(medAidSelected == 1)
+                                        {
+                                            cmd2.CommandText = "INSERT INTO Patient_MedicalAid_Account (medAidID, patientIDNumber, amountRemaining) VALUES (@medAidID, @patientIDNumber, @amountRemaining)";
+
+                                            cmd2.Parameters.AddWithValue("@medAidID", medAidID);
+                                            cmd2.Parameters.AddWithValue("@patientIDNumber", id);
+                                            cmd2.Parameters.AddWithValue("@amountRemaining", medAidAmountRemaining);
+
+                                            con.Open();
+                                            cmd2.ExecuteNonQuery();
+                                            con.Close();
+
+                                        }                                        
                                     }
 
                                 }
@@ -912,6 +940,83 @@ namespace Pharmatech
                 }
             }
             comboBox_selectSuburb.Items.Refresh();
+        }
+
+        private void button_addMedicalAid_Click(object sender, RoutedEventArgs e)
+        {
+            Grid_AddMedicalAid.Visibility = Visibility.Visible;
+            Grid_PatientMain.Visibility = Visibility.Hidden;
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                try
+                {
+                    SqlCommand sqlCmd = new SqlCommand("SELECT Name FROM MedicalAidPlan ORDER BY Name", con);
+                    con.Open();
+                    SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                    while (sqlReader.Read())
+                    {
+                        comboBox_selectMedAid.Items.Add(sqlReader["Name"].ToString());
+                    }
+                    sqlReader.Close();                    
+                    con.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show(ex.ToString(), ex.ToString());
+                }
+            }
+
+        }
+
+        private void button_addMedAidtoPatient_Click(object sender, RoutedEventArgs e)
+        {
+            medAidSelected = 1;
+            Grid_PatientMain.Visibility = Visibility.Visible;
+            Grid_AddMedicalAid.Visibility = Visibility.Hidden;
+        }
+
+        private void comboBox_selectMedAid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void comboBox_selectMedAid_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                try
+                {
+                    SqlCommand sqlCmd = new SqlCommand("SELECT medAidID, Name, Description, Amount FROM MedicalAidPlan WHERE Name = @Name", con);
+                    con.Open();
+                    sqlCmd.Parameters.AddWithValue("@Name", comboBox_selectMedAid.Text.ToString());
+                    SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                    if (sqlReader.HasRows)
+                    {
+                        while (sqlReader.Read())
+                        {
+                            textBox_medAidDescription.Text = sqlReader["Description"].ToString();
+                            medAidID = sqlReader["medAidID"].ToString();
+                            medAidName = comboBox_MedicalAidID.Text.ToString();
+                            medAidDescription = textBox_medAidDescription.Text.ToString();
+                            medAidAmountRemaining = sqlReader["Amount"].ToString();
+
+                        }
+                    }
+                    sqlReader.Close();
+
+
+                    con.Close();
+
+
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show("Could not populate allergies combobox from database.", ex.ToString());
+                }
+            }
         }
     }
 

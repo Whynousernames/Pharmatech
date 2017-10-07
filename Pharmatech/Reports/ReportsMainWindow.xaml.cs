@@ -117,7 +117,7 @@ namespace Pharmatech
             using (SqlConnection con = new SqlConnection(conn))
             {
                 //sqlBuilder.Append("SELECT CASE WHEN row_number() over(partition BY patientIDNumber ORDER BY patientIDNumber ASC) = 1 THEN patientIDNumber ELSE NULL END, Date, saleID, description, saleType, saleAmount FROM (SELECT CASE WHEN (GROUPING(Sale.patientIDNumber) = 1) THEN 'Sub-Total' ELSE ISNULL(Sale.patientIDNumber, 'UNKNOWN') END AS Name, Sale.date, Sale.saleID, Sale.description, Sale.saleType, sum(Sale.saleAmount) AS Amount FROM Sale GROUP BY rollup((Sale.date,Sale.saleID,Sale.patientIDNumber,Sale.description,Sale.saleType)) ) t;");
-                sqlBuilder.Append("SELECT FORMAT(date, 'd', 'en-gb') AS Date, saleID AS [Invoice ID], Patient.firstName + ' ' + Patient.lastName AS [Name], description AS Description,  saleType AS [Sale Type], saleAmount AS [Amount] FROM Sale LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber WHERE 1=1");
+                sqlBuilder.Append("SELECT FORMAT(date, 'd', 'en-gb') AS Date, saleID AS [Invoice #], Patient.firstName + ' ' + Patient.lastName AS [Name], description AS Description,  saleType AS [Sale Type], saleAmount AS [Amount] FROM Sale LEFT JOIN Patient ON Sale.patientIDNumber = Patient.patientIDNumber WHERE 1=1");
 
                 if (!string.IsNullOrEmpty(comboBox_selectSaleType.Text))
                 {
@@ -472,14 +472,36 @@ namespace Pharmatech
                 label_SalesSummary.Content = "Sales Summary: " + comboBox_selectSaleType.SelectedItem.ToString() + "\nFrom: " + datePicker_StartDate.Text + " To: " + datePicker_EndDate.Text;
             }
 
+            if (datePicker_StartDate.SelectedDate > datePicker_EndDate.SelectedDate)
+            {
+                System.Windows.MessageBox.Show("The selected start date cannot be after the end date.", "Incorrect dates entered", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+            }
+
+            else
+            {
+                FillSalesGrid();
+                label_SalesSummary.Content = "Sales Summary: " + comboBox_selectSaleType.SelectedItem.ToString() + "\nFrom: " + datePicker_StartDate.Text + " To: " + datePicker_EndDate.Text;
+            }
+
+            
+
         }
 
         private void button_nextSelectMedication_Click_1(object sender, RoutedEventArgs e)
         {
-            FillSalesGrid();
-            Grid_SelectMedication.Visibility = Visibility.Hidden;
-            Grid_ReportsMainWindow.Visibility = Visibility.Visible;
-            comboBox_select_Item.SelectedIndex = -1;
+            if (comboBox_select_Item.SelectedIndex == -1)
+            {
+                System.Windows.MessageBox.Show("Enter a medication to filter by.", "No medication selected.", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+            }
+            else
+            {
+                FillSalesGrid();
+                Grid_SelectMedication.Visibility = Visibility.Hidden;
+                Grid_ReportsMainWindow.Visibility = Visibility.Visible;
+                comboBox_select_Item.SelectedIndex = -1;
+            }
+            
+            
         }
 
         private void button_nextSelectPatientID_Click_1(object sender, RoutedEventArgs e)

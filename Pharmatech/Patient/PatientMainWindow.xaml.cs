@@ -973,17 +973,6 @@ namespace Pharmatech
         private void button_addMedAidtoPatient_Click(object sender, RoutedEventArgs e)
         {
             medAidSelected = 1;
-            Grid_PatientMain.Visibility = Visibility.Visible;
-            Grid_AddMedicalAid.Visibility = Visibility.Hidden;
-        }
-
-        private void comboBox_selectMedAid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
-        private void comboBox_selectMedAid_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
-        {
             using (SqlConnection con = new SqlConnection(conn))
             {
                 try
@@ -1017,6 +1006,19 @@ namespace Pharmatech
                     System.Windows.MessageBox.Show("Could not populate allergies combobox from database.", ex.ToString());
                 }
             }
+            Grid_PatientMain.Visibility = Visibility.Visible;
+            Grid_AddMedicalAid.Visibility = Visibility.Hidden;
+
+        }
+
+        private void comboBox_selectMedAid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void comboBox_selectMedAid_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            
         }
     }
 

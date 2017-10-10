@@ -339,6 +339,13 @@ namespace Pharmatech
             for (int intCounter = App.Current.Windows.Count - 1; intCounter >= 0; intCounter--)
                 App.Current.Windows[intCounter].Hide();
         }
+
+        private void button_addInstruction_Click(object sender, RoutedEventArgs e)
+        {
+            gridHidden_True();
+            Timesheets timeSheets = new Timesheets();
+            timeSheets.Show();
+        }
     }
 
 }

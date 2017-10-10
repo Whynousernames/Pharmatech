@@ -79,7 +79,7 @@
                 <Button x:Name="button_generateReport" Content="Generate Report" HorizontalAlignment="Left" Height="40" VerticalAlignment="Bottom" Width="166" Background="#FF2B95E3" BorderBrush="#FF31A5FC"  Cursor="Hand" Click="button_generateReport_Click" Margin="0,-15,-18,89" FontSize="16" FontWeight="Normal"/>
             </Grid>
             <Grid x:Name="Grid_instruction" HorizontalAlignment="Left" Height="114" Margin="246,37,0,0" Grid.Row="2" VerticalAlignment="Top" Width="148">
-                <Button x:Name="button_addInstruction" Content="Timesheets" HorizontalAlignment="Left" Height="40" Margin="0,-6,-18,0" VerticalAlignment="Top" Width="166" Background="#FF2B95E3" BorderBrush="#FF31A5FC"  Cursor="Hand" FontSize="16" FontWeight="Normal"/>
+                <Button x:Name="button_addInstruction" Content="Timesheets" Height="40" Margin="0,-6,-18,0" VerticalAlignment="Top" Background="#FF2B95E3" BorderBrush="#FF31A5FC"  Cursor="Hand" FontSize="16" FontWeight="Normal" HorizontalAlignment="Left" Width="166" Click="button_addInstruction_Click"/>
                 <Button x:Name="button_updateInstruction" Content="Wages" HorizontalAlignment="Left" Height="40" Margin="0,33,-18,0" VerticalAlignment="Top" Width="166" Background="#FF2B95E3" BorderBrush="#FF31A5FC"  Cursor="Hand" FontSize="16" FontWeight="Normal"/>
             </Grid>
             <Grid x:Name="Grid_Employee" HorizontalAlignment="Left" Height="114" Margin="246,185,0,0" Grid.Row="2" VerticalAlignment="Top" Width="148">

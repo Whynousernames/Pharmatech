@@ -46,6 +46,8 @@ namespace Pharmatech
         string medAidDescription;
         string medAidAmountRemaining;
 
+        string medAidIDPatient;
+        int amountRemaining;
 
         public PatientMainWindow()
         {
@@ -56,6 +58,8 @@ namespace Pharmatech
             messageTimer.Start();
             gridHidden_True();
             arrowHidden_True();
+
+            textBox_PatientMedicalAid.Text = "No Medial Aid Selected";
 
             
 
@@ -517,6 +521,7 @@ namespace Pharmatech
         private void button_nextSelectPatient_Click(object sender, RoutedEventArgs e)
         {
             string idNumber = textBox_IDNumberSelect.Text;
+            
 
             using (SqlConnection con = new SqlConnection(conn))
             {
@@ -542,11 +547,14 @@ namespace Pharmatech
 
             if(label_PatientWindowType.Content.ToString() == "View Patient")
             {
+                
+
                 button_next.Visibility = Visibility.Hidden;
                 using (SqlConnection con = new SqlConnection(conn))
                 {
                     con.Open();
                     string cmdString = "SELECT * FROM Patient WHERE PatientIDNumber = @id";
+                    
                     SqlCommand cmd = new SqlCommand(cmdString, con);
                     cmd.Parameters.AddWithValue("@id", idNumber);
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -561,11 +569,35 @@ namespace Pharmatech
                         textBox_AddressLine1.Text = reader["physicalAddress1"].ToString();
                         textBox_AddressLine2.Text = reader["physicalAddress2"].ToString();
                         textBox_isActivePatient.Text = reader["isActive"].ToString();
-                       // comboBox_selectCity.Text = reader["cityName"].ToString();
-                      //  comboBox_selectSuburb.Text = reader["suburbName"].ToString();
+                        comboBox_selectCity.Text = reader["cityName"].ToString();
+                        populateSuburb();
+                        comboBox_selectSuburb.Text = reader["suburbName"].ToString();
 
                     }
                     reader.Close();
+
+                    string cmdString2 = "SELECT * FROM Patient_MedicalAid_Account WHERE patientIDNumber = @patientID";
+                    SqlCommand cmd2 = new SqlCommand(cmdString2, con);
+                    cmd2.Parameters.AddWithValue("@patientID", idNumber);
+                    SqlDataReader reader2 = cmd2.ExecuteReader();
+
+                    while (reader2.Read())
+                    {
+                        medAidIDPatient = reader2["medAidID"].ToString();
+                        amountRemaining = Convert.ToInt32(reader2["amountRemaining"]);
+                    }
+                    reader2.Close();
+
+                    string cmdString3 = "SELECT * FROM MedicalAidPlan WHERE medAidID = @medAidID";
+                    SqlCommand cmd3 = new SqlCommand(cmdString3, con);
+                    cmd3.Parameters.AddWithValue("@medAidID", medAidIDPatient );
+                    SqlDataReader reader3 = cmd3.ExecuteReader();
+
+                    while (reader3.Read())
+                    {
+                        textBox_PatientMedicalAid.Text = reader3["Name"].ToString();
+                    }
+
                     con.Close();
                 }
                 disableTextBoxes();
@@ -603,6 +635,28 @@ namespace Pharmatech
 
                     }
                     reader.Close();
+
+                    string cmdString2 = "SELECT * FROM Patient_MedicalAid_Account WHERE patientIDNumber = @patientID";
+                    SqlCommand cmd2 = new SqlCommand(cmdString2, con);
+                    cmd2.Parameters.AddWithValue("@patientID", idNumber);
+                    SqlDataReader reader2 = cmd2.ExecuteReader();
+
+                    while (reader2.Read())
+                    {
+                        medAidIDPatient = reader2["medAidID"].ToString();
+                        amountRemaining = Convert.ToInt32(reader2["amountRemaining"]);
+                    }
+                    reader2.Close();
+
+                    string cmdString3 = "SELECT * FROM MedicalAidPlan WHERE medAidID = @medAidID";
+                    SqlCommand cmd3 = new SqlCommand(cmdString3, con);
+                    cmd3.Parameters.AddWithValue("@medAidID", medAidIDPatient);
+                    SqlDataReader reader3 = cmd3.ExecuteReader();
+
+                    while (reader3.Read())
+                    {
+                        textBox_PatientMedicalAid.Text = reader3["Name"].ToString();
+                    }
                     con.Close();
                 }
 
@@ -629,9 +683,35 @@ namespace Pharmatech
                         textBox_ContactNumber.Text = reader["contactNumber"].ToString();
                         textBox_AddressLine1.Text = reader["physicalAddress1"].ToString();
                         textBox_AddressLine2.Text = reader["physicalAddress2"].ToString();
+                        comboBox_selectCity.Text = reader["cityName"].ToString();
+                        //comboBox_selectSuburb.Items.Add(reader["suburbName"].ToString());
+                        populateSuburb();
+                        comboBox_selectSuburb.Text = reader["suburbName"].ToString();
 
                     }
                     reader.Close();
+
+                    string cmdString2 = "SELECT * FROM Patient_MedicalAid_Account WHERE patientIDNumber = @patientID";
+                    SqlCommand cmd2 = new SqlCommand(cmdString2, con);
+                    cmd2.Parameters.AddWithValue("@patientID", idNumber);
+                    SqlDataReader reader2 = cmd2.ExecuteReader();
+
+                    while (reader2.Read())
+                    {
+                        medAidIDPatient = reader2["medAidID"].ToString();
+                        amountRemaining = Convert.ToInt32(reader2["amountRemaining"]);
+                    }
+                    reader2.Close();
+
+                    string cmdString3 = "SELECT * FROM MedicalAidPlan WHERE medAidID = @medAidID";
+                    SqlCommand cmd3 = new SqlCommand(cmdString3, con);
+                    cmd3.Parameters.AddWithValue("@medAidID", medAidIDPatient);
+                    SqlDataReader reader3 = cmd3.ExecuteReader();
+
+                    while (reader3.Read())
+                    {
+                        textBox_PatientMedicalAid.Text = reader3["Name"].ToString();
+                    }
                     con.Close();
                 }
             }
@@ -990,11 +1070,12 @@ namespace Pharmatech
                             medAidName = comboBox_MedicalAidID.Text.ToString();
                             medAidDescription = textBox_medAidDescription.Text.ToString();
                             medAidAmountRemaining = sqlReader["Amount"].ToString();
+                            textBox_PatientMedicalAid.Text = sqlReader["Name"].ToString();
 
                         }
                     }
                     sqlReader.Close();
-
+                    
 
                     con.Close();
 
@@ -1005,6 +1086,7 @@ namespace Pharmatech
                     System.Windows.MessageBox.Show("Could not populate allergies combobox from database.", ex.ToString());
                 }
             }
+            
             Grid_PatientMain.Visibility = Visibility.Visible;
             Grid_AddMedicalAid.Visibility = Visibility.Hidden;
 
@@ -1048,6 +1130,39 @@ namespace Pharmatech
                 }
             }
          }
+
+        private void populateSuburb()
+        {
+            comboBox_selectSuburb.Items.Clear();
+            comboBox_selectSuburb.Items.Refresh();
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                try
+                {
+                    SqlCommand sqlCmd = new SqlCommand("SELECT suburbName FROM Suburb WHERE cityName = @cityName", con);
+                    con.Open();
+                    sqlCmd.Parameters.AddWithValue("@cityName", comboBox_selectCity.Text.ToString());
+                    SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                    while (sqlReader.Read())
+                    {
+                        comboBox_selectSuburb.Items.Add(sqlReader["suburbName"].ToString());
+
+                    }
+                    sqlReader.Close();
+
+
+                    con.Close();
+
+
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show("Could not populate allergies combobox from database.", ex.ToString());
+                }
+            }
+            comboBox_selectSuburb.Items.Refresh();
+        }
     }
 
 }

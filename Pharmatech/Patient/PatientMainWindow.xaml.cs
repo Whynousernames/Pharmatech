@@ -58,6 +58,7 @@ namespace Pharmatech
             messageTimer.Start();
             gridHidden_True();
             arrowHidden_True();
+            button_ViewPatient.Visibility = Visibility.Hidden;
 
             textBox_PatientMedicalAid.Text = "No Medial Aid Selected";
 
@@ -547,8 +548,8 @@ namespace Pharmatech
 
             if(label_PatientWindowType.Content.ToString() == "View Patient")
             {
-                
 
+               
                 button_next.Visibility = Visibility.Hidden;
                 using (SqlConnection con = new SqlConnection(conn))
                 {
@@ -585,6 +586,7 @@ namespace Pharmatech
                     {
                         medAidIDPatient = reader2["medAidID"].ToString();
                         amountRemaining = Convert.ToInt32(reader2["amountRemaining"]);
+                        textBox_remainingBalance.Text = "R " + amountRemaining.ToString();
                     }
                     reader2.Close();
 
@@ -700,6 +702,7 @@ namespace Pharmatech
                     {
                         medAidIDPatient = reader2["medAidID"].ToString();
                         amountRemaining = Convert.ToInt32(reader2["amountRemaining"]);
+                        textBox_remainingBalance.Text = "R " + amountRemaining.ToString();
                     }
                     reader2.Close();
 
@@ -1071,6 +1074,7 @@ namespace Pharmatech
                             medAidDescription = textBox_medAidDescription.Text.ToString();
                             medAidAmountRemaining = sqlReader["Amount"].ToString();
                             textBox_PatientMedicalAid.Text = sqlReader["Name"].ToString();
+                            textBox_remainingBalance.Text = "R " + medAidAmountRemaining.ToString();
 
                         }
                     }
@@ -1163,6 +1167,8 @@ namespace Pharmatech
             }
             comboBox_selectSuburb.Items.Refresh();
         }
+
+        
     }
 
 }

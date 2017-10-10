@@ -985,8 +985,7 @@ namespace Pharmatech
                     if (sqlReader.HasRows)
                     {
                         while (sqlReader.Read())
-                        {
-                            textBox_medAidDescription.Text = sqlReader["Description"].ToString();
+                        {                            
                             medAidID = sqlReader["medAidID"].ToString();
                             medAidName = comboBox_MedicalAidID.Text.ToString();
                             medAidDescription = textBox_medAidDescription.Text.ToString();
@@ -1018,8 +1017,37 @@ namespace Pharmatech
 
         private void comboBox_selectMedAid_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            
-        }
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                try
+                {
+                    SqlCommand sqlCmd = new SqlCommand("SELECT medAidID, Name, Description, Amount FROM MedicalAidPlan WHERE Name = @Name", con);
+                    con.Open();
+                    sqlCmd.Parameters.AddWithValue("@Name", comboBox_selectMedAid.Text.ToString());
+                    SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                    if (sqlReader.HasRows)
+                    {
+                        while (sqlReader.Read())
+                        {
+                            textBox_medAidDescription.Text = sqlReader["Description"].ToString();
+                           
+
+                        }
+                    }
+                    sqlReader.Close();
+
+
+                    con.Close();
+
+
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show("Could not populate allergies combobox from database.", ex.ToString());
+                }
+            }
+         }
     }
 
 }

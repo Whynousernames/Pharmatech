@@ -17,6 +17,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.IO;
 
+
 namespace Pharmatech
 {
     /// <summary>
@@ -24,6 +25,7 @@ namespace Pharmatech
     /// </summary>
     public partial class MainMenuWindow : Window
     {
+        static string connection = System.Configuration.ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
         string conn = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
         string empIDNumber;
         string empFName;
@@ -274,6 +276,32 @@ namespace Pharmatech
             MessageBoxResult result = MessageBox.Show("Your session has been recorded. Session start time "+startTime.ToString() + " session end time " + DateTime.Now.ToString()  + Environment.NewLine, "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
             if (result == MessageBoxResult.OK)
             {
+
+                SqlConnection con = new SqlConnection(connection);
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "INSERT INTO TimeSheets(empID, startTime, endTime, timeWorkedMinutes) VALUES(@empID, @startTime, @endTime,@timeWorkedMinutes)";
+
+                   
+
+                    cmd.Parameters.AddWithValue("@empID", empIDNumber);
+                    cmd.Parameters.AddWithValue("@startTime", startTime);
+                    cmd.Parameters.AddWithValue("@endTime", DateTime.Now);
+
+                    TimeSpan span = DateTime.Now.Subtract(Convert.ToDateTime(startTime));
+
+                    cmd.Parameters.AddWithValue("@timeWorkedMinutes", span.TotalMinutes);
+
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    
+                    con.Close();
+
+                }
+
+
+
                 MainWindow mainwindow = new MainWindow();
                 CloseAllWindows();
                 mainwindow.ShowDialog();

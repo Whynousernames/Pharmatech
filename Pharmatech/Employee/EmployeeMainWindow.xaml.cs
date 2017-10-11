@@ -656,6 +656,7 @@ namespace Pharmatech
             string suburb = textBox_Suburb.Text;
             string city = textBox_City.Text;
             char empType = 'a';
+            decimal hourlyRate = Convert.ToDecimal(textBox_HourlyRate.Text);
 
             if(radioButton.IsChecked == true)
             {
@@ -678,7 +679,7 @@ namespace Pharmatech
                 if (dialogResult == MessageBoxResult.Yes)
                 {
                     // Add employee account to database
-                    DataAccess.EmployeeDA.AddEmployee(firstName, surname, contactNo, email, address1, address2, username, password, empType);
+                    DataAccess.EmployeeDA.AddEmployee(firstName, surname, contactNo, email, address1, address2, username, password, empType, hourlyRate);
                 }
 
             }
@@ -797,6 +798,26 @@ namespace Pharmatech
             foreach (Char c in textBox.Text.ToCharArray())
             {
                 if (Char.IsLetter(c) || Char.IsControl(c) || (c == '.' && count == 0))
+                {
+                    newText += c;
+                    if (c == '.')
+                        count += 1;
+                }
+            }
+            textBox.Text = newText;
+            textBox.SelectionStart = selectionStart <= textBox.Text.Length ? selectionStart : textBox.Text.Length;
+        }
+
+        private void textBox_HourlyRate_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            System.Windows.Controls.TextBox textBox = sender as System.Windows.Controls.TextBox;
+            Int32 selectionStart = textBox.SelectionStart;
+            Int32 selectionLength = textBox.SelectionLength;
+            String newText = String.Empty;
+            int count = 0;
+            foreach (Char c in textBox.Text.ToCharArray())
+            {
+                if (Char.IsDigit(c) || Char.IsControl(c) || (c == '.' && count == 0))
                 {
                     newText += c;
                     if (c == '.')

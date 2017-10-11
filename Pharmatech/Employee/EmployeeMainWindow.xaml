@@ -104,7 +104,7 @@
                 </Grid.RowDefinitions>
 
 
-                <Rectangle HorizontalAlignment="Left" Height="907" Stroke="black" VerticalAlignment="Top" Width="681" Margin="80,3,0,0" Grid.RowSpan="2">
+                <Rectangle HorizontalAlignment="Left" Height="947" Stroke="black" VerticalAlignment="Top" Width="681" Margin="80,3,0,-30" Grid.RowSpan="2">
                     <Rectangle.Effect>
                         <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
                     </Rectangle.Effect>
@@ -130,7 +130,7 @@
 
 
 
-                <Button x:Name="button_EmpCreate" Content="Create Account" HorizontalAlignment="Left" Height="73" Margin="376,606,0,0" VerticalAlignment="Top" Width="256" FontSize="24" Grid.Row="1" Click="button_EmpCreate_Click" BorderBrush="Black" BorderThickness="2" >
+                <Button x:Name="button_EmpCreate" Content="Create Account" HorizontalAlignment="Left" Height="65" Margin="318,654,0,-5" VerticalAlignment="Top" Width="256" FontSize="24" Grid.Row="1" Click="button_EmpCreate_Click" BorderBrush="Black" BorderThickness="2" >
 
                 </Button>
                 <Label x:Name="label_EmpUsername" Content="Username:" HorizontalAlignment="Left" Margin="132,74,0,0" VerticalAlignment="Top" FontSize="22"/>
@@ -140,16 +140,16 @@
 
                 <PasswordBox x:Name="passwordBox_EmpRePassword" HorizontalAlignment="Left" Margin="348,165,0,0" VerticalAlignment="Top" FontSize="20" Width="226" Height="36"/>
                 <PasswordBox x:Name="passwordBox_EmpPassword" HorizontalAlignment="Left" Margin="348,121,0,0" VerticalAlignment="Top" FontSize="20" Width="226" Height="36"/>
-                <Label x:Name="label_EmpType" Content="Choose Access Level:" HorizontalAlignment="Left" Margin="96,540,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="24"/>
-                <RadioButton x:Name="radioButton" GroupName="AccessType" Content="Pharmacist" IsChecked="True" HorizontalAlignment="Left" Margin="370,549,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20"/>
-                <RadioButton x:Name="radioButton1" GroupName="AccessType" Content="Administrator" HorizontalAlignment="Left" Margin="536,549,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20"/>
-                <Rectangle HorizontalAlignment="Left" Height="907" Stroke="black" VerticalAlignment="Top" Width="681" Margin="822,3,0,0" Grid.RowSpan="2">
+                <Label x:Name="label_EmpType" Content="Choose Access Level:" HorizontalAlignment="Left" Margin="96,528,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="24"/>
+                <RadioButton x:Name="radioButton" GroupName="AccessType" Content="Pharmacist" IsChecked="True" HorizontalAlignment="Left" Margin="370,537,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20"/>
+                <RadioButton x:Name="radioButton1" GroupName="AccessType" Content="Administrator" HorizontalAlignment="Left" Margin="536,537,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20"/>
+                <Rectangle HorizontalAlignment="Left" Height="947" Stroke="black" VerticalAlignment="Top" Width="681" Margin="822,3,0,-30" Grid.RowSpan="2">
                     <Rectangle.Effect>
                         <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
                     </Rectangle.Effect>
                 </Rectangle>
-                <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="1030,631,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" Grid.Row="1" BorderBrush="Black" BorderThickness="2"/>
-                <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1211,631,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Row="1" BorderBrush="Black" BorderThickness="2" />
+                <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="1123,640,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" Grid.Row="1" BorderBrush="Black" BorderThickness="2"/>
+                <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1289,640,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Row="1" BorderBrush="Black" BorderThickness="2" />
                 <Label x:Name="label_ChangePassword" Content="Change account password..." HorizontalAlignment="Left" Margin="860,18,0,0" VerticalAlignment="Top" FontSize="26" FontWeight="Bold"/>
                 <Label x:Name="label_EmpUsername_Copy" Content="Username:" HorizontalAlignment="Left" Margin="892,74,0,0" VerticalAlignment="Top" FontSize="22"/>
                 <Label x:Name="label_EmpPassword_Copy" Content="New Password:" HorizontalAlignment="Left" Margin="892,117,0,0" VerticalAlignment="Top" FontSize="22"/>
@@ -160,6 +160,8 @@
                 <Button x:Name="button_ChangePassword" Content="Change Password" HorizontalAlignment="Left" Margin="1004,22,0,0" Grid.Row="1" VerticalAlignment="Top" Width="266" FontSize="24" Height="62" FontWeight="Bold" Click="button_ChangePassword_Click" BorderBrush="Black" BorderThickness="2"/>
                 <DataGrid x:Name="dataGrid_Employees" HorizontalAlignment="Left" Margin="892,246,0,0" Grid.Row="1" VerticalAlignment="Top" Height="210" Width="568" GridLinesVisibility="All" FontSize="16"/>
                 <Label x:Name="label_ChangePassword_Copy" Content="Current employees on the system:" HorizontalAlignment="Left" Margin="860,191,0,0" VerticalAlignment="Top" FontSize="26" Grid.Row="1"/>
+                <Label x:Name="label_HourlyRate" Content="Hourly Rate (R):" HorizontalAlignment="Left" Margin="96,581,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="2.368,0.615" FontSize="24"/>
+                <TextBox x:Name="textBox_HourlyRate" HorizontalAlignment="Left" Height="38" Margin="334,585,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Grid.Row="1" TextChanged="textBox_HourlyRate_TextChanged" />
 
 
 

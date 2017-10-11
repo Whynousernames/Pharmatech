@@ -13,12 +13,12 @@ namespace DataAccess
     {
         static string connection = System.Configuration.ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
 
-        public static bool AddEmployee(string fname, string sname, string contactNo, string email, string address1, string address2, string username, string password, char emptype)
+        public static bool AddEmployee(string fname, string sname, string contactNo, string email, string address1, string address2, string username, string password, char emptype, decimal hourlyRate)
         {
             // Add new employee account to database
     
             SqlConnection con = new SqlConnection(connection.ToString());
-            using (SqlCommand cmd = new SqlCommand("INSERT INTO Employee (firstName, lastName, contactNumber, email, physicalAddressLine1, physicalAddressLine2, username, password, employeeType) VALUES (@fname, @sname, @contactNo, @email, @address1, @address2, @username, @password, @emptype)", con))
+            using (SqlCommand cmd = new SqlCommand("INSERT INTO Employee (firstName, lastName, contactNumber, email, physicalAddressLine1, physicalAddressLine2, username, password, employeeType, hourlyRate) VALUES (@fname, @sname, @contactNo, @email, @address1, @address2, @username, @password, @emptype, @hourlyRate)", con))
             {
                 Guid userGuid = System.Guid.NewGuid();
                 cmd.Parameters.AddWithValue("@fname", fname);
@@ -30,6 +30,7 @@ namespace DataAccess
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password", Security.HashSHA1(password));
                 cmd.Parameters.AddWithValue("@emptype", emptype);
+                cmd.Parameters.AddWithValue("@hourlyRate", hourlyRate);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();

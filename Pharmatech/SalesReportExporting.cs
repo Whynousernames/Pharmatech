@@ -212,87 +212,97 @@ namespace Pharmatech
         }
 
 
-        //public static void GeneratePDF(DataGrid grid)
-        //{
-        //    System.IO.FileStream fs = new System.IO.FileStream(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\TestReport" + DateTime.Now.ToString("MMddyyyy"), System.IO.FileMode.Create);
-        //    Document document = new Document(PageSize.A4, 70, 30, 50, 30);
-        //    PdfWriter writer = PdfWriter.GetInstance(document, fs);
+        public static void ExportPayslip(DataTable dtblTable, String strPdfPath, string strHeader, string empName, string Month, double uif, double pension, double tax, double net, double gross)
+        {
+            System.IO.FileStream fs = new FileStream(strPdfPath, FileMode.Create, FileAccess.Write, FileShare.None);
+            Document document = new Document(PageSize.A4, 10, 10, 10, 10);
+            PdfWriter writer = PdfWriter.GetInstance(document, fs);
+            document.Open();
 
-        //    document.AddAuthor("Dean Wiseman");
-        //    document.AddCreator("Test PDF Report");
-        //    document.AddKeywords("Sales Report, powered by PharmaTech");
-        //    document.AddSubject("Document subject - Describing the steps creating a PDF document");
-        //    document.AddTitle("The document title - PDF creation using iTextSharp");
+            //Report Header
+            BaseFont bfntHead = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+            Font fntHead = new Font(bfntHead, 16, 1, BaseColor.BLACK);
+            Paragraph prgHeading = new Paragraph();
+            prgHeading.Alignment = Element.ALIGN_CENTER;
+            prgHeading.Add(new Chunk(strHeader.ToUpper() + empName.ToUpper(), fntHead));
+            document.Add(prgHeading);
 
-        //    PdfPTable table = new PdfPTable(grid.Columns.Count);
-        //    document.Open();
-        //    for (int j = 0; j < grid.Columns.Count; j++)
-        //    {
-        //        table.AddCell(new Phrase(grid.Columns[j].Header.ToString()));
-        //    }
-        //    table.HeaderRows = 1;
-        //    System.Collections.IEnumerable itemsSource = grid.ItemsSource as System.Collections.IEnumerable;
+            //Author
+            Paragraph prgAuthor = new Paragraph();
+            BaseFont btnAuthor = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+            Font fntAuthor = new Font(btnAuthor, 10, 2, BaseColor.BLACK);
+            prgAuthor.Alignment = Element.ALIGN_CENTER;
+            prgAuthor.Add(new Chunk("Powered By PharmaTech", fntAuthor));
+            prgAuthor.Add(new Chunk("\nDate Issued: " + DateTime.Now.ToShortDateString(), fntAuthor));
+            document.Add(prgAuthor);
 
-        //    if (itemsSource != null)
-        //    {
-        //        foreach (var item in itemsSource)
-        //        {
-        //            DataGridRow row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
-        //            if (row != null)
-        //            {
-        //                DataGridCellsPresenter presenter = FindVisualChild<DataGridCellsPresenter>(row);
-        //                for (int i = 0; i < grid.Columns.Count; ++i)
-        //                {
-        //                    DataGridCell cell = (DataGridCell)presenter.ItemContainerGenerator.ContainerFromIndex(i);
-        //                    TextBlock txt = cell.Content as TextBlock;
-        //                    if (txt != null)
-        //                    {
-        //                        table.AddCell(new Phrase(txt.Text));
-        //                    }
-        //                }
-        //            }
-        //        }
+            //Add a line seperation
+            Paragraph p = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(0.0F, 100.0F, BaseColor.BLACK, Element.ALIGN_LEFT, 1)));
+            document.Add(p);
+
+            //Add line break
+            document.Add(new Chunk("\n", fntHead));
+
+            ////Add parameters chosen for sales report
+            //Paragraph parameters = new Paragraph();
+            //parameters.Alignment = Element.ALIGN_CENTER;
+            //parameters.Add(new Chunk("Employee: " + patientName, fntAuthor));
+            //document.Add(parameters);
+
+            // Add another line break
+            document.Add(new Chunk("\n", fntHead));
+
+            //Write the table
+            PdfPTable table = new PdfPTable(dtblTable.Columns.Count);
+            table.SetWidths(new int[] { 1, 1, 1 });
+            //Table header
+            BaseFont btnColumnHeader = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+            Font fntColumnHeader = new Font(btnColumnHeader, 8, 0, BaseColor.BLACK);
+
+            for (int i = 0; i < dtblTable.Columns.Count; i++)
+            {
+                PdfPCell cell = new PdfPCell();
+
+                cell.HorizontalAlignment = 1;
+                //cell.VerticalAlignment = Element.ALIGN_CENTER;
+                cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+                cell.AddElement(new Chunk(dtblTable.Columns[i].ColumnName, fntColumnHeader));
+                table.AddCell(cell);
+            }
+            //table Data
+            for (int i = 0; i < dtblTable.Rows.Count; i++)
+            {
+                for (int j = 0; j < dtblTable.Columns.Count; j++)
+                {
+                    table.AddCell(new Phrase(dtblTable.Rows[i][j].ToString(), fntColumnHeader));
+                }
+            }
+
+            document.Add(table);
+
+            //Add another space and a linebreak
+            document.Add(new Chunk("\n", fntHead));
+            Paragraph linebreak = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(0.0F, 100.0F, BaseColor.BLACK, Element.ALIGN_LEFT, 1)));
+            document.Add(linebreak);
+
+            Paragraph total = new Paragraph();
+            total.Alignment = Element.ALIGN_RIGHT;
+            total.Add(new Chunk("UIF (10%): R" + uif + "\n", fntAuthor));
+            total.Add(new Chunk("Pension: R " + pension + "\n", fntAuthor));
+            total.Add(new Chunk("TAX: R " + tax + "\n", fntAuthor));
+            total.Add(new Chunk("Gross Salary: R " + gross + "\n", fntAuthor));
+            total.Add(new Chunk("Net Salary: R " + net + "\n", fntAuthor));
+            document.Add(total);
+            Paragraph signature = new Paragraph();
+            signature.Alignment = Element.ALIGN_LEFT;
+            signature.Add(new Chunk("Signature: _________________"));
+            document.Add(signature);
+            document.Close();
+            writer.Close();
+            fs.Close();
+        }
 
 
 
-
-
-        //        PdfContentByte cb = writer.DirectContent;
-        //    BaseFont stockFont = BaseFont.CreateFont("c:\\windows\\fonts\\calibri.ttf", BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-        //    cb.BeginText();
-        //    cb.SetFontAndSize(stockFont, 20);
-        //    cb.SetTextMatrix(230, 780);
-        //    cb.ShowText("Pharmacy Sales Report");
-        //    cb.SetFontAndSize(stockFont, 8);
-        //    cb.SetTextMatrix(100, 100);
-        //    cb.ShowText("Powered by PharmaTech");
-        //    cb.EndText();
-
-
-        //    document.Add(new iTextSharp.text.Paragraph(""));
-        //    document.Add(new iTextSharp.text.Paragraph("Today's Date: " + DateTime.Now.ToString("MM/dd/yyyy")));
-        //    document.Add(new iTextSharp.text.Paragraph("Selected Parameters: "));
-        //    document.Add(new iTextSharp.text.Paragraph("Type of Sale: "));
-        //    document.Add(new iTextSharp.text.Paragraph("Date From: "));
-        //    document.Add(new iTextSharp.text.Paragraph("Date To: "));
-
-
-
-
-
-
-        //    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance("images/Pharmatech 2 - Transparrent.png");
-        //    img.SetAbsolutePosition(100, 105);
-        //    img.ScaleAbsolute(216, 70);
-        //    cb.AddImage(img);
-
-
-
-        //    document.Close();           
-        //    writer.Close();
-        //    fs.Close();
-
-
-        //}
     }
 }

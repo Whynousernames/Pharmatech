@@ -365,7 +365,7 @@ namespace Pharmatech
             using (SqlConnection con = new SqlConnection(conn))
             {
                 con.Open();
-                string cmdString = "SELECT empID AS [Employee ID], startTime AS [Start Time], endTime as [End Time], timeWorkedMinutes as [Total Time Worked] FROM TimeSheets WHERE empID = @id AND MONTH(startTime) = @month";
+                string cmdString = "SELECT startTime AS [Start Time], endTime as [End Time], timeWorkedMinutes as [Total Time Worked] FROM TimeSheets WHERE empID = @id AND MONTH(startTime) = @month";
                 
                 SqlCommand cmd = new SqlCommand(cmdString, con);
                 cmd.Parameters.AddWithValue("@id", comboBox_selectEmployee.SelectedValue.ToString());
@@ -422,11 +422,56 @@ namespace Pharmatech
 
         private void button_GeneratePaySlip_Click(object sender, RoutedEventArgs e)
         {
+            string empName = comboBox_selectEmployee.Text;
+            string month = comboBox_selectMonth.Text;
+            double hourlyRate = 0;
+
             for (int i = 0; i < dataGrid_Timesheets.Items.Count - 1; i++)
             {
-                sum += (int.Parse((dataGrid_Timesheets.Columns[3].GetCellContent(dataGrid_Timesheets.Items[i]) as TextBlock).Text));
+                sum += (int.Parse((dataGrid_Timesheets.Columns[2].GetCellContent(dataGrid_Timesheets.Items[i]) as TextBlock).Text));
             }
             MessageBox.Show(sum.ToString());
+
+            using (SqlConnection con = new SqlConnection(conn))
+            {
+                try
+                {
+                    SqlCommand sqlCmd = new SqlCommand("SELECT hourlyRate FROM Employee WHERE empIDNumber = @empID", con);
+                    con.Open();
+                    sqlCmd.Parameters.AddWithValue("@empID", comboBox_selectEmployee.SelectedValue.ToString());
+                    SqlDataReader sqlReader = sqlCmd.ExecuteReader();                
+
+                    while (sqlReader.Read())
+                    {
+                        hourlyRate = Convert.ToDouble(sqlReader["hourlyRate"]);
+                        
+                    }
+                    sqlReader.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Could not populate medication combobox from database.", ex.ToString());
+                }
+            }
+
+
+            double grossPayment =sum * (hourlyRate / 60);
+            double uif = grossPayment / 100 * 5;
+            double pension = grossPayment / 100 * 10;
+            double netPayment = grossPayment - uif - pension;
+            double taxAmount = grossPayment * 14 / 100;
+
+
+
+
+            if (dataGrid_Timesheets.HasItems)
+            {
+                SalesReportExporting.ExportPayslip(dt, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Payslip", "payslip for: ", empName, month, Math.Round( uif,2), Math.Round(pension,2), Math.Round(taxAmount,2), Math.Round(netPayment,2), Math.Round(grossPayment,2));
+                System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Payslip");
+
+
+            }
         }
     }
   

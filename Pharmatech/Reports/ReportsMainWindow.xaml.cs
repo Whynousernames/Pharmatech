@@ -480,6 +480,7 @@ namespace Pharmatech
             else
             {
                 FillSalesGrid();
+
                 label_SalesSummary.Content = "Sales Summary: " + comboBox_selectSaleType.SelectedItem.ToString() + "\nFrom: " + datePicker_StartDate.Text + " To: " + datePicker_EndDate.Text;
             }
 
@@ -565,6 +566,22 @@ namespace Pharmatech
                 dt.Rows.Add(grandtotal);
             }
         }
+
+        private void button_addEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            gridHidden_True();
+            EmployeeMainWindow employeeMainWindow = new EmployeeMainWindow();
+            employeeMainWindow.Show();
+        }
+
+        private void button_addInstruction_Click(object sender, RoutedEventArgs e)
+        {
+            gridHidden_True();
+            Timesheets timeSheets = new Timesheets();
+            timeSheets.Show();
+        }
+
+
     }
   
 }

@@ -827,6 +827,20 @@ namespace Pharmatech
             textBox.Text = newText;
             textBox.SelectionStart = selectionStart <= textBox.Text.Length ? selectionStart : textBox.Text.Length;
         }
+
+        private void button_addEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            gridHidden_True();
+            EmployeeMainWindow employeeMainWindow = new EmployeeMainWindow();
+            employeeMainWindow.Show();
+        }
+
+        private void button_addInstruction_Click(object sender, RoutedEventArgs e)
+        {
+            gridHidden_True();
+            Timesheets timeSheets = new Timesheets();
+            timeSheets.Show();
+        }
     }
 
 }

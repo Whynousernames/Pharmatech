@@ -63,7 +63,7 @@
                 <Button x:Name="button_generateReport" Content="Generate Report" HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="166" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Cursor="Hand" Click="button_generateReport_Click" FontWeight="Normal" FontSize="16" Margin="0,0,-18,0"/>
             </Grid>
             <Grid x:Name="Grid_instruction" HorizontalAlignment="Left" Height="114" Margin="246,37,0,0" Grid.Row="2" VerticalAlignment="Top" Width="148">
-                <Button x:Name="button_addInstruction" Content="Timesheets" HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="138" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Cursor="Hand" FontWeight="Normal" FontSize="16" Margin="0,-2,0,0"/>
+                <Button x:Name="button_addInstruction" Content="Timesheets" HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="138" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Cursor="Hand" FontWeight="Normal" FontSize="16" Margin="0,-2,0,0" Click="button_addInstruction_Click"/>
                 <Button x:Name="button_updateInstruction" Content="Wages" HorizontalAlignment="Left" Height="37" Margin="0,31,0,0" VerticalAlignment="Top" Width="138" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Cursor="Hand" FontWeight="Normal" FontSize="16"/>
             </Grid>
             <Grid x:Name="Grid_Employee" HorizontalAlignment="Left" Height="114" Margin="246,185,0,0" Grid.Row="2" VerticalAlignment="Top" Width="148">
@@ -92,9 +92,7 @@
                 <TextBox x:Name="textBox_amountRecieved" HorizontalAlignment="Left" Height="38" Margin="956,354,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="184" FontSize="24"  TextChanged="textBox_amountRecieved_TextChanged"/>
                 <Label x:Name="label_Change" Content="Change:               R" HorizontalAlignment="Left" Height="42" Margin="731,452,0,0" VerticalAlignment="Top" Width="212" FontSize="24" />
                 <TextBox x:Name="textBox_Change" HorizontalAlignment="Left" Height="38" Margin="956,454,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="184" FontSize="24" IsEnabled="False"/>
-                <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="817,794,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" >
-
-                </Button>
+                <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Margin="817,794,0,10" Width="147" Click="button_cancel_Click" FontSize="24" />
                 <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="656,794,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" >
 
                 </Button>

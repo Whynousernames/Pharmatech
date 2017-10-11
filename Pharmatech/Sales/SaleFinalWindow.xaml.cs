@@ -399,7 +399,7 @@ namespace Pharmatech
 
                             foreach (DataRow row in dt.Rows)
                             {
-                                strBuilder.Append(row["Medication name"].ToString() + "  X" + row["Quantity"] + " // ");
+                                strBuilder.Append(row["Medication name"].ToString() + "  X" + row["Quantity"] + Environment.NewLine);
                                 int existingStock = 0;
 
 
@@ -507,6 +507,13 @@ namespace Pharmatech
                 MessageBox.Show("Tendered amount is less than total.", "Warning.", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
             }
+        }
+
+        private void button_addInstruction_Click(object sender, RoutedEventArgs e)
+        {
+            gridHidden_True();
+            Timesheets timeSheets = new Timesheets();
+            timeSheets.Show();
         }
     }
     }

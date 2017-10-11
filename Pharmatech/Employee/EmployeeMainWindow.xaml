@@ -138,8 +138,8 @@
                 <Label x:Name="label_EmpRePassword" Content="Re-Enter Password:" HorizontalAlignment="Left" Margin="132,160,0,0" VerticalAlignment="Top" FontSize="22"/>
                 <TextBox x:Name="textBox_EmpUsername" HorizontalAlignment="Left" Height="36" Margin="348,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" FontSize="20"/>
 
-                <PasswordBox x:Name="passwordBox_EmpRePassword" HorizontalAlignment="Left" Margin="348,165,0,0" VerticalAlignment="Top" FontSize="20" Width="226"/>
-                <PasswordBox x:Name="passwordBox_EmpPassword" HorizontalAlignment="Left" Margin="348,123,0,0" VerticalAlignment="Top" FontSize="20" Width="226"/>
+                <PasswordBox x:Name="passwordBox_EmpRePassword" HorizontalAlignment="Left" Margin="348,165,0,0" VerticalAlignment="Top" FontSize="20" Width="226" Height="36"/>
+                <PasswordBox x:Name="passwordBox_EmpPassword" HorizontalAlignment="Left" Margin="348,121,0,0" VerticalAlignment="Top" FontSize="20" Width="226" Height="36"/>
                 <Label x:Name="label_EmpType" Content="Choose Access Level:" HorizontalAlignment="Left" Margin="96,540,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="24"/>
                 <RadioButton x:Name="radioButton" GroupName="AccessType" Content="Pharmacist" IsChecked="True" HorizontalAlignment="Left" Margin="370,549,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20"/>
                 <RadioButton x:Name="radioButton1" GroupName="AccessType" Content="Administrator" HorizontalAlignment="Left" Margin="536,549,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20"/>

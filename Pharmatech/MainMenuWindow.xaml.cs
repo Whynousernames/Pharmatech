@@ -311,6 +311,13 @@ namespace Pharmatech
             for (int intCounter = App.Current.Windows.Count - 1; intCounter >= 0; intCounter--)
                 App.Current.Windows[intCounter].Hide();
         }
+
+        private void GoToArticle_Click(object sender, RoutedEventArgs e)
+        {
+            string path = (sender as Hyperlink).Tag as string;
+            System.Diagnostics.Process.Start(path);
+
+        }
     }
 
 }

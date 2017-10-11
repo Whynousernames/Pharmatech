@@ -18,7 +18,7 @@
         <ImageBrush x:Key="MedicationResource" ImageSource="pack://siteoforigin:,,,/images/Medication_Icon.JPG"></ImageBrush>
         <ImageBrush x:Key="PrescriptionResource" ImageSource="pack://siteoforigin:,,,/images/Prescription_Icon.JPG"></ImageBrush>
         <ImageBrush x:Key="ReportsResource" ImageSource="pack://siteoforigin:,,,/images/Report_Icon.JPG"></ImageBrush>
-
+        <XmlDataProvider x:Key="DataRss" XPath="//item" Source="http://feeds.bbci.co.uk/news/health/rss.xml?edition=uk"></XmlDataProvider>
     </Window.Resources>
     <Viewbox>
         <Grid HorizontalAlignment="Left" Height="1080" VerticalAlignment="Top" Width="1910" Margin="10,0,-6,-29">
@@ -104,8 +104,24 @@
             <Label x:Name="label_Instr" Content="Timesheets &amp; Wages" HorizontalAlignment="Left" Margin="13,115,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Emp" Content="Employees" HorizontalAlignment="Left" Margin="65,261,0,0" VerticalAlignment="Top" Height="38" Width="128" Grid.Row="2" FontSize="22" RenderTransformOrigin="0.571,-1.029" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Rep" Content="Reporting" HorizontalAlignment="Left" Margin="69,411,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
-            <Button x:Name="button_LogOut" Content="Log out..." HorizontalAlignment="Left" Margin="126,44,0,0" VerticalAlignment="Top" Width="129" FontSize="20" Height="42" Click="button_LogOut_Click" FontWeight="Normal"/>
-            <Button x:Name="button_Help" Content="Help" HorizontalAlignment="Left" Margin="2,44,0,0" VerticalAlignment="Top" Width="129" FontSize="20" Height="42" FontWeight="Normal"/>
+            <Button x:Name="button_LogOut" Content="Log out" HorizontalAlignment="Left" Margin="69,44,0,0" VerticalAlignment="Top" Width="129" FontSize="20" Height="42" Click="button_LogOut_Click" FontWeight="Normal"/>
+            <Grid HorizontalAlignment="Left" Height="395" Margin="1132,424,0,0" Grid.Row="1" VerticalAlignment="Top" Width="392" Grid.RowSpan="2"/>
+            <StackPanel Orientation="Vertical" DataContext="{Binding ElementName=LB1, Path=SelectedItem}">
+                <TextBlock Text="{Binding XPath=pubDate}"></TextBlock>
+                <TextBlock Text="{Binding XPath=description}"></TextBlock>
+
+
+            </StackPanel>
+            <ListBox ItemsSource="{Binding Source={StaticResource DataRss}}" Margin="794,277,398,194" FontSize="24" Grid.Row="1" Grid.RowSpan="2">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding XPath=title}" FontWeight="bold"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock Margin="794,363,-794,159" Grid.Row="2"><Hyperlink x:Name="GoToArticle" Tag="{Binding InnerText, XPath=link}" Click="GoToArticle_Click"><Run Text="Go to this article..."/></Hyperlink></TextBlock>
 
         </Grid>
     </Viewbox>

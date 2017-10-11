@@ -160,7 +160,7 @@
             </Image>
             <Image x:Name="image_arrow_Copy2" HorizontalAlignment="Left" Height="127" Margin="1746,223,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.Row="2"/>
 
-            <Grid x:Name="Grid_patientSelect" HorizontalAlignment="Left" Height="408" Margin="819,277,0,0" VerticalAlignment="Top" Width="610" Background="#e6f3ff" Grid.Row="1" Grid.RowSpan="2">
+            <Grid x:Name="Grid_patientSelect" HorizontalAlignment="Left" Height="408" Margin="866,424,0,0" VerticalAlignment="Top" Width="610" Background="#e6f3ff" Grid.Row="1" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="167*"/>
                     <ColumnDefinition Width="453*"/>

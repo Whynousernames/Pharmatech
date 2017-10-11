@@ -383,7 +383,7 @@ namespace Pharmatech
 
         private void button_addItem_Click(object sender, RoutedEventArgs e)
         {
-
+            
             
             if (!string.IsNullOrEmpty(comboBox_select_Item.Text.ToString()))
             {
@@ -403,7 +403,9 @@ namespace Pharmatech
                         
                             while (sqlReader.Read())
                             {
+                                
                                 allergies.allergyName = Convert.ToString(sqlReader["allergyName"]);
+                               
                                 allergies.allergyDescription = Convert.ToString(sqlReader["allergyDescription"]);                                                  
 
                         }

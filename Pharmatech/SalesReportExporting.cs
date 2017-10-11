@@ -122,11 +122,7 @@ namespace Pharmatech
             fs.Close();
         }
 
-
-
-
-
-
+        
         public static void ExportToInvoice(DataTable dtblTable, String strPdfPath, string strHeader, string patientName, string itemNames, int salePrice, double vatAmount, double subTotal)
         {
             System.IO.FileStream fs = new FileStream(strPdfPath, FileMode.Create, FileAccess.Write, FileShare.None);
@@ -302,7 +298,84 @@ namespace Pharmatech
             fs.Close();
         }
 
+        //public static void ExportSingleInvoice(DataTable dtblTable, String strPdfPath, string strHeader, string name, string date, string description, string saletype, int saleAmount)
+        //{
+        //    System.IO.FileStream fs = new FileStream(strPdfPath, FileMode.Create, FileAccess.Write, FileShare.None);
+        //    Document document = new Document(PageSize.A4, 10, 10, 10, 10);
+        //    PdfWriter writer = PdfWriter.GetInstance(document, fs);
+        //    document.Open();
 
+        //    Report Header
+        //    BaseFont bfntHead = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+        //    Font fntHead = new Font(bfntHead, 16, 1, BaseColor.BLACK);
+        //    Paragraph prgHeading = new Paragraph();
+        //    prgHeading.Alignment = Element.ALIGN_CENTER;
+        //    prgHeading.Add(new Chunk(strHeader.ToUpper(), fntHead));
+        //    document.Add(prgHeading);
+
+        //    Author
+        //    Paragraph prgAuthor = new Paragraph();
+        //    BaseFont btnAuthor = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+        //    Font fntAuthor = new Font(btnAuthor, 10, 2, BaseColor.BLACK);
+        //    prgAuthor.Alignment = Element.ALIGN_CENTER;
+        //    prgAuthor.Add(new Chunk("Powered By PharmaTech", fntAuthor));
+        //    prgAuthor.Add(new Chunk("\nDate Issued: " + DateTime.Now.ToShortDateString(), fntAuthor));
+        //    document.Add(prgAuthor);
+
+        //    Add a line seperation
+        //    Paragraph p = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(0.0F, 100.0F, BaseColor.BLACK, Element.ALIGN_LEFT, 1)));
+        //    document.Add(p);
+
+        //    Add line break
+        //    document.Add(new Chunk("\n", fntHead));
+
+
+        //    Add another line break
+        //    document.Add(new Chunk("\n", fntHead));
+
+        //    Write the table
+        //    PdfPTable table = new PdfPTable(dtblTable.Columns.Count);
+        //    table.SetWidths(new int[] { 1, 1, 1, 1, 1, 1, 2 });
+        //    Table header
+        //    BaseFont btnColumnHeader = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+        //    Font fntColumnHeader = new Font(btnColumnHeader, 8, 0, BaseColor.BLACK);
+
+        //    for (int i = 0; i < dtblTable.Columns.Count; i++)
+        //    {
+        //        PdfPCell cell = new PdfPCell();
+
+        //        cell.HorizontalAlignment = 1;
+        //        cell.VerticalAlignment = Element.ALIGN_CENTER;
+        //        cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+        //        cell.AddElement(new Chunk(dtblTable.Columns[i].ColumnName, fntColumnHeader));
+        //        table.AddCell(cell);
+        //    }
+        //    table Data
+        //    for (int i = 0; i < dtblTable.Rows.Count; i++)
+        //    {
+        //        for (int j = 0; j < dtblTable.Columns.Count; j++)
+        //        {
+        //            table.AddCell(new Phrase(dtblTable.Rows[i][j].ToString(), fntColumnHeader));
+        //        }
+        //    }
+
+        //    document.Add(table);
+
+        //    Add another space and a linebreak
+        //    document.Add(new Chunk("\n", fntHead));
+        //    Paragraph linebreak = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(0.0F, 100.0F, BaseColor.BLACK, Element.ALIGN_LEFT, 1)));
+        //    document.Add(linebreak);
+
+        //    Paragraph total = new Paragraph();
+        //    total.Alignment = Element.ALIGN_RIGHT;
+        //    total.Add(new Chunk("Sub-Total: R" + subTotal + "\n", fntAuthor));
+        //    total.Add(new Chunk("VAT Amount: R " + vatAmount + "\n", fntAuthor));
+        //    total.Add(new Chunk("TOTAL: R " + salePrice, fntAuthor));
+        //    document.Add(total);
+        //    document.Close();
+        //    writer.Close();
+        //    fs.Close();
+        //}
 
     }
 }

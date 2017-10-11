@@ -18,7 +18,7 @@
         <ImageBrush x:Key="MedicationResource" ImageSource="pack://siteoforigin:,,,/images/Medication_Icon.JPG"></ImageBrush>
         <ImageBrush x:Key="PrescriptionResource" ImageSource="pack://siteoforigin:,,,/images/Prescription_Icon.JPG"></ImageBrush>
         <ImageBrush x:Key="ReportsResource" ImageSource="pack://siteoforigin:,,,/images/Report_Icon.JPG"></ImageBrush>
-        <XmlDataProvider x:Key="DataRss" XPath="//item" Source="http://feeds.bbci.co.uk/news/health/rss.xml?edition=uk"></XmlDataProvider>
+
     </Window.Resources>
     <Viewbox>
         <Grid HorizontalAlignment="Left" Height="1080" VerticalAlignment="Top" Width="1910" Margin="10,0,-6,-29">
@@ -27,7 +27,7 @@
                 <RowDefinition Height="228*"/>
                 <RowDefinition Height="269*"/>
             </Grid.RowDefinitions>
-            <Rectangle HorizontalAlignment="Left" Height="583" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="1123" Margin="559,53,0,0" Grid.RowSpan="2" Grid.Row="1">
+            <Rectangle HorizontalAlignment="Left" Height="583" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="1381" Margin="463,53,0,0" Grid.RowSpan="2" Grid.Row="1">
                 <Rectangle.Effect>
                     <DropShadowEffect BlurRadius="10" ShadowDepth="9"/>
                 </Rectangle.Effect>
@@ -46,13 +46,13 @@
 
             </StackPanel>
             <Label x:Name="label_WindowType" Content="Main Menu" HorizontalAlignment="Center" Height="49" Margin="948,0,600,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="362" FontSize="30"  FontWeight="Bold"/>
-            <Label x:Name="label_FirstName" Content="Name:" HorizontalAlignment="Left" Height="42" Margin="636,294,0,0" VerticalAlignment="Top" Width="134" FontSize="24"  Grid.Row="1"/>
-            <Label x:Name="label_EmployeeID" Content="Employee ID:" HorizontalAlignment="Left" Height="42" Margin="636,365,0,0" VerticalAlignment="Top" Width="153" FontSize="24"  Grid.Row="1"/>
-            <Label x:Name="label_EmployeeType" Content="Employee Type:" HorizontalAlignment="Left" Height="42" Margin="636,0,0,511" VerticalAlignment="Bottom" Width="176" FontSize="24"  Grid.Row="1" Grid.RowSpan="2"/>
-            <Label x:Name="label_FirstNameDisplay"  HorizontalAlignment="Left" Height="42" Margin="842,294,0,0" VerticalAlignment="Top" Width="323" FontSize="24"  Grid.Row="1"/>
-            <Label x:Name="label_IDDisplay"  HorizontalAlignment="Left" Height="42" Margin="842,365,0,0" VerticalAlignment="Top" Width="254" FontSize="24"  Grid.Row="1" Content="42"/>
-            <Label x:Name="label_EmployeeTypeDisplay" Content="Admin" HorizontalAlignment="Left" Height="42" Margin="842,441,0,0" VerticalAlignment="Top" Width="254" FontSize="24"  Grid.Row="1" Grid.RowSpan="2"/>
-            <Label x:Name="label_FirstNameDisplay_Copy" Content="You are currently logged in as" HorizontalAlignment="Left" Height="62" Margin="877,153,0,0" VerticalAlignment="Top" Width="484" FontSize="36" Grid.Row="1"/>
+            <Label x:Name="label_FirstName" Content="Name:" HorizontalAlignment="Left" Height="42" Margin="636,420,0,0" VerticalAlignment="Top" Width="134" FontSize="24"  Grid.Row="1" Grid.RowSpan="2"/>
+            <Label x:Name="label_EmployeeID" Content="Employee ID:" HorizontalAlignment="Left" Height="42" Margin="636,35,0,0" VerticalAlignment="Top" Width="153" FontSize="24"  Grid.Row="2"/>
+            <Label x:Name="label_EmployeeType" Content="Employee Type:" HorizontalAlignment="Left" Height="42" Margin="636,0,0,385" VerticalAlignment="Bottom" Width="176" FontSize="24"  Grid.Row="2"/>
+            <Label x:Name="label_FirstNameDisplay"  HorizontalAlignment="Left" Height="42" Margin="842,420,0,0" VerticalAlignment="Top" Width="323" FontSize="24"  Grid.Row="1" Grid.RowSpan="2"/>
+            <Label x:Name="label_IDDisplay"  HorizontalAlignment="Left" Height="42" Margin="842,35,0,0" VerticalAlignment="Top" Width="254" FontSize="24"  Grid.Row="2" Content="42"/>
+            <Label x:Name="label_EmployeeTypeDisplay" Content="Admin" HorizontalAlignment="Left" Height="42" Margin="842,111,0,0" VerticalAlignment="Top" Width="254" FontSize="24"  Grid.Row="2"/>
+            <Label x:Name="label_FirstNameDisplay_Copy" Content="Welcome, " HorizontalAlignment="Left" Height="116" Margin="747,174,0,0" VerticalAlignment="Top" Width="826" FontSize="72" Grid.Row="1"/>
             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1060" Margin="258,-1,0,0" Grid.RowSpan="3" Stroke="#FFF4F4F5" VerticalAlignment="Top" Width="4">
                 <Rectangle.Effect>
                     <BlurEffect KernelType="Box"/>
@@ -79,7 +79,7 @@
                 <Button x:Name="button_generateReport" Content="Generate Report" HorizontalAlignment="Left" Height="40" VerticalAlignment="Bottom" Width="166" Background="#FF2B95E3" BorderBrush="#FF31A5FC"  Cursor="Hand" Click="button_generateReport_Click" Margin="0,-15,-18,89" FontSize="16" FontWeight="Normal"/>
             </Grid>
             <Grid x:Name="Grid_instruction" HorizontalAlignment="Left" Height="114" Margin="246,37,0,0" Grid.Row="2" VerticalAlignment="Top" Width="148">
-                <Button x:Name="button_addInstruction" Content="Timesheets" HorizontalAlignment="Left" Height="40" Margin="0,-6,-18,0" VerticalAlignment="Top" Width="166" Background="#FF2B95E3" BorderBrush="#FF31A5FC"  Cursor="Hand" FontSize="16" FontWeight="Normal"/>
+                <Button x:Name="button_addInstruction" Content="Timesheets" Height="40" Margin="0,-6,-18,0" VerticalAlignment="Top" Background="#FF2B95E3" BorderBrush="#FF31A5FC"  Cursor="Hand" FontSize="16" FontWeight="Normal" HorizontalAlignment="Left" Width="166" Click="button_addInstruction_Click"/>
                 <Button x:Name="button_updateInstruction" Content="Wages" HorizontalAlignment="Left" Height="40" Margin="0,33,-18,0" VerticalAlignment="Top" Width="166" Background="#FF2B95E3" BorderBrush="#FF31A5FC"  Cursor="Hand" FontSize="16" FontWeight="Normal"/>
             </Grid>
             <Grid x:Name="Grid_Employee" HorizontalAlignment="Left" Height="114" Margin="246,185,0,0" Grid.Row="2" VerticalAlignment="Top" Width="148">
@@ -105,23 +105,8 @@
             <Label x:Name="label_Emp" Content="Employees" HorizontalAlignment="Left" Margin="65,261,0,0" VerticalAlignment="Top" Height="38" Width="128" Grid.Row="2" FontSize="22" RenderTransformOrigin="0.571,-1.029" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Rep" Content="Reporting" HorizontalAlignment="Left" Margin="69,411,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
             <Button x:Name="button_LogOut" Content="Log out" HorizontalAlignment="Left" Margin="69,44,0,0" VerticalAlignment="Top" Width="129" FontSize="20" Height="42" Click="button_LogOut_Click" FontWeight="Normal"/>
-            <Grid HorizontalAlignment="Left" Height="395" Margin="1132,424,0,0" Grid.Row="1" VerticalAlignment="Top" Width="392" Grid.RowSpan="2"/>
-            <StackPanel Orientation="Vertical" DataContext="{Binding ElementName=LB1, Path=SelectedItem}">
-                <TextBlock Text="{Binding XPath=pubDate}"></TextBlock>
-                <TextBlock Text="{Binding XPath=description}"></TextBlock>
+            <Label x:Name="label_login" Content="" HorizontalAlignment="Left" Margin="688,277,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="22"/>
 
-
-            </StackPanel>
-            <ListBox ItemsSource="{Binding Source={StaticResource DataRss}}" Margin="794,277,398,194" FontSize="24" Grid.Row="1" Grid.RowSpan="2">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding XPath=title}" FontWeight="bold"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            <TextBlock Margin="794,363,-794,159" Grid.Row="2"><Hyperlink x:Name="GoToArticle" Tag="{Binding InnerText, XPath=link}" Click="GoToArticle_Click"><Run Text="Go to this article..."/></Hyperlink></TextBlock>
 
         </Grid>
     </Viewbox>

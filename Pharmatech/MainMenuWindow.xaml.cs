@@ -17,6 +17,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.IO;
 
+
 namespace Pharmatech
 {
     /// <summary>
@@ -24,6 +25,7 @@ namespace Pharmatech
     /// </summary>
     public partial class MainMenuWindow : Window
     {
+        static string connection = System.Configuration.ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
         string conn = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString.ToString();
         string empIDNumber;
         string empFName;
@@ -70,13 +72,20 @@ namespace Pharmatech
 
             label_IDDisplay.Content = empIDNumber;
             label_FirstNameDisplay.Content = empFName.ToUpper() + " " + empLName.ToUpper();
+            string name = label_FirstNameDisplay.Content.ToString();
+            label_FirstNameDisplay_Copy.Content = "Welcome, " + name + ".";
+
+            
+
             if (empType == "A")
             {
-                label_EmployeeTypeDisplay.Content = "ADMIN";
+                label_EmployeeTypeDisplay.Content = "Administrator";
+                label_login.Content = "You are currently logged in with Administrator system rights. \nYou have access to the entire PharmaTech system.";
             }
             else
             {
-                label_EmployeeTypeDisplay.Content = "PHARMACIST";
+                label_EmployeeTypeDisplay.Content = "Pharmacist";
+                label_login.Content = "You are currently logged in with Pharmacist system rights. \nYou have access to operation of a patient's account and the dispensing of medication.";
                 button_Medication.IsEnabled = false;
                 button_Instruction.IsEnabled = false;
                 button_Reports.IsEnabled = false;
@@ -274,6 +283,32 @@ namespace Pharmatech
             MessageBoxResult result = MessageBox.Show("Your session has been recorded. Session start time "+startTime.ToString() + " session end time " + DateTime.Now.ToString()  + Environment.NewLine, "Help!", MessageBoxButton.OK, MessageBoxImage.Question);
             if (result == MessageBoxResult.OK)
             {
+
+                SqlConnection con = new SqlConnection(connection);
+                using (SqlCommand cmd = con.CreateCommand())
+                {
+                    cmd.CommandText = "INSERT INTO TimeSheets(empID, startTime, endTime, timeWorkedMinutes) VALUES(@empID, @startTime, @endTime,@timeWorkedMinutes)";
+
+                   
+
+                    cmd.Parameters.AddWithValue("@empID", empIDNumber);
+                    cmd.Parameters.AddWithValue("@startTime", startTime);
+                    cmd.Parameters.AddWithValue("@endTime", DateTime.Now);
+
+                    TimeSpan span = DateTime.Now.Subtract(Convert.ToDateTime(startTime));
+
+                    cmd.Parameters.AddWithValue("@timeWorkedMinutes", span.TotalMinutes);
+
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    
+                    con.Close();
+
+                }
+
+
+
                 MainWindow mainwindow = new MainWindow();
                 CloseAllWindows();
                 mainwindow.ShowDialog();
@@ -312,11 +347,18 @@ namespace Pharmatech
                 App.Current.Windows[intCounter].Hide();
         }
 
-        private void GoToArticle_Click(object sender, RoutedEventArgs e)
-        {
-            string path = (sender as Hyperlink).Tag as string;
-            System.Diagnostics.Process.Start(path);
 
+        //private void GoToArticle_Click(object sender, RoutedEventArgs e)
+        //{
+        //    string path = (sender as Hyperlink).Tag as string;
+        //    System.Diagnostics.Process.Start(path);
+        //}
+
+        private void button_addInstruction_Click(object sender, RoutedEventArgs e)
+        {
+            gridHidden_True();
+            Timesheets timeSheets = new Timesheets();
+            timeSheets.Show();
         }
     }
 

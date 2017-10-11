@@ -339,6 +339,7 @@ namespace Pharmatech
         {
             double subTotal = Convert.ToDouble(textBox_SubTotal.Text);
             double vatAmount = Convert.ToDouble(textBox_VatDisplay.Text);
+            int InvoiceID = 0;
 
             if (Convert.ToDouble(textBox_Change.Text) >= 0)
             {
@@ -470,9 +471,37 @@ namespace Pharmatech
 
 
 
-
+                        // Add the sale to the Sales table.
                         DataAccess.SaleDA.NewSale(empID, patientID, DateTime.Parse(date), descrip, docName, saleType, saleAmount);
-                        SalesReportExporting.ExportToInvoice(dt, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SaleInvoice", "INVOICE", patientName, descrip, saleAmount, vatAmount, subTotal);
+
+
+                        // Fetches the latest sale in the Sales table. Increase value by 1 to set filename of next invoice. Example: Selects Invoice#45 then names the current filename Invoice#46.
+                        using (SqlConnection conn = new SqlConnection(connection))
+                        {
+                            try
+                            {
+                                SqlCommand sqlCmd = new SqlCommand("SELECT TOP 1 InvoiceID FROM SALE ORDER BY InvoiceID DESC", conn);
+                                conn.Open();
+                                SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                                while (sqlReader.Read())
+                                {
+                                    InvoiceID = Convert.ToInt16(sqlReader["InvoiceID"]);
+
+                                }
+                                sqlReader.Close();
+
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error connecting to database.", ex.ToString());
+                            }
+                        }
+
+                        InvoiceID = InvoiceID + 1;
+
+                        // Compute an invoice in PDF form.
+                        SalesReportExporting.ExportToInvoice(dt, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SaleInvoice" + InvoiceID.ToString(), "INVOICE", patientName, descrip, saleAmount, vatAmount, subTotal);
 
                         // Open the pdf invoice.
                         System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SaleInvoice");

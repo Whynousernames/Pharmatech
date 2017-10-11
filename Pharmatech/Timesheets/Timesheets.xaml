@@ -109,9 +109,6 @@
                 <Button x:Name="button_viewEmployee" Content="View Employee" HorizontalAlignment="Left" Height="37" Margin="0,38,0,0" VerticalAlignment="Top" Width="138" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Cursor="Hand" FontWeight="Normal" FontSize="16" Grid.ColumnSpan="2"/>
                 <Button x:Name="button_removeEmployee" Content="Remove Employee" HorizontalAlignment="Left" Height="37" Margin="0,73,0,0" VerticalAlignment="Top" Width="138" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Cursor="Hand" FontWeight="Normal" FontSize="16" Grid.ColumnSpan="2"/>
             </Grid>
-            <Button x:Name="button_saveToPDF" Content="Save to PDF" HorizontalAlignment="Left" Margin="1636,403,0,79" Width="201"   FontSize="24"   Grid.Row="2" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_saveToPDF_Click"  BorderBrush="Black" BorderThickness="2">
-
-            </Button>
             <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1484,403,0,0" VerticalAlignment="Top" Width="147"   FontSize="24" Grid.Row="2" Click="button_cancel_Click" BorderBrush="Black" BorderThickness="2">
 
             </Button>

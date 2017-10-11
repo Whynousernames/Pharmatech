@@ -381,12 +381,7 @@ namespace Pharmatech
           
 
 
-            if (dataGrid_Reports.SelectedIndex != -1)
-            {
-                DataRowView drv = (DataRowView)dataGrid_Reports.SelectedItem;
-                saleID = drv.Row[1].ToString();
-                System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SaleInvoice" +  saleID.ToString());
-            }
+            
 
            
             using (SqlConnection con = new SqlConnection(conn))
@@ -591,7 +586,17 @@ namespace Pharmatech
             timeSheets.Show();
         }
 
+        private void button_viewInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            string saleID;
 
+            if (dataGrid_Reports.SelectedIndex != -1)
+            {
+                DataRowView drv = (DataRowView)dataGrid_Reports.SelectedItem;
+                saleID = drv.Row[1].ToString();
+                System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SaleInvoice" + saleID.ToString());
+            }
+        }
     }
   
 }

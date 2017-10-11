@@ -296,48 +296,7 @@ namespace Pharmatech
             Grid_ReportsMainWindow.Visibility = Visibility.Hidden;
         }
 
-        private void button_saveToPDF_Click(object sender, RoutedEventArgs e)
-        {
-            string startDate = "";
-            string endDate = "";
-            string saleType = "";            
-            string Header = "sales report";
-            string patientName = "";
-
-
-            using (SqlConnection con = new SqlConnection(conn))
-            {
-                con.Open();
-                string cmdString = "SELECT * FROM Patient WHERE patientIDNumber = @id";
-                SqlCommand cmd = new SqlCommand(cmdString, con);
-                
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                // Check to see if the input Patient ID is present in the database.
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        patientName = reader["firstName"].ToString() + " " + reader["lastName"].ToString();
-                    }
-                }
-
-                con.Close();
-            }
-
-           
-
-            if (dataGrid_Timesheets.HasItems && !string.IsNullOrEmpty(startDate))
-            {
-                //SalesReportExporting.ExportDataTableToPdf(dt, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SalesReport", Header, saleType, startDate, endDate, patientName);
-                Grid_ViewPDF.Visibility = Visibility.Visible;
-                Grid_ReportsMainWindow.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                MessageBox.Show("Please generate a report including a starting date!", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-            }
-        }
+       
             
 
         private void button_No_Click(object sender, RoutedEventArgs e)

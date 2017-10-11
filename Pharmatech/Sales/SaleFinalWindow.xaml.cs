@@ -480,13 +480,13 @@ namespace Pharmatech
                         {
                             try
                             {
-                                SqlCommand sqlCmd = new SqlCommand("SELECT TOP 1 InvoiceID FROM SALE ORDER BY InvoiceID DESC", conn);
+                                SqlCommand sqlCmd = new SqlCommand("SELECT TOP 1 saleID FROM SALE ORDER BY saleID DESC", conn);
                                 conn.Open();
                                 SqlDataReader sqlReader = sqlCmd.ExecuteReader();
 
                                 while (sqlReader.Read())
                                 {
-                                    InvoiceID = Convert.ToInt16(sqlReader["InvoiceID"]);
+                                    InvoiceID = Convert.ToInt16(sqlReader["saleID"]);
 
                                 }
                                 sqlReader.Close();
@@ -498,7 +498,7 @@ namespace Pharmatech
                             }
                         }
 
-                        InvoiceID = InvoiceID + 1;
+                       
 
                         // Compute an invoice in PDF form.
                         SalesReportExporting.ExportToInvoice(dt, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SaleInvoice" + InvoiceID.ToString(), "INVOICE", patientName, descrip, saleAmount, vatAmount, subTotal);

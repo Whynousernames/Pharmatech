@@ -114,20 +114,20 @@
             <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="1331,403,0,0" VerticalAlignment="Top" Width="147"  FontSize="24" Grid.Row="2" BorderBrush="Black" BorderThickness="2">
 
             </Button>
-            <Grid x:Name="Grid_ReportsMainWindow" HorizontalAlignment="Left" Height="870" Margin="399,54,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="1443">
-                <Rectangle HorizontalAlignment="Left" Height="652" Stroke="Black" VerticalAlignment="Top" Width="488" Margin="-17,144,0,0">
+            <Grid x:Name="Grid_ReportsMainWindow" HorizontalAlignment="Left" Height="870" Margin="432,54,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="1410">
+                <Rectangle HorizontalAlignment="Left" Height="652" Stroke="Black" VerticalAlignment="Top" Width="488" Margin="86,144,0,0">
                     <Rectangle.Effect>
                         <DropShadowEffect BlurRadius="10" ShadowDepth="9"/>
                     </Rectangle.Effect>
                 </Rectangle>
 
-                <Label x:Name="label_SelectEmpName" Content="Employee Name:" HorizontalAlignment="Left" Height="42" Margin="10,236,0,0" VerticalAlignment="Top" Width="195" FontSize="24" />
-                <ComboBox x:Name="comboBox_selectEmployee" HorizontalAlignment="Left" Height="42" Margin="210,238,0,0" VerticalAlignment="Top" Width="248" FontSize="24" DisplayMemberPath="empName" SelectedValuePath="empID" />
-                <Label x:Name="label_SelectMonth" Content="Month:" HorizontalAlignment="Left" Height="42" Margin="10,323,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
+                <Label x:Name="label_SelectEmpName" Content="Employee Name:" HorizontalAlignment="Left" Height="42" Margin="100,236,0,0" VerticalAlignment="Top" Width="195" FontSize="24" />
+                <ComboBox x:Name="comboBox_selectEmployee" HorizontalAlignment="Left" Height="42" Margin="300,238,0,0" VerticalAlignment="Top" Width="248" FontSize="24" DisplayMemberPath="empName" SelectedValuePath="empID" />
+                <Label x:Name="label_SelectMonth" Content="Month:" HorizontalAlignment="Left" Height="42" Margin="100,323,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
 
 
 
-                <DataGrid x:Name="dataGrid_Timesheets" ItemsSource="{Binding Sale}" HorizontalAlignment="Left" Height="652" Margin="483,144,-38,0" VerticalAlignment="Top" Width="998" GridLinesVisibility="All"  RowHeight="22" ColumnHeaderHeight="40" FontSize="14" FontFamily="Arial" >
+                <DataGrid x:Name="dataGrid_Timesheets" ItemsSource="{Binding Sale}" HorizontalAlignment="Left" Height="652" Margin="579,144,0,0" VerticalAlignment="Top" Width="831" GridLinesVisibility="All"  RowHeight="22" ColumnHeaderHeight="40" FontSize="14" FontFamily="Arial" >
                 </DataGrid>
                 <Button x:Name="button_GenerateReport" Content="Generate Timesheet" HorizontalAlignment="Left" Margin="114,431,0,362" Width="242"  FontSize="20" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_GenerateReport_Click_1" Style="{StaticResource MetroButton}" BorderBrush="Black" BorderThickness="2">
 
@@ -135,8 +135,8 @@
                 <Label x:Name="label_params" Content="Enter parameters" HorizontalAlignment="Left" Margin="114,154,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
                 <Label x:Name="label_params_Copy" Content="Generate Payslip" HorizontalAlignment="Left" Margin="130,592,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
                 <Label x:Name="label_SalesSummary" Content="" HorizontalAlignment="Left" Margin="765,38,0,0" VerticalAlignment="Top" FontSize="28" FontWeight="Bold"/>
-                <ComboBox x:Name="comboBox_selectMonth" HorizontalAlignment="Left" Height="42" Margin="210,323,0,0" VerticalAlignment="Top" Width="248" FontSize="24" />
-                <Button x:Name="button_GeneratePaySlip" Content="Generate Payslip" HorizontalAlignment="Left" Margin="114,673,0,120" Width="242"  FontSize="20" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_GenerateReport_Click_1" Style="{StaticResource MetroButton}" BorderBrush="Black" BorderThickness="2"/>
+                <ComboBox x:Name="comboBox_selectMonth" HorizontalAlignment="Left" Height="42" Margin="300,323,0,0" VerticalAlignment="Top" Width="248" FontSize="24" />
+                <Button x:Name="button_GeneratePaySlip" Content="Generate Payslip" HorizontalAlignment="Left" Margin="114,673,0,120" Width="242"  FontSize="20" ClickMode="Press" ToolTip="Save the displayed results to PDF"  Style="{StaticResource MetroButton}" BorderBrush="Black" BorderThickness="2" Click="button_GeneratePaySlip_Click"/>
             </Grid>
             <Grid x:Name="Grid_ViewPDF" HorizontalAlignment="Left" Height="429" Margin="-1014,326,0,0" VerticalAlignment="Top" Width="654" Grid.RowSpan="2" Grid.Row="1">
                 <Grid.RowDefinitions>

@@ -35,6 +35,7 @@ namespace Pharmatech
         List<SqlParameter> cParameters = new List<SqlParameter>();
 
         ObservableCollection<Sale> saleCollection = new ObservableCollection<Sale>();
+        double sum;
 
         // <add name = "connstring" providerName="System.Data.sqlclient" connectionString="Data Source = .; Initial Catalog = PharmaTech; User ID = THC; Password = password; Integrated Security = False"/>
         // <add name = "connstring" providerName="System.Data.sqlclient" connectionString="Data Source = (local); database = PharmaTech; Integrated Security = True"/>
@@ -417,6 +418,15 @@ namespace Pharmatech
                 grandtotal["Amount"] = grandtotal1;
                 dt.Rows.Add(grandtotal);
             }
+        }
+
+        private void button_GeneratePaySlip_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < dataGrid_Timesheets.Items.Count - 1; i++)
+            {
+                sum += (int.Parse((dataGrid_Timesheets.Columns[3].GetCellContent(dataGrid_Timesheets.Items[i]) as TextBlock).Text));
+            }
+            MessageBox.Show(sum.ToString());
         }
     }
   

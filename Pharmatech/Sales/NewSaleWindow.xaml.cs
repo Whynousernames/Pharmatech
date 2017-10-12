@@ -37,10 +37,14 @@ namespace Pharmatech
         string empFName;
         string empLName;
         string empType;
+        string allergyString;
         string[] employeeDetails = new string[5];
 
 
         DataTable dt = new DataTable();
+        DataTable dt2 = new DataTable();
+        DataTable dt3 = new DataTable();
+        DataTable dt4 = new DataTable();
 
         int sum = 0;
         
@@ -383,8 +387,16 @@ namespace Pharmatech
 
         private void button_addItem_Click(object sender, RoutedEventArgs e)
         {
-            
-            
+            string medicationAllergy;
+            string patientAllergy;
+            int _countMed = 0;
+            int _countPatient = 0;
+            allergyString = "";
+            dt2.Clear();
+            dt3.Clear();
+            dt4.Clear();
+
+
             if (!string.IsNullOrEmpty(comboBox_select_Item.Text.ToString()))
             {
 
@@ -392,28 +404,64 @@ namespace Pharmatech
                 {
                     try
                     {
-                        
-                        SqlCommand sqlCmd2 = new SqlCommand("SELECT allergyName, allergyDescription FROM Allergies A INNER JOIN PatientAllergies PA ON A.allergyID = PA.allergyID WHERE PA.allergyID = (SELECT allergyID FROM Medication_Allergies MA WHERE MA.medID = @medID) AND PA.patientIDNumber = @patientIDNumber ", conn);
+
+                        SqlCommand sqlCmd2 = new SqlCommand("SELECT allergyName, allergyDescription FROM Allergies A INNER JOIN PatientAllergies PA ON A.allergyID = PA.allergyID WHERE PA.allergyID IN (SELECT allergyID FROM Medication_Allergies MA WHERE MA.medID = @medID) AND PA.patientIDNumber = @patientIDNumber ", conn);
                         sqlCmd2.Parameters.AddWithValue("@patientIDNumber", label_DisplayPatientID.Content);
                         sqlCmd2.Parameters.AddWithValue("@medID", comboBox_select_Item.SelectedValue);
                         conn.Open();
                         Allergies allergies = new Allergies();
-                        SqlDataReader sqlReader = sqlCmd2.ExecuteReader();                        
+                        SqlDataReader sqlReader = sqlCmd2.ExecuteReader();
 
-                        
-                            while (sqlReader.Read())
-                            {
-                                
-                                allergies.allergyName = Convert.ToString(sqlReader["allergyName"]);
-                               
-                                allergies.allergyDescription = Convert.ToString(sqlReader["allergyDescription"]);                                                  
-
-                        }
-
-                            if(!string.IsNullOrEmpty(allergies.allergyName))
+                        if (sqlReader.HasRows == true)
                         {
+                            sqlReader.Close();
+                            string cmdString2 = "SELECT allergyID FROM Medication_Allergies WHERE medID = @id";
+                            SqlCommand cmd2 = new SqlCommand(cmdString2, conn);
+                            cmd2.Parameters.AddWithValue("@id", comboBox_select_Item.SelectedValue);
+                            SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+                            dt2 = new DataTable("MedAllergies");
+                            da2.Fill(dt2);
 
-                            MessageBoxResult dialogResult = System.Windows.MessageBox.Show(label_DisplayPatientName.Content.ToString() +" "+"is allergic to" +" "+allergies.allergyName+ " " +"which is in " + comboBox_select_Item.Text.ToString()+" would you still like to add this medication to the sale?" , "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+
+
+                            string cmdString3 = "SELECT allergyID FROM PatientAllergies WHERE patientIDNumber = @pID";
+                            SqlCommand cmd3 = new SqlCommand(cmdString3, conn);
+                            cmd3.Parameters.AddWithValue("@pID", label_DisplayPatientID.Content.ToString());
+                            SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
+                            dt3 = new DataTable("PatientAllergies");
+                            da3.Fill(dt3);
+                            foreach (DataRow row in dt2.Rows)
+                            {
+                                medicationAllergy = row["allergyID"].ToString();
+                                foreach (DataRow row2 in dt3.Rows)
+                                {
+                                    patientAllergy = row2["allergyID"].ToString();
+
+                                    if (medicationAllergy == patientAllergy)
+                                    {
+                                        string cmdString4 = "SELECT allergyName FROM Allergies WHERE allergyID = @aID";
+                                        SqlCommand cmd4 = new SqlCommand(cmdString4, conn);
+                                        cmd4.Parameters.AddWithValue("@aID", patientAllergy);
+                                        SqlDataAdapter da4 = new SqlDataAdapter(cmd4);
+                                        
+                                        da4.Fill(dt4);
+
+                                        
+
+
+                                    }
+                                }
+
+                            }
+
+                            foreach (DataRow row3 in dt4.Rows)
+                            {
+                                allergyString = allergyString + "--" + row3["allergyName"].ToString() + Environment.NewLine ;
+                                
+
+                            }
+                            MessageBoxResult dialogResult = System.Windows.MessageBox.Show(label_DisplayPatientName.Content.ToString() + " " + "is allergic to the following which is in " + comboBox_select_Item.Text.ToString() + " would you still like to add this medication to the sale?" + Environment.NewLine + Environment.NewLine + allergyString, "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                             if (dialogResult == MessageBoxResult.Yes)
                             {
                                 FillSalesItemGrid();
@@ -421,16 +469,37 @@ namespace Pharmatech
                             else
                             {
                                 comboBox_select_Item.SelectedIndex = 0;
-                                
+
                             }
+                            
                         }
+
+                        //sqlReader.Close();
+                    
+                    
+                        
+
+                        //while (sqlReader.Read())
+                        //{
+
+                        //    allergies.allergyName = Convert.ToString(sqlReader["allergyName"]);
+
+                        //    allergies.allergyDescription = Convert.ToString(sqlReader["allergyDescription"]);                                                  
+
+                        //}
+
+
+                       
+
+                            
+                        
                             else
                         {
                             FillSalesItemGrid();
                         }
 
                         
-                        sqlReader.Close();
+                        
                         conn.Close();                  
                         
                     }

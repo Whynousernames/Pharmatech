@@ -468,7 +468,73 @@ namespace Pharmatech
                 {
                     // Update patient on system.
                     DataAccess.PatientDA.UpdatePatient(id, firstName, surname, contactNo, email, address1, address2, city, suburb);
-                  //  System.Windows.MessageBox.Show("Successfully updated patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+
+                        int allergyID = 0;
+
+
+
+                        using (SqlConnection conn = new SqlConnection(connection))
+                        {
+                            try
+                            {
+
+                                SqlConnection con = new SqlConnection(connection);
+                                using (SqlCommand cmd = con.CreateCommand())
+                                {
+                                    cmd.CommandText = "INSERT INTO PatientAllergies(allergyID, patientIDNumber) VALUES(@aID, @idNumber)";
+
+                                    SqlCommand sqlCmd = new SqlCommand("SELECT allergyID FROM Allergies WHERE allergyName = @aName", conn);
+                                    sqlCmd.Parameters.AddWithValue("@aName", row["Name"]);
+                                    conn.Open();
+                                    SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                                    while (sqlReader.Read())
+                                    {
+                                        allergyID = Convert.ToInt32(sqlReader["allergyID"]);
+
+                                    }
+
+                                    cmd.Parameters.AddWithValue("@aID", allergyID.ToString());
+                                    cmd.Parameters.AddWithValue("@idNumber", textBox_IDNumber.Text);
+
+
+
+                                    con.Open();
+                                    cmd.ExecuteNonQuery();
+                                    sqlReader.Close();
+                                    con.Close();
+
+                                }
+
+                                using (SqlCommand cmd2 = con.CreateCommand())
+                                {
+                                    if (medAidSelected == 1)
+                                    {
+                                        cmd2.CommandText = "INSERT INTO Patient_MedicalAid_Account (medAidID, patientIDNumber, amountRemaining) VALUES (@medAidID, @patientIDNumber, @amountRemaining)";
+
+                                        cmd2.Parameters.AddWithValue("@medAidID", medAidID);
+                                        cmd2.Parameters.AddWithValue("@patientIDNumber", id);
+                                        cmd2.Parameters.AddWithValue("@amountRemaining", medAidAmountRemaining);
+
+                                        con.Open();
+                                        cmd2.ExecuteNonQuery();
+                                        con.Close();
+
+                                    }
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Windows.MessageBox.Show(ex.ToString(), ex.ToString());
+                            }
+                        }
+
+                    }
+                    //  System.Windows.MessageBox.Show("Successfully updated patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 }
                 else if (dialogResult == MessageBoxResult.No)
                 {
@@ -507,7 +573,27 @@ namespace Pharmatech
 
         private void button_Remove_Click(object sender, RoutedEventArgs e)
         {
-            
+            while (dataGrid_Allergies.SelectedItems.Count >= 1)
+            {
+                DataRowView drv = (DataRowView)dataGrid_Allergies.SelectedItem;
+                drv.Row.Delete();
+                dt3.AcceptChanges();
+                dataGrid_Allergies.ItemsSource = dt3.DefaultView;
+                int index, MedAllergyID;
+
+
+
+                using (var sc = new SqlConnection(conn))
+                using (var cmd = sc.CreateCommand())
+                {
+                    sc.Open();
+                    cmd.CommandText = "DELETE FROM PatientAllergies WHERE patientIDNumber = @patientIDNumber";
+                    cmd.Parameters.AddWithValue("@patientIDNumber", textBox_IDNumber.Text.ToString());
+                    cmd.ExecuteNonQuery();
+                }
+
+
+            }
         }
 
        

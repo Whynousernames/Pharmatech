@@ -185,6 +185,7 @@ namespace Pharmatech
         {
             using (SqlConnection con = new SqlConnection(conn))
             {
+                
                 con.Open();
                 string cmdString = "SELECT allergyID, allergyName AS [Allergy Name], allergyDescription AS [Allergy Severity] FROM Allergies WHERE allergyName = @allergyName";
                 SqlCommand cmd = new SqlCommand(cmdString, con);
@@ -236,7 +237,7 @@ namespace Pharmatech
                 reader.Close();
                 con.Close();
                 _count++;
-                dataGrid_Allergies.ItemsSource = dt.AsDataView();
+                dataGrid_Allergies.ItemsSource = dt.DefaultView;
                 allergiesList.Clear();
                 con.Close();
 
@@ -254,16 +255,14 @@ namespace Pharmatech
                 dataGrid_Allergies.ItemsSource = dt3.DefaultView;
                 int index, MedAllergyID;
 
-                index = dataGrid_Allergies.SelectedIndex;
-                MedAllergyID = Convert.ToInt16(dt2.Rows[index]);
-
+               
 
                 using (var sc = new SqlConnection(conn))
                 using (var cmd = sc.CreateCommand())
                 {
                     sc.Open();
-                    cmd.CommandText = "DELETE FROM Medication_Allergies WHERE allergyID = @allergyID";
-                    cmd.Parameters.AddWithValue("@allergyID", MedAllergyID);
+                    cmd.CommandText = "DELETE FROM Medication_Allergies WHERE medID = @medID";
+                    cmd.Parameters.AddWithValue("@medID", 52);
                     cmd.ExecuteNonQuery();
                 }
 
@@ -304,6 +303,7 @@ namespace Pharmatech
                         DataAccess.MedicationDA.AddMedication(medName, schedLevel, medDescription, Convert.ToInt32(costPrice), Convert.ToInt32(salePrice), Convert.ToInt32(quantityStock));
                         // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
                         //System.Windows.MessageBox.Show("Successfully added a new medicine.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                        dt3.GetChanges();
 
                         foreach (DataRow row in dt.Rows)
                         {
@@ -360,6 +360,8 @@ namespace Pharmatech
                             }
 
                         }
+
+                        
                     }
                     else if (dialogResult == MessageBoxResult.No)
                     {
@@ -375,6 +377,62 @@ namespace Pharmatech
                 {
                     // Add medicine item to system.
                     DataAccess.MedicationDA.UpdateMedication(medID, medName, schedLevel, medDescription, Convert.ToInt32(costPrice), Convert.ToInt32(salePrice), Convert.ToInt32(quantityStock));
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+
+                        int allergyID = 0;
+                        int medID2 = 0;
+
+                        using (SqlConnection conn = new SqlConnection(connection))
+                        {
+                            try
+                            {
+
+                                SqlConnection con = new SqlConnection(connection);
+                                using (SqlCommand cmd = con.CreateCommand())
+                                {
+                                    cmd.CommandText = "INSERT INTO Medication_Allergies(allergyID, medID) VALUES(@aID, @mID)";
+
+                                    SqlCommand sqlCmd = new SqlCommand("SELECT allergyID FROM Allergies WHERE allergyName = @aName", conn);
+                                    sqlCmd.Parameters.AddWithValue("@aName", row["Name"]);
+                                    conn.Open();
+                                    SqlDataReader sqlReader = sqlCmd.ExecuteReader();
+
+                                    while (sqlReader.Read())
+                                    {
+                                        allergyID = Convert.ToInt32(sqlReader["allergyID"]);
+
+                                    }
+                                    sqlReader.Close();
+
+                                    SqlCommand sqlCmd2 = new SqlCommand("SELECT medID FROM Medication WHERE medName = @medName", conn);
+                                    sqlCmd2.Parameters.AddWithValue("@medName", textBox_MedicationName.Text.ToString());
+
+                                    SqlDataReader sqlReader2 = sqlCmd2.ExecuteReader();
+
+                                    while (sqlReader2.Read())
+                                    {
+                                        medID2 = Convert.ToInt32(sqlReader2["medID"]);
+                                    }
+
+                                    cmd.Parameters.AddWithValue("@aID", allergyID.ToString());
+                                    cmd.Parameters.AddWithValue("@mID", medID2.ToString());
+                                    con.Open();
+                                    cmd.ExecuteNonQuery();
+                                    con.Close();
+
+                                }
+
+
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Windows.MessageBox.Show(ex.ToString(), ex.ToString());
+                            }
+                        }
+
+                    }
                     // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
                     System.Windows.MessageBox.Show("Successfully updated medicine.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 }
@@ -748,6 +806,8 @@ namespace Pharmatech
             Timesheets timeSheets = new Timesheets();
             timeSheets.Show();
         }
+
+        
     }
 
 }

@@ -31,6 +31,8 @@ namespace Pharmatech
         public List<Allergies> allergiesList = new List<Allergies>();
         int _count = 0;
         DataTable dt = new DataTable();
+        DataTable dt2 = new DataTable();
+        DataTable dt3 = new DataTable();
 
 
         public MedicineMainWindow()
@@ -480,6 +482,28 @@ namespace Pharmatech
                         textBox_IsActive.Text = reader["isActive"].ToString();
                     }
                     reader.Close();
+
+                    string cmdString2 = "SELECT allergyID FROM Medication_Allergies WHERE medID = @id";
+                    SqlCommand cmd2 = new SqlCommand(cmdString2, con);
+                    cmd2.Parameters.AddWithValue("@id", 52);
+                    SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+                    dt2 = new DataTable("Allergies");
+                    da2.Fill(dt2);
+
+                    dt3 = new DataTable("MedicationAllergies");
+                    foreach (DataRow row in dt2.Rows)
+                    {
+                        string cmdString3 = "SELECT allergyName, allergyDescription FROM Allergies WHERE allergyID = @aID";
+                        SqlCommand cmd3 = new SqlCommand(cmdString3, con);
+                        cmd3.Parameters.AddWithValue("@aID", row["allergyID"].ToString());
+                        SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
+                        da3.Fill(dt3);
+
+                    }
+
+                    dataGrid_Allergies.ItemsSource = dt3.DefaultView;
+                    con.Close();
+
                     con.Close();
                 }
 

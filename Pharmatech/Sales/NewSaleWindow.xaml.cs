@@ -393,7 +393,7 @@ namespace Pharmatech
                     try
                     {
                         
-                        SqlCommand sqlCmd2 = new SqlCommand("SELECT allergyName, allergyDescription FROM Allergies A INNER JOIN PatientAllergies PA ON A.allergyID = PA.allergyID WHERE PA.allergyID LIKE (SELECT allergyID FROM Medication_Allergies MA WHERE MA.medID = @medID) AND PA.patientIDNumber = @patientIDNumber ", conn);
+                        SqlCommand sqlCmd2 = new SqlCommand("SELECT allergyName, allergyDescription FROM Allergies A INNER JOIN PatientAllergies PA ON A.allergyID = PA.allergyID WHERE PA.allergyID = (SELECT allergyID FROM Medication_Allergies MA WHERE MA.medID = @medID) AND PA.patientIDNumber = @patientIDNumber ", conn);
                         sqlCmd2.Parameters.AddWithValue("@patientIDNumber", label_DisplayPatientID.Content);
                         sqlCmd2.Parameters.AddWithValue("@medID", comboBox_select_Item.SelectedValue);
                         conn.Open();

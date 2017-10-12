@@ -194,7 +194,7 @@ namespace Pharmatech
             patientMainWindow.Grid_SelectPatient.Visibility = Visibility.Visible;
             patientMainWindow.Grid_PatientMain.Visibility = Visibility.Hidden;
             patientMainWindow.label_PatientWindowType.Content = "Update Patient";
-            patientMainWindow.ShowDialog();
+            patientMainWindow.Show();
             this.Close();
         }
 

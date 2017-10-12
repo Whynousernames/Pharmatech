@@ -32,6 +32,9 @@ namespace Pharmatech
         public List<Allergies> allergiesList = new List<Allergies>();
         int _count = 0;
         DataTable dt = new DataTable();
+        DataTable dt2 = new DataTable();
+        DataTable dt3 = new DataTable();
+        StringBuilder sqlBuilder = new StringBuilder(500);
 
         int medAidSelected = 0;
 
@@ -537,11 +540,37 @@ namespace Pharmatech
                 {
                     Grid_SelectPatient.Visibility = Visibility.Hidden;
                     Grid_PatientMain.Visibility = Visibility.Visible;
+                    
+                                                 
+                                        
+                   
                 }
+                
                 else
                 {
                     System.Windows.MessageBox.Show("The patient ID number entered is not currently on the system.", "Alert!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
+                reader.Close();
+                string cmdString2 = "SELECT allergyID FROM PatientAllergies WHERE patientIDNumber = @id";
+                SqlCommand cmd2 = new SqlCommand(cmdString2, con);
+                cmd2.Parameters.AddWithValue("@id", idNumber);
+                SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+                dt2 = new DataTable("Allergies");
+                da2.Fill(dt2);
+
+
+                dt3 = new DataTable("PatientAllergies");
+                foreach(DataRow row in dt2.Rows)
+                {
+                    string cmdString3 = "SELECT allergyName, allergyDescription FROM Allergies WHERE allergyID = @aID";
+                    SqlCommand cmd3 = new SqlCommand(cmdString3, con);
+                    cmd3.Parameters.AddWithValue("@aID", row["allergyID"].ToString() );
+                    SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
+                    da3.Fill(dt3);
+
+                }
+
+                dataGrid_Allergies.ItemsSource = dt3.DefaultView;
                 con.Close();
 
             }

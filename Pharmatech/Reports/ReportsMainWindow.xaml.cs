@@ -191,10 +191,13 @@ namespace Pharmatech
                 sqlBuilder.Clear();
                 cParameters.Clear();
                 dataGrid_Reports.ItemsSource = dt.DefaultView;
+                
+
 
         }                                                                         
       }     
 
+        
         void messageTimer_Tick(object sender, EventArgs e)
         {
             label_Time.Content = DateTime.Now.ToString();
@@ -484,7 +487,9 @@ namespace Pharmatech
 
             else
             {
+                
                 FillSalesGrid();
+                
 
                 label_SalesSummary.Content = "Sales Summary: " + comboBox_selectSaleType.SelectedItem.ToString() + "\nFrom: " + datePicker_StartDate.Text + " To: " + datePicker_EndDate.Text;
             }

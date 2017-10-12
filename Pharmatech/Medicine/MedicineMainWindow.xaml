@@ -191,7 +191,7 @@
                     <ColumnDefinition Width="167*"/>
                     <ColumnDefinition Width="125*"/>
                 </Grid.ColumnDefinitions>
-                <Rectangle HorizontalAlignment="Left" Height="434" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="810" Margin="26,-14,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <Rectangle HorizontalAlignment="Left" Height="434" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="810" Margin="468,-20,-402,0" Grid.ColumnSpan="2" Grid.RowSpan="2">
                     <Rectangle.Effect>
                         <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
                     </Rectangle.Effect>

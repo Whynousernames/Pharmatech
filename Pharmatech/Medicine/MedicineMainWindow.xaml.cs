@@ -252,8 +252,25 @@ namespace Pharmatech
                 drv.Row.Delete();
                 dt3.AcceptChanges();
                 dataGrid_Allergies.ItemsSource = dt3.DefaultView;
+                int index, MedAllergyID;
+
+                index = dataGrid_Allergies.SelectedIndex;
+                MedAllergyID = Convert.ToInt16(dt2.Rows[index]);
+
+
+                using (var sc = new SqlConnection(conn))
+                using (var cmd = sc.CreateCommand())
+                {
+                    sc.Open();
+                    cmd.CommandText = "DELETE FROM Medication_Allergies WHERE allergyID = @allergyID";
+                    cmd.Parameters.AddWithValue("@allergyID", MedAllergyID);
+                    cmd.ExecuteNonQuery();
+                }
+
 
             }
+
+
         }
 
         private void button_next_Click_1(object sender, RoutedEventArgs e)

@@ -241,11 +241,6 @@
             <Label x:Name="label_Instr" Content="Timesheets &amp; Wages" HorizontalAlignment="Left" Margin="13,115,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Emp" Content="Employees" HorizontalAlignment="Left" Margin="65,261,0,0" VerticalAlignment="Top" Height="38" Width="128" Grid.Row="2" FontSize="22" RenderTransformOrigin="0.571,-1.029" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Rep" Content="Reporting" HorizontalAlignment="Left" Margin="69,411,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
-            <Rectangle HorizontalAlignment="Left" Height="224" Stroke="Black" VerticalAlignment="Top" Width="425" Margin="457,99,0,0" Grid.Row="2">
-                <Rectangle.Effect>
-                    <DropShadowEffect BlurRadius="10" ShadowDepth="9"/>
-                </Rectangle.Effect>
-            </Rectangle>
 
         </Grid>
 

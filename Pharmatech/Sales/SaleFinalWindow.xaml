@@ -130,7 +130,7 @@
                 <TextBox x:Name="textBox_SubTotal" HorizontalAlignment="Left" Height="52" Margin="354,690,0,0" TextWrapping="Wrap"   VerticalAlignment="Top" VerticalContentAlignment="Center" Width="260" FontSize="25"/>
                 <Label x:Name="label_SaleType_Copy2" Content="Sub-Total:    R" HorizontalAlignment="Left" Height="42" Margin="187,696,0,0" VerticalAlignment="Top" Width="162" FontSize="24"/>
                 <Label x:Name="label_amountRecieved_Copy" Content="Doctor Name:" HorizontalAlignment="Left" Height="42" Margin="721,299,0,0" VerticalAlignment="Top" Width="212" FontSize="24" />
-                <TextBox x:Name="textBox_DoctorName" HorizontalAlignment="Left" Height="38" Margin="956,303,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="184" FontSize="24"  TextChanged="textBox_amountRecieved_TextChanged"/>
+                <TextBox x:Name="textBox_DoctorName" HorizontalAlignment="Left" Height="38" Margin="956,303,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="184" FontSize="24"/>
                 <Label x:Name="label_patientFirstName_Copy" Content="Choose payment method:" HorizontalAlignment="Left" Height="42" Margin="801,537,0,0" VerticalAlignment="Top" Width="297" FontSize="24"/>
             </Grid>
             <Image x:Name="image_arrow" HorizontalAlignment="Left" Height="127" Margin="771,0,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.Row="1"/>

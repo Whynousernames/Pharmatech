@@ -389,7 +389,7 @@ namespace Pharmatech
             {
                 sum += (int.Parse((dataGrid_Timesheets.Columns[2].GetCellContent(dataGrid_Timesheets.Items[i]) as TextBlock).Text));
             }
-            MessageBox.Show(sum.ToString());
+           
 
             using (SqlConnection con = new SqlConnection(conn))
             {

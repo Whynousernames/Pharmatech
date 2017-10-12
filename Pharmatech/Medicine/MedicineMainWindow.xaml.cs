@@ -246,7 +246,14 @@ namespace Pharmatech
 
         private void button_Remove_Click(object sender, RoutedEventArgs e)
         {
-            // git test
+            while (dataGrid_Allergies.SelectedItems.Count >= 1)
+            {
+                DataRowView drv = (DataRowView)dataGrid_Allergies.SelectedItem;
+                drv.Row.Delete();
+                dt3.AcceptChanges();
+                dataGrid_Allergies.ItemsSource = dt3.DefaultView;
+
+            }
         }
 
         private void button_next_Click_1(object sender, RoutedEventArgs e)
@@ -544,6 +551,27 @@ namespace Pharmatech
                         textBox_QuantityInStock_Copy.Text = reader["Description"].ToString();                     
                     }
                     reader.Close();
+
+                    string cmdString2 = "SELECT allergyID FROM Medication_Allergies WHERE medID = @id";
+                    SqlCommand cmd2 = new SqlCommand(cmdString2, con);
+                    cmd2.Parameters.AddWithValue("@id", 52);
+                    SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+                    dt2 = new DataTable("Allergies");
+                    da2.Fill(dt2);
+
+                    dt3 = new DataTable("MedicationAllergies");
+                    foreach (DataRow row in dt2.Rows)
+                    {
+                        string cmdString3 = "SELECT allergyName, allergyDescription FROM Allergies WHERE allergyID = @aID";
+                        SqlCommand cmd3 = new SqlCommand(cmdString3, con);
+                        cmd3.Parameters.AddWithValue("@aID", row["allergyID"].ToString());
+                        SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
+                        da3.Fill(dt3);
+
+                    }
+
+                    dataGrid_Allergies.ItemsSource = dt3.DefaultView;
+                    con.Close();
                     con.Close();
                 }
 

@@ -138,7 +138,7 @@ namespace Pharmatech
             Grid_instruction.Visibility = Visibility.Hidden;
             Grid_Report.Visibility = Visibility.Hidden;
             
-            Grid_ViewPDF.Visibility = Visibility.Hidden;
+            
         }
 
         private void button_newCashSale_Click(object sender, RoutedEventArgs e)
@@ -308,7 +308,7 @@ namespace Pharmatech
 
         private void button_Yes_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SalesReport");
+            System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SalesReport");
         }
 
         private void button_cancel_Click(object sender, RoutedEventArgs e)
@@ -426,8 +426,8 @@ namespace Pharmatech
 
             if (dataGrid_Timesheets.HasItems)
             {
-                SalesReportExporting.ExportPayslip(dt, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Payslip", "payslip for: ", empName, month, Math.Round( uif,2), Math.Round(pension,2), Math.Round(taxAmount,2), Math.Round(netPayment,2), Math.Round(grossPayment,2));
-                System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Payslip");
+                SalesReportExporting.ExportPayslip(dt, Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Payslip", "payslip for: ", empName, month, Math.Round( uif,2), Math.Round(pension,2), Math.Round(taxAmount,2), Math.Round(netPayment,2), Math.Round(grossPayment,2));
+                System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Payslip");
 
 
             }

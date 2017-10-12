@@ -141,9 +141,7 @@
                 <TextBox x:Name="textBox_AddressLine1" HorizontalAlignment="Left" Height="38" Margin="348,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"  Grid.Row="1" Text="{Binding Address1, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBox x:Name="textBox_AddressLine2" HorizontalAlignment="Left" Height="38" Margin="348,377,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="368" FontSize="24"  Grid.Row="1"/>
                 <Label x:Name="label_PatientAllergies" Content="Patient Allergies" HorizontalAlignment="Left" Height="62" Margin="1055,10,0,0" VerticalAlignment="Top" Width="411" FontSize="36" />
-                <Label x:Name="label_AllergyDescription" Content="Allergy Description:" HorizontalAlignment="Left" Height="42" Margin="864,10,0,0" VerticalAlignment="Top" Width="226" FontSize="24"  Grid.Row="1"/>
                 <Label x:Name="label_AllergyType" Content="Allergy Type:" HorizontalAlignment="Left" Height="42" Margin="864,117,0,0" VerticalAlignment="Top" Width="166" FontSize="24"/>
-                <TextBox x:Name="textBox_AllergyDescription" HorizontalAlignment="Left" Height="75" Margin="1120,14,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="368" FontSize="24" Grid.Row="1"/>
                 <ComboBox x:Name="comboBox_selectAllergy" HorizontalAlignment="Left" Height="36" Margin="1120,123,0,0" VerticalAlignment="Top" Width="368" FontSize="24"    SelectionChanged="comboBox_selectAllergy_SelectionChanged"/>
                 <Button x:Name="button_next" Content="Complete" HorizontalAlignment="Left" Height="74" Margin="1253,652,0,-12" VerticalAlignment="Top" Width="260" FontSize="24" Click="button_next_Click" Grid.Row="1" BorderBrush="Black" BorderThickness="2" >
 
@@ -154,13 +152,13 @@
                 <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="951,650,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" Grid.Row="1" BorderBrush="Black" BorderThickness="2" Visibility="Hidden" >
 
                 </Button>
-                <Button x:Name="button_Remove" Content="Remove" HorizontalAlignment="Left" Height="57" Margin="1253,124,0,0" VerticalAlignment="Top" Width="157"  FontSize="24" Click="button_Remove_Click" Grid.Row="1" BorderBrush="Black" BorderThickness="2" >
+                <Button x:Name="button_Remove" Content="Remove" HorizontalAlignment="Left" Height="57" Margin="1253,54,0,0" VerticalAlignment="Top" Width="157"  FontSize="24" Click="button_Remove_Click" Grid.Row="1" BorderBrush="Black" BorderThickness="2" >
 
                 </Button>
-                <Button x:Name="button_Add" Content="Add" HorizontalAlignment="Left" Height="57" Margin="1094,124,0,0" VerticalAlignment="Top" Width="151"   FontSize="24" Click="button_Add_Click" Grid.Row="1" BorderBrush="Black" BorderThickness="2" >
+                <Button x:Name="button_Add" Content="Add" HorizontalAlignment="Left" Height="57" Margin="1007,54,0,0" VerticalAlignment="Top" Width="151"   FontSize="24" Click="button_Add_Click" Grid.Row="1" BorderBrush="Black" BorderThickness="2" >
 
                 </Button>
-                <DataGrid x:Name="dataGrid_Allergies" HorizontalAlignment="Left" Height="338" Margin="864,254,0,0" VerticalAlignment="Top" Width="624" GridLinesVisibility="All"  Grid.Row="1" FontSize="18"/>
+                <DataGrid x:Name="dataGrid_Allergies" HorizontalAlignment="Left" Height="338" Margin="864,197,0,0" VerticalAlignment="Top" Width="624" GridLinesVisibility="All"  Grid.Row="1" FontSize="18"/>
                 <Label x:Name="label_MandatoryFields" Content="Indicates mandatory fields" HorizontalAlignment="Left" Margin="128,91,0,0" VerticalAlignment="Top" FontSize="22" Visibility="Hidden"/>
                 <TextBox x:Name="textBox_isActivePatient" HorizontalAlignment="Left" Height="23" Margin="340,512,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
                 <Label x:Name="label_isPatientActive" Content="" HorizontalAlignment="Left" Height="40" Margin="162,80,0,0" VerticalAlignment="Top" Width="554" Background="#E2382F" FontSize="18" FontWeight="Bold" Visibility="Hidden"/>
@@ -203,7 +201,7 @@
                     </Button.Background>
                 </Button>
             </Grid>
-            <Grid x:Name="Grid_SelectPatient" HorizontalAlignment="Left" Height="453" Margin="706,230,0,0" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Width="746">
+            <Grid x:Name="Grid_SelectPatient" HorizontalAlignment="Left" Height="489" Margin="697,163,0,0" Grid.Row="1" VerticalAlignment="Top" Width="890" Grid.RowSpan="2">
                 <Rectangle HorizontalAlignment="Left" Height="427" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="683" Margin="10,10,0,0" Visibility="Hidden">
                     <Rectangle.Effect>
                         <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
@@ -218,6 +216,11 @@
                 <Button x:Name="button_cancelSelectPatient" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="211,258,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click"  FontSize="24" >
 
                 </Button>
+                <Rectangle HorizontalAlignment="Left" Height="434" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="810" Margin="10,10,0,0">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
+                    </Rectangle.Effect>
+                </Rectangle>
             </Grid>
             <Image x:Name="image_arrow" HorizontalAlignment="Left" Height="127" Margin="910,49,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2"/>
             <Image x:Name="image_arrow_Copy" HorizontalAlignment="Left" Height="127" Margin="1318,49,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2"/>
@@ -238,7 +241,7 @@
             <Label x:Name="label_Instr" Content="Timesheets &amp; Wages" HorizontalAlignment="Left" Margin="15,115,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Emp" Content="Employees" HorizontalAlignment="Left" Margin="65,261,0,0" VerticalAlignment="Top" Height="38" Width="128" Grid.Row="2" FontSize="22" RenderTransformOrigin="0.571,-1.029" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Rep" Content="Reporting" HorizontalAlignment="Left" Margin="69,411,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
-            <Grid x:Name="Grid_AddMedicalAid" HorizontalAlignment="Left" Height="453" Margin="394,198,0,0" Grid.Row="1" VerticalAlignment="Top" Width="746" Grid.RowSpan="2">
+            <Grid x:Name="Grid_AddMedicalAid" HorizontalAlignment="Left" Height="546" Margin="658,128,0,0" Grid.Row="1" VerticalAlignment="Top" Width="980" Grid.RowSpan="2">
                 <Rectangle HorizontalAlignment="Left" Height="427" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="683" Margin="10,10,0,0" Visibility="Hidden">
                     <Rectangle.Effect>
                         <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
@@ -251,6 +254,11 @@
                 <Button x:Name="button_canceladdMedAid" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="238,368,0,0" VerticalAlignment="Top" Width="148"   FontSize="24" />
                 <ComboBox x:Name="comboBox_selectMedAid" HorizontalAlignment="Left" Height="36" Margin="211,185,0,0" VerticalAlignment="Top" Width="439" FontSize="24" SelectionChanged="comboBox_selectMedAid_SelectionChanged" MouseLeave="comboBox_selectMedAid_MouseLeave"  />
                 <Label x:Name="label_planDescription" Content="Description:" HorizontalAlignment="Left" Height="42" Margin="69,255,0,0" VerticalAlignment="Top" Width="166" FontSize="24"/>
+                <Rectangle HorizontalAlignment="Left" Height="434" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="810" Margin="69,44,0,0">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
+                    </Rectangle.Effect>
+                </Rectangle>
             </Grid>
 
         </Grid>

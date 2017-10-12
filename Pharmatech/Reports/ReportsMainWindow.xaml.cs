@@ -437,7 +437,7 @@ namespace Pharmatech
 
             if (dataGrid_Reports.HasItems && !string.IsNullOrEmpty(startDate))
             {
-                SalesReportExporting.ExportDataTableToPdf(dt, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SalesReport", Header, saleType, startDate, endDate, medName, patientName);
+                SalesReportExporting.ExportDataTableToPdf(dt, Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SalesReport", Header, saleType, startDate, endDate, medName, patientName);
                 Grid_ViewPDF.Visibility = Visibility.Visible;
                 Grid_ReportsMainWindow.Visibility = Visibility.Hidden;
             }
@@ -457,7 +457,7 @@ namespace Pharmatech
 
         private void button_Yes_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SalesReport");
+            System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SalesReport");
         }
 
         private void button_cancel_Click(object sender, RoutedEventArgs e)
@@ -599,7 +599,7 @@ namespace Pharmatech
             {
                 DataRowView drv = (DataRowView)dataGrid_Reports.SelectedItem;
                 saleID = drv.Row[1].ToString();
-                System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SaleInvoice" + saleID.ToString());
+                System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SaleInvoice" + saleID.ToString());
             }
         }
     }

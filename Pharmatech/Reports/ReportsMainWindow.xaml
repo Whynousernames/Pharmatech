@@ -136,7 +136,7 @@
 
 
 
-                <DataGrid x:Name="dataGrid_Reports" ItemsSource="{Binding Sale}" HorizontalAlignment="Left" Height="627" Margin="545,197,0,0" VerticalAlignment="Top" Width="881" GridLinesVisibility="All"  RowHeight="90" ColumnHeaderHeight="40"  FontSize="14" FontFamily="Arial" />
+                <DataGrid x:Name="dataGrid_Reports" ItemsSource="{Binding Sale}" HorizontalAlignment="Left" Height="627" Margin="520,197,0,0" VerticalAlignment="Top" Width="881" GridLinesVisibility="All"  RowHeight="90" ColumnHeaderHeight="40"  FontSize="14" FontFamily="Arial" />
 
 
 
@@ -151,7 +151,7 @@
                 <Label x:Name="label_params_Copy" Content="Refine your report:" HorizontalAlignment="Left" Margin="83,603,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
                 <Label x:Name="label_SalesSummary" Content="" HorizontalAlignment="Left" Margin="649,54,0,0" VerticalAlignment="Top" FontSize="28" FontWeight="Bold"/>
             </Grid>
-            <Grid x:Name="Grid_SelectMedication" HorizontalAlignment="Left" Height="429" Margin="887,224,0,0" VerticalAlignment="Top" Width="654" Grid.RowSpan="2" Grid.Row="1">
+            <Grid x:Name="Grid_SelectMedication" HorizontalAlignment="Left" Height="453" Margin="729,112,0,0" VerticalAlignment="Top" Width="795" Grid.Row="1" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="73*"/>
                     <RowDefinition Height="78*"/>
@@ -162,12 +162,17 @@
                 <Button x:Name="button_nextSelectMedication" Content="Next" HorizontalAlignment="Left" Height="56" Margin="415,132,0,0" VerticalAlignment="Top" Width="147"   FontSize="24"  Grid.Row="2" Click="button_nextSelectMedication_Click_1" BorderBrush="Black" BorderThickness="2">
 
                 </Button>
-                <Button x:Name="button_cancelSelectPatient" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="206,132,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Row="2" BorderBrush="Black" BorderThickness="2">
+                <Button x:Name="button_cancelSelectPatient" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="206,132,0,0" VerticalAlignment="Top" Width="147"  FontSize="24" Grid.Row="2" BorderBrush="Black" BorderThickness="2" Click="button_cancelSelectPatient_Click">
 
                 </Button>
                 <ComboBox x:Name="comboBox_select_Item" HorizontalAlignment="Left" Height="40" Margin="237,59,0,0" VerticalAlignment="Top" Width="360" FontSize="24" Grid.Row="2" IsTextSearchEnabled="True" IsEditable="True"/>
+                <Rectangle HorizontalAlignment="Left" Height="434" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="810" Margin="-62,0,0,0" Grid.RowSpan="3">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
+                    </Rectangle.Effect>
+                </Rectangle>
             </Grid>
-            <Grid x:Name="Grid_SelectPatientID" HorizontalAlignment="Left" Height="429" Margin="948,234,0,0" VerticalAlignment="Top" Width="654" Grid.RowSpan="2" Grid.Row="1">
+            <Grid x:Name="Grid_SelectPatientID" HorizontalAlignment="Left" Height="525" Margin="793,95,0,0" VerticalAlignment="Top" Width="888" Grid.Row="1" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="73*"/>
                     <RowDefinition Height="78*"/>
@@ -179,11 +184,16 @@
                 <Button x:Name="button_nextSelectPatientID" Content="Next" HorizontalAlignment="Left" Height="56" Margin="347,114,0,0" VerticalAlignment="Top" Width="147"  FontSize="24"  Grid.Row="2" Click="button_nextSelectPatientID_Click_1" BorderBrush="Black" BorderThickness="2">
 
                 </Button>
-                <Button x:Name="button_cancelSelectPatient1" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="138,114,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Row="2" BorderBrush="Black" BorderThickness="2">
+                <Button x:Name="button_cancelSelectPatient1" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="138,114,0,0" VerticalAlignment="Top" Width="147" FontSize="24" Grid.Row="2" BorderBrush="Black" BorderThickness="2" Click="button_cancelSelectPatient1_Click">
 
                 </Button>
+                <Rectangle HorizontalAlignment="Left" Height="434" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="810" Margin="9,48,0,0" Grid.RowSpan="3">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
+                    </Rectangle.Effect>
+                </Rectangle>
             </Grid>
-            <Grid x:Name="Grid_ViewPDF" HorizontalAlignment="Left" Height="429" Margin="977,277,0,0" VerticalAlignment="Top" Width="654" Grid.Row="1" Grid.RowSpan="2">
+            <Grid x:Name="Grid_ViewPDF" HorizontalAlignment="Left" Height="481" Margin="811,145,0,0" VerticalAlignment="Top" Width="870" Grid.Row="1" Grid.RowSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="73*"/>
                     <RowDefinition Height="78*"/>
@@ -197,6 +207,11 @@
 
                 </Button>
                 <Label x:Name="label_PrintPDF_Copy" Content="Note: the PDF file will be saved to your desktop." HorizontalAlignment="Left" Height="52" Margin="77,58,0,0" VerticalAlignment="Top" Width="567" FontSize="26" Grid.RowSpan="2"/>
+                <Rectangle HorizontalAlignment="Left" Height="434" Stroke="#FF31A5FC" VerticalAlignment="Top" Width="810" Grid.RowSpan="3">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Color="#FFFAF2F2" BlurRadius="10" ShadowDepth="9"/>
+                    </Rectangle.Effect>
+                </Rectangle>
             </Grid>
             <Image x:Name="image_arrow" HorizontalAlignment="Left" Height="127" Margin="1105,54,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2"/>
             <Image x:Name="image_arrow_Copy" HorizontalAlignment="Left" Height="127" Margin="1786,47,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.Row="2">

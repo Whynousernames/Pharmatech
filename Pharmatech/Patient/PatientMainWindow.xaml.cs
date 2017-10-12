@@ -35,6 +35,7 @@ namespace Pharmatech
         DataTable dt2 = new DataTable();
         DataTable dt3 = new DataTable();
         StringBuilder sqlBuilder = new StringBuilder(500);
+        int _patientFound = 0;
 
         int medAidSelected = 0;
 
@@ -274,7 +275,7 @@ namespace Pharmatech
             using (SqlConnection con = new SqlConnection(conn))
             {
                 con.Open();
-                string cmdString = "SELECT allergyID, allergyName AS [Allergy Name], allergyDescription AS [Allergy Severity] FROM Allergies WHERE allergyName = @allergyName";
+                string cmdString = "SELECT allergyID, allergyName AS [Allergy Name], allergyDescription AS [Allergy Symptoms] FROM Allergies WHERE allergyName = @allergyName";
                 SqlCommand cmd = new SqlCommand(cmdString, con);
                 cmd.Parameters.AddWithValue("@allergyName", comboBox_selectAllergy.Text);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -287,8 +288,8 @@ namespace Pharmatech
                 {
 
                     allergies.allergyID = reader["allergyID"].ToString();
-                    allergies.allergyDescription = reader["allergyDescription"].ToString();
-                    allergies.allergyName = reader["allergyName"].ToString();
+                    allergies.allergyDescription = reader["Allergy Symptoms"].ToString();
+                    allergies.allergyName = reader["Allergy Name"].ToString();
                     //var row = dt.NewRow();
                     //row["AllergyID"] = reader["allergyID"].ToString();
                     //row["AllergyDescription"] = reader["allergyDescription"].ToString();
@@ -432,6 +433,9 @@ namespace Pharmatech
                             }
 
                         }
+                        MainMenuWindow mainWindow = new MainMenuWindow();
+                        mainWindow.Show();
+                        this.Close();
                     }
                     else if (dialogResult == MessageBoxResult.No)
                     {
@@ -452,7 +456,10 @@ namespace Pharmatech
                 {
                     // Delete Patient from system.
                         DataAccess.PatientDA.DeletePatient(id);
-                     //   System.Windows.MessageBox.Show("Successfully deleted patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);                   
+                    MainMenuWindow mainWindow = new MainMenuWindow();
+                    mainWindow.Show();
+                    this.Close();
+                    //   System.Windows.MessageBox.Show("Successfully deleted patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);                   
                 }
                 else if (dialogResult == MessageBoxResult.No)
                 {
@@ -534,6 +541,9 @@ namespace Pharmatech
                         }
 
                     }
+                    MainMenuWindow mainWindow = new MainMenuWindow();
+                    mainWindow.Show();
+                    this.Close();
                     //  System.Windows.MessageBox.Show("Successfully updated patient.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 }
                 else if (dialogResult == MessageBoxResult.No)
@@ -626,6 +636,7 @@ namespace Pharmatech
                 {
                     Grid_SelectPatient.Visibility = Visibility.Hidden;
                     Grid_PatientMain.Visibility = Visibility.Visible;
+                    _patientFound = 1;
                     
                                                  
                                         
@@ -637,34 +648,38 @@ namespace Pharmatech
                     System.Windows.MessageBox.Show("The patient ID number entered is not currently on the system.", "Alert!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
                 reader.Close();
-                string cmdString2 = "SELECT allergyID FROM PatientAllergies WHERE patientIDNumber = @id";
-                SqlCommand cmd2 = new SqlCommand(cmdString2, con);
-                cmd2.Parameters.AddWithValue("@id", idNumber);
-                SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
-                dt2 = new DataTable("Allergies");
-                da2.Fill(dt2);
-
-
-                dt3 = new DataTable("PatientAllergies");
-                foreach(DataRow row in dt2.Rows)
+                if(_patientFound > 0)
                 {
-                    string cmdString3 = "SELECT allergyName, allergyDescription FROM Allergies WHERE allergyID = @aID";
-                    SqlCommand cmd3 = new SqlCommand(cmdString3, con);
-                    cmd3.Parameters.AddWithValue("@aID", row["allergyID"].ToString() );
-                    SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
-                    da3.Fill(dt3);
+                    string cmdString2 = "SELECT allergyID FROM PatientAllergies WHERE patientIDNumber = @id";
+                    SqlCommand cmd2 = new SqlCommand(cmdString2, con);
+                    cmd2.Parameters.AddWithValue("@id", idNumber);
+                    SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
+                    dt2 = new DataTable("Allergies");
+                    da2.Fill(dt2);
 
+
+                    dt3 = new DataTable("PatientAllergies");
+                    foreach (DataRow row in dt2.Rows)
+                    {
+                        string cmdString3 = "SELECT allergyName AS [Allergy Name], allergyDescription AS [Allergy Symptoms] FROM Allergies WHERE allergyID = @aID";
+                        SqlCommand cmd3 = new SqlCommand(cmdString3, con);
+                        cmd3.Parameters.AddWithValue("@aID", row["allergyID"].ToString());
+                        SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
+                        da3.Fill(dt3);
+
+                    }
+
+                    dataGrid_Allergies.ItemsSource = dt3.DefaultView;
                 }
-
-                dataGrid_Allergies.ItemsSource = dt3.DefaultView;
                 con.Close();
 
             }
 
-            if(label_PatientWindowType.Content.ToString() == "View Patient")
+            if(label_PatientWindowType.Content.ToString() == "View Patient" && _patientFound > 0)
             {
 
-               
+
+                button_addMedicalAid.IsEnabled = false;
                 button_next.Visibility = Visibility.Hidden;
                 using (SqlConnection con = new SqlConnection(conn))
                 {
@@ -690,7 +705,9 @@ namespace Pharmatech
                         comboBox_selectSuburb.Text = reader["suburbName"].ToString();
 
                     }
+
                     reader.Close();
+
 
                     string cmdString2 = "SELECT * FROM Patient_MedicalAid_Account WHERE patientIDNumber = @patientID";
                     SqlCommand cmd2 = new SqlCommand(cmdString2, con);
@@ -727,7 +744,7 @@ namespace Pharmatech
             }
 
 
-            if(label_PatientWindowType.Content.ToString() == "Remove Patient")
+            if(label_PatientWindowType.Content.ToString() == "Remove Patient" && _patientFound > 0)
             {
                 button_next.Width = 220;
                 button_next.Content = "Remove Patient";
@@ -780,7 +797,7 @@ namespace Pharmatech
                 disableTextBoxes();
             }
 
-            if(label_PatientWindowType.Content.ToString() == "Update Patient")
+            if(label_PatientWindowType.Content.ToString() == "Update Patient" && _patientFound > 0)
             {
 
                 using (SqlConnection con = new SqlConnection(conn))

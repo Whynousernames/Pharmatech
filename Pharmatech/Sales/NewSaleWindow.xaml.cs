@@ -271,6 +271,7 @@ namespace Pharmatech
             saleFinalWindow.label_displayID.Content = this.label_DisplayPatientID.Content.ToString();
             saleFinalWindow.button_CardSale.Visibility = Visibility.Hidden;
             saleFinalWindow.button_CashSale.Visibility = Visibility.Hidden;
+            
 
             for (int i = 0; i < dataGrid_saleItems.Items.Count - 1; i++)
             {
@@ -286,6 +287,7 @@ namespace Pharmatech
             saleFinalWindow.textBox_SubTotal.Text = subTotal.ToString();
             saleFinalWindow.textBox_VatDisplay.Text = vatDisplay.ToString();
             saleFinalWindow.label_displaySaleType.Content = "Medical Aid";
+            
 
             sum = 0;
             saleFinalWindow.dt = this.dt;
@@ -655,7 +657,7 @@ namespace Pharmatech
                         }
                         else
                         {
-                            MessageBox.Show("Not enough " + sale.medName + " in stock. Only "+sale.quantityInStock.ToString() + "available.","Warning");
+                            MessageBox.Show("Not enough " + sale.medName + " in stock. Only "+sale.quantityInStock.ToString() + "available.","Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                             
                         }
                         

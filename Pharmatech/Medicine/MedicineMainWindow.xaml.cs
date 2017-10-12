@@ -187,7 +187,7 @@ namespace Pharmatech
             {
                 
                 con.Open();
-                string cmdString = "SELECT allergyID, allergyName AS [Allergy Name], allergyDescription AS [Allergy Severity] FROM Allergies WHERE allergyName = @allergyName";
+                string cmdString = "SELECT allergyID, allergyName AS [Allergy Name], allergyDescription AS [Allergy Symptoms] FROM Allergies WHERE allergyName = @allergyName";
                 SqlCommand cmd = new SqlCommand(cmdString, con);
                 cmd.Parameters.AddWithValue("@allergyName", comboBox_selectAllergy.Text);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -200,8 +200,8 @@ namespace Pharmatech
                 {
 
                     allergies.allergyID = reader["allergyID"].ToString();
-                    allergies.allergyDescription = reader["allergyDescription"].ToString();
-                    allergies.allergyName = reader["allergyName"].ToString();
+                    allergies.allergyDescription = reader["Allergy Symptoms"].ToString();
+                    allergies.allergyName = reader["Allergy Name"].ToString();
                     //var row = dt.NewRow();
                     //row["AllergyID"] = reader["allergyID"].ToString();
                     //row["AllergyDescription"] = reader["allergyDescription"].ToString();
@@ -262,7 +262,7 @@ namespace Pharmatech
                 {
                     sc.Open();
                     cmd.CommandText = "DELETE FROM Medication_Allergies WHERE medID = @medID";
-                    cmd.Parameters.AddWithValue("@medID", 52);
+                    cmd.Parameters.AddWithValue("@medID", textBox_MedicationID.Text);
                     cmd.ExecuteNonQuery();
                 }
 
@@ -360,8 +360,10 @@ namespace Pharmatech
                             }
 
                         }
+                        MainMenuWindow mainWindow = new MainMenuWindow();
+                        mainWindow.Show();
+                        this.Close();
 
-                        
                     }
                     else if (dialogResult == MessageBoxResult.No)
                     {
@@ -434,7 +436,10 @@ namespace Pharmatech
 
                     }
                     // DataAccess.AllergiesDA.AddAllergy(allergyID, patientID);
-                    System.Windows.MessageBox.Show("Successfully updated medicine.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                    //System.Windows.MessageBox.Show("Successfully updated medicine.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                    MainMenuWindow mainWindow = new MainMenuWindow();
+                    mainWindow.Show();
+                    this.Close();
                 }
                 else if (dialogResult == MessageBoxResult.No)
                 {
@@ -567,7 +572,7 @@ namespace Pharmatech
 
                     string cmdString2 = "SELECT allergyID FROM Medication_Allergies WHERE medID = @id";
                     SqlCommand cmd2 = new SqlCommand(cmdString2, con);
-                    cmd2.Parameters.AddWithValue("@id", 52);
+                    cmd2.Parameters.AddWithValue("@id", textBox_MedicationID.Text);
                     SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
                     dt2 = new DataTable("Allergies");
                     da2.Fill(dt2);
@@ -575,7 +580,7 @@ namespace Pharmatech
                     dt3 = new DataTable("MedicationAllergies");
                     foreach (DataRow row in dt2.Rows)
                     {
-                        string cmdString3 = "SELECT allergyName, allergyDescription FROM Allergies WHERE allergyID = @aID";
+                        string cmdString3 = "SELECT allergyName AS [Allergy Name], allergyDescription AS [Allergy Symptoms] FROM Allergies WHERE allergyID = @aID";
                         SqlCommand cmd3 = new SqlCommand(cmdString3, con);
                         cmd3.Parameters.AddWithValue("@aID", row["allergyID"].ToString());
                         SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
@@ -629,7 +634,7 @@ namespace Pharmatech
 
                     string cmdString2 = "SELECT allergyID FROM Medication_Allergies WHERE medID = @id";
                     SqlCommand cmd2 = new SqlCommand(cmdString2, con);
-                    cmd2.Parameters.AddWithValue("@id", 52);
+                    cmd2.Parameters.AddWithValue("@id", textBox_MedicationID.Text);
                     SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
                     dt2 = new DataTable("Allergies");
                     da2.Fill(dt2);
@@ -637,7 +642,7 @@ namespace Pharmatech
                     dt3 = new DataTable("MedicationAllergies");
                     foreach (DataRow row in dt2.Rows)
                     {
-                        string cmdString3 = "SELECT allergyName, allergyDescription FROM Allergies WHERE allergyID = @aID";
+                        string cmdString3 = "SELECT allergyName as [Allergy Name], allergyDescription AS [Allergy Symptoms] FROM Allergies WHERE allergyID = @aID";
                         SqlCommand cmd3 = new SqlCommand(cmdString3, con);
                         cmd3.Parameters.AddWithValue("@aID", row["allergyID"].ToString());
                         SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
@@ -668,6 +673,9 @@ namespace Pharmatech
                     System.Windows.MessageBox.Show("Successfully deleted medicine item.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
 
                     Grid_SelectMedication.Visibility = Visibility.Visible;
+                    MainMenuWindow mainWindow = new MainMenuWindow();
+                    mainWindow.Show();
+                    this.Close();
                 }
                 else if (dialogResult == MessageBoxResult.No)
                 {

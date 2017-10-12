@@ -49,6 +49,8 @@ namespace Pharmatech
             Grid_sales.Visibility = Visibility.Hidden;
             arrowHidden_True();
 
+           
+
             using (StreamReader reader = new StreamReader("emp.txt"))
             {
                 while (!reader.EndOfStream)
@@ -75,7 +77,7 @@ namespace Pharmatech
                 button_Employee.IsEnabled = false;
             }
 
-
+            
 
 
         }
@@ -322,6 +324,25 @@ namespace Pharmatech
 
         private void textBox_amountRecieved_TextChanged(object sender, TextChangedEventArgs e)
         {
+
+            System.Windows.Controls.TextBox textBox = sender as System.Windows.Controls.TextBox;
+            Int32 selectionStart = textBox.SelectionStart;
+            Int32 selectionLength = textBox.SelectionLength;
+            String newText = String.Empty;
+            int count = 0;
+            foreach (Char c in textBox.Text.ToCharArray())
+            {
+                if (Char.IsDigit(c) || Char.IsControl(c) || (c == '.' && count == 0))
+                {
+                    newText += c;
+                    if (c == '.')
+                        count += 1;
+                }
+            }
+            textBox.Text = newText;
+            textBox.SelectionStart = selectionStart <= textBox.Text.Length ? selectionStart : textBox.Text.Length;
+
+
             if (textBox_amountRecieved.Text != "")
             {
                 
@@ -333,6 +354,9 @@ namespace Pharmatech
             {
                 textBox_Change.Text = "";
             }
+
+
+
         }
 
         private void button_completeSale_Click(object sender, RoutedEventArgs e)
@@ -400,7 +424,7 @@ namespace Pharmatech
 
                             foreach (DataRow row in dt.Rows)
                             {
-                                strBuilder.Append(row["Medication name"].ToString() + "  X" + row["Quantity"] + Environment.NewLine);
+                                strBuilder.Append(row["Medication name"].ToString() + "  x" + row["Quantity"] + Environment.NewLine);
                                 int existingStock = 0;
 
 
@@ -501,10 +525,10 @@ namespace Pharmatech
                        
 
                         // Compute an invoice in PDF form.
-                        SalesReportExporting.ExportToInvoice(dt, Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SaleInvoice" + InvoiceID.ToString(), "INVOICE", patientName, descrip, saleAmount, vatAmount, subTotal);
+                        SalesReportExporting.ExportToInvoice(dt, Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SaleInvoice" + InvoiceID.ToString(), "INVOICE#" + InvoiceID.ToString(), patientName, descrip, saleAmount, vatAmount, subTotal);
 
                         // Open the pdf invoice.
-                        System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\SaleInvoice");
+                        System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SaleInvoice" + InvoiceID.ToString());
 
                         MessageBoxResult finalResult = System.Windows.MessageBox.Show("Sale successfully processed.", "Note!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
 

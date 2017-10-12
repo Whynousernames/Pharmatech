@@ -160,7 +160,7 @@
             </Image>
             <Image x:Name="image_arrow_Copy2" HorizontalAlignment="Left" Height="127" Margin="1746,223,0,0" VerticalAlignment="Top" Width="60" Source="../images/arrow.png" RenderTransformOrigin="0.5,0.5" Grid.Row="2"/>
 
-            <Grid x:Name="Grid_patientSelect" HorizontalAlignment="Left" Height="408" Margin="866,424,0,0" VerticalAlignment="Top" Width="610" Background="#e6f3ff" Grid.Row="1" Grid.RowSpan="2">
+            <Grid x:Name="Grid_patientSelect" HorizontalAlignment="Left" Height="408" Margin="788,218,0,0" VerticalAlignment="Top" Width="610" Background="#e6f3ff" Grid.Row="1" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="167*"/>
                     <ColumnDefinition Width="453*"/>
@@ -175,7 +175,7 @@
             </Grid>
 
 
-            <Grid x:Name="Grid_saleTypeSelect" HorizontalAlignment="Left" Height="417" Margin="787,346,0,0" VerticalAlignment="Top" Width="689" Background="#e6f3ff" Grid.Row="1" Grid.RowSpan="2">
+            <Grid x:Name="Grid_saleTypeSelect" HorizontalAlignment="Left" Height="417" Margin="759,209,0,0" VerticalAlignment="Top" Width="689" Background="#e6f3ff" Grid.Row="1" Grid.RowSpan="2">
                 <Button x:Name="button_cashSaleSelect" Content="Cash Sale" HorizontalAlignment="Left" Margin="55,190,0,162" Width="254" FontSize="24" Cursor="Hand"  FontWeight="Bold" Click="button_cashSaleSelect_Click" BorderBrush="Black"/>
                 <Label x:Name="label1_Copy" Content="Sale Type" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="58" Margin="-10,68,0,0" VerticalAlignment="Top" Width="655" FontSize="28" FontWeight="Bold"/>
                 <Button x:Name="button_medicalAidSaleSelect" Content="Medical Aid Sale" HorizontalAlignment="Left" Margin="323,190,0,162" Width="338"  FontSize="24" Cursor="Hand"  FontWeight="Bold" Click="button_medicalAidSaleSelect_Click" BorderBrush="Black"/>

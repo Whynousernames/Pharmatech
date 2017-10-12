@@ -602,6 +602,18 @@ namespace Pharmatech
                 System.Diagnostics.Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SaleInvoice" + saleID.ToString());
             }
         }
+
+        private void button_cancelSelectPatient1_Click(object sender, RoutedEventArgs e)
+        {
+            Grid_SelectPatientID.Visibility = Visibility.Hidden;
+            Grid_ReportsMainWindow.Visibility = Visibility.Visible;
+        }
+
+        private void button_cancelSelectPatient_Click(object sender, RoutedEventArgs e)
+        {
+            Grid_SelectPatientID.Visibility = Visibility.Hidden;
+            Grid_ReportsMainWindow.Visibility = Visibility.Visible;
+        }
     }
   
 }

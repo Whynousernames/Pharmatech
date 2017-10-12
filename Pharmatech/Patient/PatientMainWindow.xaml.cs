@@ -961,11 +961,7 @@ namespace Pharmatech
                     cmd.Parameters.AddWithValue("@allergyName", comboBox_selectAllergy.Text);
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    while (reader.Read())
-                    {
-                        textBox_AllergyDescription.Text = reader["allergyDescription"].ToString();
-
-                    }
+                    
 
                     con.Close();
 
@@ -986,7 +982,7 @@ namespace Pharmatech
             comboBox_selectCity.IsEnabled = false;
             comboBox_selectSuburb.IsEnabled = false;
             comboBox_selectAllergy.IsEnabled = false;
-            textBox_AllergyDescription.IsEnabled = false;
+            
             button_Remove.IsEnabled = false;
             button_Add.IsEnabled = false;
 

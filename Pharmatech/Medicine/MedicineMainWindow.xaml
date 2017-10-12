@@ -122,17 +122,17 @@
                 <TextBox x:Name="textBox_AllergyName" HorizontalAlignment="Left" Height="38" Margin="1071,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"/>
                 <TextBox x:Name="textBox_AllergyDescription" HorizontalAlignment="Left" Height="75" Margin="1071,276,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"/>
                 <ComboBox x:Name="comboBox_selectAllergy" HorizontalAlignment="Left" Height="36" Margin="1071,123,0,0" VerticalAlignment="Top" Width="368" FontSize="24"/>
-                <Button x:Name="button_Next" Content="Complete" HorizontalAlignment="Left" Margin="1285,856,0,8" Width="179"   FontSize="24" Click="button_next_Click_1" BorderBrush="Black" BorderThickness="2" >
+                <Button x:Name="button_Next" Content="Complete" HorizontalAlignment="Left" Margin="1210,835,0,2" Width="229"   FontSize="24" Click="button_next_Click_1" BorderBrush="Black" BorderThickness="2" >
 
                 </Button>
-                <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Margin="1114,856,0,8" Width="147" Click="button_cancel_Click"  FontSize="24" BorderBrush="Black" BorderThickness="2"/>
-                <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="944,856,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" BorderBrush="Black" BorderThickness="2">
+                <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Margin="978,835,0,2" Width="207" Click="button_cancel_Click"  FontSize="24" BorderBrush="Black" BorderThickness="2"/>
+                <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="944,856,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" BorderBrush="Black" BorderThickness="2" Visibility="Hidden">
 
                 </Button>
-                <Button x:Name="button_Remove" Content="Remove" HorizontalAlignment="Left" Height="48" Margin="1071,362,0,0" VerticalAlignment="Top" Width="127"  FontSize="24" Click="button_Remove_Click" BorderBrush="Black" BorderThickness="2">
+                <Button x:Name="button_Remove" Content="Remove" HorizontalAlignment="Left" Height="67" Margin="1235,370,0,0" VerticalAlignment="Top" Width="163"  FontSize="24" Click="button_Remove_Click" BorderBrush="Black" BorderThickness="2">
 
                 </Button>
-                <Button x:Name="button_Add" Content="Add" HorizontalAlignment="Left" Height="48" Margin="1312,362,0,0" VerticalAlignment="Top" Width="127" FontSize="24" Click="button_Add_Click" BorderBrush="Black" BorderThickness="2">
+                <Button x:Name="button_Add" Content="Add" HorizontalAlignment="Left" Height="67" Margin="1071,370,0,0" VerticalAlignment="Top" Width="153" FontSize="24" Click="button_Add_Click" BorderBrush="Black" BorderThickness="2">
 
                 </Button>
                 <DataGrid x:Name="dataGrid_Allergies" HorizontalAlignment="Left" Height="338" Margin="815,460,0,0" VerticalAlignment="Top" Width="624" GridLinesVisibility="Horizontal"/>
@@ -141,7 +141,8 @@
                 <TextBox x:Name="textBox_QuantityInStock_Copy" HorizontalAlignment="Left" Height="112" Margin="317,630,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24" Text="{Binding MedValid, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label x:Name="labelMedicationIsActive" Content="" HorizontalAlignment="Left" Height="40" Margin="115,121,0,0" VerticalAlignment="Top" Width="550" Background="#E2382F" FontSize="18" Visibility="Hidden" FontWeight="Bold"/>
                 <TextBox x:Name="textBox_IsActive" HorizontalAlignment="Left" Height="23" Margin="313,727,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="48" Visibility="Hidden"/>
-                <Button x:Name="button_AddStock" Content="Add Stock" HorizontalAlignment="Left" Height="64" Margin="400,782,0,0" VerticalAlignment="Top" Width="211"  FontSize="24" Click="button_AddStock_Click" BorderBrush="Black" BorderThickness="2"/>
+                <Button x:Name="button_AddStock" Content="Add Stock" HorizontalAlignment="Left" Height="64" Margin="345,772,0,0" VerticalAlignment="Top" Width="211"  FontSize="24" Click="button_AddStock_Click" BorderBrush="Black" BorderThickness="2"/>
+                <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="47,772,0,0" TextWrapping="Wrap" Text="Add additional stock of this medication:" VerticalAlignment="Top" FontSize="24" Width="236"/>
             </Grid>
             <Grid x:Name="Grid_Instruction" HorizontalAlignment="Left" Height="894" Margin="2061,32,-865,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="714">
                 <Label x:Name="label_Instructions" Content="Instructions" HorizontalAlignment="Left" Height="62" Margin="245,10,0,0" VerticalAlignment="Top" Width="411" FontSize="36"/>

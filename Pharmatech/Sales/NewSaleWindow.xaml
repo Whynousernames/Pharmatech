@@ -89,19 +89,19 @@
                 <DataGrid x:Name="dataGrid_saleItems"  HorizontalAlignment="Left" Height="431" Margin="0,347,0,0" VerticalAlignment="Top" Width="1423" GridLinesVisibility="Horizontal"   Grid.ColumnSpan="2" SelectionChanged="dataGrid_saleItems_SelectionChanged" AutoGenerateColumns="False"/>
 
                 <ComboBox x:Name="comboBox_select_Item" HorizontalAlignment="Left" Height="36" Margin="149,191,0,0" VerticalAlignment="Top" Width="360" FontSize="24"   Grid.Column="1" DisplayMemberPath="MedName" SelectedValuePath="MedID" IsTextSearchEnabled="True" IsEditable="True"/>
-                <Button x:Name="button_addItem" Content="Add Item" HorizontalAlignment="Left" Margin="340,254,0,550" Width="161" FontSize="24" Cursor="Hand" Click="button_addItem_Click" Grid.Column="1">
+                <Button x:Name="button_addItem" Content="Add Item" HorizontalAlignment="Left" Margin="340,254,0,550" Width="161" FontSize="24" Cursor="Hand" Click="button_addItem_Click" Grid.Column="1" BorderBrush="Black">
 
                 </Button>
-                <Button x:Name="button_removeItem" Content="Remove item" HorizontalAlignment="Left" Margin="149,254,0,550" Width="186" FontSize="24" Cursor="Hand"  Grid.Column="1" Click="button_removeItem_Click">
+                <Button x:Name="button_removeItem" Content="Remove item" HorizontalAlignment="Left" Margin="149,254,0,550" Width="186" FontSize="24" Cursor="Hand"  Grid.Column="1" Click="button_removeItem_Click" BorderBrush="Black">
 
                 </Button>
-                <Button x:Name="button_next" Content="Next" HorizontalAlignment="Left" Height="56" Margin="1210,794,0,0" VerticalAlignment="Top" Width="147" Click="button_next_Click"  FontSize="24" Grid.Column="1" >
+                <Button x:Name="button_next" Content="Next" HorizontalAlignment="Left" Height="66" Margin="1200,792,0,0" VerticalAlignment="Top" Width="168" Click="button_next_Click"  FontSize="24" Grid.Column="1" BorderBrush="Black">
 
                 </Button>
-                <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1036,794,0,0" VerticalAlignment="Top" Width="147" Click="button_cancel_Click" FontSize="24" Grid.Column="1" >
+                <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="66" Margin="988,794,0,0" VerticalAlignment="Top" Width="195" Click="button_cancel_Click" FontSize="24" Grid.Column="1" BorderBrush="Black" >
 
                 </Button>
-                <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="866,794,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" Grid.Column="1" >
+                <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="866,794,0,0" VerticalAlignment="Top" Width="147" Click="button_back_Click"  FontSize="24" Grid.Column="1" Visibility="Hidden" >
 
                 </Button>
                 <Label x:Name="label_PatientDetials" Content="Patient Details" HorizontalAlignment="Left" Height="42" Margin="54,-12,0,0" VerticalAlignment="Top" Width="184" FontSize="24" FontWeight="Bold" Grid.Column="1"/>
@@ -176,9 +176,9 @@
 
 
             <Grid x:Name="Grid_saleTypeSelect" HorizontalAlignment="Left" Height="417" Margin="787,346,0,0" VerticalAlignment="Top" Width="689" Background="#e6f3ff" Grid.Row="1" Grid.RowSpan="2">
-                <Button x:Name="button_cashSaleSelect" Content="Cash Sale" HorizontalAlignment="Left" Margin="55,190,0,162" Width="254" FontSize="24" Cursor="Hand"  FontWeight="Bold" Click="button_cashSaleSelect_Click"/>
+                <Button x:Name="button_cashSaleSelect" Content="Cash Sale" HorizontalAlignment="Left" Margin="55,190,0,162" Width="254" FontSize="24" Cursor="Hand"  FontWeight="Bold" Click="button_cashSaleSelect_Click" BorderBrush="Black"/>
                 <Label x:Name="label1_Copy" Content="Sale Type" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Height="58" Margin="-10,68,0,0" VerticalAlignment="Top" Width="655" FontSize="28" FontWeight="Bold"/>
-                <Button x:Name="button_medicalAidSaleSelect" Content="Medical Aid Sale" HorizontalAlignment="Left" Margin="323,190,0,162" Width="338"  FontSize="24" Cursor="Hand"  FontWeight="Bold" Click="button_medicalAidSaleSelect_Click"/>
+                <Button x:Name="button_medicalAidSaleSelect" Content="Medical Aid Sale" HorizontalAlignment="Left" Margin="323,190,0,162" Width="338"  FontSize="24" Cursor="Hand"  FontWeight="Bold" Click="button_medicalAidSaleSelect_Click" BorderBrush="Black"/>
             </Grid>
             <Label x:Name="label_Sales" Content="Sales" HorizontalAlignment="Left" Margin="90,128,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="8.517,2.609" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Patient" Content="Patient" HorizontalAlignment="Left" Margin="83,277,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>

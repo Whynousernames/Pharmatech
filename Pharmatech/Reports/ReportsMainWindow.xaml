@@ -105,13 +105,13 @@
                 <Button x:Name="button_viewEmployee" Content="View Employee" HorizontalAlignment="Left" Height="37" Margin="0,38,0,0" VerticalAlignment="Top" Width="138" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Cursor="Hand" FontWeight="Normal" FontSize="16"/>
                 <Button x:Name="button_removeEmployee" Content="Remove Employee" HorizontalAlignment="Left" Height="37" Margin="0,73,0,0" VerticalAlignment="Top" Width="138" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Cursor="Hand" FontWeight="Normal" FontSize="16"/>
             </Grid>
-            <Button x:Name="button_saveToPDF" Content="Save to PDF" HorizontalAlignment="Left" Margin="1641,405,0,77" Width="201"   FontSize="24"   Grid.Row="2" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_saveToPDF_Click"  BorderBrush="Black" BorderThickness="2">
+            <Button x:Name="button_saveToPDF" Content="Export to .PDF" HorizontalAlignment="Left" Margin="1609,387,0,77" Width="233"   FontSize="24"   Grid.Row="2" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_saveToPDF_Click"  BorderBrush="Black" BorderThickness="2">
 
             </Button>
-            <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1271,405,0,0" VerticalAlignment="Top" Width="147"   FontSize="24" Grid.Row="2" Click="button_cancel_Click" BorderBrush="Black" BorderThickness="2">
+            <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="74" Margin="1181,387,0,0" VerticalAlignment="Top" Width="179"   FontSize="24" Grid.Row="2" Click="button_cancel_Click" BorderBrush="Black" BorderThickness="2">
 
             </Button>
-            <Button x:Name="button_viewInvoice" Content="View Invoice" HorizontalAlignment="Left" Height="56" Margin="1429,405,0,0" VerticalAlignment="Top" Width="202"  FontSize="24" Grid.Row="2" BorderBrush="Black" BorderThickness="2" Click="button_viewInvoice_Click">
+            <Button x:Name="button_viewInvoice" Content="View Invoice" HorizontalAlignment="Left" Height="74" Margin="1382,387,0,0" VerticalAlignment="Top" Width="202"  FontSize="24" Grid.Row="2" BorderBrush="Black" BorderThickness="2" Click="button_viewInvoice_Click">
 
             </Button>
             <Grid x:Name="Grid_ReportsMainWindow" HorizontalAlignment="Left" Height="870" Margin="399,54,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="1443">
@@ -157,7 +157,7 @@
                     <RowDefinition Height="78*"/>
                     <RowDefinition Height="278*"/>
                 </Grid.RowDefinitions>
-                <Label x:Name="label_MedicationName" Content="Please input medication name for search" HorizontalAlignment="Left" Height="62" Margin="0,34,-27,0" VerticalAlignment="Top" Width="681" FontSize="36" Grid.RowSpan="2"/>
+                <Label x:Name="label_MedicationName" Content="Select medication name to search:" HorizontalAlignment="Left" Height="62" Margin="116,69,-143,0" VerticalAlignment="Top" Width="681" FontSize="36" Grid.RowSpan="2" Grid.Row="1"/>
                 <Label x:Name="label_MedicationNameSelect" Content="Medication Name:" HorizontalAlignment="Left" Height="42" Margin="21,53,0,0" VerticalAlignment="Top" Width="211" FontSize="24" Grid.Row="2"/>
                 <Button x:Name="button_nextSelectMedication" Content="Next" HorizontalAlignment="Left" Height="56" Margin="415,132,0,0" VerticalAlignment="Top" Width="147"   FontSize="24"  Grid.Row="2" Click="button_nextSelectMedication_Click_1" BorderBrush="Black" BorderThickness="2">
 
@@ -173,7 +173,7 @@
                     <RowDefinition Height="78*"/>
                     <RowDefinition Height="278*"/>
                 </Grid.RowDefinitions>
-                <Label x:Name="label_PatientID" Content="Please input patient ID for search" HorizontalAlignment="Left" Height="62" Margin="0,34,-27,0" VerticalAlignment="Top" Width="681" FontSize="36" Grid.RowSpan="2"/>
+                <Label x:Name="label_PatientID" Content="Select Patient ID for search" HorizontalAlignment="Left" Height="62" Margin="138,64,-165,0" VerticalAlignment="Top" Width="681" FontSize="36" Grid.RowSpan="2" Grid.Row="1"/>
                 <Label x:Name="label_PatientIDSelect" Content="Patient ID:" HorizontalAlignment="Left" Height="42" Margin="21,53,0,0" VerticalAlignment="Top" Width="211" FontSize="24" Grid.Row="2"/>
                 <TextBox x:Name="textBox_PatientIDSelect" HorizontalAlignment="Left" Height="38" Margin="168,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368" FontSize="24"  Grid.Row="2"/>
                 <Button x:Name="button_nextSelectPatientID" Content="Next" HorizontalAlignment="Left" Height="56" Margin="347,114,0,0" VerticalAlignment="Top" Width="147"  FontSize="24"  Grid.Row="2" Click="button_nextSelectPatientID_Click_1" BorderBrush="Black" BorderThickness="2">

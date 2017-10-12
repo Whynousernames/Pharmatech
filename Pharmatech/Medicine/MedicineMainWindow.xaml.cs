@@ -91,7 +91,7 @@ namespace Pharmatech
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.MessageBox.Show("Could not populate allergies combobox from database.", ex.ToString());
+                    System.Windows.MessageBox.Show("Could populate allergyName from the allergies table.", ex.ToString());
                 }
             }
 
@@ -186,7 +186,7 @@ namespace Pharmatech
             using (SqlConnection con = new SqlConnection(conn))
             {
                 con.Open();
-                string cmdString = "SELECT allergyID, allergyName, allergyDescription FROM Allergies WHERE allergyName = @allergyName";
+                string cmdString = "SELECT allergyID, allergyName AS [Allergy Name], allergyDescription AS [Allergy Severity] FROM Allergies WHERE allergyName = @allergyName";
                 SqlCommand cmd = new SqlCommand(cmdString, con);
                 cmd.Parameters.AddWithValue("@allergyName", comboBox_selectAllergy.Text);
                 SqlDataReader reader = cmd.ExecuteReader();

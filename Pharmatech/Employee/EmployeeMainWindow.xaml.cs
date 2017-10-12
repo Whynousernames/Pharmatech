@@ -653,8 +653,8 @@ namespace Pharmatech
             string email = textBox_Email.Text;
             string address1 = textBox_AddressLine1.Text;
             string address2 = textBox_AddressLine2.Text;
-            string suburb = textBox_Suburb.Text;
-            string city = textBox_City.Text;
+           
+            
             char empType = 'a';
             decimal hourlyRate = Convert.ToDecimal(textBox_HourlyRate.Text);
 
@@ -668,7 +668,7 @@ namespace Pharmatech
                 empType = 'A';
             }
 
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(surname) || string.IsNullOrEmpty(contactNo) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(address1) || string.IsNullOrEmpty(address2) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(surname) || string.IsNullOrEmpty(contactNo) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(address1) || string.IsNullOrEmpty(password))
             {
                 System.Windows.MessageBox.Show("Not all fields are completed.", "Alert!", MessageBoxButton.OKCancel, MessageBoxImage.Information);
             }

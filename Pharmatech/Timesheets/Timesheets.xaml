@@ -109,10 +109,10 @@
                 <Button x:Name="button_viewEmployee" Content="View Employee" HorizontalAlignment="Left" Height="37" Margin="0,38,0,0" VerticalAlignment="Top" Width="138" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Cursor="Hand" FontWeight="Normal" FontSize="16" Grid.ColumnSpan="2"/>
                 <Button x:Name="button_removeEmployee" Content="Remove Employee" HorizontalAlignment="Left" Height="37" Margin="0,73,0,0" VerticalAlignment="Top" Width="138" Background="#FF2B95E3" BorderBrush="#FF31A5FC" Cursor="Hand" FontWeight="Normal" FontSize="16" Grid.ColumnSpan="2"/>
             </Grid>
-            <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="56" Margin="1484,403,0,0" VerticalAlignment="Top" Width="147"   FontSize="24" Grid.Row="2" Click="button_cancel_Click" BorderBrush="Black" BorderThickness="2">
+            <Button x:Name="button_cancel" Content="Cancel" HorizontalAlignment="Left" Height="72" Margin="1574,365,0,0" VerticalAlignment="Top" Width="194"   FontSize="24" Grid.Row="2" Click="button_cancel_Click" BorderBrush="Black" BorderThickness="2">
 
             </Button>
-            <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="1331,403,0,0" VerticalAlignment="Top" Width="147"  FontSize="24" Grid.Row="2" BorderBrush="Black" BorderThickness="2">
+            <Button x:Name="button_back" Content="Back" HorizontalAlignment="Left" Height="56" Margin="1331,403,0,0" VerticalAlignment="Top" Width="147"  FontSize="24" Grid.Row="2" BorderBrush="Black" BorderThickness="2" Visibility="Hidden">
 
             </Button>
             <Grid x:Name="Grid_ReportsMainWindow" HorizontalAlignment="Left" Height="870" Margin="432,54,0,0" Grid.RowSpan="3" VerticalAlignment="Top" Width="1410">
@@ -122,22 +122,22 @@
                     </Rectangle.Effect>
                 </Rectangle>
 
-                <Label x:Name="label_SelectEmpName" Content="Employee Name:" HorizontalAlignment="Left" Height="42" Margin="100,236,0,0" VerticalAlignment="Top" Width="195" FontSize="24" />
-                <ComboBox x:Name="comboBox_selectEmployee" HorizontalAlignment="Left" Height="42" Margin="300,238,0,0" VerticalAlignment="Top" Width="248" FontSize="24" DisplayMemberPath="empName" SelectedValuePath="empID" />
-                <Label x:Name="label_SelectMonth" Content="Month:" HorizontalAlignment="Left" Height="42" Margin="100,323,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
+                <Label x:Name="label_SelectEmpName" Content="Employee Name:" HorizontalAlignment="Left" Height="42" Margin="106,198,0,0" VerticalAlignment="Top" Width="195" FontSize="24" />
+                <ComboBox x:Name="comboBox_selectEmployee" HorizontalAlignment="Left" Height="42" Margin="306,200,0,0" VerticalAlignment="Top" Width="248" FontSize="24" DisplayMemberPath="empName" SelectedValuePath="empID" />
+                <Label x:Name="label_SelectMonth" Content="Month:" HorizontalAlignment="Left" Height="42" Margin="106,253,0,0" VerticalAlignment="Top" Width="166" FontSize="24" />
 
 
 
                 <DataGrid x:Name="dataGrid_Timesheets" ItemsSource="{Binding Sale}" HorizontalAlignment="Left" Height="652" Margin="579,144,0,0" VerticalAlignment="Top" Width="831" GridLinesVisibility="All"  RowHeight="22" ColumnHeaderHeight="40" FontSize="14" FontFamily="Arial" >
                 </DataGrid>
-                <Button x:Name="button_GenerateReport" Content="Generate Timesheet" HorizontalAlignment="Left" Margin="114,431,0,362" Width="242"  FontSize="20" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_GenerateReport_Click_1" Style="{StaticResource MetroButton}" BorderBrush="Black" BorderThickness="2">
+                <Button x:Name="button_GenerateReport" Content="Generate Timesheet" HorizontalAlignment="Left" Margin="207,434,0,359" Width="242"  FontSize="20" ClickMode="Press" ToolTip="Save the displayed results to PDF" Click="button_GenerateReport_Click_1" Style="{StaticResource MetroButton}" BorderBrush="Black" BorderThickness="2">
 
                 </Button>
-                <Label x:Name="label_params" Content="Enter parameters" HorizontalAlignment="Left" Margin="114,154,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
-                <Label x:Name="label_params_Copy" Content="Generate Payslip" HorizontalAlignment="Left" Margin="130,592,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
+                <Label x:Name="label_params" Content="Enter parameters" HorizontalAlignment="Left" Margin="114,154,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Visibility="Hidden"/>
                 <Label x:Name="label_SalesSummary" Content="" HorizontalAlignment="Left" Margin="765,38,0,0" VerticalAlignment="Top" FontSize="28" FontWeight="Bold"/>
-                <ComboBox x:Name="comboBox_selectMonth" HorizontalAlignment="Left" Height="42" Margin="300,323,0,0" VerticalAlignment="Top" Width="248" FontSize="24" />
-                <Button x:Name="button_GeneratePaySlip" Content="Generate Payslip" HorizontalAlignment="Left" Margin="114,673,0,120" Width="242"  FontSize="20" ClickMode="Press" ToolTip="Save the displayed results to PDF"  Style="{StaticResource MetroButton}" BorderBrush="Black" BorderThickness="2" Click="button_GeneratePaySlip_Click"/>
+                <ComboBox x:Name="comboBox_selectMonth" HorizontalAlignment="Left" Height="42" Margin="306,253,0,0" VerticalAlignment="Top" Width="248" FontSize="24" />
+                <Button x:Name="button_GeneratePaySlip" Content="Generate Payslip" HorizontalAlignment="Left" Margin="207,666,0,127" Width="242"  FontSize="20" ClickMode="Press" ToolTip="Save the displayed results to PDF"  Style="{StaticResource MetroButton}" BorderBrush="Black" BorderThickness="2" Click="button_GeneratePaySlip_Click"/>
+                <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="161,559,0,0" TextWrapping="Wrap" Text="Generate a payslip for an employed based on the amount worked and their hourly rate:" VerticalAlignment="Top" FontSize="24" Width="365"/>
             </Grid>
             <Grid x:Name="Grid_ViewPDF" HorizontalAlignment="Left" Height="429" Margin="-1014,326,0,0" VerticalAlignment="Top" Width="654" Grid.RowSpan="2" Grid.Row="1">
                 <Grid.RowDefinitions>
@@ -182,6 +182,8 @@
             <Label x:Name="label_Instr" Content="Timesheets &amp; Wages" HorizontalAlignment="Left" Margin="13,115,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Emp" Content="Employees" HorizontalAlignment="Left" Margin="65,261,0,0" VerticalAlignment="Top" Height="38" Width="128" Grid.Row="2" FontSize="22" RenderTransformOrigin="0.571,-1.029" FontFamily="Arial" FontWeight="Bold"/>
             <Label x:Name="label_Rep" Content="Reporting" HorizontalAlignment="Left" Margin="69,411,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" FontWeight="Bold"/>
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="591,326,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Generate a timesheet for an employee for the chosen month" VerticalAlignment="Top" FontSize="24" Width="365"/>
+
 
         </Grid>
 

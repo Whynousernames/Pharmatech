@@ -345,7 +345,7 @@ namespace Pharmatech
             string address1 = textBox_AddressLine1.Text;
             string address2 = textBox_AddressLine2.Text;          
             string patientID = textBox_IDNumber.Text;
-            string suburb = comboBox_selectSuburb.Text;
+            string suburb = comboBox_selectSuburb.Text.ToString();
             string city = comboBox_selectCity.Text;
                                
 

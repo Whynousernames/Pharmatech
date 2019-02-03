@@ -21,7 +21,6 @@ namespace Pharmatech
         private string _MedValid;
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         private void OnPropertyChanged(string p)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(p));
